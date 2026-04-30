@@ -17,15 +17,46 @@ import {
   setUseImperialUnits,
   setWelcomeWizardCompleted,
 } from '@/store/settings';
+import { RpgClass, setRpgClass } from '@/store/rpg';
 import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { useMemo, useState } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
-import { List, Portal, Text } from 'react-native-paper';
+import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Icon, List, Portal, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
+
+const RPG_CLASSES: {
+  id: RpgClass;
+  name: string;
+  description: string;
+  bonus: string;
+  icon: string;
+}[] = [
+  {
+    id: 'warrior',
+    name: 'Guerreiro',
+    description: 'Especialista em força e resistência bruta.',
+    bonus: '+20% XP em séries de musculação',
+    icon: 'fitnessCenter',
+  },
+  {
+    id: 'scout',
+    name: 'Explorador',
+    description: 'Ágil e resistente — domina cardio e variedade.',
+    bonus: '+20% XP em cardio e exercícios distintos',
+    icon: 'directionsRun',
+  },
+  {
+    id: 'paladin',
+    name: 'Paladino',
+    description: 'Equilíbrio entre força, resistência e recuperação.',
+    bonus: 'Bônus equilibrado em todas as atividades',
+    icon: 'shield',
+  },
+];
 
 export function WelcomeWizard() {
   const formatDate = useFormatDate();
@@ -81,7 +112,8 @@ export function WelcomeWizard() {
     [t],
   );
 
-  const totalPages = 3;
+  const totalPages = 4;
+  const rpgClass = useAppSelector((s) => s.rpg.rpgClass);
 
   const handleNext = () => {
     if (currentPage < totalPages - 1) {
@@ -96,6 +128,71 @@ export function WelcomeWizard() {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  const renderClassSelectionPage = () => (
+    <View style={styles.pageContent}>
+      <View style={styles.headerSection}>
+        <Text variant="headlineMedium" style={styles.pageTitle}>
+          Escolha sua Classe
+        </Text>
+        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+          Sua classe define seu estilo de jornada. Você pode mudar depois.
+        </Text>
+      </View>
+
+      <View style={[styles.settingsSection, { gap: spacing[3] }]}>
+        {RPG_CLASSES.map((cls) => {
+          const selected = rpgClass === cls.id;
+          return (
+            <Pressable
+              key={cls.id}
+              onPress={() => dispatch(setRpgClass(cls.id))}
+              style={[
+                styles.classCard,
+                selected && { borderColor: colors.primary, borderWidth: 2 },
+              ]}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[3] }}>
+                <View
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 4,
+                    backgroundColor: selected ? colors.primaryContainer : colors.surfaceVariant,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icon
+                    source={cls.icon}
+                    size={24}
+                    color={selected ? colors.primary : colors.onSurfaceVariant}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text
+                    variant="titleSmall"
+                    style={{ color: selected ? colors.primary : colors.onSurface }}
+                  >
+                    {cls.name}
+                  </Text>
+                  <Text variant="bodySmall" style={{ color: colors.onSurfaceVariant }}>
+                    {cls.description}
+                  </Text>
+                  <Text
+                    variant="labelSmall"
+                    style={{ color: colors.primary, marginTop: 2 }}
+                  >
+                    {cls.bonus}
+                  </Text>
+                </View>
+              </View>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
 
   const renderCrashReportsPage = () => (
     <View style={styles.pageContent}>
@@ -228,10 +325,12 @@ export function WelcomeWizard() {
   const renderPage = () => {
     switch (currentPage) {
       case 0:
-        return renderCrashReportsPage();
+        return renderClassSelectionPage();
       case 1:
-        return renderLocalizationPage();
+        return renderCrashReportsPage();
       case 2:
+        return renderLocalizationPage();
+      case 3:
         return renderNotificationsAndFeedPage();
       default:
         return null;
@@ -349,5 +448,12 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+  },
+  classCard: {
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(128,128,128,0.3)',
+    padding: spacing[3],
+    marginHorizontal: spacing.pageHorizontalMargin,
   },
 });

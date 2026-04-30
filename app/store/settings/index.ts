@@ -31,6 +31,7 @@ interface SettingsState {
   preferredLanguage: string | undefined;
   notesExpandedByDefault: boolean;
   keepScreenAwakeDuringWorkout: boolean;
+  forceDarkMode: boolean;
 }
 
 interface RemoteBackupSettings {
@@ -62,6 +63,7 @@ const initialState: SettingsState = {
   preferredLanguage: undefined,
   notesExpandedByDefault: false,
   keepScreenAwakeDuringWorkout: false,
+  forceDarkMode: true,
 };
 
 const settingsSlice = createSlice({
@@ -100,6 +102,9 @@ const settingsSlice = createSlice({
     },
     setKeepScreenAwakeDuringWorkout(state, action: PayloadAction<boolean>) {
       state.keepScreenAwakeDuringWorkout = action.payload;
+    },
+    setForceDarkMode(state, action: PayloadAction<boolean>) {
+      state.forceDarkMode = action.payload;
     },
     setRemoteBackupSettings(
       state,
@@ -177,6 +182,7 @@ export const {
   setPreferredLanguage,
   setNotesExpandedByDefault,
   setKeepScreenAwakeDuringWorkout,
+  setForceDarkMode,
 } = settingsSlice.actions;
 
 export const { selectPreferredWeightUnit } = settingsSlice.selectors;

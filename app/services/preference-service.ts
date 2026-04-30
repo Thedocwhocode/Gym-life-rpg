@@ -304,4 +304,13 @@ export class PreferenceService {
       ? this.keyValueStore.setItem('preferredLanguage', lang)
       : this.keyValueStore.removeItem('preferredLanguage');
   }
+
+  async getForceDarkMode(): Promise<boolean> {
+    const value = await this.keyValueStore.getItem('forceDarkMode');
+    return fromBooleanString(value, true);
+  }
+
+  async setForceDarkMode(value: boolean): Promise<void> {
+    await this.keyValueStore.setItem('forceDarkMode', toBooleanString(value));
+  }
 }

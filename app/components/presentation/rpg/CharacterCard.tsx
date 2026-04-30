@@ -1,5 +1,6 @@
 import XpProgressBar from '@/components/presentation/rpg/XpProgressBar';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
+import { useRpgFontSize } from '@/hooks/useRpgFontSize';
 import { useAppSelector } from '@/store';
 import { selectAllAchievements, selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
 import { View } from 'react-native';
@@ -7,6 +8,7 @@ import { Icon, Text } from 'react-native-paper';
 
 export default function CharacterCard() {
   const { colors } = useAppTheme();
+  const levelFontSize = useRpgFontSize(36);
   const level = useAppSelector(selectRpgLevel);
   const title = useAppSelector(selectRpgTitle);
   const progress = useAppSelector(selectXpProgress);
@@ -51,7 +53,7 @@ export default function CharacterCard() {
           </Text>
           <Text
             variant="displaySmall"
-            style={{ color: colors.onSurface, lineHeight: 36 }}
+            style={{ color: colors.onSurface, fontSize: levelFontSize, lineHeight: levelFontSize + 4 }}
           >
             NÍVEL {level}
           </Text>

@@ -6,6 +6,7 @@ import { RootState, useAppSelector } from '@/store';
 import {
   setColorSchemeSeed,
   setCrashReportsEnabled,
+  setForceDarkMode,
   setKeepScreenAwakeDuringWorkout,
   setNotesExpandedByDefault,
   setShowBodyweight,
@@ -30,6 +31,12 @@ export default function AppConfiguration() {
         options={{ title: t('settings.app_configuration.title') }}
       />
       <List.Section>
+        <ListSwitch
+          headline="Modo Escuro RPG"
+          supportingText="Força o tema escuro para a experiência visual RPG"
+          value={settings.forceDarkMode}
+          onValueChange={(value) => dispatch(setForceDarkMode(value))}
+        />
         <ListSwitch
           testID="setShowBodyweight"
           headline={<T keyName="settings.show_bodyweight.label" />}

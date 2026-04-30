@@ -123,13 +123,16 @@ Foco principal: **Dashboard Gamificado** e **Frontend RPG**.
 
 ---
 
-### [ ] 3.4 — Tema Escuro como Padrão
+### [x] 3.4 — Tema Escuro como Padrão
 
-- [ ] Forçar dark mode como padrão para o tema RPG
-- [ ] Adicionar opção "modo clarity" (light mode alternativo) nas Settings
-- [ ] Testar acessibilidade WCAG AA da paleta vermelho/preto
+- [x] `forceDarkMode: boolean` (padrão `true`) adicionado ao `SettingsState` em `store/settings/index.ts`
+- [x] `setForceDarkMode` action exportada
+- [x] `getForceDarkMode`/`setForceDarkMode` adicionados ao `PreferenceService`
+- [x] Leitura no `initializeSettingsStateSlice` + efeito de persistência em `store/settings/effects.ts`
+- [x] `useAppTheme.tsx`: `isDark = forceDarkMode || colorScheme === 'dark'`; `schemedTheme` usa `isDark` em vez de `colorScheme`
+- [x] Toggle "Modo Escuro RPG" adicionado em `settings/app-configuration.tsx`
 
-> **Nota arquitetural:** requer nova preference em `settingsSlice` + override do `colorScheme` em `useAppTheme.tsx`. Não causa regressão se o usuário não alterou o tema.
+> **Pendente:** Auditoria WCAG AA da paleta vermelho/preto em modo claro
 
 ---
 
@@ -151,22 +154,77 @@ Foco principal: **Dashboard Gamificado** e **Frontend RPG**.
 
 ---
 
-### [ ] 4.2 — Onboarding RPG
+### [x] 4.2 — Onboarding RPG
 
-- [ ] Wizard de onboarding com narrativa RPG (substituir/estender `welcome-wizard.tsx`)
-- [ ] Fluxo: "Escolha sua classe" (Força / Resistência / Equilíbrio) → personaliza plano inicial via IA
+- [x] `rpgClass?: 'warrior' | 'scout' | 'paladin'` adicionado ao `RpgState` + `setRpgClass` action
+- [x] `setRpgClass` incluído no `addDebouncedEffect` de persistência em `store/rpg/effects.ts`
+- [x] Página 0 "Escolha sua Classe" adicionada ao `welcome-wizard.tsx` (Guerreiro / Explorador / Paladino com bônus descrito)
+- [x] Wizard passou de 3 para 4 páginas; páginas existentes deslocadas para índices 1-3
 
-> **Nota:** Requer novas páginas e integração com o AI planner. Escopo maior — fase futura.
+> **Pendente:** Integração do `rpgClass` com multiplicador de XP no `sessionXp()` (efeitos diferentes por classe)
 
 ---
 
 ## Débito Técnico a Resolver
 
-- [ ] **Fontes grandes em mobile:** `PressStart2P` em `headlineLarge` (32px) pode quebrar em telas < 375px — auditar e usar `useRpgFontSize` onde necessário
+- [x] **Fontes grandes em mobile:** `useRpgFontSize` aplicado no `CharacterCard.tsx` para o display de nível (`displaySmall` 36px PressStart2P); restante auditado — outros usos de `headlineLarge` estão em telas não-RPG
 - [ ] **i18n das strings RPG:** "Quest", "XP", "Level Up", "MISSÃO COMPLETA" estão hardcoded — adicionar ao Tolgee
-- [ ] **Testes unitários:** criar testes para `xpForLevel`, `levelFromXp`, `titleForLevel`, `xpProgress`, cálculo de streak em `store/rpg/index.ts`
-- [ ] **Tema escuro forçado:** ver item 3.4 acima
-- [ ] **Onboarding RPG:** ver item 4.2 acima
+- [x] **Testes unitários:** `store/rpg/index.spec.ts` criado — cobre `xpForLevel`, `levelFromXp`, `titleForLevel`, `xpProgress` com casos de borda
+- [x] **Tema escuro forçado:** ver item 3.4 acima (implementado)
+- [x] **Onboarding RPG:** ver item 4.2 acima (implementado)
+
+---
+
+---
+
+## FASE 5 — Modo Estudo (INT Attribute)
+
+**Visão:** Estender o sistema RPG para cobrir estudo e foco, não apenas treino físico. Cada sessão pomodoro bem executada ganha pontos de Inteligência (INT), criando um loop de progressão para o "herói completo".
+
+### [ ] 5.1 — Modelo e Estado
+
+**Decisão arquitetural:** `StudyTask` e `PomodoroSession` como entidades separadas do `RpgState`; slice própria `store/study/`.
+
+- [ ] Atributo `int: number` adicionado ao `RpgState` (paralelo a XP/streak)
+- [ ] `store/study/index.ts` — slice com:
+  - `StudyTask`: `id`, `title`, `targetPomodoros`, `completedPomodoros`, `date`
+  - `PomodoroSession`: `taskId`, `startedAt`, `completedAt?`, `pauseCount`, `cancelled`
+  - State: `tasks: StudyTask[]`, `activeSession?: PomodoroSession`
+- [ ] `store/study/effects.ts` — ao completar pomodoro, `awardIntPoints(points)` baseado em regras de pontuação
+
+### [ ] 5.2 — Regras de Pontuação INT
+
+| Evento                          | Pontos INT |
+|---------------------------------|------------|
+| Pomodoro completo sem pausas    | 10         |
+| Pomodoro completo com pausas    | 5          |
+| Pomodoro cancelado/interrompido | 0          |
+| Cada pausa durante pomodoro     | -1 (penalidade acumulada no próximo) |
+| Tarefa concluída (todos pomodoros) | +20 bônus |
+
+### [ ] 5.3 — Timer Pomodoro (Tela Full-Screen Dark)
+
+- [ ] `app/(tabs)/study/` — nova tab entre Stats e Herói
+- [ ] `app/(tabs)/study/index.tsx` — lista de tarefas do dia com `StudyTask` cards
+- [ ] `components/presentation/study/PomodoroTimer.tsx` — tela escura (Portal) com:
+  - Timer regressivo: 25min foco → 5min descanso
+  - Anel animado (Reanimated) mostrando progresso
+  - Botões: Pausar / Retomar / Cancelar
+  - Contagem de pausas visível
+- [ ] Auto-transição foco → descanso ao terminar; descanso → próximo foco com confirmação
+
+### [ ] 5.4 — Detecção de Interrupção (Opcional/Avançado)
+
+- [ ] `AppState` listener: app em background durante sessão = interrupção registrada
+- [ ] Cada vez que o app vai para background durante foco: `pauseCount++` ou penalidade automática
+- [ ] Notificação de retorno ao foco se app foi minimizado
+
+> **Nota arquitetural:** Não é possível detectar "uso do celular para outros fins" diretamente no React Native sem permissões especiais de acessibilidade (Android) ou Screen Time API (iOS). A abordagem prática é detectar `AppState` mudanças para `background`/`inactive`. Confirmar escopo de privacidade com o usuário antes de implementar.
+
+### [ ] 5.5 — Dashboard INT
+
+- [ ] `StatAttributeCard` com `abbr="INT"`, `label="Inteligência"`, `value={intPoints}`, `icon="psychology"` adicionado ao Dashboard (grid 2×3 ou novo row)
+- [ ] Missões semanais de estudo: `study_pomodoros_this_week` como novo tipo de quest
 
 ---
 

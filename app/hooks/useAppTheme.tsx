@@ -278,9 +278,12 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
   const colorSchemeSeed = useAppSelector(
     (state) => state.settings.colorSchemeSeed,
   );
+  const forceDarkMode = useAppSelector(
+    (state) => state.settings.forceDarkMode,
+  );
 
   const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const isDark = forceDarkMode || colorScheme === 'dark';
   // If the device is not compatible, it will return a theme based on the fallback source color (optional, default to #6750A4)
   const { theme, updateTheme, resetTheme } = useMaterial3Theme({
     fallbackSourceColor: '0x005500',
@@ -295,7 +298,7 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
     // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colorSchemeSeed]);
-  const schemedTheme = colorScheme === 'dark' ? theme.dark : theme.light;
+  const schemedTheme = isDark ? theme.dark : theme.light;
 
   const fonts = configureFonts({ config: fontConfig });
 
@@ -319,7 +322,7 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
       ...colorPair('lime', 'ffcddc39', schemedTheme.primary, isDark),
       ...colorPair('amber', 'ffffc107', schemedTheme.primary, isDark),
     } satisfies AppThemeColors,
-    colorScheme: colorScheme ?? 'light',
+    colorScheme: isDark ? 'dark' : 'light',
   };
 
   const baseNavigationThem = isDark ? DarkTheme : DefaultTheme;

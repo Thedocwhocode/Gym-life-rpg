@@ -6,6 +6,7 @@ import {
   setColorSchemeSeed,
   setCrashReportsEnabled,
   setFirstDayOfWeek,
+  setForceDarkMode,
   setIsHydrated,
   setKeepScreenAwakeDuringWorkout,
   setLastBackup,
@@ -62,6 +63,7 @@ export function applySettingsEffects() {
         proToken,
         notesExpandedByDefault,
         keepScreenAwakeDuringWorkout,
+        forceDarkMode,
       ] = await Promise.all([
         preferenceService.getUseImperialUnits(),
         preferenceService.getShowBodyweight(),
@@ -80,6 +82,7 @@ export function applySettingsEffects() {
         preferenceService.getProToken(),
         preferenceService.getNotesExpandedByDefault(),
         preferenceService.getKeepScreenAwakeDuringWorkout(),
+        preferenceService.getForceDarkMode(),
       ]);
       dispatch(setColorSchemeSeed(colorSchemeSeed));
       dispatch(setUseImperialUnits(useImperialUnits));
@@ -107,6 +110,7 @@ export function applySettingsEffects() {
       dispatch(setProToken(proToken));
       dispatch(setNotesExpandedByDefault(notesExpandedByDefault));
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
+      dispatch(setForceDarkMode(forceDarkMode));
 
       if (Platform.OS === 'ios') {
         Purchases.configure({
@@ -309,6 +313,15 @@ export function applySettingsEffects() {
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setKeepScreenAwakeDuringWorkout(action.payload);
+      }
+    },
+  );
+
+  addEffect(
+    setForceDarkMode,
+    async (action, { stateAfterReduce, extra: { preferenceService } }) => {
+      if (stateAfterReduce.settings.isHydrated) {
+        await preferenceService.setForceDarkMode(action.payload);
       }
     },
   );

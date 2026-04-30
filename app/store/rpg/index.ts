@@ -60,6 +60,8 @@ export interface Quest {
   completedAt?: string;
 }
 
+export type RpgClass = 'warrior' | 'scout' | 'paladin';
+
 export interface RpgState {
   xp: number;
   totalWorkouts: number;
@@ -71,6 +73,7 @@ export interface RpgState {
   weeklyQuests: Quest[];
   isHydrated: boolean;
   lastSessionReward?: { xpGained: number; newAchievementIds: string[] };
+  rpgClass?: RpgClass;
 }
 
 const initialState: RpgState = {
@@ -154,6 +157,9 @@ const rpgSlice = createSlice({
     clearSessionReward(state) {
       state.lastSessionReward = undefined;
     },
+    setRpgClass(state, action: PayloadAction<RpgClass>) {
+      state.rpgClass = action.payload;
+    },
     initializeRpgStateSlice() {},
   },
 });
@@ -167,6 +173,7 @@ export const {
   setWeeklyQuests,
   updateQuestProgress,
   clearSessionReward,
+  setRpgClass,
   initializeRpgStateSlice,
 } = rpgSlice.actions;
 

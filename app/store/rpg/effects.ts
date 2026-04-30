@@ -7,6 +7,7 @@ import {
   Quest,
   recordWorkout,
   RpgState,
+  setRpgClass,
   setWeeklyQuests,
   unlockAchievement,
   updateQuestProgress,
@@ -256,7 +257,7 @@ export function applyRpgEffects() {
   );
 
   addDebouncedEffect(
-    [awardXp, recordWorkout, unlockAchievement, setWeeklyQuests, updateQuestProgress],
+    [awardXp, recordWorkout, unlockAchievement, setWeeklyQuests, updateQuestProgress, setRpgClass],
     async (_, { getState, extra: { keyValueStore } }) => {
       if (!getState().rpg.isHydrated) return;
       await keyValueStore.setItem(
