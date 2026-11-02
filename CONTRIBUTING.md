@@ -1,49 +1,35 @@
-# Contributing to LiftLog
+# Contribuindo com o GymLife RPG
 
-Thank you for your interest in contributing to LiftLog! We welcome all contributions, whether you're fixing bugs, adding features, improving documentation, or suggesting ideas.
+Obrigado pelo interesse! Correções, recursos, documentação e ideias são bem-vindos.
 
-## Code Style & Guidelines
+## Estilo
 
-- Use [Prettier](https://prettier.io/) and [ESLint](https://eslint.org/) for formatting and linting TypeScript.
-- For C# code, use [CSharpier](https://csharpier.com/) for automatic code formatting. Run `dotnet csharpier .` in backend folders before committing.
-- Write clear, descriptive commit messages.
-- Follow the existing code structure and naming conventions.
-- Add comments where necessary, especially for complex logic.
+- TypeScript: [Prettier](https://prettier.io/) + [ESLint](https://eslint.org/) (`npm run lint` em `app/`).
+- C#: [CSharpier](https://csharpier.com/) — rode `dotnet csharpier .` nas pastas do backend antes de commitar.
+- Mensagens de commit no formato conventional commits (`feat:`, `fix:`, `refactor:`...).
+- Siga a estrutura e os nomes que já existem no código.
 
-## Making Changes
+## Fluxo
 
-1. **Create a new branch** for your work:
-   ```sh
-   git checkout -b feature/your-feature-name
-   ```
-2. **Make your changes** and ensure all tests pass.
-3. **Run tests**:
-   - Frontend:
-     ```sh
-     npm test
-     ```
-   - Backend:
-     ```sh
-     dotnet test
-     ```
-4. **Push your branch** and open a Pull Request (PR) against `main`.
+1. Crie um branch: `git checkout -b feat/minha-feature`
+2. Rode os testes:
+   - App: `cd app && npm test && npm run typecheck`
+   - Backend (precisa do Postgres de `tests/docker-compose.yml`):
+     `cd tests && docker compose up -d && cd GymLifeRpg.Tests.Api && dotnet run`
+3. Abra um Pull Request contra `main`.
 
-## Pull Request Checklist
+## Checklist do PR
 
-- [ ] The code compiles and passes all tests.
-- [ ] Linting and formatting checks pass.
-- [ ] The PR description clearly explains the changes.
-- [ ] Related documentation is updated.
-- [ ] No sensitive information is included.
+- [ ] Compila e passa nos testes
+- [ ] Lint e formatação ok
+- [ ] Descrição explica a mudança
+- [ ] Documentação atualizada
+- [ ] Nenhum segredo ou dado sensível
 
-## Reporting Issues
+## Issues
 
-If you find a bug or have a feature request, please [open an issue](https://github.com/LiamMorrow/LiftLog/issues) and provide as much detail as possible.
+[Abra uma issue](https://github.com/Thedocwhocode/Gym-life-rpg/issues) com o máximo de detalhes.
 
-## License
+## Licença
 
-By contributing, you agree that your contributions will be licensed under the [AGPL v3 license](LICENSE).
-
----
-
-Thank you for helping make LiftLog better!
+Ao contribuir, você concorda que sua contribuição será licenciada sob a [AGPL v3](LICENSE).

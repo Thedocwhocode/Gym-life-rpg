@@ -12,7 +12,7 @@
 |--------------|------------------------------------------------|
 | Repositório  | https://github.com/LiamMorrow/LiftLog          |
 | Autor        | Liam Morrow                                    |
-| Licença      | MIT                                            |
+| Licença      | AGPL-3.0                                       |
 | Stack        | React Native + Expo + Redux Toolkit + .NET API |
 | Design       | Material Design 3 via React Native Paper       |
 | Plataformas  | Android, iOS, Web                              |
@@ -37,6 +37,13 @@
 | Branch ativa | `claude/setup-docs-and-tasks-wDjD8`                        |
 | Autor        | Thedocwhocode (luizrodolfocc@gmail.com)                    |
 | Objetivo     | Transformar o LiftLog num app gamificado de academia + RPG |
+| Marca        | GymLife RPG · slug `gym-life-rpg` · scheme `gymliferpg`    |
+| Bundle id    | `com.thedocwhocode.gymliferpg` (Android e iOS)             |
+
+Fork independente: identificadores, URLs e contas do upstream foram removidos. Ficam de
+propósito apenas o crédito/licença (`NOTICE.md`, README, diálogo "Sobre") e os fixtures
+`*.liftlogbackup.gz`, que provam que backups do LiftLog continuam importando. Serviços externos
+(API, Sentry, RevenueCat) só ligam via env `EXPO_PUBLIC_*` (ver README).
 
 ### O que já foi feito no fork
 
@@ -102,10 +109,9 @@ Gym-life-rpg/
 │   │   └── useAppTheme.tsx     # Tema RPG (fontes + cores + tokens)
 │   ├── store/                  # Redux Toolkit (state global)
 │   └── services/               # APIs, serviços externos
-├── backend/                    # .NET WebAPI (feeds, IA, criptografia)
+├── backend/                    # .NET 10 WebAPI GymLifeRpg.Api (feeds, IA, criptografia)
 ├── proto/                      # Protobuf schemas
-├── docs/                       # Documentação técnica
-└── site/                       # Site liftlog.online
+└── docs/                       # Documentação técnica
 ```
 
 ---
@@ -120,7 +126,7 @@ Gym-life-rpg/
 | UI Base         | React Native Paper (MD3) + Material3 Theme        |
 | Tipografia RPG  | Press Start 2P (títulos) + VT323 (corpo)          |
 | Gráficos        | react-native-gifted-charts + @shopify/react-native-skia |
-| Backend         | .NET 9 WebAPI                                     |
+| Backend         | .NET 10 WebAPI (GymLifeRpg.Api)                   |
 | IA              | OpenAI (planejador de treinos)                    |
 | Pagamentos      | RevenueCat                                        |
 | i18n            | Tolgee                                            |

@@ -46,8 +46,8 @@ jobs:
         working-directory: ./app
         run: |
           xcodebuild \
-            -workspace ios/LiftLog.xcworkspace \
-            -scheme LiftLog \
+            -workspace ios/GymLifeRPG.xcworkspace \
+            -scheme GymLifeRPG \
             -sdk iphonesimulator \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 17'

@@ -6,7 +6,7 @@ To install dependencies:
 bun install
 ```
 
-This directory contains general scripts which LiftLog uses.
+This directory contains general scripts which GymLife RPG uses.
 
 ## Collecting Screenshots For App Store
 

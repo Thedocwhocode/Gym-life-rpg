@@ -19,4 +19,4 @@ jobs:
           dotnet-version: 10.0.x
       - name: Build
         run: dotnet build
-        working-directory: ./backend/LiftLog.Api
+        working-directory: ./backend/GymLifeRpg.Api
