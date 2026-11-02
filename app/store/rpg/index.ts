@@ -6,7 +6,7 @@ export function xpForLevel(level: number): number {
 }
 
 export function levelFromXp(xp: number): number {
-  return Math.max(1, Math.floor(1 + Math.sqrt(xp / 100)));
+  return Math.floor(1 + Math.sqrt(Math.max(0, xp) / 100));
 }
 
 const TITLES: [number, string][] = [
