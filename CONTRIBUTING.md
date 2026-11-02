@@ -18,6 +18,13 @@ Obrigado pelo interesse! Correções, recursos, documentação e ideias são bem
      `cd tests && docker compose up -d && cd GymLifeRpg.Tests.Api && dotnet run`
 3. Abra um Pull Request contra `main`.
 
+## Efeitos pixel art
+
+As sprite sheets de `app/assets/fx/` vêm do [pixelfx](https://github.com/patch-gg/pixelfx) e ficam
+commitadas, então o build não depende dele. Para mudar ou adicionar um efeito, edite a lista em
+`app/scripts/fx-sheets.mjs` e rode `npm run fx:sheets -- <caminho de um checkout do pixelfx>`.
+Para criar efeitos novos no Claude Code existe a skill: `/plugin marketplace add patch-gg/pixelfx`.
+
 ## Checklist do PR
 
 - [ ] Compila e passa nos testes

@@ -11,6 +11,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Icon, Portal, Text } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
+import PixelFx from './PixelFx';
+import { PIXEL_FX } from './pixel-fx-assets';
 
 export default function LevelUpOverlay() {
   const { colors } = useAppTheme();
@@ -55,7 +57,9 @@ export default function LevelUpOverlay() {
 
   return (
     <Portal>
-      <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, overlayStyle]}>
+      <Animated.View
+        style={[StyleSheet.absoluteFill, styles.backdrop, overlayStyle]}
+      >
         <Animated.View
           style={[
             cardStyle,
@@ -71,6 +75,11 @@ export default function LevelUpOverlay() {
             },
           ]}
         >
+          <PixelFx
+            fx={PIXEL_FX.levelUp}
+            scale={PILLAR_SCALE}
+            style={styles.pillar}
+          />
           <Icon source="arrowUpward" size={40} color={colors.amber} />
           <Text
             variant="headlineMedium"
@@ -98,11 +107,22 @@ export default function LevelUpOverlay() {
   );
 }
 
+// The light pillar rises out of the card's top edge: its ground line (pivot y 114 of 138) sits on the border.
+const PILLAR_SCALE = 2;
+const [PILLAR_W, PILLAR_H] = PIXEL_FX.levelUp.sheet.frameSize;
+
 const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0,0,0,0.75)',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 999,
+  },
+  pillar: {
+    position: 'absolute',
+    left: '50%',
+    marginLeft: (-PILLAR_W * PILLAR_SCALE) / 2,
+    bottom: '100%',
+    marginBottom: -(PILLAR_H - 114) * PILLAR_SCALE,
   },
 });

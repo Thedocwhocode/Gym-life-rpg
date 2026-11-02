@@ -11,6 +11,8 @@ import Animated, {
 import { Icon, Portal, Text } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import Button from '@/components/presentation/gesture-wrappers/button';
+import PixelFx from './PixelFx';
+import { PIXEL_FX } from './pixel-fx-assets';
 
 export default function SessionRewardScreen() {
   const { colors } = useAppTheme();
@@ -60,6 +62,7 @@ export default function SessionRewardScreen() {
             },
           ]}
         >
+          <PixelFx fx={PIXEL_FX.confetti} style={styles.confetti} />
           <Icon source="checkCircle" size={48} color={colors.green} />
           <Text
             variant="headlineSmall"
@@ -79,6 +82,7 @@ export default function SessionRewardScreen() {
               borderRadius: 4,
             }}
           >
+            <PixelFx fx={PIXEL_FX.xpOrb} scale={1} style={styles.xpOrb} />
             <Icon source="star" size={20} color={colors.amber} />
             <Text variant="titleMedium" style={{ color: colors.amber }}>
               +{reward.xpGained} XP
@@ -87,9 +91,14 @@ export default function SessionRewardScreen() {
 
           {newAchievements.length > 0 && (
             <View style={{ width: '100%', gap: spacing[2] }}>
+              <PixelFx fx={PIXEL_FX.powerStar} scale={1} style={styles.star} />
               <Text
                 variant="labelSmall"
-                style={{ color: colors.amber, textAlign: 'center', letterSpacing: 1 }}
+                style={{
+                  color: colors.amber,
+                  textAlign: 'center',
+                  letterSpacing: 1,
+                }}
               >
                 CONQUISTAS DESBLOQUEADAS
               </Text>
@@ -105,7 +114,10 @@ export default function SessionRewardScreen() {
                       }}
                     >
                       <Icon source={a.icon} size={16} color={colors.primary} />
-                      <Text variant="bodyMedium" style={{ color: colors.onSurface }}>
+                      <Text
+                        variant="bodyMedium"
+                        style={{ color: colors.onSurface }}
+                      >
                         {a.name}
                       </Text>
                     </View>
@@ -123,6 +135,9 @@ export default function SessionRewardScreen() {
   );
 }
 
+const [CONFETTI_W, CONFETTI_H] = PIXEL_FX.confetti.sheet.frameSize;
+const XP_ORB_H = PIXEL_FX.xpOrb.sheet.frameSize[1];
+
 const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0,0,0,0.8)',
@@ -130,4 +145,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 998,
   },
+  confetti: {
+    position: 'absolute',
+    top: -CONFETTI_H,
+    left: '50%',
+    marginLeft: -CONFETTI_W,
+  },
+  xpOrb: {
+    position: 'absolute',
+    right: '100%',
+    top: '50%',
+    marginTop: -XP_ORB_H / 2,
+  },
+  // the star sprite has a lot of empty margin; pull the label up under it
+  star: { alignSelf: 'center', marginVertical: -spacing[5] },
 });
