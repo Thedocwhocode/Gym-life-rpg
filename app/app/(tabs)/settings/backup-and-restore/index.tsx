@@ -2,7 +2,7 @@ import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import LimitedHtml from '@/components/presentation/limited-html';
 import ListSwitch from '@/components/presentation/list-switch';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { useActionEffect } from '@/hooks/useActionEffect';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { fromFeedStateDao } from '@/models/storage/conversions.from-dao';
@@ -94,7 +94,7 @@ function ImportFeedDialog({ open, setOpen }: DialogProps) {
   const { colors } = useAppTheme();
   const dispatch = useDispatch();
   const [importedFeedState, setImportedFeedState] =
-    useState<LiftLog.Ui.Models.IFeedStateDaoV1>();
+    useState<GymLifeRpg.Ui.Models.IFeedStateDaoV1>();
 
   const importFeedData = () => {
     if (!importedFeedState) {

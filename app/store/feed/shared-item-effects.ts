@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { AesKey } from '@/models/encryption-models';
 import { RemoteData } from '@/models/remote';
 import { fromSharedItemDao } from '@/models/storage/conversions.from-dao';
@@ -50,7 +50,7 @@ export function addSharedItemEffects() {
       const aesKey = await encryptionService.generateAesKey();
       const payload = toSharedItemDao(action.payload);
       const payloadBytes =
-        LiftLog.Ui.Models.SharedItemPayload.encode(payload).finish();
+        GymLifeRpg.Ui.Models.SharedItemPayload.encode(payload).finish();
 
       const encrypted =
         await encryptionService.signRsa256PssAndEncryptAesCbcAsync(
@@ -106,7 +106,7 @@ export function addSharedItemEffects() {
           rsaPublicKey,
         );
       const sharedItemDao =
-        LiftLog.Ui.Models.SharedItemPayload.decode(decryptedBytes);
+        GymLifeRpg.Ui.Models.SharedItemPayload.decode(decryptedBytes);
       const sharedItem = fromSharedItemDao(sharedItemDao);
 
       if (!sharedItem) {

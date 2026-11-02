@@ -1,4 +1,4 @@
-import { google, LiftLog } from '@/gen/proto';
+import { google, GymLifeRpg } from '@/gen/proto';
 import {
   toFeedStateDao,
   toProgramBlueprintDao,
@@ -108,7 +108,7 @@ export function addRemoteBackupEffects() {
           : null;
 
         throwIfCancelled();
-        const dao = new LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
+        const dao = new GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
           sessions: processedSessions,
           activeProgramId: new google.protobuf.StringValue({
             value: activeProgramId,
@@ -123,7 +123,7 @@ export function addRemoteBackupEffects() {
 
         // Serialize and compress data
         const daoBytes =
-          LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
+          GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
             dao,
           ).finish();
 

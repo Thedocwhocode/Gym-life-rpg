@@ -16,7 +16,7 @@ import {
   upsertStoredSessions,
   WeightMigrateableExercise,
 } from './index';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { match } from 'ts-pattern';
 import { fromSessionDao } from '@/models/storage/conversions.from-dao';
 import { toSessionHistoryDao } from '@/models/storage/conversions.to-dao';
@@ -53,7 +53,7 @@ export function applyStoredSessionsEffects() {
 
       const storedData = await match(version)
         .with('2', async () =>
-          LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.decode(
+          GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.decode(
             (await keyValueStore.getItemBytes(storageKey)) ??
               Uint8Array.from([]),
           ),
@@ -221,7 +221,7 @@ export function applyStoredSessionsEffects() {
       { cancelActiveListeners, getState, extra: { keyValueStore } },
     ) => {
       cancelActiveListeners();
-      const s = LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.encode(
+      const s = GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.encode(
         toSessionHistoryDao(getState().storedSessions.sessions),
       );
       await Promise.all([

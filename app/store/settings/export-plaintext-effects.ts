@@ -24,7 +24,7 @@ export function addExportPlaintextEffects() {
           'CSV',
           async () =>
             [
-              'liftlog-export.csv',
+              'gymliferpg-export.csv',
               await exportToCsv(sessions),
               'text/csv',
             ] as const,
@@ -33,7 +33,7 @@ export function addExportPlaintextEffects() {
           'JSON',
           async () =>
             [
-              'liftlog-export.json',
+              'gymliferpg-export.json',
               await exportToJson(sessions),
               'application/json',
             ] as const,

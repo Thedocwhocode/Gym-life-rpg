@@ -1,5 +1,5 @@
 syntax = "proto3";
-package LiftLog.Ui.Models;
+package GymLifeRpg.Ui.Models;
 
 
 message UuidDao {

@@ -7,20 +7,20 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-export const LiftLog = $root.LiftLog = (() => {
+export const GymLifeRpg = $root.GymLifeRpg = (() => {
 
     /**
-     * Namespace LiftLog.
-     * @exports LiftLog
+     * Namespace GymLifeRpg.
+     * @exports GymLifeRpg
      * @namespace
      */
-    const LiftLog = {};
+    const GymLifeRpg = {};
 
-    LiftLog.Ui = (function() {
+    GymLifeRpg.Ui = (function() {
 
         /**
          * Namespace Ui.
-         * @memberof LiftLog
+         * @memberof GymLifeRpg
          * @namespace
          */
         const Ui = {};
@@ -29,7 +29,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
             /**
              * Namespace Models.
-             * @memberof LiftLog.Ui
+             * @memberof GymLifeRpg.Ui
              * @namespace
              */
             const Models = {};
@@ -38,7 +38,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Namespace CurrentSessionStateDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @namespace
                  */
                 const CurrentSessionStateDao = {};
@@ -47,20 +47,20 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a CurrentSessionStateDaoV2.
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao
                      * @interface ICurrentSessionStateDaoV2
-                     * @property {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [workoutSession] CurrentSessionStateDaoV2 workoutSession
-                     * @property {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [historySession] CurrentSessionStateDaoV2 historySession
-                     * @property {LiftLog.Ui.Models.IUuidDao|null} [latestSetTimerNotificationId] CurrentSessionStateDaoV2 latestSetTimerNotificationId
+                     * @property {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [workoutSession] CurrentSessionStateDaoV2 workoutSession
+                     * @property {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [historySession] CurrentSessionStateDaoV2 historySession
+                     * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [latestSetTimerNotificationId] CurrentSessionStateDaoV2 latestSetTimerNotificationId
                      */
 
                     /**
                      * Constructs a new CurrentSessionStateDaoV2.
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao
                      * @classdesc Represents a CurrentSessionStateDaoV2.
                      * @implements ICurrentSessionStateDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2=} [properties] Properties to set
                      */
                     function CurrentSessionStateDaoV2(properties) {
                         if (properties)
@@ -71,24 +71,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * CurrentSessionStateDaoV2 workoutSession.
-                     * @member {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} workoutSession
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} workoutSession
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     CurrentSessionStateDaoV2.prototype.workoutSession = null;
 
                     /**
                      * CurrentSessionStateDaoV2 historySession.
-                     * @member {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} historySession
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} historySession
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     CurrentSessionStateDaoV2.prototype.historySession = null;
 
                     /**
                      * CurrentSessionStateDaoV2 latestSetTimerNotificationId.
-                     * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} latestSetTimerNotificationId
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} latestSetTimerNotificationId
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     CurrentSessionStateDaoV2.prototype.latestSetTimerNotificationId = null;
@@ -99,7 +99,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CurrentSessionStateDaoV2 _workoutSession.
                      * @member {"workoutSession"|undefined} _workoutSession
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     Object.defineProperty(CurrentSessionStateDaoV2.prototype, "_workoutSession", {
@@ -110,7 +110,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CurrentSessionStateDaoV2 _historySession.
                      * @member {"historySession"|undefined} _historySession
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     Object.defineProperty(CurrentSessionStateDaoV2.prototype, "_historySession", {
@@ -121,7 +121,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CurrentSessionStateDaoV2 _latestSetTimerNotificationId.
                      * @member {"latestSetTimerNotificationId"|undefined} _latestSetTimerNotificationId
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      */
                     Object.defineProperty(CurrentSessionStateDaoV2.prototype, "_latestSetTimerNotificationId", {
@@ -132,21 +132,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new CurrentSessionStateDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2 instance
                      */
                     CurrentSessionStateDaoV2.create = function create(properties) {
                         return new CurrentSessionStateDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified CurrentSessionStateDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
+                     * Encodes the specified CurrentSessionStateDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2} message CurrentSessionStateDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2} message CurrentSessionStateDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -154,20 +154,20 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!writer)
                             writer = $Writer.create();
                         if (message.workoutSession != null && Object.hasOwnProperty.call(message, "workoutSession"))
-                            $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.workoutSession, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.workoutSession, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         if (message.historySession != null && Object.hasOwnProperty.call(message, "historySession"))
-                            $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.historySession, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.historySession, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.latestSetTimerNotificationId != null && Object.hasOwnProperty.call(message, "latestSetTimerNotificationId"))
-                            $root.LiftLog.Ui.Models.UuidDao.encode(message.latestSetTimerNotificationId, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.latestSetTimerNotificationId, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified CurrentSessionStateDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
+                     * Encodes the specified CurrentSessionStateDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2} message CurrentSessionStateDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2} message CurrentSessionStateDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -178,33 +178,33 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     CurrentSessionStateDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
                                 break;
                             switch (tag >>> 3) {
                             case 1: {
-                                    message.workoutSession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
+                                    message.workoutSession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 2: {
-                                    message.historySession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
+                                    message.historySession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 3: {
-                                    message.latestSetTimerNotificationId = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                    message.latestSetTimerNotificationId = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -218,10 +218,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -234,7 +234,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a CurrentSessionStateDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -246,7 +246,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.workoutSession != null && message.hasOwnProperty("workoutSession")) {
                             properties._workoutSession = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.workoutSession);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.workoutSession);
                                 if (error)
                                     return "workoutSession." + error;
                             }
@@ -254,7 +254,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.historySession != null && message.hasOwnProperty("historySession")) {
                             properties._historySession = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.historySession);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.historySession);
                                 if (error)
                                     return "historySession." + error;
                             }
@@ -262,7 +262,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.latestSetTimerNotificationId != null && message.hasOwnProperty("latestSetTimerNotificationId")) {
                             properties._latestSetTimerNotificationId = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.latestSetTimerNotificationId);
+                                let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.latestSetTimerNotificationId);
                                 if (error)
                                     return "latestSetTimerNotificationId." + error;
                             }
@@ -273,29 +273,29 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a CurrentSessionStateDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} CurrentSessionStateDaoV2
                      */
                     CurrentSessionStateDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2();
                         if (object.workoutSession != null) {
                             if (typeof object.workoutSession !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.workoutSession: object expected");
-                            message.workoutSession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.workoutSession);
+                                throw TypeError(".GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.workoutSession: object expected");
+                            message.workoutSession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.workoutSession);
                         }
                         if (object.historySession != null) {
                             if (typeof object.historySession !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.historySession: object expected");
-                            message.historySession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.historySession);
+                                throw TypeError(".GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.historySession: object expected");
+                            message.historySession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.historySession);
                         }
                         if (object.latestSetTimerNotificationId != null) {
                             if (typeof object.latestSetTimerNotificationId !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.latestSetTimerNotificationId: object expected");
-                            message.latestSetTimerNotificationId = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.latestSetTimerNotificationId);
+                                throw TypeError(".GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.latestSetTimerNotificationId: object expected");
+                            message.latestSetTimerNotificationId = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.latestSetTimerNotificationId);
                         }
                         return message;
                     };
@@ -303,9 +303,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a CurrentSessionStateDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} message CurrentSessionStateDaoV2
+                     * @param {GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2} message CurrentSessionStateDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -314,17 +314,17 @@ export const LiftLog = $root.LiftLog = (() => {
                             options = {};
                         let object = {};
                         if (message.workoutSession != null && message.hasOwnProperty("workoutSession")) {
-                            object.workoutSession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.workoutSession, options);
+                            object.workoutSession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.workoutSession, options);
                             if (options.oneofs)
                                 object._workoutSession = "workoutSession";
                         }
                         if (message.historySession != null && message.hasOwnProperty("historySession")) {
-                            object.historySession = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.historySession, options);
+                            object.historySession = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.historySession, options);
                             if (options.oneofs)
                                 object._historySession = "historySession";
                         }
                         if (message.latestSetTimerNotificationId != null && message.hasOwnProperty("latestSetTimerNotificationId")) {
-                            object.latestSetTimerNotificationId = $root.LiftLog.Ui.Models.UuidDao.toObject(message.latestSetTimerNotificationId, options);
+                            object.latestSetTimerNotificationId = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.latestSetTimerNotificationId, options);
                             if (options.oneofs)
                                 object._latestSetTimerNotificationId = "latestSetTimerNotificationId";
                         }
@@ -334,7 +334,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this CurrentSessionStateDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -345,7 +345,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for CurrentSessionStateDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -354,7 +354,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2";
                     };
 
                     return CurrentSessionStateDaoV2;
@@ -367,7 +367,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Namespace SessionHistoryDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @namespace
                  */
                 const SessionHistoryDao = {};
@@ -376,18 +376,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a SessionHistoryDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @interface ISessionHistoryDaoV2
-                     * @property {Array.<LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2>|null} [completedSessions] SessionHistoryDaoV2 completedSessions
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2>|null} [completedSessions] SessionHistoryDaoV2 completedSessions
                      */
 
                     /**
                      * Constructs a new SessionHistoryDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @classdesc Represents a SessionHistoryDaoV2.
                      * @implements ISessionHistoryDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2=} [properties] Properties to set
                      */
                     function SessionHistoryDaoV2(properties) {
                         this.completedSessions = [];
@@ -399,8 +399,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * SessionHistoryDaoV2 completedSessions.
-                     * @member {Array.<LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2>} completedSessions
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2>} completedSessions
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @instance
                      */
                     SessionHistoryDaoV2.prototype.completedSessions = $util.emptyArray;
@@ -408,21 +408,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new SessionHistoryDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2 instance
                      */
                     SessionHistoryDaoV2.create = function create(properties) {
                         return new SessionHistoryDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified SessionHistoryDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionHistoryDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2} message SessionHistoryDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2} message SessionHistoryDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -431,16 +431,16 @@ export const LiftLog = $root.LiftLog = (() => {
                             writer = $Writer.create();
                         if (message.completedSessions != null && message.completedSessions.length)
                             for (let i = 0; i < message.completedSessions.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.completedSessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.completedSessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified SessionHistoryDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionHistoryDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2} message SessionHistoryDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2} message SessionHistoryDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -451,18 +451,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     SessionHistoryDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -471,7 +471,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 1: {
                                     if (!(message.completedSessions && message.completedSessions.length))
                                         message.completedSessions = [];
-                                    message.completedSessions.push($root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32()));
+                                    message.completedSessions.push($root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             default:
@@ -485,10 +485,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -501,7 +501,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a SessionHistoryDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -513,7 +513,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.completedSessions))
                                 return "completedSessions: array expected";
                             for (let i = 0; i < message.completedSessions.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.completedSessions[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.completedSessions[i]);
                                 if (error)
                                     return "completedSessions." + error;
                             }
@@ -524,23 +524,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a SessionHistoryDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} SessionHistoryDaoV2
                      */
                     SessionHistoryDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2();
                         if (object.completedSessions) {
                             if (!Array.isArray(object.completedSessions))
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.completedSessions: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.completedSessions: array expected");
                             message.completedSessions = [];
                             for (let i = 0; i < object.completedSessions.length; ++i) {
                                 if (typeof object.completedSessions[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.completedSessions: object expected");
-                                message.completedSessions[i] = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.completedSessions[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.completedSessions: object expected");
+                                message.completedSessions[i] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.completedSessions[i]);
                             }
                         }
                         return message;
@@ -549,9 +549,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a SessionHistoryDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} message SessionHistoryDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2} message SessionHistoryDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -564,7 +564,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.completedSessions && message.completedSessions.length) {
                             object.completedSessions = [];
                             for (let j = 0; j < message.completedSessions.length; ++j)
-                                object.completedSessions[j] = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.completedSessions[j], options);
+                                object.completedSessions[j] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.completedSessions[j], options);
                         }
                         return object;
                     };
@@ -572,7 +572,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this SessionHistoryDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -583,7 +583,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for SessionHistoryDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -592,7 +592,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2";
                     };
 
                     return SessionHistoryDaoV2;
@@ -602,24 +602,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a SessionDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @interface ISessionDaoV2
-                     * @property {LiftLog.Ui.Models.IUuidDao|null} [id] SessionDaoV2 id
+                     * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [id] SessionDaoV2 id
                      * @property {string|null} [sessionName] SessionDaoV2 sessionName
-                     * @property {Array.<LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2>|null} [recordedExercises] SessionDaoV2 recordedExercises
-                     * @property {LiftLog.Ui.Models.IDateOnlyDao|null} [date] SessionDaoV2 date
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [bodyweightValue] SessionDaoV2 bodyweightValue
-                     * @property {LiftLog.Ui.Models.WeightUnit|null} [bodyweightUnit] SessionDaoV2 bodyweightUnit
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2>|null} [recordedExercises] SessionDaoV2 recordedExercises
+                     * @property {GymLifeRpg.Ui.Models.IDateOnlyDao|null} [date] SessionDaoV2 date
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [bodyweightValue] SessionDaoV2 bodyweightValue
+                     * @property {GymLifeRpg.Ui.Models.WeightUnit|null} [bodyweightUnit] SessionDaoV2 bodyweightUnit
                      * @property {string|null} [blueprintNotes] SessionDaoV2 blueprintNotes
                      */
 
                     /**
                      * Constructs a new SessionDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @classdesc Represents a SessionDaoV2.
                      * @implements ISessionDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2=} [properties] Properties to set
                      */
                     function SessionDaoV2(properties) {
                         this.recordedExercises = [];
@@ -631,8 +631,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * SessionDaoV2 id.
-                     * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} id
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} id
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.id = null;
@@ -640,39 +640,39 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * SessionDaoV2 sessionName.
                      * @member {string} sessionName
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.sessionName = "";
 
                     /**
                      * SessionDaoV2 recordedExercises.
-                     * @member {Array.<LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2>} recordedExercises
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2>} recordedExercises
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.recordedExercises = $util.emptyArray;
 
                     /**
                      * SessionDaoV2 date.
-                     * @member {LiftLog.Ui.Models.IDateOnlyDao|null|undefined} date
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDateOnlyDao|null|undefined} date
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.date = null;
 
                     /**
                      * SessionDaoV2 bodyweightValue.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} bodyweightValue
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} bodyweightValue
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.bodyweightValue = null;
 
                     /**
                      * SessionDaoV2 bodyweightUnit.
-                     * @member {LiftLog.Ui.Models.WeightUnit} bodyweightUnit
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @member {GymLifeRpg.Ui.Models.WeightUnit} bodyweightUnit
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.bodyweightUnit = 0;
@@ -680,7 +680,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * SessionDaoV2 blueprintNotes.
                      * @member {string} blueprintNotes
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     SessionDaoV2.prototype.blueprintNotes = "";
@@ -691,7 +691,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * SessionDaoV2 _bodyweightValue.
                      * @member {"bodyweightValue"|undefined} _bodyweightValue
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      */
                     Object.defineProperty(SessionDaoV2.prototype, "_bodyweightValue", {
@@ -702,21 +702,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new SessionDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2 instance
                      */
                     SessionDaoV2.create = function create(properties) {
                         return new SessionDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified SessionDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2} message SessionDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2} message SessionDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -724,16 +724,16 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!writer)
                             writer = $Writer.create();
                         if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                            $root.LiftLog.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         if (message.sessionName != null && Object.hasOwnProperty.call(message, "sessionName"))
                             writer.uint32(/* id 2, wireType 2 =*/18).string(message.sessionName);
                         if (message.recordedExercises != null && message.recordedExercises.length)
                             for (let i = 0; i < message.recordedExercises.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.encode(message.recordedExercises[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.encode(message.recordedExercises[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                         if (message.date != null && Object.hasOwnProperty.call(message, "date"))
-                            $root.LiftLog.Ui.Models.DateOnlyDao.encode(message.date, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DateOnlyDao.encode(message.date, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         if (message.bodyweightValue != null && Object.hasOwnProperty.call(message, "bodyweightValue"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.bodyweightValue, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.bodyweightValue, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                         if (message.blueprintNotes != null && Object.hasOwnProperty.call(message, "blueprintNotes"))
                             writer.uint32(/* id 6, wireType 2 =*/50).string(message.blueprintNotes);
                         if (message.bodyweightUnit != null && Object.hasOwnProperty.call(message, "bodyweightUnit"))
@@ -742,11 +742,11 @@ export const LiftLog = $root.LiftLog = (() => {
                     };
 
                     /**
-                     * Encodes the specified SessionDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2} message SessionDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2} message SessionDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -757,25 +757,25 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     SessionDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
                                 break;
                             switch (tag >>> 3) {
                             case 1: {
-                                    message.id = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                    message.id = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 2: {
@@ -785,15 +785,15 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 3: {
                                     if (!(message.recordedExercises && message.recordedExercises.length))
                                         message.recordedExercises = [];
-                                    message.recordedExercises.push($root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.decode(reader, reader.uint32()));
+                                    message.recordedExercises.push($root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 4: {
-                                    message.date = $root.LiftLog.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
+                                    message.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 5: {
-                                    message.bodyweightValue = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.bodyweightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 7: {
@@ -815,10 +815,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -831,7 +831,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a SessionDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -841,7 +841,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "object expected";
                         let properties = {};
                         if (message.id != null && message.hasOwnProperty("id")) {
-                            let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.id);
+                            let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.id);
                             if (error)
                                 return "id." + error;
                         }
@@ -852,20 +852,20 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.recordedExercises))
                                 return "recordedExercises: array expected";
                             for (let i = 0; i < message.recordedExercises.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify(message.recordedExercises[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify(message.recordedExercises[i]);
                                 if (error)
                                     return "recordedExercises." + error;
                             }
                         }
                         if (message.date != null && message.hasOwnProperty("date")) {
-                            let error = $root.LiftLog.Ui.Models.DateOnlyDao.verify(message.date);
+                            let error = $root.GymLifeRpg.Ui.Models.DateOnlyDao.verify(message.date);
                             if (error)
                                 return "date." + error;
                         }
                         if (message.bodyweightValue != null && message.hasOwnProperty("bodyweightValue")) {
                             properties._bodyweightValue = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.bodyweightValue);
+                                let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.bodyweightValue);
                                 if (error)
                                     return "bodyweightValue." + error;
                             }
@@ -888,41 +888,41 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a SessionDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2} SessionDaoV2
                      */
                     SessionDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2();
                         if (object.id != null) {
                             if (typeof object.id !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.id: object expected");
-                            message.id = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.id);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.id: object expected");
+                            message.id = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.id);
                         }
                         if (object.sessionName != null)
                             message.sessionName = String(object.sessionName);
                         if (object.recordedExercises) {
                             if (!Array.isArray(object.recordedExercises))
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.recordedExercises: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.recordedExercises: array expected");
                             message.recordedExercises = [];
                             for (let i = 0; i < object.recordedExercises.length; ++i) {
                                 if (typeof object.recordedExercises[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.recordedExercises: object expected");
-                                message.recordedExercises[i] = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.fromObject(object.recordedExercises[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.recordedExercises: object expected");
+                                message.recordedExercises[i] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.fromObject(object.recordedExercises[i]);
                             }
                         }
                         if (object.date != null) {
                             if (typeof object.date !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.date: object expected");
-                            message.date = $root.LiftLog.Ui.Models.DateOnlyDao.fromObject(object.date);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.date: object expected");
+                            message.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.fromObject(object.date);
                         }
                         if (object.bodyweightValue != null) {
                             if (typeof object.bodyweightValue !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.bodyweightValue: object expected");
-                            message.bodyweightValue = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.bodyweightValue);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.bodyweightValue: object expected");
+                            message.bodyweightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.bodyweightValue);
                         }
                         switch (object.bodyweightUnit) {
                         default:
@@ -952,9 +952,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a SessionDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2} message SessionDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2} message SessionDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -972,32 +972,32 @@ export const LiftLog = $root.LiftLog = (() => {
                             object.bodyweightUnit = options.enums === String ? "NIL" : 0;
                         }
                         if (message.id != null && message.hasOwnProperty("id"))
-                            object.id = $root.LiftLog.Ui.Models.UuidDao.toObject(message.id, options);
+                            object.id = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.id, options);
                         if (message.sessionName != null && message.hasOwnProperty("sessionName"))
                             object.sessionName = message.sessionName;
                         if (message.recordedExercises && message.recordedExercises.length) {
                             object.recordedExercises = [];
                             for (let j = 0; j < message.recordedExercises.length; ++j)
-                                object.recordedExercises[j] = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.toObject(message.recordedExercises[j], options);
+                                object.recordedExercises[j] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.toObject(message.recordedExercises[j], options);
                         }
                         if (message.date != null && message.hasOwnProperty("date"))
-                            object.date = $root.LiftLog.Ui.Models.DateOnlyDao.toObject(message.date, options);
+                            object.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.toObject(message.date, options);
                         if (message.bodyweightValue != null && message.hasOwnProperty("bodyweightValue")) {
-                            object.bodyweightValue = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.bodyweightValue, options);
+                            object.bodyweightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.bodyweightValue, options);
                             if (options.oneofs)
                                 object._bodyweightValue = "bodyweightValue";
                         }
                         if (message.blueprintNotes != null && message.hasOwnProperty("blueprintNotes"))
                             object.blueprintNotes = message.blueprintNotes;
                         if (message.bodyweightUnit != null && message.hasOwnProperty("bodyweightUnit"))
-                            object.bodyweightUnit = options.enums === String ? $root.LiftLog.Ui.Models.WeightUnit[message.bodyweightUnit] === undefined ? message.bodyweightUnit : $root.LiftLog.Ui.Models.WeightUnit[message.bodyweightUnit] : message.bodyweightUnit;
+                            object.bodyweightUnit = options.enums === String ? $root.GymLifeRpg.Ui.Models.WeightUnit[message.bodyweightUnit] === undefined ? message.bodyweightUnit : $root.GymLifeRpg.Ui.Models.WeightUnit[message.bodyweightUnit] : message.bodyweightUnit;
                         return object;
                     };
 
                     /**
                      * Converts this SessionDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -1008,7 +1008,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for SessionDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -1017,7 +1017,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2";
                     };
 
                     return SessionDaoV2;
@@ -1027,27 +1027,27 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a RecordedExerciseDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @interface IRecordedExerciseDaoV2
-                     * @property {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null} [exerciseBlueprint] RecordedExerciseDaoV2 exerciseBlueprint
-                     * @property {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null} [type] RecordedExerciseDaoV2 type
+                     * @property {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null} [exerciseBlueprint] RecordedExerciseDaoV2 exerciseBlueprint
+                     * @property {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType|null} [type] RecordedExerciseDaoV2 type
                      * @property {google.protobuf.IStringValue|null} [notes] RecordedExerciseDaoV2 notes
-                     * @property {Array.<LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2>|null} [potentialSets] RecordedExerciseDaoV2 potentialSets
-                     * @property {LiftLog.Ui.Models.IDateTimeDao|null} [completionDateTime] RecordedExerciseDaoV2 completionDateTime
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2>|null} [potentialSets] RecordedExerciseDaoV2 potentialSets
+                     * @property {GymLifeRpg.Ui.Models.IDateTimeDao|null} [completionDateTime] RecordedExerciseDaoV2 completionDateTime
                      * @property {google.protobuf.IDuration|null} [duration] RecordedExerciseDaoV2 duration
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [distanceValue] RecordedExerciseDaoV2 distanceValue
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [distanceValue] RecordedExerciseDaoV2 distanceValue
                      * @property {google.protobuf.IStringValue|null} [distanceUnit] RecordedExerciseDaoV2 distanceUnit
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [resistance] RecordedExerciseDaoV2 resistance
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [incline] RecordedExerciseDaoV2 incline
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [resistance] RecordedExerciseDaoV2 resistance
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [incline] RecordedExerciseDaoV2 incline
                      */
 
                     /**
                      * Constructs a new RecordedExerciseDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @classdesc Represents a RecordedExerciseDaoV2.
                      * @implements IRecordedExerciseDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2=} [properties] Properties to set
                      */
                     function RecordedExerciseDaoV2(properties) {
                         this.potentialSets = [];
@@ -1059,16 +1059,16 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * RecordedExerciseDaoV2 exerciseBlueprint.
-                     * @member {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null|undefined} exerciseBlueprint
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null|undefined} exerciseBlueprint
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.exerciseBlueprint = null;
 
                     /**
                      * RecordedExerciseDaoV2 type.
-                     * @member {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType} type
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType} type
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.type = 0;
@@ -1076,23 +1076,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 notes.
                      * @member {google.protobuf.IStringValue|null|undefined} notes
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.notes = null;
 
                     /**
                      * RecordedExerciseDaoV2 potentialSets.
-                     * @member {Array.<LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2>} potentialSets
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2>} potentialSets
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.potentialSets = $util.emptyArray;
 
                     /**
                      * RecordedExerciseDaoV2 completionDateTime.
-                     * @member {LiftLog.Ui.Models.IDateTimeDao|null|undefined} completionDateTime
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDateTimeDao|null|undefined} completionDateTime
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.completionDateTime = null;
@@ -1100,15 +1100,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 duration.
                      * @member {google.protobuf.IDuration|null|undefined} duration
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.duration = null;
 
                     /**
                      * RecordedExerciseDaoV2 distanceValue.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} distanceValue
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} distanceValue
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.distanceValue = null;
@@ -1116,23 +1116,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 distanceUnit.
                      * @member {google.protobuf.IStringValue|null|undefined} distanceUnit
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.distanceUnit = null;
 
                     /**
                      * RecordedExerciseDaoV2 resistance.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} resistance
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} resistance
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.resistance = null;
 
                     /**
                      * RecordedExerciseDaoV2 incline.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} incline
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} incline
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     RecordedExerciseDaoV2.prototype.incline = null;
@@ -1143,7 +1143,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _notes.
                      * @member {"notes"|undefined} _notes
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_notes", {
@@ -1154,7 +1154,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _completionDateTime.
                      * @member {"completionDateTime"|undefined} _completionDateTime
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_completionDateTime", {
@@ -1165,7 +1165,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _duration.
                      * @member {"duration"|undefined} _duration
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_duration", {
@@ -1176,7 +1176,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _distanceValue.
                      * @member {"distanceValue"|undefined} _distanceValue
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_distanceValue", {
@@ -1187,7 +1187,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _distanceUnit.
                      * @member {"distanceUnit"|undefined} _distanceUnit
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_distanceUnit", {
@@ -1198,7 +1198,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _resistance.
                      * @member {"resistance"|undefined} _resistance
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_resistance", {
@@ -1209,7 +1209,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedExerciseDaoV2 _incline.
                      * @member {"incline"|undefined} _incline
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedExerciseDaoV2.prototype, "_incline", {
@@ -1220,21 +1220,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new RecordedExerciseDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2 instance
                      */
                     RecordedExerciseDaoV2.create = function create(properties) {
                         return new RecordedExerciseDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified RecordedExerciseDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
+                     * Encodes the specified RecordedExerciseDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2} message RecordedExerciseDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2} message RecordedExerciseDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -1242,35 +1242,35 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!writer)
                             writer = $Writer.create();
                         if (message.exerciseBlueprint != null && Object.hasOwnProperty.call(message, "exerciseBlueprint"))
-                            $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.encode(message.exerciseBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.encode(message.exerciseBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         if (message.potentialSets != null && message.potentialSets.length)
                             for (let i = 0; i < message.potentialSets.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.encode(message.potentialSets[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.encode(message.potentialSets[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                         if (message.notes != null && Object.hasOwnProperty.call(message, "notes"))
                             $root.google.protobuf.StringValue.encode(message.notes, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                             writer.uint32(/* id 6, wireType 0 =*/48).int32(message.type);
                         if (message.completionDateTime != null && Object.hasOwnProperty.call(message, "completionDateTime"))
-                            $root.LiftLog.Ui.Models.DateTimeDao.encode(message.completionDateTime, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DateTimeDao.encode(message.completionDateTime, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                         if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                             $root.google.protobuf.Duration.encode(message.duration, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                         if (message.distanceValue != null && Object.hasOwnProperty.call(message, "distanceValue"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.distanceValue, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.distanceValue, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                         if (message.resistance != null && Object.hasOwnProperty.call(message, "resistance"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.resistance, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.resistance, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                         if (message.incline != null && Object.hasOwnProperty.call(message, "incline"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.incline, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.incline, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                         if (message.distanceUnit != null && Object.hasOwnProperty.call(message, "distanceUnit"))
                             $root.google.protobuf.StringValue.encode(message.distanceUnit, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified RecordedExerciseDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
+                     * Encodes the specified RecordedExerciseDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2} message RecordedExerciseDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2} message RecordedExerciseDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -1281,25 +1281,25 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     RecordedExerciseDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
                                 break;
                             switch (tag >>> 3) {
                             case 1: {
-                                    message.exerciseBlueprint = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.decode(reader, reader.uint32());
+                                    message.exerciseBlueprint = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 6: {
@@ -1313,11 +1313,11 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 3: {
                                     if (!(message.potentialSets && message.potentialSets.length))
                                         message.potentialSets = [];
-                                    message.potentialSets.push($root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.decode(reader, reader.uint32()));
+                                    message.potentialSets.push($root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 8: {
-                                    message.completionDateTime = $root.LiftLog.Ui.Models.DateTimeDao.decode(reader, reader.uint32());
+                                    message.completionDateTime = $root.GymLifeRpg.Ui.Models.DateTimeDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 9: {
@@ -1325,7 +1325,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 10: {
-                                    message.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 14: {
@@ -1333,11 +1333,11 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 11: {
-                                    message.resistance = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.resistance = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 12: {
-                                    message.incline = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.incline = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -1351,10 +1351,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -1367,7 +1367,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a RecordedExerciseDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -1377,7 +1377,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "object expected";
                         let properties = {};
                         if (message.exerciseBlueprint != null && message.hasOwnProperty("exerciseBlueprint")) {
-                            let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify(message.exerciseBlueprint);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify(message.exerciseBlueprint);
                             if (error)
                                 return "exerciseBlueprint." + error;
                         }
@@ -1401,7 +1401,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.potentialSets))
                                 return "potentialSets: array expected";
                             for (let i = 0; i < message.potentialSets.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify(message.potentialSets[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify(message.potentialSets[i]);
                                 if (error)
                                     return "potentialSets." + error;
                             }
@@ -1409,7 +1409,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.completionDateTime != null && message.hasOwnProperty("completionDateTime")) {
                             properties._completionDateTime = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DateTimeDao.verify(message.completionDateTime);
+                                let error = $root.GymLifeRpg.Ui.Models.DateTimeDao.verify(message.completionDateTime);
                                 if (error)
                                     return "completionDateTime." + error;
                             }
@@ -1425,7 +1425,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.distanceValue != null && message.hasOwnProperty("distanceValue")) {
                             properties._distanceValue = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.distanceValue);
+                                let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.distanceValue);
                                 if (error)
                                     return "distanceValue." + error;
                             }
@@ -1441,7 +1441,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.resistance != null && message.hasOwnProperty("resistance")) {
                             properties._resistance = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.resistance);
+                                let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.resistance);
                                 if (error)
                                     return "resistance." + error;
                             }
@@ -1449,7 +1449,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.incline != null && message.hasOwnProperty("incline")) {
                             properties._incline = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.incline);
+                                let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.incline);
                                 if (error)
                                     return "incline." + error;
                             }
@@ -1460,19 +1460,19 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a RecordedExerciseDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} RecordedExerciseDaoV2
                      */
                     RecordedExerciseDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2();
                         if (object.exerciseBlueprint != null) {
                             if (typeof object.exerciseBlueprint !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.exerciseBlueprint: object expected");
-                            message.exerciseBlueprint = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.fromObject(object.exerciseBlueprint);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.exerciseBlueprint: object expected");
+                            message.exerciseBlueprint = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.fromObject(object.exerciseBlueprint);
                         }
                         switch (object.type) {
                         default:
@@ -1492,48 +1492,48 @@ export const LiftLog = $root.LiftLog = (() => {
                         }
                         if (object.notes != null) {
                             if (typeof object.notes !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.notes: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.notes: object expected");
                             message.notes = $root.google.protobuf.StringValue.fromObject(object.notes);
                         }
                         if (object.potentialSets) {
                             if (!Array.isArray(object.potentialSets))
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.potentialSets: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.potentialSets: array expected");
                             message.potentialSets = [];
                             for (let i = 0; i < object.potentialSets.length; ++i) {
                                 if (typeof object.potentialSets[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.potentialSets: object expected");
-                                message.potentialSets[i] = $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.fromObject(object.potentialSets[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.potentialSets: object expected");
+                                message.potentialSets[i] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.fromObject(object.potentialSets[i]);
                             }
                         }
                         if (object.completionDateTime != null) {
                             if (typeof object.completionDateTime !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.completionDateTime: object expected");
-                            message.completionDateTime = $root.LiftLog.Ui.Models.DateTimeDao.fromObject(object.completionDateTime);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.completionDateTime: object expected");
+                            message.completionDateTime = $root.GymLifeRpg.Ui.Models.DateTimeDao.fromObject(object.completionDateTime);
                         }
                         if (object.duration != null) {
                             if (typeof object.duration !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.duration: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.duration: object expected");
                             message.duration = $root.google.protobuf.Duration.fromObject(object.duration);
                         }
                         if (object.distanceValue != null) {
                             if (typeof object.distanceValue !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.distanceValue: object expected");
-                            message.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.distanceValue);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.distanceValue: object expected");
+                            message.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.distanceValue);
                         }
                         if (object.distanceUnit != null) {
                             if (typeof object.distanceUnit !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.distanceUnit: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.distanceUnit: object expected");
                             message.distanceUnit = $root.google.protobuf.StringValue.fromObject(object.distanceUnit);
                         }
                         if (object.resistance != null) {
                             if (typeof object.resistance !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.resistance: object expected");
-                            message.resistance = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.resistance);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.resistance: object expected");
+                            message.resistance = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.resistance);
                         }
                         if (object.incline != null) {
                             if (typeof object.incline !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.incline: object expected");
-                            message.incline = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.incline);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.incline: object expected");
+                            message.incline = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.incline);
                         }
                         return message;
                     };
@@ -1541,9 +1541,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a RecordedExerciseDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} message RecordedExerciseDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2} message RecordedExerciseDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -1558,11 +1558,11 @@ export const LiftLog = $root.LiftLog = (() => {
                             object.type = options.enums === String ? "WEIGHTED" : 0;
                         }
                         if (message.exerciseBlueprint != null && message.hasOwnProperty("exerciseBlueprint"))
-                            object.exerciseBlueprint = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.toObject(message.exerciseBlueprint, options);
+                            object.exerciseBlueprint = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.toObject(message.exerciseBlueprint, options);
                         if (message.potentialSets && message.potentialSets.length) {
                             object.potentialSets = [];
                             for (let j = 0; j < message.potentialSets.length; ++j)
-                                object.potentialSets[j] = $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.toObject(message.potentialSets[j], options);
+                                object.potentialSets[j] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.toObject(message.potentialSets[j], options);
                         }
                         if (message.notes != null && message.hasOwnProperty("notes")) {
                             object.notes = $root.google.protobuf.StringValue.toObject(message.notes, options);
@@ -1570,9 +1570,9 @@ export const LiftLog = $root.LiftLog = (() => {
                                 object._notes = "notes";
                         }
                         if (message.type != null && message.hasOwnProperty("type"))
-                            object.type = options.enums === String ? $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] === undefined ? message.type : $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] : message.type;
+                            object.type = options.enums === String ? $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] === undefined ? message.type : $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] : message.type;
                         if (message.completionDateTime != null && message.hasOwnProperty("completionDateTime")) {
-                            object.completionDateTime = $root.LiftLog.Ui.Models.DateTimeDao.toObject(message.completionDateTime, options);
+                            object.completionDateTime = $root.GymLifeRpg.Ui.Models.DateTimeDao.toObject(message.completionDateTime, options);
                             if (options.oneofs)
                                 object._completionDateTime = "completionDateTime";
                         }
@@ -1582,17 +1582,17 @@ export const LiftLog = $root.LiftLog = (() => {
                                 object._duration = "duration";
                         }
                         if (message.distanceValue != null && message.hasOwnProperty("distanceValue")) {
-                            object.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.distanceValue, options);
+                            object.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.distanceValue, options);
                             if (options.oneofs)
                                 object._distanceValue = "distanceValue";
                         }
                         if (message.resistance != null && message.hasOwnProperty("resistance")) {
-                            object.resistance = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.resistance, options);
+                            object.resistance = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.resistance, options);
                             if (options.oneofs)
                                 object._resistance = "resistance";
                         }
                         if (message.incline != null && message.hasOwnProperty("incline")) {
-                            object.incline = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.incline, options);
+                            object.incline = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.incline, options);
                             if (options.oneofs)
                                 object._incline = "incline";
                         }
@@ -1607,7 +1607,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this RecordedExerciseDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -1618,7 +1618,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for RecordedExerciseDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -1627,7 +1627,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2";
                     };
 
                     return RecordedExerciseDaoV2;
@@ -1637,20 +1637,20 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a PotentialSetDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @interface IPotentialSetDaoV2
-                     * @property {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null} [recordedSet] PotentialSetDaoV2 recordedSet
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [weightValue] PotentialSetDaoV2 weightValue
-                     * @property {LiftLog.Ui.Models.WeightUnit|null} [weightUnit] PotentialSetDaoV2 weightUnit
+                     * @property {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null} [recordedSet] PotentialSetDaoV2 recordedSet
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [weightValue] PotentialSetDaoV2 weightValue
+                     * @property {GymLifeRpg.Ui.Models.WeightUnit|null} [weightUnit] PotentialSetDaoV2 weightUnit
                      */
 
                     /**
                      * Constructs a new PotentialSetDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @classdesc Represents a PotentialSetDaoV2.
                      * @implements IPotentialSetDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2=} [properties] Properties to set
                      */
                     function PotentialSetDaoV2(properties) {
                         if (properties)
@@ -1661,24 +1661,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * PotentialSetDaoV2 recordedSet.
-                     * @member {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null|undefined} recordedSet
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null|undefined} recordedSet
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @instance
                      */
                     PotentialSetDaoV2.prototype.recordedSet = null;
 
                     /**
                      * PotentialSetDaoV2 weightValue.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} weightValue
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} weightValue
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @instance
                      */
                     PotentialSetDaoV2.prototype.weightValue = null;
 
                     /**
                      * PotentialSetDaoV2 weightUnit.
-                     * @member {LiftLog.Ui.Models.WeightUnit} weightUnit
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.WeightUnit} weightUnit
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @instance
                      */
                     PotentialSetDaoV2.prototype.weightUnit = 0;
@@ -1689,7 +1689,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * PotentialSetDaoV2 _recordedSet.
                      * @member {"recordedSet"|undefined} _recordedSet
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @instance
                      */
                     Object.defineProperty(PotentialSetDaoV2.prototype, "_recordedSet", {
@@ -1700,21 +1700,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new PotentialSetDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2 instance
                      */
                     PotentialSetDaoV2.create = function create(properties) {
                         return new PotentialSetDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified PotentialSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
+                     * Encodes the specified PotentialSetDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2} message PotentialSetDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2} message PotentialSetDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -1722,20 +1722,20 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!writer)
                             writer = $Writer.create();
                         if (message.recordedSet != null && Object.hasOwnProperty.call(message, "recordedSet"))
-                            $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.encode(message.recordedSet, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.encode(message.recordedSet, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         if (message.weightValue != null && Object.hasOwnProperty.call(message, "weightValue"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.weightValue, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.weightValue, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.weightUnit != null && Object.hasOwnProperty.call(message, "weightUnit"))
                             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.weightUnit);
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified PotentialSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
+                     * Encodes the specified PotentialSetDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2} message PotentialSetDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2} message PotentialSetDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -1746,29 +1746,29 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a PotentialSetDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     PotentialSetDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
                                 break;
                             switch (tag >>> 3) {
                             case 1: {
-                                    message.recordedSet = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.decode(reader, reader.uint32());
+                                    message.recordedSet = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 2: {
-                                    message.weightValue = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.weightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 3: {
@@ -1786,10 +1786,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a PotentialSetDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -1802,7 +1802,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a PotentialSetDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -1814,13 +1814,13 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.recordedSet != null && message.hasOwnProperty("recordedSet")) {
                             properties._recordedSet = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify(message.recordedSet);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify(message.recordedSet);
                                 if (error)
                                     return "recordedSet." + error;
                             }
                         }
                         if (message.weightValue != null && message.hasOwnProperty("weightValue")) {
-                            let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.weightValue);
+                            let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.weightValue);
                             if (error)
                                 return "weightValue." + error;
                         }
@@ -1839,24 +1839,24 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a PotentialSetDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} PotentialSetDaoV2
                      */
                     PotentialSetDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2();
                         if (object.recordedSet != null) {
                             if (typeof object.recordedSet !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.recordedSet: object expected");
-                            message.recordedSet = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.fromObject(object.recordedSet);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.recordedSet: object expected");
+                            message.recordedSet = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.fromObject(object.recordedSet);
                         }
                         if (object.weightValue != null) {
                             if (typeof object.weightValue !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.weightValue: object expected");
-                            message.weightValue = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.weightValue);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.weightValue: object expected");
+                            message.weightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.weightValue);
                         }
                         switch (object.weightUnit) {
                         default:
@@ -1884,9 +1884,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a PotentialSetDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} message PotentialSetDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2} message PotentialSetDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -1899,21 +1899,21 @@ export const LiftLog = $root.LiftLog = (() => {
                             object.weightUnit = options.enums === String ? "NIL" : 0;
                         }
                         if (message.recordedSet != null && message.hasOwnProperty("recordedSet")) {
-                            object.recordedSet = $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.toObject(message.recordedSet, options);
+                            object.recordedSet = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.toObject(message.recordedSet, options);
                             if (options.oneofs)
                                 object._recordedSet = "recordedSet";
                         }
                         if (message.weightValue != null && message.hasOwnProperty("weightValue"))
-                            object.weightValue = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.weightValue, options);
+                            object.weightValue = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.weightValue, options);
                         if (message.weightUnit != null && message.hasOwnProperty("weightUnit"))
-                            object.weightUnit = options.enums === String ? $root.LiftLog.Ui.Models.WeightUnit[message.weightUnit] === undefined ? message.weightUnit : $root.LiftLog.Ui.Models.WeightUnit[message.weightUnit] : message.weightUnit;
+                            object.weightUnit = options.enums === String ? $root.GymLifeRpg.Ui.Models.WeightUnit[message.weightUnit] === undefined ? message.weightUnit : $root.GymLifeRpg.Ui.Models.WeightUnit[message.weightUnit] : message.weightUnit;
                         return object;
                     };
 
                     /**
                      * Converts this PotentialSetDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -1924,7 +1924,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for PotentialSetDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -1933,7 +1933,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2";
                     };
 
                     return PotentialSetDaoV2;
@@ -1943,21 +1943,21 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a RecordedSetDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @interface IRecordedSetDaoV2
                      * @property {number|null} [repsCompleted] RecordedSetDaoV2 repsCompleted
-                     * @property {LiftLog.Ui.Models.ITimeOnlyDao|null} [completionTime] RecordedSetDaoV2 completionTime
-                     * @property {LiftLog.Ui.Models.IDateOnlyDao|null} [completionDate] RecordedSetDaoV2 completionDate
-                     * @property {LiftLog.Ui.Models.IZoneOffsetDao|null} [completionOffset] RecordedSetDaoV2 completionOffset
+                     * @property {GymLifeRpg.Ui.Models.ITimeOnlyDao|null} [completionTime] RecordedSetDaoV2 completionTime
+                     * @property {GymLifeRpg.Ui.Models.IDateOnlyDao|null} [completionDate] RecordedSetDaoV2 completionDate
+                     * @property {GymLifeRpg.Ui.Models.IZoneOffsetDao|null} [completionOffset] RecordedSetDaoV2 completionOffset
                      */
 
                     /**
                      * Constructs a new RecordedSetDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao
                      * @classdesc Represents a RecordedSetDaoV2.
                      * @implements IRecordedSetDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2=} [properties] Properties to set
                      */
                     function RecordedSetDaoV2(properties) {
                         if (properties)
@@ -1969,31 +1969,31 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedSetDaoV2 repsCompleted.
                      * @member {number} repsCompleted
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     RecordedSetDaoV2.prototype.repsCompleted = 0;
 
                     /**
                      * RecordedSetDaoV2 completionTime.
-                     * @member {LiftLog.Ui.Models.ITimeOnlyDao|null|undefined} completionTime
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.ITimeOnlyDao|null|undefined} completionTime
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     RecordedSetDaoV2.prototype.completionTime = null;
 
                     /**
                      * RecordedSetDaoV2 completionDate.
-                     * @member {LiftLog.Ui.Models.IDateOnlyDao|null|undefined} completionDate
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDateOnlyDao|null|undefined} completionDate
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     RecordedSetDaoV2.prototype.completionDate = null;
 
                     /**
                      * RecordedSetDaoV2 completionOffset.
-                     * @member {LiftLog.Ui.Models.IZoneOffsetDao|null|undefined} completionOffset
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IZoneOffsetDao|null|undefined} completionOffset
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     RecordedSetDaoV2.prototype.completionOffset = null;
@@ -2004,7 +2004,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedSetDaoV2 _completionDate.
                      * @member {"completionDate"|undefined} _completionDate
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedSetDaoV2.prototype, "_completionDate", {
@@ -2015,7 +2015,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RecordedSetDaoV2 _completionOffset.
                      * @member {"completionOffset"|undefined} _completionOffset
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      */
                     Object.defineProperty(RecordedSetDaoV2.prototype, "_completionOffset", {
@@ -2026,21 +2026,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new RecordedSetDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2 instance
                      */
                     RecordedSetDaoV2.create = function create(properties) {
                         return new RecordedSetDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified RecordedSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
+                     * Encodes the specified RecordedSetDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2} message RecordedSetDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2} message RecordedSetDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2050,20 +2050,20 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.repsCompleted != null && Object.hasOwnProperty.call(message, "repsCompleted"))
                             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.repsCompleted);
                         if (message.completionTime != null && Object.hasOwnProperty.call(message, "completionTime"))
-                            $root.LiftLog.Ui.Models.TimeOnlyDao.encode(message.completionTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.TimeOnlyDao.encode(message.completionTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.completionDate != null && Object.hasOwnProperty.call(message, "completionDate"))
-                            $root.LiftLog.Ui.Models.DateOnlyDao.encode(message.completionDate, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DateOnlyDao.encode(message.completionDate, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                         if (message.completionOffset != null && Object.hasOwnProperty.call(message, "completionOffset"))
-                            $root.LiftLog.Ui.Models.ZoneOffsetDao.encode(message.completionOffset, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.encode(message.completionOffset, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified RecordedSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
+                     * Encodes the specified RecordedSetDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2} message RecordedSetDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2} message RecordedSetDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2074,18 +2074,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RecordedSetDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     RecordedSetDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -2096,15 +2096,15 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 2: {
-                                    message.completionTime = $root.LiftLog.Ui.Models.TimeOnlyDao.decode(reader, reader.uint32());
+                                    message.completionTime = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 3: {
-                                    message.completionDate = $root.LiftLog.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
+                                    message.completionDate = $root.GymLifeRpg.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 4: {
-                                    message.completionOffset = $root.LiftLog.Ui.Models.ZoneOffsetDao.decode(reader, reader.uint32());
+                                    message.completionOffset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -2118,10 +2118,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RecordedSetDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -2134,7 +2134,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a RecordedSetDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -2147,14 +2147,14 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!$util.isInteger(message.repsCompleted))
                                 return "repsCompleted: integer expected";
                         if (message.completionTime != null && message.hasOwnProperty("completionTime")) {
-                            let error = $root.LiftLog.Ui.Models.TimeOnlyDao.verify(message.completionTime);
+                            let error = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.verify(message.completionTime);
                             if (error)
                                 return "completionTime." + error;
                         }
                         if (message.completionDate != null && message.hasOwnProperty("completionDate")) {
                             properties._completionDate = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DateOnlyDao.verify(message.completionDate);
+                                let error = $root.GymLifeRpg.Ui.Models.DateOnlyDao.verify(message.completionDate);
                                 if (error)
                                     return "completionDate." + error;
                             }
@@ -2162,7 +2162,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.completionOffset != null && message.hasOwnProperty("completionOffset")) {
                             properties._completionOffset = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.ZoneOffsetDao.verify(message.completionOffset);
+                                let error = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.verify(message.completionOffset);
                                 if (error)
                                     return "completionOffset." + error;
                             }
@@ -2173,31 +2173,31 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a RecordedSetDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} RecordedSetDaoV2
                      */
                     RecordedSetDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2();
                         if (object.repsCompleted != null)
                             message.repsCompleted = object.repsCompleted | 0;
                         if (object.completionTime != null) {
                             if (typeof object.completionTime !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionTime: object expected");
-                            message.completionTime = $root.LiftLog.Ui.Models.TimeOnlyDao.fromObject(object.completionTime);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionTime: object expected");
+                            message.completionTime = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.fromObject(object.completionTime);
                         }
                         if (object.completionDate != null) {
                             if (typeof object.completionDate !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionDate: object expected");
-                            message.completionDate = $root.LiftLog.Ui.Models.DateOnlyDao.fromObject(object.completionDate);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionDate: object expected");
+                            message.completionDate = $root.GymLifeRpg.Ui.Models.DateOnlyDao.fromObject(object.completionDate);
                         }
                         if (object.completionOffset != null) {
                             if (typeof object.completionOffset !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionOffset: object expected");
-                            message.completionOffset = $root.LiftLog.Ui.Models.ZoneOffsetDao.fromObject(object.completionOffset);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.completionOffset: object expected");
+                            message.completionOffset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.fromObject(object.completionOffset);
                         }
                         return message;
                     };
@@ -2205,9 +2205,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a RecordedSetDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} message RecordedSetDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2} message RecordedSetDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -2222,14 +2222,14 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.repsCompleted != null && message.hasOwnProperty("repsCompleted"))
                             object.repsCompleted = message.repsCompleted;
                         if (message.completionTime != null && message.hasOwnProperty("completionTime"))
-                            object.completionTime = $root.LiftLog.Ui.Models.TimeOnlyDao.toObject(message.completionTime, options);
+                            object.completionTime = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.toObject(message.completionTime, options);
                         if (message.completionDate != null && message.hasOwnProperty("completionDate")) {
-                            object.completionDate = $root.LiftLog.Ui.Models.DateOnlyDao.toObject(message.completionDate, options);
+                            object.completionDate = $root.GymLifeRpg.Ui.Models.DateOnlyDao.toObject(message.completionDate, options);
                             if (options.oneofs)
                                 object._completionDate = "completionDate";
                         }
                         if (message.completionOffset != null && message.hasOwnProperty("completionOffset")) {
-                            object.completionOffset = $root.LiftLog.Ui.Models.ZoneOffsetDao.toObject(message.completionOffset, options);
+                            object.completionOffset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.toObject(message.completionOffset, options);
                             if (options.oneofs)
                                 object._completionOffset = "completionOffset";
                         }
@@ -2239,7 +2239,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this RecordedSetDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -2250,7 +2250,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for RecordedSetDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -2259,7 +2259,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2";
                     };
 
                     return RecordedSetDaoV2;
@@ -2272,7 +2272,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Namespace SessionBlueprintDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @namespace
                  */
                 const SessionBlueprintDao = {};
@@ -2281,18 +2281,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a SessionBlueprintContainerDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @interface ISessionBlueprintContainerDaoV2
-                     * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessionBlueprints] SessionBlueprintContainerDaoV2 sessionBlueprints
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessionBlueprints] SessionBlueprintContainerDaoV2 sessionBlueprints
                      */
 
                     /**
                      * Constructs a new SessionBlueprintContainerDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @classdesc Represents a SessionBlueprintContainerDaoV2.
                      * @implements ISessionBlueprintContainerDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2=} [properties] Properties to set
                      */
                     function SessionBlueprintContainerDaoV2(properties) {
                         this.sessionBlueprints = [];
@@ -2304,8 +2304,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * SessionBlueprintContainerDaoV2 sessionBlueprints.
-                     * @member {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessionBlueprints
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessionBlueprints
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @instance
                      */
                     SessionBlueprintContainerDaoV2.prototype.sessionBlueprints = $util.emptyArray;
@@ -2313,21 +2313,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new SessionBlueprintContainerDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2 instance
                      */
                     SessionBlueprintContainerDaoV2.create = function create(properties) {
                         return new SessionBlueprintContainerDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified SessionBlueprintContainerDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionBlueprintContainerDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2336,16 +2336,16 @@ export const LiftLog = $root.LiftLog = (() => {
                             writer = $Writer.create();
                         if (message.sessionBlueprints != null && message.sessionBlueprints.length)
                             for (let i = 0; i < message.sessionBlueprints.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessionBlueprints[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessionBlueprints[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified SessionBlueprintContainerDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionBlueprintContainerDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2356,18 +2356,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     SessionBlueprintContainerDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -2376,7 +2376,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 1: {
                                     if (!(message.sessionBlueprints && message.sessionBlueprints.length))
                                         message.sessionBlueprints = [];
-                                    message.sessionBlueprints.push($root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
+                                    message.sessionBlueprints.push($root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             default:
@@ -2390,10 +2390,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -2406,7 +2406,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a SessionBlueprintContainerDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -2418,7 +2418,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.sessionBlueprints))
                                 return "sessionBlueprints: array expected";
                             for (let i = 0; i < message.sessionBlueprints.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessionBlueprints[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessionBlueprints[i]);
                                 if (error)
                                     return "sessionBlueprints." + error;
                             }
@@ -2429,23 +2429,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a SessionBlueprintContainerDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} SessionBlueprintContainerDaoV2
                      */
                     SessionBlueprintContainerDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2();
                         if (object.sessionBlueprints) {
                             if (!Array.isArray(object.sessionBlueprints))
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.sessionBlueprints: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.sessionBlueprints: array expected");
                             message.sessionBlueprints = [];
                             for (let i = 0; i < object.sessionBlueprints.length; ++i) {
                                 if (typeof object.sessionBlueprints[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.sessionBlueprints: object expected");
-                                message.sessionBlueprints[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessionBlueprints[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.sessionBlueprints: object expected");
+                                message.sessionBlueprints[i] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessionBlueprints[i]);
                             }
                         }
                         return message;
@@ -2454,9 +2454,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a SessionBlueprintContainerDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2} message SessionBlueprintContainerDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -2469,7 +2469,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.sessionBlueprints && message.sessionBlueprints.length) {
                             object.sessionBlueprints = [];
                             for (let j = 0; j < message.sessionBlueprints.length; ++j)
-                                object.sessionBlueprints[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessionBlueprints[j], options);
+                                object.sessionBlueprints[j] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessionBlueprints[j], options);
                         }
                         return object;
                     };
@@ -2477,7 +2477,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this SessionBlueprintContainerDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -2488,7 +2488,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for SessionBlueprintContainerDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -2497,7 +2497,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2";
                     };
 
                     return SessionBlueprintContainerDaoV2;
@@ -2507,20 +2507,20 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a SessionBlueprintDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @interface ISessionBlueprintDaoV2
                      * @property {string|null} [name] SessionBlueprintDaoV2 name
-                     * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2>|null} [exerciseBlueprints] SessionBlueprintDaoV2 exerciseBlueprints
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2>|null} [exerciseBlueprints] SessionBlueprintDaoV2 exerciseBlueprints
                      * @property {string|null} [notes] SessionBlueprintDaoV2 notes
                      */
 
                     /**
                      * Constructs a new SessionBlueprintDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @classdesc Represents a SessionBlueprintDaoV2.
                      * @implements ISessionBlueprintDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2=} [properties] Properties to set
                      */
                     function SessionBlueprintDaoV2(properties) {
                         this.exerciseBlueprints = [];
@@ -2533,15 +2533,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * SessionBlueprintDaoV2 name.
                      * @member {string} name
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @instance
                      */
                     SessionBlueprintDaoV2.prototype.name = "";
 
                     /**
                      * SessionBlueprintDaoV2 exerciseBlueprints.
-                     * @member {Array.<LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2>} exerciseBlueprints
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2>} exerciseBlueprints
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @instance
                      */
                     SessionBlueprintDaoV2.prototype.exerciseBlueprints = $util.emptyArray;
@@ -2549,7 +2549,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * SessionBlueprintDaoV2 notes.
                      * @member {string} notes
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @instance
                      */
                     SessionBlueprintDaoV2.prototype.notes = "";
@@ -2557,21 +2557,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new SessionBlueprintDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2 instance
                      */
                     SessionBlueprintDaoV2.create = function create(properties) {
                         return new SessionBlueprintDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified SessionBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionBlueprintDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2} message SessionBlueprintDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2} message SessionBlueprintDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2582,18 +2582,18 @@ export const LiftLog = $root.LiftLog = (() => {
                             writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                         if (message.exerciseBlueprints != null && message.exerciseBlueprints.length)
                             for (let i = 0; i < message.exerciseBlueprints.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.encode(message.exerciseBlueprints[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.encode(message.exerciseBlueprints[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.notes != null && Object.hasOwnProperty.call(message, "notes"))
                             writer.uint32(/* id 3, wireType 2 =*/26).string(message.notes);
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified SessionBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
+                     * Encodes the specified SessionBlueprintDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2} message SessionBlueprintDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2} message SessionBlueprintDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2604,18 +2604,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     SessionBlueprintDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -2628,7 +2628,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 2: {
                                     if (!(message.exerciseBlueprints && message.exerciseBlueprints.length))
                                         message.exerciseBlueprints = [];
-                                    message.exerciseBlueprints.push($root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.decode(reader, reader.uint32()));
+                                    message.exerciseBlueprints.push($root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 3: {
@@ -2646,10 +2646,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -2662,7 +2662,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a SessionBlueprintDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -2677,7 +2677,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.exerciseBlueprints))
                                 return "exerciseBlueprints: array expected";
                             for (let i = 0; i < message.exerciseBlueprints.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify(message.exerciseBlueprints[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify(message.exerciseBlueprints[i]);
                                 if (error)
                                     return "exerciseBlueprints." + error;
                             }
@@ -2691,25 +2691,25 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a SessionBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} SessionBlueprintDaoV2
                      */
                     SessionBlueprintDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2();
                         if (object.name != null)
                             message.name = String(object.name);
                         if (object.exerciseBlueprints) {
                             if (!Array.isArray(object.exerciseBlueprints))
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.exerciseBlueprints: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.exerciseBlueprints: array expected");
                             message.exerciseBlueprints = [];
                             for (let i = 0; i < object.exerciseBlueprints.length; ++i) {
                                 if (typeof object.exerciseBlueprints[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.exerciseBlueprints: object expected");
-                                message.exerciseBlueprints[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.fromObject(object.exerciseBlueprints[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.exerciseBlueprints: object expected");
+                                message.exerciseBlueprints[i] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.fromObject(object.exerciseBlueprints[i]);
                             }
                         }
                         if (object.notes != null)
@@ -2720,9 +2720,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a SessionBlueprintDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} message SessionBlueprintDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2} message SessionBlueprintDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -2741,7 +2741,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.exerciseBlueprints && message.exerciseBlueprints.length) {
                             object.exerciseBlueprints = [];
                             for (let j = 0; j < message.exerciseBlueprints.length; ++j)
-                                object.exerciseBlueprints[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.toObject(message.exerciseBlueprints[j], options);
+                                object.exerciseBlueprints[j] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.toObject(message.exerciseBlueprints[j], options);
                         }
                         if (message.notes != null && message.hasOwnProperty("notes"))
                             object.notes = message.notes;
@@ -2751,7 +2751,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this SessionBlueprintDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -2762,7 +2762,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for SessionBlueprintDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -2771,7 +2771,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2";
                     };
 
                     return SessionBlueprintDaoV2;
@@ -2779,7 +2779,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * ExerciseType enum.
-                 * @name LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType
+                 * @name GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType
                  * @enum {number}
                  * @property {number} WEIGHTED=0 WEIGHTED value
                  * @property {number} CARDIO=1 CARDIO value
@@ -2795,21 +2795,21 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a CardioTarget.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @interface ICardioTarget
                      * @property {string|null} [type] CardioTarget type
                      * @property {google.protobuf.IDuration|null} [timeValue] CardioTarget timeValue
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [distanceValue] CardioTarget distanceValue
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [distanceValue] CardioTarget distanceValue
                      * @property {string|null} [distanceUnit] CardioTarget distanceUnit
                      */
 
                     /**
                      * Constructs a new CardioTarget.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @classdesc Represents a CardioTarget.
                      * @implements ICardioTarget
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget=} [properties] Properties to set
                      */
                     function CardioTarget(properties) {
                         if (properties)
@@ -2821,7 +2821,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CardioTarget type.
                      * @member {string} type
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      */
                     CardioTarget.prototype.type = "";
@@ -2829,15 +2829,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CardioTarget timeValue.
                      * @member {google.protobuf.IDuration|null|undefined} timeValue
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      */
                     CardioTarget.prototype.timeValue = null;
 
                     /**
                      * CardioTarget distanceValue.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} distanceValue
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} distanceValue
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      */
                     CardioTarget.prototype.distanceValue = null;
@@ -2845,7 +2845,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CardioTarget distanceUnit.
                      * @member {string|null|undefined} distanceUnit
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      */
                     CardioTarget.prototype.distanceUnit = null;
@@ -2856,7 +2856,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * CardioTarget _distanceUnit.
                      * @member {"distanceUnit"|undefined} _distanceUnit
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      */
                     Object.defineProperty(CardioTarget.prototype, "_distanceUnit", {
@@ -2867,21 +2867,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new CardioTarget instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget instance
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget instance
                      */
                     CardioTarget.create = function create(properties) {
                         return new CardioTarget(properties);
                     };
 
                     /**
-                     * Encodes the specified CardioTarget message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
+                     * Encodes the specified CardioTarget message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget} message CardioTarget message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget} message CardioTarget message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2893,18 +2893,18 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.timeValue != null && Object.hasOwnProperty.call(message, "timeValue"))
                             $root.google.protobuf.Duration.encode(message.timeValue, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.distanceValue != null && Object.hasOwnProperty.call(message, "distanceValue"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.distanceValue, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.distanceValue, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                         if (message.distanceUnit != null && Object.hasOwnProperty.call(message, "distanceUnit"))
                             writer.uint32(/* id 4, wireType 2 =*/34).string(message.distanceUnit);
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified CardioTarget message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
+                     * Encodes the specified CardioTarget message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget} message CardioTarget message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget} message CardioTarget message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -2915,18 +2915,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a CardioTarget message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     CardioTarget.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -2941,7 +2941,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 3: {
-                                    message.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 4: {
@@ -2959,10 +2959,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a CardioTarget message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -2975,7 +2975,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a CardioTarget message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -2993,7 +2993,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 return "timeValue." + error;
                         }
                         if (message.distanceValue != null && message.hasOwnProperty("distanceValue")) {
-                            let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.distanceValue);
+                            let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.distanceValue);
                             if (error)
                                 return "distanceValue." + error;
                         }
@@ -3008,26 +3008,26 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a CardioTarget message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget} CardioTarget
                      */
                     CardioTarget.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget();
                         if (object.type != null)
                             message.type = String(object.type);
                         if (object.timeValue != null) {
                             if (typeof object.timeValue !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.timeValue: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.timeValue: object expected");
                             message.timeValue = $root.google.protobuf.Duration.fromObject(object.timeValue);
                         }
                         if (object.distanceValue != null) {
                             if (typeof object.distanceValue !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.distanceValue: object expected");
-                            message.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.distanceValue);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.distanceValue: object expected");
+                            message.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.distanceValue);
                         }
                         if (object.distanceUnit != null)
                             message.distanceUnit = String(object.distanceUnit);
@@ -3037,9 +3037,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a CardioTarget message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget} message CardioTarget
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget} message CardioTarget
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -3057,7 +3057,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.timeValue != null && message.hasOwnProperty("timeValue"))
                             object.timeValue = $root.google.protobuf.Duration.toObject(message.timeValue, options);
                         if (message.distanceValue != null && message.hasOwnProperty("distanceValue"))
-                            object.distanceValue = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.distanceValue, options);
+                            object.distanceValue = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.distanceValue, options);
                         if (message.distanceUnit != null && message.hasOwnProperty("distanceUnit")) {
                             object.distanceUnit = message.distanceUnit;
                             if (options.oneofs)
@@ -3069,7 +3069,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this CardioTarget to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -3080,7 +3080,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for CardioTarget
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -3089,7 +3089,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget";
                     };
 
                     return CardioTarget;
@@ -3099,18 +3099,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of an ExerciseBlueprintDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @interface IExerciseBlueprintDaoV2
                      * @property {string|null} [name] ExerciseBlueprintDaoV2 name
                      * @property {string|null} [notes] ExerciseBlueprintDaoV2 notes
                      * @property {string|null} [link] ExerciseBlueprintDaoV2 link
-                     * @property {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null} [type] ExerciseBlueprintDaoV2 type
+                     * @property {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType|null} [type] ExerciseBlueprintDaoV2 type
                      * @property {number|null} [sets] ExerciseBlueprintDaoV2 sets
                      * @property {number|null} [repsPerSet] ExerciseBlueprintDaoV2 repsPerSet
-                     * @property {LiftLog.Ui.Models.IDecimalValue|null} [weightIncreaseOnSuccess] ExerciseBlueprintDaoV2 weightIncreaseOnSuccess
-                     * @property {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null} [restBetweenSets] ExerciseBlueprintDaoV2 restBetweenSets
+                     * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [weightIncreaseOnSuccess] ExerciseBlueprintDaoV2 weightIncreaseOnSuccess
+                     * @property {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2|null} [restBetweenSets] ExerciseBlueprintDaoV2 restBetweenSets
                      * @property {boolean|null} [supersetWithNext] ExerciseBlueprintDaoV2 supersetWithNext
-                     * @property {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null} [cardioTarget] ExerciseBlueprintDaoV2 cardioTarget
+                     * @property {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget|null} [cardioTarget] ExerciseBlueprintDaoV2 cardioTarget
                      * @property {boolean|null} [trackDuration] ExerciseBlueprintDaoV2 trackDuration
                      * @property {boolean|null} [trackDistance] ExerciseBlueprintDaoV2 trackDistance
                      * @property {boolean|null} [trackResistance] ExerciseBlueprintDaoV2 trackResistance
@@ -3119,11 +3119,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Constructs a new ExerciseBlueprintDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @classdesc Represents an ExerciseBlueprintDaoV2.
                      * @implements IExerciseBlueprintDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2=} [properties] Properties to set
                      */
                     function ExerciseBlueprintDaoV2(properties) {
                         if (properties)
@@ -3135,7 +3135,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 name.
                      * @member {string} name
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.name = "";
@@ -3143,7 +3143,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 notes.
                      * @member {string} notes
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.notes = "";
@@ -3151,15 +3151,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 link.
                      * @member {string} link
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.link = "";
 
                     /**
                      * ExerciseBlueprintDaoV2 type.
-                     * @member {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType} type
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType} type
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.type = 0;
@@ -3167,7 +3167,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 sets.
                      * @member {number} sets
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.sets = 0;
@@ -3175,23 +3175,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 repsPerSet.
                      * @member {number} repsPerSet
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.repsPerSet = 0;
 
                     /**
                      * ExerciseBlueprintDaoV2 weightIncreaseOnSuccess.
-                     * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} weightIncreaseOnSuccess
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} weightIncreaseOnSuccess
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.weightIncreaseOnSuccess = null;
 
                     /**
                      * ExerciseBlueprintDaoV2 restBetweenSets.
-                     * @member {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null|undefined} restBetweenSets
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2|null|undefined} restBetweenSets
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.restBetweenSets = null;
@@ -3199,15 +3199,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 supersetWithNext.
                      * @member {boolean} supersetWithNext
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.supersetWithNext = false;
 
                     /**
                      * ExerciseBlueprintDaoV2 cardioTarget.
-                     * @member {LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null|undefined} cardioTarget
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @member {GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget|null|undefined} cardioTarget
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.cardioTarget = null;
@@ -3215,7 +3215,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 trackDuration.
                      * @member {boolean} trackDuration
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.trackDuration = false;
@@ -3223,7 +3223,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 trackDistance.
                      * @member {boolean} trackDistance
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.trackDistance = false;
@@ -3231,7 +3231,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 trackResistance.
                      * @member {boolean} trackResistance
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.trackResistance = false;
@@ -3239,7 +3239,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExerciseBlueprintDaoV2 trackIncline.
                      * @member {boolean} trackIncline
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      */
                     ExerciseBlueprintDaoV2.prototype.trackIncline = false;
@@ -3247,21 +3247,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new ExerciseBlueprintDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2 instance
                      */
                     ExerciseBlueprintDaoV2.create = function create(properties) {
                         return new ExerciseBlueprintDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified ExerciseBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
+                     * Encodes the specified ExerciseBlueprintDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -3275,9 +3275,9 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.repsPerSet != null && Object.hasOwnProperty.call(message, "repsPerSet"))
                             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.repsPerSet);
                         if (message.weightIncreaseOnSuccess != null && Object.hasOwnProperty.call(message, "weightIncreaseOnSuccess"))
-                            $root.LiftLog.Ui.Models.DecimalValue.encode(message.weightIncreaseOnSuccess, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.weightIncreaseOnSuccess, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                         if (message.restBetweenSets != null && Object.hasOwnProperty.call(message, "restBetweenSets"))
-                            $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.encode(message.restBetweenSets, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.encode(message.restBetweenSets, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                         if (message.supersetWithNext != null && Object.hasOwnProperty.call(message, "supersetWithNext"))
                             writer.uint32(/* id 7, wireType 0 =*/56).bool(message.supersetWithNext);
                         if (message.notes != null && Object.hasOwnProperty.call(message, "notes"))
@@ -3287,7 +3287,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                             writer.uint32(/* id 10, wireType 0 =*/80).int32(message.type);
                         if (message.cardioTarget != null && Object.hasOwnProperty.call(message, "cardioTarget"))
-                            $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.encode(message.cardioTarget, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.encode(message.cardioTarget, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                         if (message.trackDuration != null && Object.hasOwnProperty.call(message, "trackDuration"))
                             writer.uint32(/* id 12, wireType 0 =*/96).bool(message.trackDuration);
                         if (message.trackDistance != null && Object.hasOwnProperty.call(message, "trackDistance"))
@@ -3300,11 +3300,11 @@ export const LiftLog = $root.LiftLog = (() => {
                     };
 
                     /**
-                     * Encodes the specified ExerciseBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
+                     * Encodes the specified ExerciseBlueprintDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -3315,18 +3315,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     ExerciseBlueprintDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -3357,11 +3357,11 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 5: {
-                                    message.weightIncreaseOnSuccess = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                    message.weightIncreaseOnSuccess = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 6: {
-                                    message.restBetweenSets = $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.decode(reader, reader.uint32());
+                                    message.restBetweenSets = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 7: {
@@ -3369,7 +3369,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 11: {
-                                    message.cardioTarget = $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.decode(reader, reader.uint32());
+                                    message.cardioTarget = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.decode(reader, reader.uint32());
                                     break;
                                 }
                             case 12: {
@@ -3399,10 +3399,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -3415,7 +3415,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies an ExerciseBlueprintDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -3447,12 +3447,12 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!$util.isInteger(message.repsPerSet))
                                 return "repsPerSet: integer expected";
                         if (message.weightIncreaseOnSuccess != null && message.hasOwnProperty("weightIncreaseOnSuccess")) {
-                            let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.weightIncreaseOnSuccess);
+                            let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.weightIncreaseOnSuccess);
                             if (error)
                                 return "weightIncreaseOnSuccess." + error;
                         }
                         if (message.restBetweenSets != null && message.hasOwnProperty("restBetweenSets")) {
-                            let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify(message.restBetweenSets);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.verify(message.restBetweenSets);
                             if (error)
                                 return "restBetweenSets." + error;
                         }
@@ -3460,7 +3460,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (typeof message.supersetWithNext !== "boolean")
                                 return "supersetWithNext: boolean expected";
                         if (message.cardioTarget != null && message.hasOwnProperty("cardioTarget")) {
-                            let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify(message.cardioTarget);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.verify(message.cardioTarget);
                             if (error)
                                 return "cardioTarget." + error;
                         }
@@ -3482,15 +3482,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates an ExerciseBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} ExerciseBlueprintDaoV2
                      */
                     ExerciseBlueprintDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2();
                         if (object.name != null)
                             message.name = String(object.name);
                         if (object.notes != null)
@@ -3519,20 +3519,20 @@ export const LiftLog = $root.LiftLog = (() => {
                             message.repsPerSet = object.repsPerSet | 0;
                         if (object.weightIncreaseOnSuccess != null) {
                             if (typeof object.weightIncreaseOnSuccess !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.weightIncreaseOnSuccess: object expected");
-                            message.weightIncreaseOnSuccess = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.weightIncreaseOnSuccess);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.weightIncreaseOnSuccess: object expected");
+                            message.weightIncreaseOnSuccess = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.weightIncreaseOnSuccess);
                         }
                         if (object.restBetweenSets != null) {
                             if (typeof object.restBetweenSets !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.restBetweenSets: object expected");
-                            message.restBetweenSets = $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.fromObject(object.restBetweenSets);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.restBetweenSets: object expected");
+                            message.restBetweenSets = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.fromObject(object.restBetweenSets);
                         }
                         if (object.supersetWithNext != null)
                             message.supersetWithNext = Boolean(object.supersetWithNext);
                         if (object.cardioTarget != null) {
                             if (typeof object.cardioTarget !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.cardioTarget: object expected");
-                            message.cardioTarget = $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.fromObject(object.cardioTarget);
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.cardioTarget: object expected");
+                            message.cardioTarget = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.fromObject(object.cardioTarget);
                         }
                         if (object.trackDuration != null)
                             message.trackDuration = Boolean(object.trackDuration);
@@ -3548,9 +3548,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from an ExerciseBlueprintDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2} message ExerciseBlueprintDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -3581,9 +3581,9 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.repsPerSet != null && message.hasOwnProperty("repsPerSet"))
                             object.repsPerSet = message.repsPerSet;
                         if (message.weightIncreaseOnSuccess != null && message.hasOwnProperty("weightIncreaseOnSuccess"))
-                            object.weightIncreaseOnSuccess = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.weightIncreaseOnSuccess, options);
+                            object.weightIncreaseOnSuccess = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.weightIncreaseOnSuccess, options);
                         if (message.restBetweenSets != null && message.hasOwnProperty("restBetweenSets"))
-                            object.restBetweenSets = $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.toObject(message.restBetweenSets, options);
+                            object.restBetweenSets = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.toObject(message.restBetweenSets, options);
                         if (message.supersetWithNext != null && message.hasOwnProperty("supersetWithNext"))
                             object.supersetWithNext = message.supersetWithNext;
                         if (message.notes != null && message.hasOwnProperty("notes"))
@@ -3591,9 +3591,9 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.link != null && message.hasOwnProperty("link"))
                             object.link = message.link;
                         if (message.type != null && message.hasOwnProperty("type"))
-                            object.type = options.enums === String ? $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] === undefined ? message.type : $root.LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] : message.type;
+                            object.type = options.enums === String ? $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] === undefined ? message.type : $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType[message.type] : message.type;
                         if (message.cardioTarget != null && message.hasOwnProperty("cardioTarget"))
-                            object.cardioTarget = $root.LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.toObject(message.cardioTarget, options);
+                            object.cardioTarget = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget.toObject(message.cardioTarget, options);
                         if (message.trackDuration != null && message.hasOwnProperty("trackDuration"))
                             object.trackDuration = message.trackDuration;
                         if (message.trackDistance != null && message.hasOwnProperty("trackDistance"))
@@ -3608,7 +3608,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this ExerciseBlueprintDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -3619,7 +3619,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for ExerciseBlueprintDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -3628,7 +3628,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2";
                     };
 
                     return ExerciseBlueprintDaoV2;
@@ -3638,7 +3638,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a RestDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @interface IRestDaoV2
                      * @property {google.protobuf.IDuration|null} [minRest] RestDaoV2 minRest
                      * @property {google.protobuf.IDuration|null} [maxRest] RestDaoV2 maxRest
@@ -3647,11 +3647,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Constructs a new RestDaoV2.
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao
                      * @classdesc Represents a RestDaoV2.
                      * @implements IRestDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2=} [properties] Properties to set
                      */
                     function RestDaoV2(properties) {
                         if (properties)
@@ -3663,7 +3663,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RestDaoV2 minRest.
                      * @member {google.protobuf.IDuration|null|undefined} minRest
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @instance
                      */
                     RestDaoV2.prototype.minRest = null;
@@ -3671,7 +3671,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RestDaoV2 maxRest.
                      * @member {google.protobuf.IDuration|null|undefined} maxRest
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @instance
                      */
                     RestDaoV2.prototype.maxRest = null;
@@ -3679,7 +3679,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * RestDaoV2 failureRest.
                      * @member {google.protobuf.IDuration|null|undefined} failureRest
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @instance
                      */
                     RestDaoV2.prototype.failureRest = null;
@@ -3687,21 +3687,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new RestDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2 instance
                      */
                     RestDaoV2.create = function create(properties) {
                         return new RestDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified RestDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
+                     * Encodes the specified RestDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2} message RestDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2} message RestDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -3718,11 +3718,11 @@ export const LiftLog = $root.LiftLog = (() => {
                     };
 
                     /**
-                     * Encodes the specified RestDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
+                     * Encodes the specified RestDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2} message RestDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2} message RestDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -3733,18 +3733,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RestDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     RestDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -3773,10 +3773,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a RestDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -3789,7 +3789,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a RestDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -3818,28 +3818,28 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a RestDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2} RestDaoV2
                      */
                     RestDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2();
                         if (object.minRest != null) {
                             if (typeof object.minRest !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.minRest: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.minRest: object expected");
                             message.minRest = $root.google.protobuf.Duration.fromObject(object.minRest);
                         }
                         if (object.maxRest != null) {
                             if (typeof object.maxRest !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.maxRest: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.maxRest: object expected");
                             message.maxRest = $root.google.protobuf.Duration.fromObject(object.maxRest);
                         }
                         if (object.failureRest != null) {
                             if (typeof object.failureRest !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.failureRest: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2.failureRest: object expected");
                             message.failureRest = $root.google.protobuf.Duration.fromObject(object.failureRest);
                         }
                         return message;
@@ -3848,9 +3848,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a RestDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2} message RestDaoV2
+                     * @param {GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2} message RestDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -3875,7 +3875,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this RestDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -3886,7 +3886,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for RestDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -3895,7 +3895,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2";
                     };
 
                     return RestDaoV2;
@@ -3908,18 +3908,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of an UuidDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IUuidDao
                  * @property {Uint8Array|null} [value] UuidDao value
                  */
 
                 /**
                  * Constructs a new UuidDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents an UuidDao.
                  * @implements IUuidDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IUuidDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IUuidDao=} [properties] Properties to set
                  */
                 function UuidDao(properties) {
                     if (properties)
@@ -3931,7 +3931,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * UuidDao value.
                  * @member {Uint8Array} value
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @instance
                  */
                 UuidDao.prototype.value = $util.newBuffer([]);
@@ -3939,21 +3939,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new UuidDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IUuidDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.UuidDao} UuidDao instance
+                 * @param {GymLifeRpg.Ui.Models.IUuidDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.UuidDao} UuidDao instance
                  */
                 UuidDao.create = function create(properties) {
                     return new UuidDao(properties);
                 };
 
                 /**
-                 * Encodes the specified UuidDao message. Does not implicitly {@link LiftLog.Ui.Models.UuidDao.verify|verify} messages.
+                 * Encodes the specified UuidDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.UuidDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IUuidDao} message UuidDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUuidDao} message UuidDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -3966,11 +3966,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified UuidDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.UuidDao.verify|verify} messages.
+                 * Encodes the specified UuidDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.UuidDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IUuidDao} message UuidDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUuidDao} message UuidDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -3981,18 +3981,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an UuidDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.UuidDao} UuidDao
+                 * @returns {GymLifeRpg.Ui.Models.UuidDao} UuidDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 UuidDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.UuidDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.UuidDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -4013,10 +4013,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an UuidDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.UuidDao} UuidDao
+                 * @returns {GymLifeRpg.Ui.Models.UuidDao} UuidDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -4029,7 +4029,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies an UuidDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -4046,15 +4046,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates an UuidDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.UuidDao} UuidDao
+                 * @returns {GymLifeRpg.Ui.Models.UuidDao} UuidDao
                  */
                 UuidDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.UuidDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.UuidDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.UuidDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.UuidDao();
                     if (object.value != null)
                         if (typeof object.value === "string")
                             $util.base64.decode(object.value, message.value = $util.newBuffer($util.base64.length(object.value)), 0);
@@ -4066,9 +4066,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from an UuidDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
-                 * @param {LiftLog.Ui.Models.UuidDao} message UuidDao
+                 * @param {GymLifeRpg.Ui.Models.UuidDao} message UuidDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -4092,7 +4092,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this UuidDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -4103,7 +4103,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for UuidDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.UuidDao
+                 * @memberof GymLifeRpg.Ui.Models.UuidDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -4112,7 +4112,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.UuidDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.UuidDao";
                 };
 
                 return UuidDao;
@@ -4122,7 +4122,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a DateOnlyDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IDateOnlyDao
                  * @property {number|null} [year] DateOnlyDao year
                  * @property {number|null} [month] DateOnlyDao month
@@ -4131,11 +4131,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new DateOnlyDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a DateOnlyDao.
                  * @implements IDateOnlyDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IDateOnlyDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IDateOnlyDao=} [properties] Properties to set
                  */
                 function DateOnlyDao(properties) {
                     if (properties)
@@ -4147,7 +4147,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DateOnlyDao year.
                  * @member {number} year
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @instance
                  */
                 DateOnlyDao.prototype.year = 0;
@@ -4155,7 +4155,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DateOnlyDao month.
                  * @member {number} month
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @instance
                  */
                 DateOnlyDao.prototype.month = 0;
@@ -4163,7 +4163,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DateOnlyDao day.
                  * @member {number} day
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @instance
                  */
                 DateOnlyDao.prototype.day = 0;
@@ -4171,21 +4171,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new DateOnlyDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateOnlyDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.DateOnlyDao} DateOnlyDao instance
+                 * @param {GymLifeRpg.Ui.Models.IDateOnlyDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.DateOnlyDao} DateOnlyDao instance
                  */
                 DateOnlyDao.create = function create(properties) {
                     return new DateOnlyDao(properties);
                 };
 
                 /**
-                 * Encodes the specified DateOnlyDao message. Does not implicitly {@link LiftLog.Ui.Models.DateOnlyDao.verify|verify} messages.
+                 * Encodes the specified DateOnlyDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.DateOnlyDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateOnlyDao} message DateOnlyDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDateOnlyDao} message DateOnlyDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4202,11 +4202,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified DateOnlyDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.DateOnlyDao.verify|verify} messages.
+                 * Encodes the specified DateOnlyDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.DateOnlyDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateOnlyDao} message DateOnlyDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDateOnlyDao} message DateOnlyDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4217,18 +4217,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DateOnlyDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.DateOnlyDao} DateOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.DateOnlyDao} DateOnlyDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 DateOnlyDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.DateOnlyDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.DateOnlyDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -4257,10 +4257,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DateOnlyDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.DateOnlyDao} DateOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.DateOnlyDao} DateOnlyDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -4273,7 +4273,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a DateOnlyDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -4296,15 +4296,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a DateOnlyDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.DateOnlyDao} DateOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.DateOnlyDao} DateOnlyDao
                  */
                 DateOnlyDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.DateOnlyDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.DateOnlyDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.DateOnlyDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.DateOnlyDao();
                     if (object.year != null)
                         message.year = object.year | 0;
                     if (object.month != null)
@@ -4317,9 +4317,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a DateOnlyDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.DateOnlyDao} message DateOnlyDao
+                 * @param {GymLifeRpg.Ui.Models.DateOnlyDao} message DateOnlyDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -4344,7 +4344,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this DateOnlyDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -4355,7 +4355,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for DateOnlyDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.DateOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.DateOnlyDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -4364,7 +4364,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.DateOnlyDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.DateOnlyDao";
                 };
 
                 return DateOnlyDao;
@@ -4374,7 +4374,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a DecimalValue.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IDecimalValue
                  * @property {Long|null} [units] DecimalValue units
                  * @property {number|null} [nanos] DecimalValue nanos
@@ -4382,11 +4382,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new DecimalValue.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a DecimalValue.
                  * @implements IDecimalValue
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IDecimalValue=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IDecimalValue=} [properties] Properties to set
                  */
                 function DecimalValue(properties) {
                     if (properties)
@@ -4398,7 +4398,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DecimalValue units.
                  * @member {Long} units
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @instance
                  */
                 DecimalValue.prototype.units = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
@@ -4406,7 +4406,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DecimalValue nanos.
                  * @member {number} nanos
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @instance
                  */
                 DecimalValue.prototype.nanos = 0;
@@ -4414,21 +4414,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new DecimalValue instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
-                 * @param {LiftLog.Ui.Models.IDecimalValue=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.DecimalValue} DecimalValue instance
+                 * @param {GymLifeRpg.Ui.Models.IDecimalValue=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.DecimalValue} DecimalValue instance
                  */
                 DecimalValue.create = function create(properties) {
                     return new DecimalValue(properties);
                 };
 
                 /**
-                 * Encodes the specified DecimalValue message. Does not implicitly {@link LiftLog.Ui.Models.DecimalValue.verify|verify} messages.
+                 * Encodes the specified DecimalValue message. Does not implicitly {@link GymLifeRpg.Ui.Models.DecimalValue.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
-                 * @param {LiftLog.Ui.Models.IDecimalValue} message DecimalValue message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDecimalValue} message DecimalValue message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4443,11 +4443,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified DecimalValue message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.DecimalValue.verify|verify} messages.
+                 * Encodes the specified DecimalValue message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.DecimalValue.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
-                 * @param {LiftLog.Ui.Models.IDecimalValue} message DecimalValue message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDecimalValue} message DecimalValue message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4458,18 +4458,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DecimalValue message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.DecimalValue} DecimalValue
+                 * @returns {GymLifeRpg.Ui.Models.DecimalValue} DecimalValue
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 DecimalValue.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.DecimalValue();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.DecimalValue();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -4494,10 +4494,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DecimalValue message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.DecimalValue} DecimalValue
+                 * @returns {GymLifeRpg.Ui.Models.DecimalValue} DecimalValue
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -4510,7 +4510,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a DecimalValue message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -4530,15 +4530,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a DecimalValue message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.DecimalValue} DecimalValue
+                 * @returns {GymLifeRpg.Ui.Models.DecimalValue} DecimalValue
                  */
                 DecimalValue.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.DecimalValue)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.DecimalValue)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.DecimalValue();
+                    let message = new $root.GymLifeRpg.Ui.Models.DecimalValue();
                     if (object.units != null)
                         if ($util.Long)
                             (message.units = $util.Long.fromValue(object.units)).unsigned = false;
@@ -4556,9 +4556,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a DecimalValue message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
-                 * @param {LiftLog.Ui.Models.DecimalValue} message DecimalValue
+                 * @param {GymLifeRpg.Ui.Models.DecimalValue} message DecimalValue
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -4587,7 +4587,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this DecimalValue to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -4598,7 +4598,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for DecimalValue
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.DecimalValue
+                 * @memberof GymLifeRpg.Ui.Models.DecimalValue
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -4607,7 +4607,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.DecimalValue";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.DecimalValue";
                 };
 
                 return DecimalValue;
@@ -4617,7 +4617,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a TimeOnlyDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface ITimeOnlyDao
                  * @property {number|null} [hour] TimeOnlyDao hour
                  * @property {number|null} [minute] TimeOnlyDao minute
@@ -4628,11 +4628,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new TimeOnlyDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a TimeOnlyDao.
                  * @implements ITimeOnlyDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.ITimeOnlyDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.ITimeOnlyDao=} [properties] Properties to set
                  */
                 function TimeOnlyDao(properties) {
                     if (properties)
@@ -4644,7 +4644,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * TimeOnlyDao hour.
                  * @member {number} hour
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  */
                 TimeOnlyDao.prototype.hour = 0;
@@ -4652,7 +4652,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * TimeOnlyDao minute.
                  * @member {number} minute
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  */
                 TimeOnlyDao.prototype.minute = 0;
@@ -4660,7 +4660,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * TimeOnlyDao second.
                  * @member {number} second
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  */
                 TimeOnlyDao.prototype.second = 0;
@@ -4668,7 +4668,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * TimeOnlyDao millisecond.
                  * @member {number} millisecond
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  */
                 TimeOnlyDao.prototype.millisecond = 0;
@@ -4676,7 +4676,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * TimeOnlyDao microsecond.
                  * @member {number} microsecond
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  */
                 TimeOnlyDao.prototype.microsecond = 0;
@@ -4684,21 +4684,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new TimeOnlyDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.ITimeOnlyDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.TimeOnlyDao} TimeOnlyDao instance
+                 * @param {GymLifeRpg.Ui.Models.ITimeOnlyDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.TimeOnlyDao} TimeOnlyDao instance
                  */
                 TimeOnlyDao.create = function create(properties) {
                     return new TimeOnlyDao(properties);
                 };
 
                 /**
-                 * Encodes the specified TimeOnlyDao message. Does not implicitly {@link LiftLog.Ui.Models.TimeOnlyDao.verify|verify} messages.
+                 * Encodes the specified TimeOnlyDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.TimeOnlyDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.ITimeOnlyDao} message TimeOnlyDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ITimeOnlyDao} message TimeOnlyDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4719,11 +4719,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified TimeOnlyDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.TimeOnlyDao.verify|verify} messages.
+                 * Encodes the specified TimeOnlyDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.TimeOnlyDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.ITimeOnlyDao} message TimeOnlyDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ITimeOnlyDao} message TimeOnlyDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -4734,18 +4734,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a TimeOnlyDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.TimeOnlyDao} TimeOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.TimeOnlyDao} TimeOnlyDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 TimeOnlyDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.TimeOnlyDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.TimeOnlyDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -4782,10 +4782,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a TimeOnlyDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.TimeOnlyDao} TimeOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.TimeOnlyDao} TimeOnlyDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -4798,7 +4798,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a TimeOnlyDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -4827,15 +4827,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a TimeOnlyDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.TimeOnlyDao} TimeOnlyDao
+                 * @returns {GymLifeRpg.Ui.Models.TimeOnlyDao} TimeOnlyDao
                  */
                 TimeOnlyDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.TimeOnlyDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.TimeOnlyDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.TimeOnlyDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.TimeOnlyDao();
                     if (object.hour != null)
                         message.hour = object.hour | 0;
                     if (object.minute != null)
@@ -4852,9 +4852,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a TimeOnlyDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
-                 * @param {LiftLog.Ui.Models.TimeOnlyDao} message TimeOnlyDao
+                 * @param {GymLifeRpg.Ui.Models.TimeOnlyDao} message TimeOnlyDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -4885,7 +4885,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this TimeOnlyDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -4896,7 +4896,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for TimeOnlyDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.TimeOnlyDao
+                 * @memberof GymLifeRpg.Ui.Models.TimeOnlyDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -4905,7 +4905,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.TimeOnlyDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.TimeOnlyDao";
                 };
 
                 return TimeOnlyDao;
@@ -4915,20 +4915,20 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a DateTimeDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IDateTimeDao
-                 * @property {LiftLog.Ui.Models.IDateOnlyDao|null} [date] DateTimeDao date
-                 * @property {LiftLog.Ui.Models.ITimeOnlyDao|null} [time] DateTimeDao time
-                 * @property {LiftLog.Ui.Models.IZoneOffsetDao|null} [offset] DateTimeDao offset
+                 * @property {GymLifeRpg.Ui.Models.IDateOnlyDao|null} [date] DateTimeDao date
+                 * @property {GymLifeRpg.Ui.Models.ITimeOnlyDao|null} [time] DateTimeDao time
+                 * @property {GymLifeRpg.Ui.Models.IZoneOffsetDao|null} [offset] DateTimeDao offset
                  */
 
                 /**
                  * Constructs a new DateTimeDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a DateTimeDao.
                  * @implements IDateTimeDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IDateTimeDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IDateTimeDao=} [properties] Properties to set
                  */
                 function DateTimeDao(properties) {
                     if (properties)
@@ -4939,24 +4939,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * DateTimeDao date.
-                 * @member {LiftLog.Ui.Models.IDateOnlyDao|null|undefined} date
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @member {GymLifeRpg.Ui.Models.IDateOnlyDao|null|undefined} date
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @instance
                  */
                 DateTimeDao.prototype.date = null;
 
                 /**
                  * DateTimeDao time.
-                 * @member {LiftLog.Ui.Models.ITimeOnlyDao|null|undefined} time
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @member {GymLifeRpg.Ui.Models.ITimeOnlyDao|null|undefined} time
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @instance
                  */
                 DateTimeDao.prototype.time = null;
 
                 /**
                  * DateTimeDao offset.
-                 * @member {LiftLog.Ui.Models.IZoneOffsetDao|null|undefined} offset
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @member {GymLifeRpg.Ui.Models.IZoneOffsetDao|null|undefined} offset
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @instance
                  */
                 DateTimeDao.prototype.offset = null;
@@ -4967,7 +4967,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * DateTimeDao _offset.
                  * @member {"offset"|undefined} _offset
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @instance
                  */
                 Object.defineProperty(DateTimeDao.prototype, "_offset", {
@@ -4978,21 +4978,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new DateTimeDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateTimeDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.DateTimeDao} DateTimeDao instance
+                 * @param {GymLifeRpg.Ui.Models.IDateTimeDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.DateTimeDao} DateTimeDao instance
                  */
                 DateTimeDao.create = function create(properties) {
                     return new DateTimeDao(properties);
                 };
 
                 /**
-                 * Encodes the specified DateTimeDao message. Does not implicitly {@link LiftLog.Ui.Models.DateTimeDao.verify|verify} messages.
+                 * Encodes the specified DateTimeDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.DateTimeDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateTimeDao} message DateTimeDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDateTimeDao} message DateTimeDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5000,20 +5000,20 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.date != null && Object.hasOwnProperty.call(message, "date"))
-                        $root.LiftLog.Ui.Models.DateOnlyDao.encode(message.date, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.DateOnlyDao.encode(message.date, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.time != null && Object.hasOwnProperty.call(message, "time"))
-                        $root.LiftLog.Ui.Models.TimeOnlyDao.encode(message.time, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.TimeOnlyDao.encode(message.time, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.offset != null && Object.hasOwnProperty.call(message, "offset"))
-                        $root.LiftLog.Ui.Models.ZoneOffsetDao.encode(message.offset, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.encode(message.offset, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified DateTimeDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.DateTimeDao.verify|verify} messages.
+                 * Encodes the specified DateTimeDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.DateTimeDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IDateTimeDao} message DateTimeDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IDateTimeDao} message DateTimeDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5024,33 +5024,33 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DateTimeDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.DateTimeDao} DateTimeDao
+                 * @returns {GymLifeRpg.Ui.Models.DateTimeDao} DateTimeDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 DateTimeDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.DateTimeDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.DateTimeDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.date = $root.LiftLog.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
+                                message.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
-                                message.time = $root.LiftLog.Ui.Models.TimeOnlyDao.decode(reader, reader.uint32());
+                                message.time = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 3: {
-                                message.offset = $root.LiftLog.Ui.Models.ZoneOffsetDao.decode(reader, reader.uint32());
+                                message.offset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -5064,10 +5064,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a DateTimeDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.DateTimeDao} DateTimeDao
+                 * @returns {GymLifeRpg.Ui.Models.DateTimeDao} DateTimeDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -5080,7 +5080,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a DateTimeDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -5090,19 +5090,19 @@ export const LiftLog = $root.LiftLog = (() => {
                         return "object expected";
                     let properties = {};
                     if (message.date != null && message.hasOwnProperty("date")) {
-                        let error = $root.LiftLog.Ui.Models.DateOnlyDao.verify(message.date);
+                        let error = $root.GymLifeRpg.Ui.Models.DateOnlyDao.verify(message.date);
                         if (error)
                             return "date." + error;
                     }
                     if (message.time != null && message.hasOwnProperty("time")) {
-                        let error = $root.LiftLog.Ui.Models.TimeOnlyDao.verify(message.time);
+                        let error = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.verify(message.time);
                         if (error)
                             return "time." + error;
                     }
                     if (message.offset != null && message.hasOwnProperty("offset")) {
                         properties._offset = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.ZoneOffsetDao.verify(message.offset);
+                            let error = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.verify(message.offset);
                             if (error)
                                 return "offset." + error;
                         }
@@ -5113,29 +5113,29 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a DateTimeDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.DateTimeDao} DateTimeDao
+                 * @returns {GymLifeRpg.Ui.Models.DateTimeDao} DateTimeDao
                  */
                 DateTimeDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.DateTimeDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.DateTimeDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.DateTimeDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.DateTimeDao();
                     if (object.date != null) {
                         if (typeof object.date !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.DateTimeDao.date: object expected");
-                        message.date = $root.LiftLog.Ui.Models.DateOnlyDao.fromObject(object.date);
+                            throw TypeError(".GymLifeRpg.Ui.Models.DateTimeDao.date: object expected");
+                        message.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.fromObject(object.date);
                     }
                     if (object.time != null) {
                         if (typeof object.time !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.DateTimeDao.time: object expected");
-                        message.time = $root.LiftLog.Ui.Models.TimeOnlyDao.fromObject(object.time);
+                            throw TypeError(".GymLifeRpg.Ui.Models.DateTimeDao.time: object expected");
+                        message.time = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.fromObject(object.time);
                     }
                     if (object.offset != null) {
                         if (typeof object.offset !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.DateTimeDao.offset: object expected");
-                        message.offset = $root.LiftLog.Ui.Models.ZoneOffsetDao.fromObject(object.offset);
+                            throw TypeError(".GymLifeRpg.Ui.Models.DateTimeDao.offset: object expected");
+                        message.offset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.fromObject(object.offset);
                     }
                     return message;
                 };
@@ -5143,9 +5143,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a DateTimeDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
-                 * @param {LiftLog.Ui.Models.DateTimeDao} message DateTimeDao
+                 * @param {GymLifeRpg.Ui.Models.DateTimeDao} message DateTimeDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -5158,11 +5158,11 @@ export const LiftLog = $root.LiftLog = (() => {
                         object.time = null;
                     }
                     if (message.date != null && message.hasOwnProperty("date"))
-                        object.date = $root.LiftLog.Ui.Models.DateOnlyDao.toObject(message.date, options);
+                        object.date = $root.GymLifeRpg.Ui.Models.DateOnlyDao.toObject(message.date, options);
                     if (message.time != null && message.hasOwnProperty("time"))
-                        object.time = $root.LiftLog.Ui.Models.TimeOnlyDao.toObject(message.time, options);
+                        object.time = $root.GymLifeRpg.Ui.Models.TimeOnlyDao.toObject(message.time, options);
                     if (message.offset != null && message.hasOwnProperty("offset")) {
-                        object.offset = $root.LiftLog.Ui.Models.ZoneOffsetDao.toObject(message.offset, options);
+                        object.offset = $root.GymLifeRpg.Ui.Models.ZoneOffsetDao.toObject(message.offset, options);
                         if (options.oneofs)
                             object._offset = "offset";
                     }
@@ -5172,7 +5172,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this DateTimeDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -5183,7 +5183,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for DateTimeDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.DateTimeDao
+                 * @memberof GymLifeRpg.Ui.Models.DateTimeDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -5192,7 +5192,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.DateTimeDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.DateTimeDao";
                 };
 
                 return DateTimeDao;
@@ -5202,18 +5202,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a ZoneOffsetDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IZoneOffsetDao
                  * @property {number|null} [totalSeconds] ZoneOffsetDao totalSeconds
                  */
 
                 /**
                  * Constructs a new ZoneOffsetDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a ZoneOffsetDao.
                  * @implements IZoneOffsetDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IZoneOffsetDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IZoneOffsetDao=} [properties] Properties to set
                  */
                 function ZoneOffsetDao(properties) {
                     if (properties)
@@ -5225,7 +5225,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * ZoneOffsetDao totalSeconds.
                  * @member {number} totalSeconds
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @instance
                  */
                 ZoneOffsetDao.prototype.totalSeconds = 0;
@@ -5233,21 +5233,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new ZoneOffsetDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IZoneOffsetDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.ZoneOffsetDao} ZoneOffsetDao instance
+                 * @param {GymLifeRpg.Ui.Models.IZoneOffsetDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.ZoneOffsetDao} ZoneOffsetDao instance
                  */
                 ZoneOffsetDao.create = function create(properties) {
                     return new ZoneOffsetDao(properties);
                 };
 
                 /**
-                 * Encodes the specified ZoneOffsetDao message. Does not implicitly {@link LiftLog.Ui.Models.ZoneOffsetDao.verify|verify} messages.
+                 * Encodes the specified ZoneOffsetDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.ZoneOffsetDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IZoneOffsetDao} message ZoneOffsetDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IZoneOffsetDao} message ZoneOffsetDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5260,11 +5260,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified ZoneOffsetDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ZoneOffsetDao.verify|verify} messages.
+                 * Encodes the specified ZoneOffsetDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.ZoneOffsetDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IZoneOffsetDao} message ZoneOffsetDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IZoneOffsetDao} message ZoneOffsetDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5275,18 +5275,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a ZoneOffsetDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
+                 * @returns {GymLifeRpg.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 ZoneOffsetDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.ZoneOffsetDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.ZoneOffsetDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -5307,10 +5307,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a ZoneOffsetDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
+                 * @returns {GymLifeRpg.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -5323,7 +5323,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a ZoneOffsetDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -5340,15 +5340,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a ZoneOffsetDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
+                 * @returns {GymLifeRpg.Ui.Models.ZoneOffsetDao} ZoneOffsetDao
                  */
                 ZoneOffsetDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.ZoneOffsetDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.ZoneOffsetDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.ZoneOffsetDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.ZoneOffsetDao();
                     if (object.totalSeconds != null)
                         message.totalSeconds = object.totalSeconds | 0;
                     return message;
@@ -5357,9 +5357,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a ZoneOffsetDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
-                 * @param {LiftLog.Ui.Models.ZoneOffsetDao} message ZoneOffsetDao
+                 * @param {GymLifeRpg.Ui.Models.ZoneOffsetDao} message ZoneOffsetDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -5377,7 +5377,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this ZoneOffsetDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -5388,7 +5388,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for ZoneOffsetDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.ZoneOffsetDao
+                 * @memberof GymLifeRpg.Ui.Models.ZoneOffsetDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -5397,7 +5397,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.ZoneOffsetDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.ZoneOffsetDao";
                 };
 
                 return ZoneOffsetDao;
@@ -5405,7 +5405,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
             /**
              * WeightUnit enum.
-             * @name LiftLog.Ui.Models.WeightUnit
+             * @name GymLifeRpg.Ui.Models.WeightUnit
              * @enum {number}
              * @property {number} NIL=0 NIL value
              * @property {number} KILOGRAMS=1 KILOGRAMS value
@@ -5423,19 +5423,19 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a Weight.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IWeight
-                 * @property {LiftLog.Ui.Models.IDecimalValue|null} [value] Weight value
-                 * @property {LiftLog.Ui.Models.WeightUnit|null} [unit] Weight unit
+                 * @property {GymLifeRpg.Ui.Models.IDecimalValue|null} [value] Weight value
+                 * @property {GymLifeRpg.Ui.Models.WeightUnit|null} [unit] Weight unit
                  */
 
                 /**
                  * Constructs a new Weight.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a Weight.
                  * @implements IWeight
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IWeight=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IWeight=} [properties] Properties to set
                  */
                 function Weight(properties) {
                     if (properties)
@@ -5446,16 +5446,16 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Weight value.
-                 * @member {LiftLog.Ui.Models.IDecimalValue|null|undefined} value
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @member {GymLifeRpg.Ui.Models.IDecimalValue|null|undefined} value
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @instance
                  */
                 Weight.prototype.value = null;
 
                 /**
                  * Weight unit.
-                 * @member {LiftLog.Ui.Models.WeightUnit} unit
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @member {GymLifeRpg.Ui.Models.WeightUnit} unit
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @instance
                  */
                 Weight.prototype.unit = 0;
@@ -5463,21 +5463,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new Weight instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
-                 * @param {LiftLog.Ui.Models.IWeight=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.Weight} Weight instance
+                 * @param {GymLifeRpg.Ui.Models.IWeight=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.Weight} Weight instance
                  */
                 Weight.create = function create(properties) {
                     return new Weight(properties);
                 };
 
                 /**
-                 * Encodes the specified Weight message. Does not implicitly {@link LiftLog.Ui.Models.Weight.verify|verify} messages.
+                 * Encodes the specified Weight message. Does not implicitly {@link GymLifeRpg.Ui.Models.Weight.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
-                 * @param {LiftLog.Ui.Models.IWeight} message Weight message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IWeight} message Weight message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5485,18 +5485,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.value != null && Object.hasOwnProperty.call(message, "value"))
-                        $root.LiftLog.Ui.Models.DecimalValue.encode(message.value, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.DecimalValue.encode(message.value, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.unit != null && Object.hasOwnProperty.call(message, "unit"))
                         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.unit);
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified Weight message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.Weight.verify|verify} messages.
+                 * Encodes the specified Weight message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.Weight.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
-                 * @param {LiftLog.Ui.Models.IWeight} message Weight message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IWeight} message Weight message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -5507,25 +5507,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a Weight message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.Weight} Weight
+                 * @returns {GymLifeRpg.Ui.Models.Weight} Weight
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 Weight.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.Weight();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.Weight();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.value = $root.LiftLog.Ui.Models.DecimalValue.decode(reader, reader.uint32());
+                                message.value = $root.GymLifeRpg.Ui.Models.DecimalValue.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
@@ -5543,10 +5543,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a Weight message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.Weight} Weight
+                 * @returns {GymLifeRpg.Ui.Models.Weight} Weight
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -5559,7 +5559,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a Weight message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -5568,7 +5568,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
                     if (message.value != null && message.hasOwnProperty("value")) {
-                        let error = $root.LiftLog.Ui.Models.DecimalValue.verify(message.value);
+                        let error = $root.GymLifeRpg.Ui.Models.DecimalValue.verify(message.value);
                         if (error)
                             return "value." + error;
                     }
@@ -5587,19 +5587,19 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a Weight message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.Weight} Weight
+                 * @returns {GymLifeRpg.Ui.Models.Weight} Weight
                  */
                 Weight.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.Weight)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.Weight)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.Weight();
+                    let message = new $root.GymLifeRpg.Ui.Models.Weight();
                     if (object.value != null) {
                         if (typeof object.value !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.Weight.value: object expected");
-                        message.value = $root.LiftLog.Ui.Models.DecimalValue.fromObject(object.value);
+                            throw TypeError(".GymLifeRpg.Ui.Models.Weight.value: object expected");
+                        message.value = $root.GymLifeRpg.Ui.Models.DecimalValue.fromObject(object.value);
                     }
                     switch (object.unit) {
                     default:
@@ -5627,9 +5627,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a Weight message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
-                 * @param {LiftLog.Ui.Models.Weight} message Weight
+                 * @param {GymLifeRpg.Ui.Models.Weight} message Weight
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -5642,16 +5642,16 @@ export const LiftLog = $root.LiftLog = (() => {
                         object.unit = options.enums === String ? "NIL" : 0;
                     }
                     if (message.value != null && message.hasOwnProperty("value"))
-                        object.value = $root.LiftLog.Ui.Models.DecimalValue.toObject(message.value, options);
+                        object.value = $root.GymLifeRpg.Ui.Models.DecimalValue.toObject(message.value, options);
                     if (message.unit != null && message.hasOwnProperty("unit"))
-                        object.unit = options.enums === String ? $root.LiftLog.Ui.Models.WeightUnit[message.unit] === undefined ? message.unit : $root.LiftLog.Ui.Models.WeightUnit[message.unit] : message.unit;
+                        object.unit = options.enums === String ? $root.GymLifeRpg.Ui.Models.WeightUnit[message.unit] === undefined ? message.unit : $root.GymLifeRpg.Ui.Models.WeightUnit[message.unit] : message.unit;
                     return object;
                 };
 
                 /**
                  * Converts this Weight to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -5662,7 +5662,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for Weight
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.Weight
+                 * @memberof GymLifeRpg.Ui.Models.Weight
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -5671,7 +5671,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.Weight";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.Weight";
                 };
 
                 return Weight;
@@ -5681,7 +5681,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Namespace ExportedDataDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @namespace
                  */
                 const ExportedDataDao = {};
@@ -5690,22 +5690,22 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of an ExportedDataDaoV2.
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao
                      * @interface IExportedDataDaoV2
-                     * @property {Array.<LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2>|null} [sessions] ExportedDataDaoV2 sessions
-                     * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [program] ExportedDataDaoV2 program
-                     * @property {Object.<string,LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>|null} [savedPrograms] ExportedDataDaoV2 savedPrograms
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2>|null} [sessions] ExportedDataDaoV2 sessions
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [program] ExportedDataDaoV2 program
+                     * @property {Object.<string,GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>|null} [savedPrograms] ExportedDataDaoV2 savedPrograms
                      * @property {google.protobuf.IStringValue|null} [activeProgramId] ExportedDataDaoV2 activeProgramId
-                     * @property {LiftLog.Ui.Models.IFeedStateDaoV1|null} [feedState] ExportedDataDaoV2 feedState
+                     * @property {GymLifeRpg.Ui.Models.IFeedStateDaoV1|null} [feedState] ExportedDataDaoV2 feedState
                      */
 
                     /**
                      * Constructs a new ExportedDataDaoV2.
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao
                      * @classdesc Represents an ExportedDataDaoV2.
                      * @implements IExportedDataDaoV2
                      * @constructor
-                     * @param {LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.ExportedDataDao.IExportedDataDaoV2=} [properties] Properties to set
                      */
                     function ExportedDataDaoV2(properties) {
                         this.sessions = [];
@@ -5719,24 +5719,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * ExportedDataDaoV2 sessions.
-                     * @member {Array.<LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2>} sessions
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2>} sessions
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      */
                     ExportedDataDaoV2.prototype.sessions = $util.emptyArray;
 
                     /**
                      * ExportedDataDaoV2 program.
-                     * @member {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} program
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} program
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      */
                     ExportedDataDaoV2.prototype.program = $util.emptyArray;
 
                     /**
                      * ExportedDataDaoV2 savedPrograms.
-                     * @member {Object.<string,LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>} savedPrograms
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @member {Object.<string,GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>} savedPrograms
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      */
                     ExportedDataDaoV2.prototype.savedPrograms = $util.emptyObject;
@@ -5744,15 +5744,15 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ExportedDataDaoV2 activeProgramId.
                      * @member {google.protobuf.IStringValue|null|undefined} activeProgramId
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      */
                     ExportedDataDaoV2.prototype.activeProgramId = null;
 
                     /**
                      * ExportedDataDaoV2 feedState.
-                     * @member {LiftLog.Ui.Models.IFeedStateDaoV1|null|undefined} feedState
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @member {GymLifeRpg.Ui.Models.IFeedStateDaoV1|null|undefined} feedState
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      */
                     ExportedDataDaoV2.prototype.feedState = null;
@@ -5760,21 +5760,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new ExportedDataDaoV2 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2 instance
+                     * @param {GymLifeRpg.Ui.Models.ExportedDataDao.IExportedDataDaoV2=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2 instance
                      */
                     ExportedDataDaoV2.create = function create(properties) {
                         return new ExportedDataDaoV2(properties);
                     };
 
                     /**
-                     * Encodes the specified ExportedDataDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
+                     * Encodes the specified ExportedDataDaoV2 message. Does not implicitly {@link GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2} message ExportedDataDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ExportedDataDao.IExportedDataDaoV2} message ExportedDataDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -5783,28 +5783,28 @@ export const LiftLog = $root.LiftLog = (() => {
                             writer = $Writer.create();
                         if (message.sessions != null && message.sessions.length)
                             for (let i = 0; i < message.sessions.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.sessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.sessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                         if (message.program != null && message.program.length)
                             for (let i = 0; i < message.program.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.program[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.program[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.savedPrograms != null && Object.hasOwnProperty.call(message, "savedPrograms"))
                             for (let keys = Object.keys(message.savedPrograms), i = 0; i < keys.length; ++i) {
                                 writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                                $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.savedPrograms[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                                $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.savedPrograms[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
                             }
                         if (message.activeProgramId != null && Object.hasOwnProperty.call(message, "activeProgramId"))
                             $root.google.protobuf.StringValue.encode(message.activeProgramId, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         if (message.feedState != null && Object.hasOwnProperty.call(message, "feedState"))
-                            $root.LiftLog.Ui.Models.FeedStateDaoV1.encode(message.feedState, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.encode(message.feedState, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified ExportedDataDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
+                     * Encodes the specified ExportedDataDaoV2 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2} message ExportedDataDaoV2 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ExportedDataDao.IExportedDataDaoV2} message ExportedDataDaoV2 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -5815,18 +5815,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes an ExportedDataDaoV2 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     ExportedDataDaoV2.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2(), key, value;
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2(), key, value;
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -5835,13 +5835,13 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 1: {
                                     if (!(message.sessions && message.sessions.length))
                                         message.sessions = [];
-                                    message.sessions.push($root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32()));
+                                    message.sessions.push($root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 2: {
                                     if (!(message.program && message.program.length))
                                         message.program = [];
-                                    message.program.push($root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
+                                    message.program.push($root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 3: {
@@ -5857,7 +5857,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                             key = reader.string();
                                             break;
                                         case 2:
-                                            value = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
+                                            value = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
                                             break;
                                         default:
                                             reader.skipType(tag2 & 7);
@@ -5872,7 +5872,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                     break;
                                 }
                             case 5: {
-                                    message.feedState = $root.LiftLog.Ui.Models.FeedStateDaoV1.decode(reader, reader.uint32());
+                                    message.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -5886,10 +5886,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes an ExportedDataDaoV2 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -5902,7 +5902,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies an ExportedDataDaoV2 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -5914,7 +5914,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.sessions))
                                 return "sessions: array expected";
                             for (let i = 0; i < message.sessions.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.sessions[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.sessions[i]);
                                 if (error)
                                     return "sessions." + error;
                             }
@@ -5923,7 +5923,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.program))
                                 return "program: array expected";
                             for (let i = 0; i < message.program.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.program[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.program[i]);
                                 if (error)
                                     return "program." + error;
                             }
@@ -5933,7 +5933,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 return "savedPrograms: object expected";
                             let key = Object.keys(message.savedPrograms);
                             for (let i = 0; i < key.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.savedPrograms[key[i]]);
+                                let error = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.savedPrograms[key[i]]);
                                 if (error)
                                     return "savedPrograms." + error;
                             }
@@ -5944,7 +5944,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 return "activeProgramId." + error;
                         }
                         if (message.feedState != null && message.hasOwnProperty("feedState")) {
-                            let error = $root.LiftLog.Ui.Models.FeedStateDaoV1.verify(message.feedState);
+                            let error = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.verify(message.feedState);
                             if (error)
                                 return "feedState." + error;
                         }
@@ -5954,54 +5954,54 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates an ExportedDataDaoV2 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
+                     * @returns {GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2} ExportedDataDaoV2
                      */
                     ExportedDataDaoV2.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2();
+                        let message = new $root.GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2();
                         if (object.sessions) {
                             if (!Array.isArray(object.sessions))
-                                throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.sessions: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.sessions: array expected");
                             message.sessions = [];
                             for (let i = 0; i < object.sessions.length; ++i) {
                                 if (typeof object.sessions[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.sessions: object expected");
-                                message.sessions[i] = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.sessions[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.sessions: object expected");
+                                message.sessions[i] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.sessions[i]);
                             }
                         }
                         if (object.program) {
                             if (!Array.isArray(object.program))
-                                throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.program: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.program: array expected");
                             message.program = [];
                             for (let i = 0; i < object.program.length; ++i) {
                                 if (typeof object.program[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.program: object expected");
-                                message.program[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.program[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.program: object expected");
+                                message.program[i] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.program[i]);
                             }
                         }
                         if (object.savedPrograms) {
                             if (typeof object.savedPrograms !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.savedPrograms: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.savedPrograms: object expected");
                             message.savedPrograms = {};
                             for (let keys = Object.keys(object.savedPrograms), i = 0; i < keys.length; ++i) {
                                 if (typeof object.savedPrograms[keys[i]] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.savedPrograms: object expected");
-                                message.savedPrograms[keys[i]] = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.savedPrograms[keys[i]]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.savedPrograms: object expected");
+                                message.savedPrograms[keys[i]] = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.savedPrograms[keys[i]]);
                             }
                         }
                         if (object.activeProgramId != null) {
                             if (typeof object.activeProgramId !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.activeProgramId: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.activeProgramId: object expected");
                             message.activeProgramId = $root.google.protobuf.StringValue.fromObject(object.activeProgramId);
                         }
                         if (object.feedState != null) {
                             if (typeof object.feedState !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.feedState: object expected");
-                            message.feedState = $root.LiftLog.Ui.Models.FeedStateDaoV1.fromObject(object.feedState);
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.feedState: object expected");
+                            message.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.fromObject(object.feedState);
                         }
                         return message;
                     };
@@ -6009,9 +6009,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from an ExportedDataDaoV2 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
-                     * @param {LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2} message ExportedDataDaoV2
+                     * @param {GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2} message ExportedDataDaoV2
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -6032,30 +6032,30 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.sessions && message.sessions.length) {
                             object.sessions = [];
                             for (let j = 0; j < message.sessions.length; ++j)
-                                object.sessions[j] = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.sessions[j], options);
+                                object.sessions[j] = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.sessions[j], options);
                         }
                         if (message.program && message.program.length) {
                             object.program = [];
                             for (let j = 0; j < message.program.length; ++j)
-                                object.program[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.program[j], options);
+                                object.program[j] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.program[j], options);
                         }
                         let keys2;
                         if (message.savedPrograms && (keys2 = Object.keys(message.savedPrograms)).length) {
                             object.savedPrograms = {};
                             for (let j = 0; j < keys2.length; ++j)
-                                object.savedPrograms[keys2[j]] = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.savedPrograms[keys2[j]], options);
+                                object.savedPrograms[keys2[j]] = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.savedPrograms[keys2[j]], options);
                         }
                         if (message.activeProgramId != null && message.hasOwnProperty("activeProgramId"))
                             object.activeProgramId = $root.google.protobuf.StringValue.toObject(message.activeProgramId, options);
                         if (message.feedState != null && message.hasOwnProperty("feedState"))
-                            object.feedState = $root.LiftLog.Ui.Models.FeedStateDaoV1.toObject(message.feedState, options);
+                            object.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.toObject(message.feedState, options);
                         return object;
                     };
 
                     /**
                      * Converts this ExportedDataDaoV2 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -6066,7 +6066,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for ExportedDataDaoV2
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -6075,7 +6075,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2";
                     };
 
                     return ExportedDataDaoV2;
@@ -6088,9 +6088,9 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FeedIdentityDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFeedIdentityDaoV1
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [id] FeedIdentityDaoV1 id
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [id] FeedIdentityDaoV1 id
                  * @property {google.protobuf.IStringValue|null} [lookup] FeedIdentityDaoV1 lookup
                  * @property {Uint8Array|null} [aesKey] FeedIdentityDaoV1 aesKey
                  * @property {Uint8Array|null} [publicKey] FeedIdentityDaoV1 publicKey
@@ -6105,11 +6105,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new FeedIdentityDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FeedIdentityDaoV1.
                  * @implements IFeedIdentityDaoV1
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFeedIdentityDaoV1=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1=} [properties] Properties to set
                  */
                 function FeedIdentityDaoV1(properties) {
                     if (properties)
@@ -6120,8 +6120,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * FeedIdentityDaoV1 id.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} id
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} id
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.id = null;
@@ -6129,7 +6129,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 lookup.
                  * @member {google.protobuf.IStringValue|null|undefined} lookup
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.lookup = null;
@@ -6137,7 +6137,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 aesKey.
                  * @member {Uint8Array} aesKey
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.aesKey = $util.newBuffer([]);
@@ -6145,7 +6145,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 publicKey.
                  * @member {Uint8Array} publicKey
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.publicKey = $util.newBuffer([]);
@@ -6153,7 +6153,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 privateKey.
                  * @member {Uint8Array} privateKey
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.privateKey = $util.newBuffer([]);
@@ -6161,7 +6161,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 password.
                  * @member {string} password
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.password = "";
@@ -6169,7 +6169,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 name.
                  * @member {google.protobuf.IStringValue|null|undefined} name
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.name = null;
@@ -6177,7 +6177,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 profilePicture.
                  * @member {Uint8Array|null|undefined} profilePicture
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.profilePicture = null;
@@ -6185,7 +6185,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 publishBodyweight.
                  * @member {boolean} publishBodyweight
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.publishBodyweight = false;
@@ -6193,7 +6193,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 publishPlan.
                  * @member {boolean} publishPlan
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.publishPlan = false;
@@ -6201,7 +6201,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 publishWorkouts.
                  * @member {boolean} publishWorkouts
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 FeedIdentityDaoV1.prototype.publishWorkouts = false;
@@ -6212,7 +6212,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 _name.
                  * @member {"name"|undefined} _name
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedIdentityDaoV1.prototype, "_name", {
@@ -6223,7 +6223,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedIdentityDaoV1 _profilePicture.
                  * @member {"profilePicture"|undefined} _profilePicture
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedIdentityDaoV1.prototype, "_profilePicture", {
@@ -6234,21 +6234,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FeedIdentityDaoV1 instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedIdentityDaoV1=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1 instance
+                 * @param {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1 instance
                  */
                 FeedIdentityDaoV1.create = function create(properties) {
                     return new FeedIdentityDaoV1(properties);
                 };
 
                 /**
-                 * Encodes the specified FeedIdentityDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedIdentityDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedIdentityDaoV1} message FeedIdentityDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1} message FeedIdentityDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -6256,7 +6256,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.aesKey != null && Object.hasOwnProperty.call(message, "aesKey"))
                         writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.aesKey);
                     if (message.password != null && Object.hasOwnProperty.call(message, "password"))
@@ -6281,11 +6281,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FeedIdentityDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedIdentityDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedIdentityDaoV1} message FeedIdentityDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1} message FeedIdentityDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -6296,25 +6296,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FeedIdentityDaoV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FeedIdentityDaoV1();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.id = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.id = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 12: {
@@ -6368,10 +6368,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -6384,7 +6384,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FeedIdentityDaoV1 message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -6394,7 +6394,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         return "object expected";
                     let properties = {};
                     if (message.id != null && message.hasOwnProperty("id")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.id);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.id);
                         if (error)
                             return "id." + error;
                     }
@@ -6443,23 +6443,23 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FeedIdentityDaoV1 message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedIdentityDaoV1} FeedIdentityDaoV1
                  */
                 FeedIdentityDaoV1.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FeedIdentityDaoV1)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FeedIdentityDaoV1();
+                    let message = new $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1();
                     if (object.id != null) {
                         if (typeof object.id !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedIdentityDaoV1.id: object expected");
-                        message.id = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.id);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedIdentityDaoV1.id: object expected");
+                        message.id = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.id);
                     }
                     if (object.lookup != null) {
                         if (typeof object.lookup !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedIdentityDaoV1.lookup: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedIdentityDaoV1.lookup: object expected");
                         message.lookup = $root.google.protobuf.StringValue.fromObject(object.lookup);
                     }
                     if (object.aesKey != null)
@@ -6481,7 +6481,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         message.password = String(object.password);
                     if (object.name != null) {
                         if (typeof object.name !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedIdentityDaoV1.name: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedIdentityDaoV1.name: object expected");
                         message.name = $root.google.protobuf.StringValue.fromObject(object.name);
                     }
                     if (object.profilePicture != null)
@@ -6501,9 +6501,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FeedIdentityDaoV1 message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.FeedIdentityDaoV1} message FeedIdentityDaoV1
+                 * @param {GymLifeRpg.Ui.Models.FeedIdentityDaoV1} message FeedIdentityDaoV1
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -6541,7 +6541,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         object.lookup = null;
                     }
                     if (message.id != null && message.hasOwnProperty("id"))
-                        object.id = $root.LiftLog.Ui.Models.UuidDao.toObject(message.id, options);
+                        object.id = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.id, options);
                     if (message.aesKey != null && message.hasOwnProperty("aesKey"))
                         object.aesKey = options.bytes === String ? $util.base64.encode(message.aesKey, 0, message.aesKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.aesKey) : message.aesKey;
                     if (message.password != null && message.hasOwnProperty("password"))
@@ -6574,7 +6574,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FeedIdentityDaoV1 to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -6585,7 +6585,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FeedIdentityDaoV1
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FeedIdentityDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedIdentityDaoV1
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -6594,7 +6594,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FeedIdentityDaoV1";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FeedIdentityDaoV1";
                 };
 
                 return FeedIdentityDaoV1;
@@ -6604,14 +6604,14 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FeedUserDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFeedUserDaoV1
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [id] FeedUserDaoV1 id
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [id] FeedUserDaoV1 id
                  * @property {google.protobuf.IStringValue|null} [lookup] FeedUserDaoV1 lookup
                  * @property {Uint8Array|null} [publicKey] FeedUserDaoV1 publicKey
                  * @property {google.protobuf.IStringValue|null} [name] FeedUserDaoV1 name
                  * @property {google.protobuf.IStringValue|null} [nickname] FeedUserDaoV1 nickname
-                 * @property {LiftLog.Ui.Models.ICurrentPlanDaoV1|null} [currentPlan] FeedUserDaoV1 currentPlan
+                 * @property {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1|null} [currentPlan] FeedUserDaoV1 currentPlan
                  * @property {Uint8Array|null} [profilePicture] FeedUserDaoV1 profilePicture
                  * @property {Uint8Array|null} [aesKey] FeedUserDaoV1 aesKey
                  * @property {google.protobuf.IStringValue|null} [followSecret] FeedUserDaoV1 followSecret
@@ -6619,11 +6619,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new FeedUserDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FeedUserDaoV1.
                  * @implements IFeedUserDaoV1
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFeedUserDaoV1=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFeedUserDaoV1=} [properties] Properties to set
                  */
                 function FeedUserDaoV1(properties) {
                     if (properties)
@@ -6634,8 +6634,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * FeedUserDaoV1 id.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} id
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} id
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.id = null;
@@ -6643,7 +6643,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 lookup.
                  * @member {google.protobuf.IStringValue|null|undefined} lookup
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.lookup = null;
@@ -6651,7 +6651,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 publicKey.
                  * @member {Uint8Array} publicKey
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.publicKey = $util.newBuffer([]);
@@ -6659,7 +6659,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 name.
                  * @member {google.protobuf.IStringValue|null|undefined} name
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.name = null;
@@ -6667,15 +6667,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 nickname.
                  * @member {google.protobuf.IStringValue|null|undefined} nickname
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.nickname = null;
 
                 /**
                  * FeedUserDaoV1 currentPlan.
-                 * @member {LiftLog.Ui.Models.ICurrentPlanDaoV1|null|undefined} currentPlan
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @member {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1|null|undefined} currentPlan
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.currentPlan = null;
@@ -6683,7 +6683,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 profilePicture.
                  * @member {Uint8Array|null|undefined} profilePicture
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.profilePicture = null;
@@ -6691,7 +6691,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 aesKey.
                  * @member {Uint8Array|null|undefined} aesKey
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.aesKey = null;
@@ -6699,7 +6699,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 followSecret.
                  * @member {google.protobuf.IStringValue|null|undefined} followSecret
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 FeedUserDaoV1.prototype.followSecret = null;
@@ -6710,7 +6710,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _name.
                  * @member {"name"|undefined} _name
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_name", {
@@ -6721,7 +6721,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _nickname.
                  * @member {"nickname"|undefined} _nickname
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_nickname", {
@@ -6732,7 +6732,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _currentPlan.
                  * @member {"currentPlan"|undefined} _currentPlan
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_currentPlan", {
@@ -6743,7 +6743,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _profilePicture.
                  * @member {"profilePicture"|undefined} _profilePicture
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_profilePicture", {
@@ -6754,7 +6754,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _aesKey.
                  * @member {"aesKey"|undefined} _aesKey
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_aesKey", {
@@ -6765,7 +6765,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedUserDaoV1 _followSecret.
                  * @member {"followSecret"|undefined} _followSecret
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedUserDaoV1.prototype, "_followSecret", {
@@ -6776,21 +6776,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FeedUserDaoV1 instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedUserDaoV1=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FeedUserDaoV1} FeedUserDaoV1 instance
+                 * @param {GymLifeRpg.Ui.Models.IFeedUserDaoV1=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FeedUserDaoV1} FeedUserDaoV1 instance
                  */
                 FeedUserDaoV1.create = function create(properties) {
                     return new FeedUserDaoV1(properties);
                 };
 
                 /**
-                 * Encodes the specified FeedUserDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedUserDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedUserDaoV1.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedUserDaoV1} message FeedUserDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedUserDaoV1} message FeedUserDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -6798,11 +6798,11 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         $root.google.protobuf.StringValue.encode(message.name, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.currentPlan != null && Object.hasOwnProperty.call(message, "currentPlan"))
-                        $root.LiftLog.Ui.Models.CurrentPlanDaoV1.encode(message.currentPlan, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1.encode(message.currentPlan, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     if (message.profilePicture != null && Object.hasOwnProperty.call(message, "profilePicture"))
                         writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.profilePicture);
                     if (message.aesKey != null && Object.hasOwnProperty.call(message, "aesKey"))
@@ -6819,11 +6819,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FeedUserDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedUserDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedUserDaoV1.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedUserDaoV1} message FeedUserDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedUserDaoV1} message FeedUserDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -6834,25 +6834,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedUserDaoV1 message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FeedUserDaoV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FeedUserDaoV1();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FeedUserDaoV1();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.id = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.id = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 9: {
@@ -6872,7 +6872,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 break;
                             }
                         case 3: {
-                                message.currentPlan = $root.LiftLog.Ui.Models.CurrentPlanDaoV1.decode(reader, reader.uint32());
+                                message.currentPlan = $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1.decode(reader, reader.uint32());
                                 break;
                             }
                         case 4: {
@@ -6898,10 +6898,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedUserDaoV1 message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -6914,7 +6914,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FeedUserDaoV1 message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -6924,7 +6924,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         return "object expected";
                     let properties = {};
                     if (message.id != null && message.hasOwnProperty("id")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.id);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.id);
                         if (error)
                             return "id." + error;
                     }
@@ -6955,7 +6955,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.currentPlan != null && message.hasOwnProperty("currentPlan")) {
                         properties._currentPlan = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.CurrentPlanDaoV1.verify(message.currentPlan);
+                            let error = $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1.verify(message.currentPlan);
                             if (error)
                                 return "currentPlan." + error;
                         }
@@ -6984,23 +6984,23 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FeedUserDaoV1 message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedUserDaoV1} FeedUserDaoV1
                  */
                 FeedUserDaoV1.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FeedUserDaoV1)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FeedUserDaoV1)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FeedUserDaoV1();
+                    let message = new $root.GymLifeRpg.Ui.Models.FeedUserDaoV1();
                     if (object.id != null) {
                         if (typeof object.id !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.id: object expected");
-                        message.id = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.id);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.id: object expected");
+                        message.id = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.id);
                     }
                     if (object.lookup != null) {
                         if (typeof object.lookup !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.lookup: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.lookup: object expected");
                         message.lookup = $root.google.protobuf.StringValue.fromObject(object.lookup);
                     }
                     if (object.publicKey != null)
@@ -7010,18 +7010,18 @@ export const LiftLog = $root.LiftLog = (() => {
                             message.publicKey = object.publicKey;
                     if (object.name != null) {
                         if (typeof object.name !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.name: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.name: object expected");
                         message.name = $root.google.protobuf.StringValue.fromObject(object.name);
                     }
                     if (object.nickname != null) {
                         if (typeof object.nickname !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.nickname: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.nickname: object expected");
                         message.nickname = $root.google.protobuf.StringValue.fromObject(object.nickname);
                     }
                     if (object.currentPlan != null) {
                         if (typeof object.currentPlan !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.currentPlan: object expected");
-                        message.currentPlan = $root.LiftLog.Ui.Models.CurrentPlanDaoV1.fromObject(object.currentPlan);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.currentPlan: object expected");
+                        message.currentPlan = $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1.fromObject(object.currentPlan);
                     }
                     if (object.profilePicture != null)
                         if (typeof object.profilePicture === "string")
@@ -7035,7 +7035,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             message.aesKey = object.aesKey;
                     if (object.followSecret != null) {
                         if (typeof object.followSecret !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedUserDaoV1.followSecret: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedUserDaoV1.followSecret: object expected");
                         message.followSecret = $root.google.protobuf.StringValue.fromObject(object.followSecret);
                     }
                     return message;
@@ -7044,9 +7044,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FeedUserDaoV1 message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.FeedUserDaoV1} message FeedUserDaoV1
+                 * @param {GymLifeRpg.Ui.Models.FeedUserDaoV1} message FeedUserDaoV1
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -7066,14 +7066,14 @@ export const LiftLog = $root.LiftLog = (() => {
                         object.lookup = null;
                     }
                     if (message.id != null && message.hasOwnProperty("id"))
-                        object.id = $root.LiftLog.Ui.Models.UuidDao.toObject(message.id, options);
+                        object.id = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.id, options);
                     if (message.name != null && message.hasOwnProperty("name")) {
                         object.name = $root.google.protobuf.StringValue.toObject(message.name, options);
                         if (options.oneofs)
                             object._name = "name";
                     }
                     if (message.currentPlan != null && message.hasOwnProperty("currentPlan")) {
-                        object.currentPlan = $root.LiftLog.Ui.Models.CurrentPlanDaoV1.toObject(message.currentPlan, options);
+                        object.currentPlan = $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1.toObject(message.currentPlan, options);
                         if (options.oneofs)
                             object._currentPlan = "currentPlan";
                     }
@@ -7107,7 +7107,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FeedUserDaoV1 to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -7118,7 +7118,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FeedUserDaoV1
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FeedUserDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedUserDaoV1
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -7127,7 +7127,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FeedUserDaoV1";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FeedUserDaoV1";
                 };
 
                 return FeedUserDaoV1;
@@ -7137,18 +7137,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a CurrentPlanDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface ICurrentPlanDaoV1
-                 * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessions] CurrentPlanDaoV1 sessions
+                 * @property {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessions] CurrentPlanDaoV1 sessions
                  */
 
                 /**
                  * Constructs a new CurrentPlanDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a CurrentPlanDaoV1.
                  * @implements ICurrentPlanDaoV1
                  * @constructor
-                 * @param {LiftLog.Ui.Models.ICurrentPlanDaoV1=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1=} [properties] Properties to set
                  */
                 function CurrentPlanDaoV1(properties) {
                     this.sessions = [];
@@ -7160,8 +7160,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * CurrentPlanDaoV1 sessions.
-                 * @member {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessions
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessions
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @instance
                  */
                 CurrentPlanDaoV1.prototype.sessions = $util.emptyArray;
@@ -7169,21 +7169,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new CurrentPlanDaoV1 instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.ICurrentPlanDaoV1=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1 instance
+                 * @param {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1 instance
                  */
                 CurrentPlanDaoV1.create = function create(properties) {
                     return new CurrentPlanDaoV1(properties);
                 };
 
                 /**
-                 * Encodes the specified CurrentPlanDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
+                 * Encodes the specified CurrentPlanDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.ICurrentPlanDaoV1} message CurrentPlanDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1} message CurrentPlanDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7192,16 +7192,16 @@ export const LiftLog = $root.LiftLog = (() => {
                         writer = $Writer.create();
                     if (message.sessions != null && message.sessions.length)
                         for (let i = 0; i < message.sessions.length; ++i)
-                            $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified CurrentPlanDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
+                 * Encodes the specified CurrentPlanDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.ICurrentPlanDaoV1} message CurrentPlanDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ICurrentPlanDaoV1} message CurrentPlanDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7212,18 +7212,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 CurrentPlanDaoV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.CurrentPlanDaoV1();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -7232,7 +7232,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         case 1: {
                                 if (!(message.sessions && message.sessions.length))
                                     message.sessions = [];
-                                message.sessions.push($root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
+                                message.sessions.push($root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
                                 break;
                             }
                         default:
@@ -7246,10 +7246,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -7262,7 +7262,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a CurrentPlanDaoV1 message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7274,7 +7274,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.sessions))
                             return "sessions: array expected";
                         for (let i = 0; i < message.sessions.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessions[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessions[i]);
                             if (error)
                                 return "sessions." + error;
                         }
@@ -7285,23 +7285,23 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a CurrentPlanDaoV1 message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.CurrentPlanDaoV1} CurrentPlanDaoV1
                  */
                 CurrentPlanDaoV1.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.CurrentPlanDaoV1)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.CurrentPlanDaoV1();
+                    let message = new $root.GymLifeRpg.Ui.Models.CurrentPlanDaoV1();
                     if (object.sessions) {
                         if (!Array.isArray(object.sessions))
-                            throw TypeError(".LiftLog.Ui.Models.CurrentPlanDaoV1.sessions: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.CurrentPlanDaoV1.sessions: array expected");
                         message.sessions = [];
                         for (let i = 0; i < object.sessions.length; ++i) {
                             if (typeof object.sessions[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.CurrentPlanDaoV1.sessions: object expected");
-                            message.sessions[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessions[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.CurrentPlanDaoV1.sessions: object expected");
+                            message.sessions[i] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessions[i]);
                         }
                     }
                     return message;
@@ -7310,9 +7310,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a CurrentPlanDaoV1 message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.CurrentPlanDaoV1} message CurrentPlanDaoV1
+                 * @param {GymLifeRpg.Ui.Models.CurrentPlanDaoV1} message CurrentPlanDaoV1
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -7325,7 +7325,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.sessions && message.sessions.length) {
                         object.sessions = [];
                         for (let j = 0; j < message.sessions.length; ++j)
-                            object.sessions[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessions[j], options);
+                            object.sessions[j] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessions[j], options);
                     }
                     return object;
                 };
@@ -7333,7 +7333,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this CurrentPlanDaoV1 to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -7344,7 +7344,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for CurrentPlanDaoV1
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.CurrentPlanDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.CurrentPlanDaoV1
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -7353,7 +7353,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.CurrentPlanDaoV1";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.CurrentPlanDaoV1";
                 };
 
                 return CurrentPlanDaoV1;
@@ -7363,22 +7363,22 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FeedItemDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFeedItemDaoV1
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [userId] FeedItemDaoV1 userId
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [eventId] FeedItemDaoV1 eventId
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [userId] FeedItemDaoV1 userId
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [eventId] FeedItemDaoV1 eventId
                  * @property {google.protobuf.ITimestamp|null} [timestamp] FeedItemDaoV1 timestamp
                  * @property {google.protobuf.ITimestamp|null} [expiry] FeedItemDaoV1 expiry
-                 * @property {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [session] FeedItemDaoV1 session
+                 * @property {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [session] FeedItemDaoV1 session
                  */
 
                 /**
                  * Constructs a new FeedItemDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FeedItemDaoV1.
                  * @implements IFeedItemDaoV1
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFeedItemDaoV1=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFeedItemDaoV1=} [properties] Properties to set
                  */
                 function FeedItemDaoV1(properties) {
                     if (properties)
@@ -7389,16 +7389,16 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * FeedItemDaoV1 userId.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} userId
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} userId
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 FeedItemDaoV1.prototype.userId = null;
 
                 /**
                  * FeedItemDaoV1 eventId.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} eventId
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} eventId
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 FeedItemDaoV1.prototype.eventId = null;
@@ -7406,7 +7406,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedItemDaoV1 timestamp.
                  * @member {google.protobuf.ITimestamp|null|undefined} timestamp
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 FeedItemDaoV1.prototype.timestamp = null;
@@ -7414,15 +7414,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedItemDaoV1 expiry.
                  * @member {google.protobuf.ITimestamp|null|undefined} expiry
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 FeedItemDaoV1.prototype.expiry = null;
 
                 /**
                  * FeedItemDaoV1 session.
-                 * @member {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} session
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @member {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} session
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 FeedItemDaoV1.prototype.session = null;
@@ -7433,7 +7433,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedItemDaoV1 payload.
                  * @member {"session"|undefined} payload
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedItemDaoV1.prototype, "payload", {
@@ -7444,21 +7444,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FeedItemDaoV1 instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedItemDaoV1=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FeedItemDaoV1} FeedItemDaoV1 instance
+                 * @param {GymLifeRpg.Ui.Models.IFeedItemDaoV1=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FeedItemDaoV1} FeedItemDaoV1 instance
                  */
                 FeedItemDaoV1.create = function create(properties) {
                     return new FeedItemDaoV1(properties);
                 };
 
                 /**
-                 * Encodes the specified FeedItemDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedItemDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedItemDaoV1.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedItemDaoV1} message FeedItemDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedItemDaoV1} message FeedItemDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7466,24 +7466,24 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.userId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.userId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.eventId != null && Object.hasOwnProperty.call(message, "eventId"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.eventId, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.eventId, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                         $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     if (message.expiry != null && Object.hasOwnProperty.call(message, "expiry"))
                         $root.google.protobuf.Timestamp.encode(message.expiry, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     if (message.session != null && Object.hasOwnProperty.call(message, "session"))
-                        $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.session, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.session, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified FeedItemDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedItemDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedItemDaoV1.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedItemDaoV1} message FeedItemDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedItemDaoV1} message FeedItemDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7494,29 +7494,29 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedItemDaoV1 message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FeedItemDaoV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FeedItemDaoV1();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FeedItemDaoV1();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.userId = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.userId = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
-                                message.eventId = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.eventId = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 3: {
@@ -7528,7 +7528,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 break;
                             }
                         case 5: {
-                                message.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
+                                message.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -7542,10 +7542,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedItemDaoV1 message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -7558,7 +7558,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FeedItemDaoV1 message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7568,12 +7568,12 @@ export const LiftLog = $root.LiftLog = (() => {
                         return "object expected";
                     let properties = {};
                     if (message.userId != null && message.hasOwnProperty("userId")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.userId);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.userId);
                         if (error)
                             return "userId." + error;
                     }
                     if (message.eventId != null && message.hasOwnProperty("eventId")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.eventId);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.eventId);
                         if (error)
                             return "eventId." + error;
                     }
@@ -7590,7 +7590,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.session != null && message.hasOwnProperty("session")) {
                         properties.payload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.session);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.session);
                             if (error)
                                 return "session." + error;
                         }
@@ -7601,39 +7601,39 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FeedItemDaoV1 message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedItemDaoV1} FeedItemDaoV1
                  */
                 FeedItemDaoV1.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FeedItemDaoV1)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FeedItemDaoV1)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FeedItemDaoV1();
+                    let message = new $root.GymLifeRpg.Ui.Models.FeedItemDaoV1();
                     if (object.userId != null) {
                         if (typeof object.userId !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedItemDaoV1.userId: object expected");
-                        message.userId = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.userId);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedItemDaoV1.userId: object expected");
+                        message.userId = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.userId);
                     }
                     if (object.eventId != null) {
                         if (typeof object.eventId !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedItemDaoV1.eventId: object expected");
-                        message.eventId = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.eventId);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedItemDaoV1.eventId: object expected");
+                        message.eventId = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.eventId);
                     }
                     if (object.timestamp != null) {
                         if (typeof object.timestamp !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedItemDaoV1.timestamp: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedItemDaoV1.timestamp: object expected");
                         message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp);
                     }
                     if (object.expiry != null) {
                         if (typeof object.expiry !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedItemDaoV1.expiry: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedItemDaoV1.expiry: object expected");
                         message.expiry = $root.google.protobuf.Timestamp.fromObject(object.expiry);
                     }
                     if (object.session != null) {
                         if (typeof object.session !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedItemDaoV1.session: object expected");
-                        message.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.session);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedItemDaoV1.session: object expected");
+                        message.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.session);
                     }
                     return message;
                 };
@@ -7641,9 +7641,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FeedItemDaoV1 message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.FeedItemDaoV1} message FeedItemDaoV1
+                 * @param {GymLifeRpg.Ui.Models.FeedItemDaoV1} message FeedItemDaoV1
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -7658,15 +7658,15 @@ export const LiftLog = $root.LiftLog = (() => {
                         object.expiry = null;
                     }
                     if (message.userId != null && message.hasOwnProperty("userId"))
-                        object.userId = $root.LiftLog.Ui.Models.UuidDao.toObject(message.userId, options);
+                        object.userId = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.userId, options);
                     if (message.eventId != null && message.hasOwnProperty("eventId"))
-                        object.eventId = $root.LiftLog.Ui.Models.UuidDao.toObject(message.eventId, options);
+                        object.eventId = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.eventId, options);
                     if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                         object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options);
                     if (message.expiry != null && message.hasOwnProperty("expiry"))
                         object.expiry = $root.google.protobuf.Timestamp.toObject(message.expiry, options);
                     if (message.session != null && message.hasOwnProperty("session")) {
-                        object.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.session, options);
+                        object.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.session, options);
                         if (options.oneofs)
                             object.payload = "session";
                     }
@@ -7676,7 +7676,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FeedItemDaoV1 to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -7687,7 +7687,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FeedItemDaoV1
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FeedItemDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedItemDaoV1
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -7696,7 +7696,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FeedItemDaoV1";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FeedItemDaoV1";
                 };
 
                 return FeedItemDaoV1;
@@ -7706,24 +7706,24 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FeedStateDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFeedStateDaoV1
-                 * @property {Array.<LiftLog.Ui.Models.IFeedItemDaoV1>|null} [feedItems] FeedStateDaoV1 feedItems
-                 * @property {Array.<LiftLog.Ui.Models.IFeedUserDaoV1>|null} [followedUsers] FeedStateDaoV1 followedUsers
-                 * @property {LiftLog.Ui.Models.IFeedIdentityDaoV1|null} [identity] FeedStateDaoV1 identity
-                 * @property {Array.<LiftLog.Ui.Models.IInboxMessageDao>|null} [followRequests] FeedStateDaoV1 followRequests
-                 * @property {Array.<LiftLog.Ui.Models.IFeedUserDaoV1>|null} [followers] FeedStateDaoV1 followers
-                 * @property {Array.<LiftLog.Ui.Models.IUuidDao>|null} [unpublishedSessionIds] FeedStateDaoV1 unpublishedSessionIds
+                 * @property {Array.<GymLifeRpg.Ui.Models.IFeedItemDaoV1>|null} [feedItems] FeedStateDaoV1 feedItems
+                 * @property {Array.<GymLifeRpg.Ui.Models.IFeedUserDaoV1>|null} [followedUsers] FeedStateDaoV1 followedUsers
+                 * @property {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1|null} [identity] FeedStateDaoV1 identity
+                 * @property {Array.<GymLifeRpg.Ui.Models.IInboxMessageDao>|null} [followRequests] FeedStateDaoV1 followRequests
+                 * @property {Array.<GymLifeRpg.Ui.Models.IFeedUserDaoV1>|null} [followers] FeedStateDaoV1 followers
+                 * @property {Array.<GymLifeRpg.Ui.Models.IUuidDao>|null} [unpublishedSessionIds] FeedStateDaoV1 unpublishedSessionIds
                  * @property {Array.<string>|null} [revokedFollowSecrets] FeedStateDaoV1 revokedFollowSecrets
                  */
 
                 /**
                  * Constructs a new FeedStateDaoV1.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FeedStateDaoV1.
                  * @implements IFeedStateDaoV1
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFeedStateDaoV1=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFeedStateDaoV1=} [properties] Properties to set
                  */
                 function FeedStateDaoV1(properties) {
                     this.feedItems = [];
@@ -7740,48 +7740,48 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * FeedStateDaoV1 feedItems.
-                 * @member {Array.<LiftLog.Ui.Models.IFeedItemDaoV1>} feedItems
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.IFeedItemDaoV1>} feedItems
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.feedItems = $util.emptyArray;
 
                 /**
                  * FeedStateDaoV1 followedUsers.
-                 * @member {Array.<LiftLog.Ui.Models.IFeedUserDaoV1>} followedUsers
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.IFeedUserDaoV1>} followedUsers
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.followedUsers = $util.emptyArray;
 
                 /**
                  * FeedStateDaoV1 identity.
-                 * @member {LiftLog.Ui.Models.IFeedIdentityDaoV1|null|undefined} identity
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {GymLifeRpg.Ui.Models.IFeedIdentityDaoV1|null|undefined} identity
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.identity = null;
 
                 /**
                  * FeedStateDaoV1 followRequests.
-                 * @member {Array.<LiftLog.Ui.Models.IInboxMessageDao>} followRequests
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.IInboxMessageDao>} followRequests
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.followRequests = $util.emptyArray;
 
                 /**
                  * FeedStateDaoV1 followers.
-                 * @member {Array.<LiftLog.Ui.Models.IFeedUserDaoV1>} followers
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.IFeedUserDaoV1>} followers
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.followers = $util.emptyArray;
 
                 /**
                  * FeedStateDaoV1 unpublishedSessionIds.
-                 * @member {Array.<LiftLog.Ui.Models.IUuidDao>} unpublishedSessionIds
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @member {Array.<GymLifeRpg.Ui.Models.IUuidDao>} unpublishedSessionIds
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.unpublishedSessionIds = $util.emptyArray;
@@ -7789,7 +7789,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedStateDaoV1 revokedFollowSecrets.
                  * @member {Array.<string>} revokedFollowSecrets
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 FeedStateDaoV1.prototype.revokedFollowSecrets = $util.emptyArray;
@@ -7800,7 +7800,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FeedStateDaoV1 _identity.
                  * @member {"identity"|undefined} _identity
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  */
                 Object.defineProperty(FeedStateDaoV1.prototype, "_identity", {
@@ -7811,21 +7811,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FeedStateDaoV1 instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedStateDaoV1=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FeedStateDaoV1} FeedStateDaoV1 instance
+                 * @param {GymLifeRpg.Ui.Models.IFeedStateDaoV1=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FeedStateDaoV1} FeedStateDaoV1 instance
                  */
                 FeedStateDaoV1.create = function create(properties) {
                     return new FeedStateDaoV1(properties);
                 };
 
                 /**
-                 * Encodes the specified FeedStateDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedStateDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedStateDaoV1.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedStateDaoV1} message FeedStateDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedStateDaoV1} message FeedStateDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7834,21 +7834,21 @@ export const LiftLog = $root.LiftLog = (() => {
                         writer = $Writer.create();
                     if (message.feedItems != null && message.feedItems.length)
                         for (let i = 0; i < message.feedItems.length; ++i)
-                            $root.LiftLog.Ui.Models.FeedItemDaoV1.encode(message.feedItems[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.FeedItemDaoV1.encode(message.feedItems[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.followedUsers != null && message.followedUsers.length)
                         for (let i = 0; i < message.followedUsers.length; ++i)
-                            $root.LiftLog.Ui.Models.FeedUserDaoV1.encode(message.followedUsers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.encode(message.followedUsers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.identity != null && Object.hasOwnProperty.call(message, "identity"))
-                        $root.LiftLog.Ui.Models.FeedIdentityDaoV1.encode(message.identity, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1.encode(message.identity, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     if (message.followRequests != null && message.followRequests.length)
                         for (let i = 0; i < message.followRequests.length; ++i)
-                            $root.LiftLog.Ui.Models.InboxMessageDao.encode(message.followRequests[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.InboxMessageDao.encode(message.followRequests[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     if (message.followers != null && message.followers.length)
                         for (let i = 0; i < message.followers.length; ++i)
-                            $root.LiftLog.Ui.Models.FeedUserDaoV1.encode(message.followers[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.encode(message.followers[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     if (message.unpublishedSessionIds != null && message.unpublishedSessionIds.length)
                         for (let i = 0; i < message.unpublishedSessionIds.length; ++i)
-                            $root.LiftLog.Ui.Models.UuidDao.encode(message.unpublishedSessionIds[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.unpublishedSessionIds[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                     if (message.revokedFollowSecrets != null && message.revokedFollowSecrets.length)
                         for (let i = 0; i < message.revokedFollowSecrets.length; ++i)
                             writer.uint32(/* id 8, wireType 2 =*/66).string(message.revokedFollowSecrets[i]);
@@ -7856,11 +7856,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FeedStateDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
+                 * Encodes the specified FeedStateDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FeedStateDaoV1.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.IFeedStateDaoV1} message FeedStateDaoV1 message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFeedStateDaoV1} message FeedStateDaoV1 message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -7871,18 +7871,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedStateDaoV1 message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FeedStateDaoV1.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FeedStateDaoV1();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FeedStateDaoV1();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -7891,35 +7891,35 @@ export const LiftLog = $root.LiftLog = (() => {
                         case 1: {
                                 if (!(message.feedItems && message.feedItems.length))
                                     message.feedItems = [];
-                                message.feedItems.push($root.LiftLog.Ui.Models.FeedItemDaoV1.decode(reader, reader.uint32()));
+                                message.feedItems.push($root.GymLifeRpg.Ui.Models.FeedItemDaoV1.decode(reader, reader.uint32()));
                                 break;
                             }
                         case 2: {
                                 if (!(message.followedUsers && message.followedUsers.length))
                                     message.followedUsers = [];
-                                message.followedUsers.push($root.LiftLog.Ui.Models.FeedUserDaoV1.decode(reader, reader.uint32()));
+                                message.followedUsers.push($root.GymLifeRpg.Ui.Models.FeedUserDaoV1.decode(reader, reader.uint32()));
                                 break;
                             }
                         case 3: {
-                                message.identity = $root.LiftLog.Ui.Models.FeedIdentityDaoV1.decode(reader, reader.uint32());
+                                message.identity = $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1.decode(reader, reader.uint32());
                                 break;
                             }
                         case 4: {
                                 if (!(message.followRequests && message.followRequests.length))
                                     message.followRequests = [];
-                                message.followRequests.push($root.LiftLog.Ui.Models.InboxMessageDao.decode(reader, reader.uint32()));
+                                message.followRequests.push($root.GymLifeRpg.Ui.Models.InboxMessageDao.decode(reader, reader.uint32()));
                                 break;
                             }
                         case 5: {
                                 if (!(message.followers && message.followers.length))
                                     message.followers = [];
-                                message.followers.push($root.LiftLog.Ui.Models.FeedUserDaoV1.decode(reader, reader.uint32()));
+                                message.followers.push($root.GymLifeRpg.Ui.Models.FeedUserDaoV1.decode(reader, reader.uint32()));
                                 break;
                             }
                         case 6: {
                                 if (!(message.unpublishedSessionIds && message.unpublishedSessionIds.length))
                                     message.unpublishedSessionIds = [];
-                                message.unpublishedSessionIds.push($root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32()));
+                                message.unpublishedSessionIds.push($root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32()));
                                 break;
                             }
                         case 8: {
@@ -7939,10 +7939,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FeedStateDaoV1 message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -7955,7 +7955,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FeedStateDaoV1 message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7968,7 +7968,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.feedItems))
                             return "feedItems: array expected";
                         for (let i = 0; i < message.feedItems.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.FeedItemDaoV1.verify(message.feedItems[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.FeedItemDaoV1.verify(message.feedItems[i]);
                             if (error)
                                 return "feedItems." + error;
                         }
@@ -7977,7 +7977,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.followedUsers))
                             return "followedUsers: array expected";
                         for (let i = 0; i < message.followedUsers.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.FeedUserDaoV1.verify(message.followedUsers[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.verify(message.followedUsers[i]);
                             if (error)
                                 return "followedUsers." + error;
                         }
@@ -7985,7 +7985,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.identity != null && message.hasOwnProperty("identity")) {
                         properties._identity = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.FeedIdentityDaoV1.verify(message.identity);
+                            let error = $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1.verify(message.identity);
                             if (error)
                                 return "identity." + error;
                         }
@@ -7994,7 +7994,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.followRequests))
                             return "followRequests: array expected";
                         for (let i = 0; i < message.followRequests.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.InboxMessageDao.verify(message.followRequests[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.InboxMessageDao.verify(message.followRequests[i]);
                             if (error)
                                 return "followRequests." + error;
                         }
@@ -8003,7 +8003,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.followers))
                             return "followers: array expected";
                         for (let i = 0; i < message.followers.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.FeedUserDaoV1.verify(message.followers[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.verify(message.followers[i]);
                             if (error)
                                 return "followers." + error;
                         }
@@ -8012,7 +8012,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (!Array.isArray(message.unpublishedSessionIds))
                             return "unpublishedSessionIds: array expected";
                         for (let i = 0; i < message.unpublishedSessionIds.length; ++i) {
-                            let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.unpublishedSessionIds[i]);
+                            let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.unpublishedSessionIds[i]);
                             if (error)
                                 return "unpublishedSessionIds." + error;
                         }
@@ -8030,73 +8030,73 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FeedStateDaoV1 message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
+                 * @returns {GymLifeRpg.Ui.Models.FeedStateDaoV1} FeedStateDaoV1
                  */
                 FeedStateDaoV1.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FeedStateDaoV1)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FeedStateDaoV1)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FeedStateDaoV1();
+                    let message = new $root.GymLifeRpg.Ui.Models.FeedStateDaoV1();
                     if (object.feedItems) {
                         if (!Array.isArray(object.feedItems))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.feedItems: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.feedItems: array expected");
                         message.feedItems = [];
                         for (let i = 0; i < object.feedItems.length; ++i) {
                             if (typeof object.feedItems[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.feedItems: object expected");
-                            message.feedItems[i] = $root.LiftLog.Ui.Models.FeedItemDaoV1.fromObject(object.feedItems[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.feedItems: object expected");
+                            message.feedItems[i] = $root.GymLifeRpg.Ui.Models.FeedItemDaoV1.fromObject(object.feedItems[i]);
                         }
                     }
                     if (object.followedUsers) {
                         if (!Array.isArray(object.followedUsers))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followedUsers: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followedUsers: array expected");
                         message.followedUsers = [];
                         for (let i = 0; i < object.followedUsers.length; ++i) {
                             if (typeof object.followedUsers[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followedUsers: object expected");
-                            message.followedUsers[i] = $root.LiftLog.Ui.Models.FeedUserDaoV1.fromObject(object.followedUsers[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followedUsers: object expected");
+                            message.followedUsers[i] = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.fromObject(object.followedUsers[i]);
                         }
                     }
                     if (object.identity != null) {
                         if (typeof object.identity !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.identity: object expected");
-                        message.identity = $root.LiftLog.Ui.Models.FeedIdentityDaoV1.fromObject(object.identity);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.identity: object expected");
+                        message.identity = $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1.fromObject(object.identity);
                     }
                     if (object.followRequests) {
                         if (!Array.isArray(object.followRequests))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followRequests: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followRequests: array expected");
                         message.followRequests = [];
                         for (let i = 0; i < object.followRequests.length; ++i) {
                             if (typeof object.followRequests[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followRequests: object expected");
-                            message.followRequests[i] = $root.LiftLog.Ui.Models.InboxMessageDao.fromObject(object.followRequests[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followRequests: object expected");
+                            message.followRequests[i] = $root.GymLifeRpg.Ui.Models.InboxMessageDao.fromObject(object.followRequests[i]);
                         }
                     }
                     if (object.followers) {
                         if (!Array.isArray(object.followers))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followers: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followers: array expected");
                         message.followers = [];
                         for (let i = 0; i < object.followers.length; ++i) {
                             if (typeof object.followers[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.followers: object expected");
-                            message.followers[i] = $root.LiftLog.Ui.Models.FeedUserDaoV1.fromObject(object.followers[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.followers: object expected");
+                            message.followers[i] = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.fromObject(object.followers[i]);
                         }
                     }
                     if (object.unpublishedSessionIds) {
                         if (!Array.isArray(object.unpublishedSessionIds))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.unpublishedSessionIds: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.unpublishedSessionIds: array expected");
                         message.unpublishedSessionIds = [];
                         for (let i = 0; i < object.unpublishedSessionIds.length; ++i) {
                             if (typeof object.unpublishedSessionIds[i] !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.unpublishedSessionIds: object expected");
-                            message.unpublishedSessionIds[i] = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.unpublishedSessionIds[i]);
+                                throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.unpublishedSessionIds: object expected");
+                            message.unpublishedSessionIds[i] = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.unpublishedSessionIds[i]);
                         }
                     }
                     if (object.revokedFollowSecrets) {
                         if (!Array.isArray(object.revokedFollowSecrets))
-                            throw TypeError(".LiftLog.Ui.Models.FeedStateDaoV1.revokedFollowSecrets: array expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FeedStateDaoV1.revokedFollowSecrets: array expected");
                         message.revokedFollowSecrets = [];
                         for (let i = 0; i < object.revokedFollowSecrets.length; ++i)
                             message.revokedFollowSecrets[i] = String(object.revokedFollowSecrets[i]);
@@ -8107,9 +8107,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FeedStateDaoV1 message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
-                 * @param {LiftLog.Ui.Models.FeedStateDaoV1} message FeedStateDaoV1
+                 * @param {GymLifeRpg.Ui.Models.FeedStateDaoV1} message FeedStateDaoV1
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -8128,32 +8128,32 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.feedItems && message.feedItems.length) {
                         object.feedItems = [];
                         for (let j = 0; j < message.feedItems.length; ++j)
-                            object.feedItems[j] = $root.LiftLog.Ui.Models.FeedItemDaoV1.toObject(message.feedItems[j], options);
+                            object.feedItems[j] = $root.GymLifeRpg.Ui.Models.FeedItemDaoV1.toObject(message.feedItems[j], options);
                     }
                     if (message.followedUsers && message.followedUsers.length) {
                         object.followedUsers = [];
                         for (let j = 0; j < message.followedUsers.length; ++j)
-                            object.followedUsers[j] = $root.LiftLog.Ui.Models.FeedUserDaoV1.toObject(message.followedUsers[j], options);
+                            object.followedUsers[j] = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.toObject(message.followedUsers[j], options);
                     }
                     if (message.identity != null && message.hasOwnProperty("identity")) {
-                        object.identity = $root.LiftLog.Ui.Models.FeedIdentityDaoV1.toObject(message.identity, options);
+                        object.identity = $root.GymLifeRpg.Ui.Models.FeedIdentityDaoV1.toObject(message.identity, options);
                         if (options.oneofs)
                             object._identity = "identity";
                     }
                     if (message.followRequests && message.followRequests.length) {
                         object.followRequests = [];
                         for (let j = 0; j < message.followRequests.length; ++j)
-                            object.followRequests[j] = $root.LiftLog.Ui.Models.InboxMessageDao.toObject(message.followRequests[j], options);
+                            object.followRequests[j] = $root.GymLifeRpg.Ui.Models.InboxMessageDao.toObject(message.followRequests[j], options);
                     }
                     if (message.followers && message.followers.length) {
                         object.followers = [];
                         for (let j = 0; j < message.followers.length; ++j)
-                            object.followers[j] = $root.LiftLog.Ui.Models.FeedUserDaoV1.toObject(message.followers[j], options);
+                            object.followers[j] = $root.GymLifeRpg.Ui.Models.FeedUserDaoV1.toObject(message.followers[j], options);
                     }
                     if (message.unpublishedSessionIds && message.unpublishedSessionIds.length) {
                         object.unpublishedSessionIds = [];
                         for (let j = 0; j < message.unpublishedSessionIds.length; ++j)
-                            object.unpublishedSessionIds[j] = $root.LiftLog.Ui.Models.UuidDao.toObject(message.unpublishedSessionIds[j], options);
+                            object.unpublishedSessionIds[j] = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.unpublishedSessionIds[j], options);
                     }
                     if (message.revokedFollowSecrets && message.revokedFollowSecrets.length) {
                         object.revokedFollowSecrets = [];
@@ -8166,7 +8166,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FeedStateDaoV1 to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -8177,7 +8177,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FeedStateDaoV1
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FeedStateDaoV1
+                 * @memberof GymLifeRpg.Ui.Models.FeedStateDaoV1
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -8186,7 +8186,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FeedStateDaoV1";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FeedStateDaoV1";
                 };
 
                 return FeedStateDaoV1;
@@ -8196,19 +8196,19 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a UserEventPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IUserEventPayload
-                 * @property {LiftLog.Ui.Models.ISessionUserEvent|null} [sessionPayload] UserEventPayload sessionPayload
-                 * @property {LiftLog.Ui.Models.IRemovedSessionUserEvent|null} [removedSessionPayload] UserEventPayload removedSessionPayload
+                 * @property {GymLifeRpg.Ui.Models.ISessionUserEvent|null} [sessionPayload] UserEventPayload sessionPayload
+                 * @property {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent|null} [removedSessionPayload] UserEventPayload removedSessionPayload
                  */
 
                 /**
                  * Constructs a new UserEventPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a UserEventPayload.
                  * @implements IUserEventPayload
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IUserEventPayload=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IUserEventPayload=} [properties] Properties to set
                  */
                 function UserEventPayload(properties) {
                     if (properties)
@@ -8219,16 +8219,16 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * UserEventPayload sessionPayload.
-                 * @member {LiftLog.Ui.Models.ISessionUserEvent|null|undefined} sessionPayload
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @member {GymLifeRpg.Ui.Models.ISessionUserEvent|null|undefined} sessionPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @instance
                  */
                 UserEventPayload.prototype.sessionPayload = null;
 
                 /**
                  * UserEventPayload removedSessionPayload.
-                 * @member {LiftLog.Ui.Models.IRemovedSessionUserEvent|null|undefined} removedSessionPayload
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @member {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent|null|undefined} removedSessionPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @instance
                  */
                 UserEventPayload.prototype.removedSessionPayload = null;
@@ -8239,7 +8239,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * UserEventPayload eventPayload.
                  * @member {"sessionPayload"|"removedSessionPayload"|undefined} eventPayload
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @instance
                  */
                 Object.defineProperty(UserEventPayload.prototype, "eventPayload", {
@@ -8250,21 +8250,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new UserEventPayload instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.IUserEventPayload=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.UserEventPayload} UserEventPayload instance
+                 * @param {GymLifeRpg.Ui.Models.IUserEventPayload=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.UserEventPayload} UserEventPayload instance
                  */
                 UserEventPayload.create = function create(properties) {
                     return new UserEventPayload(properties);
                 };
 
                 /**
-                 * Encodes the specified UserEventPayload message. Does not implicitly {@link LiftLog.Ui.Models.UserEventPayload.verify|verify} messages.
+                 * Encodes the specified UserEventPayload message. Does not implicitly {@link GymLifeRpg.Ui.Models.UserEventPayload.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.IUserEventPayload} message UserEventPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUserEventPayload} message UserEventPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8272,18 +8272,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.sessionPayload != null && Object.hasOwnProperty.call(message, "sessionPayload"))
-                        $root.LiftLog.Ui.Models.SessionUserEvent.encode(message.sessionPayload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.SessionUserEvent.encode(message.sessionPayload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.removedSessionPayload != null && Object.hasOwnProperty.call(message, "removedSessionPayload"))
-                        $root.LiftLog.Ui.Models.RemovedSessionUserEvent.encode(message.removedSessionPayload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent.encode(message.removedSessionPayload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified UserEventPayload message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.UserEventPayload.verify|verify} messages.
+                 * Encodes the specified UserEventPayload message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.UserEventPayload.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.IUserEventPayload} message UserEventPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUserEventPayload} message UserEventPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8294,29 +8294,29 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a UserEventPayload message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.UserEventPayload} UserEventPayload
+                 * @returns {GymLifeRpg.Ui.Models.UserEventPayload} UserEventPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 UserEventPayload.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.UserEventPayload();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.UserEventPayload();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.sessionPayload = $root.LiftLog.Ui.Models.SessionUserEvent.decode(reader, reader.uint32());
+                                message.sessionPayload = $root.GymLifeRpg.Ui.Models.SessionUserEvent.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
-                                message.removedSessionPayload = $root.LiftLog.Ui.Models.RemovedSessionUserEvent.decode(reader, reader.uint32());
+                                message.removedSessionPayload = $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -8330,10 +8330,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a UserEventPayload message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.UserEventPayload} UserEventPayload
+                 * @returns {GymLifeRpg.Ui.Models.UserEventPayload} UserEventPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -8346,7 +8346,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a UserEventPayload message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -8358,7 +8358,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.sessionPayload != null && message.hasOwnProperty("sessionPayload")) {
                         properties.eventPayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.SessionUserEvent.verify(message.sessionPayload);
+                            let error = $root.GymLifeRpg.Ui.Models.SessionUserEvent.verify(message.sessionPayload);
                             if (error)
                                 return "sessionPayload." + error;
                         }
@@ -8368,7 +8368,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "eventPayload: multiple values";
                         properties.eventPayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.RemovedSessionUserEvent.verify(message.removedSessionPayload);
+                            let error = $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent.verify(message.removedSessionPayload);
                             if (error)
                                 return "removedSessionPayload." + error;
                         }
@@ -8379,24 +8379,24 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a UserEventPayload message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.UserEventPayload} UserEventPayload
+                 * @returns {GymLifeRpg.Ui.Models.UserEventPayload} UserEventPayload
                  */
                 UserEventPayload.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.UserEventPayload)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.UserEventPayload)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.UserEventPayload();
+                    let message = new $root.GymLifeRpg.Ui.Models.UserEventPayload();
                     if (object.sessionPayload != null) {
                         if (typeof object.sessionPayload !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.UserEventPayload.sessionPayload: object expected");
-                        message.sessionPayload = $root.LiftLog.Ui.Models.SessionUserEvent.fromObject(object.sessionPayload);
+                            throw TypeError(".GymLifeRpg.Ui.Models.UserEventPayload.sessionPayload: object expected");
+                        message.sessionPayload = $root.GymLifeRpg.Ui.Models.SessionUserEvent.fromObject(object.sessionPayload);
                     }
                     if (object.removedSessionPayload != null) {
                         if (typeof object.removedSessionPayload !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.UserEventPayload.removedSessionPayload: object expected");
-                        message.removedSessionPayload = $root.LiftLog.Ui.Models.RemovedSessionUserEvent.fromObject(object.removedSessionPayload);
+                            throw TypeError(".GymLifeRpg.Ui.Models.UserEventPayload.removedSessionPayload: object expected");
+                        message.removedSessionPayload = $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent.fromObject(object.removedSessionPayload);
                     }
                     return message;
                 };
@@ -8404,9 +8404,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a UserEventPayload message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.UserEventPayload} message UserEventPayload
+                 * @param {GymLifeRpg.Ui.Models.UserEventPayload} message UserEventPayload
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -8415,12 +8415,12 @@ export const LiftLog = $root.LiftLog = (() => {
                         options = {};
                     let object = {};
                     if (message.sessionPayload != null && message.hasOwnProperty("sessionPayload")) {
-                        object.sessionPayload = $root.LiftLog.Ui.Models.SessionUserEvent.toObject(message.sessionPayload, options);
+                        object.sessionPayload = $root.GymLifeRpg.Ui.Models.SessionUserEvent.toObject(message.sessionPayload, options);
                         if (options.oneofs)
                             object.eventPayload = "sessionPayload";
                     }
                     if (message.removedSessionPayload != null && message.hasOwnProperty("removedSessionPayload")) {
-                        object.removedSessionPayload = $root.LiftLog.Ui.Models.RemovedSessionUserEvent.toObject(message.removedSessionPayload, options);
+                        object.removedSessionPayload = $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent.toObject(message.removedSessionPayload, options);
                         if (options.oneofs)
                             object.eventPayload = "removedSessionPayload";
                     }
@@ -8430,7 +8430,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this UserEventPayload to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -8441,7 +8441,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for UserEventPayload
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.UserEventPayload
+                 * @memberof GymLifeRpg.Ui.Models.UserEventPayload
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -8450,7 +8450,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.UserEventPayload";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.UserEventPayload";
                 };
 
                 return UserEventPayload;
@@ -8460,18 +8460,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a SessionUserEvent.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface ISessionUserEvent
-                 * @property {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [session] SessionUserEvent session
+                 * @property {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null} [session] SessionUserEvent session
                  */
 
                 /**
                  * Constructs a new SessionUserEvent.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a SessionUserEvent.
                  * @implements ISessionUserEvent
                  * @constructor
-                 * @param {LiftLog.Ui.Models.ISessionUserEvent=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.ISessionUserEvent=} [properties] Properties to set
                  */
                 function SessionUserEvent(properties) {
                     if (properties)
@@ -8482,8 +8482,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * SessionUserEvent session.
-                 * @member {LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} session
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @member {GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2|null|undefined} session
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @instance
                  */
                 SessionUserEvent.prototype.session = null;
@@ -8491,21 +8491,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new SessionUserEvent instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.ISessionUserEvent=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.SessionUserEvent} SessionUserEvent instance
+                 * @param {GymLifeRpg.Ui.Models.ISessionUserEvent=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.SessionUserEvent} SessionUserEvent instance
                  */
                 SessionUserEvent.create = function create(properties) {
                     return new SessionUserEvent(properties);
                 };
 
                 /**
-                 * Encodes the specified SessionUserEvent message. Does not implicitly {@link LiftLog.Ui.Models.SessionUserEvent.verify|verify} messages.
+                 * Encodes the specified SessionUserEvent message. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionUserEvent.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.ISessionUserEvent} message SessionUserEvent message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISessionUserEvent} message SessionUserEvent message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8513,16 +8513,16 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.session != null && Object.hasOwnProperty.call(message, "session"))
-                        $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.session, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.encode(message.session, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified SessionUserEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionUserEvent.verify|verify} messages.
+                 * Encodes the specified SessionUserEvent message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SessionUserEvent.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.ISessionUserEvent} message SessionUserEvent message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISessionUserEvent} message SessionUserEvent message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8533,25 +8533,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SessionUserEvent message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.SessionUserEvent} SessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.SessionUserEvent} SessionUserEvent
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 SessionUserEvent.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SessionUserEvent();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SessionUserEvent();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
+                                message.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -8565,10 +8565,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SessionUserEvent message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.SessionUserEvent} SessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.SessionUserEvent} SessionUserEvent
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -8581,7 +8581,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a SessionUserEvent message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -8590,7 +8590,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
                     if (message.session != null && message.hasOwnProperty("session")) {
-                        let error = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.session);
+                        let error = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.verify(message.session);
                         if (error)
                             return "session." + error;
                     }
@@ -8600,19 +8600,19 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a SessionUserEvent message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.SessionUserEvent} SessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.SessionUserEvent} SessionUserEvent
                  */
                 SessionUserEvent.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.SessionUserEvent)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.SessionUserEvent)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.SessionUserEvent();
+                    let message = new $root.GymLifeRpg.Ui.Models.SessionUserEvent();
                     if (object.session != null) {
                         if (typeof object.session !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.SessionUserEvent.session: object expected");
-                        message.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.session);
+                            throw TypeError(".GymLifeRpg.Ui.Models.SessionUserEvent.session: object expected");
+                        message.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.fromObject(object.session);
                     }
                     return message;
                 };
@@ -8620,9 +8620,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a SessionUserEvent message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.SessionUserEvent} message SessionUserEvent
+                 * @param {GymLifeRpg.Ui.Models.SessionUserEvent} message SessionUserEvent
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -8633,14 +8633,14 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (options.defaults)
                         object.session = null;
                     if (message.session != null && message.hasOwnProperty("session"))
-                        object.session = $root.LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.session, options);
+                        object.session = $root.GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2.toObject(message.session, options);
                     return object;
                 };
 
                 /**
                  * Converts this SessionUserEvent to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -8651,7 +8651,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for SessionUserEvent
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.SessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.SessionUserEvent
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -8660,7 +8660,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.SessionUserEvent";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SessionUserEvent";
                 };
 
                 return SessionUserEvent;
@@ -8670,18 +8670,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a RemovedSessionUserEvent.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IRemovedSessionUserEvent
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [sessionId] RemovedSessionUserEvent sessionId
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [sessionId] RemovedSessionUserEvent sessionId
                  */
 
                 /**
                  * Constructs a new RemovedSessionUserEvent.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a RemovedSessionUserEvent.
                  * @implements IRemovedSessionUserEvent
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IRemovedSessionUserEvent=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent=} [properties] Properties to set
                  */
                 function RemovedSessionUserEvent(properties) {
                     if (properties)
@@ -8692,8 +8692,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * RemovedSessionUserEvent sessionId.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} sessionId
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} sessionId
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @instance
                  */
                 RemovedSessionUserEvent.prototype.sessionId = null;
@@ -8701,21 +8701,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new RemovedSessionUserEvent instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.IRemovedSessionUserEvent=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent instance
+                 * @param {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent instance
                  */
                 RemovedSessionUserEvent.create = function create(properties) {
                     return new RemovedSessionUserEvent(properties);
                 };
 
                 /**
-                 * Encodes the specified RemovedSessionUserEvent message. Does not implicitly {@link LiftLog.Ui.Models.RemovedSessionUserEvent.verify|verify} messages.
+                 * Encodes the specified RemovedSessionUserEvent message. Does not implicitly {@link GymLifeRpg.Ui.Models.RemovedSessionUserEvent.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.IRemovedSessionUserEvent} message RemovedSessionUserEvent message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent} message RemovedSessionUserEvent message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8723,16 +8723,16 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.sessionId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.sessionId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified RemovedSessionUserEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.RemovedSessionUserEvent.verify|verify} messages.
+                 * Encodes the specified RemovedSessionUserEvent message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.RemovedSessionUserEvent.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.IRemovedSessionUserEvent} message RemovedSessionUserEvent message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IRemovedSessionUserEvent} message RemovedSessionUserEvent message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8743,25 +8743,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a RemovedSessionUserEvent message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 RemovedSessionUserEvent.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.RemovedSessionUserEvent();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.sessionId = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.sessionId = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -8775,10 +8775,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a RemovedSessionUserEvent message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -8791,7 +8791,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a RemovedSessionUserEvent message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -8800,7 +8800,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
                     if (message.sessionId != null && message.hasOwnProperty("sessionId")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.sessionId);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.sessionId);
                         if (error)
                             return "sessionId." + error;
                     }
@@ -8810,19 +8810,19 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a RemovedSessionUserEvent message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
+                 * @returns {GymLifeRpg.Ui.Models.RemovedSessionUserEvent} RemovedSessionUserEvent
                  */
                 RemovedSessionUserEvent.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.RemovedSessionUserEvent)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.RemovedSessionUserEvent();
+                    let message = new $root.GymLifeRpg.Ui.Models.RemovedSessionUserEvent();
                     if (object.sessionId != null) {
                         if (typeof object.sessionId !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.RemovedSessionUserEvent.sessionId: object expected");
-                        message.sessionId = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.sessionId);
+                            throw TypeError(".GymLifeRpg.Ui.Models.RemovedSessionUserEvent.sessionId: object expected");
+                        message.sessionId = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.sessionId);
                     }
                     return message;
                 };
@@ -8830,9 +8830,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a RemovedSessionUserEvent message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
-                 * @param {LiftLog.Ui.Models.RemovedSessionUserEvent} message RemovedSessionUserEvent
+                 * @param {GymLifeRpg.Ui.Models.RemovedSessionUserEvent} message RemovedSessionUserEvent
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -8843,14 +8843,14 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (options.defaults)
                         object.sessionId = null;
                     if (message.sessionId != null && message.hasOwnProperty("sessionId"))
-                        object.sessionId = $root.LiftLog.Ui.Models.UuidDao.toObject(message.sessionId, options);
+                        object.sessionId = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.sessionId, options);
                     return object;
                 };
 
                 /**
                  * Converts this RemovedSessionUserEvent to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -8861,7 +8861,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for RemovedSessionUserEvent
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.RemovedSessionUserEvent
+                 * @memberof GymLifeRpg.Ui.Models.RemovedSessionUserEvent
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -8870,7 +8870,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.RemovedSessionUserEvent";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.RemovedSessionUserEvent";
                 };
 
                 return RemovedSessionUserEvent;
@@ -8880,22 +8880,22 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of an InboxMessageDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IInboxMessageDao
-                 * @property {LiftLog.Ui.Models.IUuidDao|null} [fromUserId] InboxMessageDao fromUserId
-                 * @property {LiftLog.Ui.Models.IFollowRequestDao|null} [followRequest] InboxMessageDao followRequest
-                 * @property {LiftLog.Ui.Models.IFollowResponseDao|null} [followResponse] InboxMessageDao followResponse
-                 * @property {LiftLog.Ui.Models.IUnFollowNotification|null} [unfollowNotification] InboxMessageDao unfollowNotification
+                 * @property {GymLifeRpg.Ui.Models.IUuidDao|null} [fromUserId] InboxMessageDao fromUserId
+                 * @property {GymLifeRpg.Ui.Models.IFollowRequestDao|null} [followRequest] InboxMessageDao followRequest
+                 * @property {GymLifeRpg.Ui.Models.IFollowResponseDao|null} [followResponse] InboxMessageDao followResponse
+                 * @property {GymLifeRpg.Ui.Models.IUnFollowNotification|null} [unfollowNotification] InboxMessageDao unfollowNotification
                  * @property {Uint8Array|null} [signature] InboxMessageDao signature
                  */
 
                 /**
                  * Constructs a new InboxMessageDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents an InboxMessageDao.
                  * @implements IInboxMessageDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IInboxMessageDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IInboxMessageDao=} [properties] Properties to set
                  */
                 function InboxMessageDao(properties) {
                     if (properties)
@@ -8906,32 +8906,32 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * InboxMessageDao fromUserId.
-                 * @member {LiftLog.Ui.Models.IUuidDao|null|undefined} fromUserId
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @member {GymLifeRpg.Ui.Models.IUuidDao|null|undefined} fromUserId
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 InboxMessageDao.prototype.fromUserId = null;
 
                 /**
                  * InboxMessageDao followRequest.
-                 * @member {LiftLog.Ui.Models.IFollowRequestDao|null|undefined} followRequest
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @member {GymLifeRpg.Ui.Models.IFollowRequestDao|null|undefined} followRequest
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 InboxMessageDao.prototype.followRequest = null;
 
                 /**
                  * InboxMessageDao followResponse.
-                 * @member {LiftLog.Ui.Models.IFollowResponseDao|null|undefined} followResponse
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @member {GymLifeRpg.Ui.Models.IFollowResponseDao|null|undefined} followResponse
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 InboxMessageDao.prototype.followResponse = null;
 
                 /**
                  * InboxMessageDao unfollowNotification.
-                 * @member {LiftLog.Ui.Models.IUnFollowNotification|null|undefined} unfollowNotification
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @member {GymLifeRpg.Ui.Models.IUnFollowNotification|null|undefined} unfollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 InboxMessageDao.prototype.unfollowNotification = null;
@@ -8939,7 +8939,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * InboxMessageDao signature.
                  * @member {Uint8Array} signature
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 InboxMessageDao.prototype.signature = $util.newBuffer([]);
@@ -8950,7 +8950,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * InboxMessageDao messagePayload.
                  * @member {"followRequest"|"followResponse"|"unfollowNotification"|undefined} messagePayload
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  */
                 Object.defineProperty(InboxMessageDao.prototype, "messagePayload", {
@@ -8961,21 +8961,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new InboxMessageDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IInboxMessageDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.InboxMessageDao} InboxMessageDao instance
+                 * @param {GymLifeRpg.Ui.Models.IInboxMessageDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.InboxMessageDao} InboxMessageDao instance
                  */
                 InboxMessageDao.create = function create(properties) {
                     return new InboxMessageDao(properties);
                 };
 
                 /**
-                 * Encodes the specified InboxMessageDao message. Does not implicitly {@link LiftLog.Ui.Models.InboxMessageDao.verify|verify} messages.
+                 * Encodes the specified InboxMessageDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.InboxMessageDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IInboxMessageDao} message InboxMessageDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IInboxMessageDao} message InboxMessageDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -8983,24 +8983,24 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.fromUserId != null && Object.hasOwnProperty.call(message, "fromUserId"))
-                        $root.LiftLog.Ui.Models.UuidDao.encode(message.fromUserId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UuidDao.encode(message.fromUserId, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.followRequest != null && Object.hasOwnProperty.call(message, "followRequest"))
-                        $root.LiftLog.Ui.Models.FollowRequestDao.encode(message.followRequest, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.FollowRequestDao.encode(message.followRequest, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     if (message.followResponse != null && Object.hasOwnProperty.call(message, "followResponse"))
-                        $root.LiftLog.Ui.Models.FollowResponseDao.encode(message.followResponse, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.FollowResponseDao.encode(message.followResponse, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     if (message.unfollowNotification != null && Object.hasOwnProperty.call(message, "unfollowNotification"))
-                        $root.LiftLog.Ui.Models.UnFollowNotification.encode(message.unfollowNotification, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.UnFollowNotification.encode(message.unfollowNotification, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                         writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.signature);
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified InboxMessageDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.InboxMessageDao.verify|verify} messages.
+                 * Encodes the specified InboxMessageDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.InboxMessageDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IInboxMessageDao} message InboxMessageDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IInboxMessageDao} message InboxMessageDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9011,37 +9011,37 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an InboxMessageDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.InboxMessageDao} InboxMessageDao
+                 * @returns {GymLifeRpg.Ui.Models.InboxMessageDao} InboxMessageDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 InboxMessageDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.InboxMessageDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.InboxMessageDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.fromUserId = $root.LiftLog.Ui.Models.UuidDao.decode(reader, reader.uint32());
+                                message.fromUserId = $root.GymLifeRpg.Ui.Models.UuidDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
-                                message.followRequest = $root.LiftLog.Ui.Models.FollowRequestDao.decode(reader, reader.uint32());
+                                message.followRequest = $root.GymLifeRpg.Ui.Models.FollowRequestDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 3: {
-                                message.followResponse = $root.LiftLog.Ui.Models.FollowResponseDao.decode(reader, reader.uint32());
+                                message.followResponse = $root.GymLifeRpg.Ui.Models.FollowResponseDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 4: {
-                                message.unfollowNotification = $root.LiftLog.Ui.Models.UnFollowNotification.decode(reader, reader.uint32());
+                                message.unfollowNotification = $root.GymLifeRpg.Ui.Models.UnFollowNotification.decode(reader, reader.uint32());
                                 break;
                             }
                         case 5: {
@@ -9059,10 +9059,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an InboxMessageDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.InboxMessageDao} InboxMessageDao
+                 * @returns {GymLifeRpg.Ui.Models.InboxMessageDao} InboxMessageDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -9075,7 +9075,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies an InboxMessageDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -9085,14 +9085,14 @@ export const LiftLog = $root.LiftLog = (() => {
                         return "object expected";
                     let properties = {};
                     if (message.fromUserId != null && message.hasOwnProperty("fromUserId")) {
-                        let error = $root.LiftLog.Ui.Models.UuidDao.verify(message.fromUserId);
+                        let error = $root.GymLifeRpg.Ui.Models.UuidDao.verify(message.fromUserId);
                         if (error)
                             return "fromUserId." + error;
                     }
                     if (message.followRequest != null && message.hasOwnProperty("followRequest")) {
                         properties.messagePayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.FollowRequestDao.verify(message.followRequest);
+                            let error = $root.GymLifeRpg.Ui.Models.FollowRequestDao.verify(message.followRequest);
                             if (error)
                                 return "followRequest." + error;
                         }
@@ -9102,7 +9102,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "messagePayload: multiple values";
                         properties.messagePayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.FollowResponseDao.verify(message.followResponse);
+                            let error = $root.GymLifeRpg.Ui.Models.FollowResponseDao.verify(message.followResponse);
                             if (error)
                                 return "followResponse." + error;
                         }
@@ -9112,7 +9112,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "messagePayload: multiple values";
                         properties.messagePayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.UnFollowNotification.verify(message.unfollowNotification);
+                            let error = $root.GymLifeRpg.Ui.Models.UnFollowNotification.verify(message.unfollowNotification);
                             if (error)
                                 return "unfollowNotification." + error;
                         }
@@ -9126,34 +9126,34 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates an InboxMessageDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.InboxMessageDao} InboxMessageDao
+                 * @returns {GymLifeRpg.Ui.Models.InboxMessageDao} InboxMessageDao
                  */
                 InboxMessageDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.InboxMessageDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.InboxMessageDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.InboxMessageDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.InboxMessageDao();
                     if (object.fromUserId != null) {
                         if (typeof object.fromUserId !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.InboxMessageDao.fromUserId: object expected");
-                        message.fromUserId = $root.LiftLog.Ui.Models.UuidDao.fromObject(object.fromUserId);
+                            throw TypeError(".GymLifeRpg.Ui.Models.InboxMessageDao.fromUserId: object expected");
+                        message.fromUserId = $root.GymLifeRpg.Ui.Models.UuidDao.fromObject(object.fromUserId);
                     }
                     if (object.followRequest != null) {
                         if (typeof object.followRequest !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.InboxMessageDao.followRequest: object expected");
-                        message.followRequest = $root.LiftLog.Ui.Models.FollowRequestDao.fromObject(object.followRequest);
+                            throw TypeError(".GymLifeRpg.Ui.Models.InboxMessageDao.followRequest: object expected");
+                        message.followRequest = $root.GymLifeRpg.Ui.Models.FollowRequestDao.fromObject(object.followRequest);
                     }
                     if (object.followResponse != null) {
                         if (typeof object.followResponse !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.InboxMessageDao.followResponse: object expected");
-                        message.followResponse = $root.LiftLog.Ui.Models.FollowResponseDao.fromObject(object.followResponse);
+                            throw TypeError(".GymLifeRpg.Ui.Models.InboxMessageDao.followResponse: object expected");
+                        message.followResponse = $root.GymLifeRpg.Ui.Models.FollowResponseDao.fromObject(object.followResponse);
                     }
                     if (object.unfollowNotification != null) {
                         if (typeof object.unfollowNotification !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.InboxMessageDao.unfollowNotification: object expected");
-                        message.unfollowNotification = $root.LiftLog.Ui.Models.UnFollowNotification.fromObject(object.unfollowNotification);
+                            throw TypeError(".GymLifeRpg.Ui.Models.InboxMessageDao.unfollowNotification: object expected");
+                        message.unfollowNotification = $root.GymLifeRpg.Ui.Models.UnFollowNotification.fromObject(object.unfollowNotification);
                     }
                     if (object.signature != null)
                         if (typeof object.signature === "string")
@@ -9166,9 +9166,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from an InboxMessageDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
-                 * @param {LiftLog.Ui.Models.InboxMessageDao} message InboxMessageDao
+                 * @param {GymLifeRpg.Ui.Models.InboxMessageDao} message InboxMessageDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -9187,19 +9187,19 @@ export const LiftLog = $root.LiftLog = (() => {
                         }
                     }
                     if (message.fromUserId != null && message.hasOwnProperty("fromUserId"))
-                        object.fromUserId = $root.LiftLog.Ui.Models.UuidDao.toObject(message.fromUserId, options);
+                        object.fromUserId = $root.GymLifeRpg.Ui.Models.UuidDao.toObject(message.fromUserId, options);
                     if (message.followRequest != null && message.hasOwnProperty("followRequest")) {
-                        object.followRequest = $root.LiftLog.Ui.Models.FollowRequestDao.toObject(message.followRequest, options);
+                        object.followRequest = $root.GymLifeRpg.Ui.Models.FollowRequestDao.toObject(message.followRequest, options);
                         if (options.oneofs)
                             object.messagePayload = "followRequest";
                     }
                     if (message.followResponse != null && message.hasOwnProperty("followResponse")) {
-                        object.followResponse = $root.LiftLog.Ui.Models.FollowResponseDao.toObject(message.followResponse, options);
+                        object.followResponse = $root.GymLifeRpg.Ui.Models.FollowResponseDao.toObject(message.followResponse, options);
                         if (options.oneofs)
                             object.messagePayload = "followResponse";
                     }
                     if (message.unfollowNotification != null && message.hasOwnProperty("unfollowNotification")) {
-                        object.unfollowNotification = $root.LiftLog.Ui.Models.UnFollowNotification.toObject(message.unfollowNotification, options);
+                        object.unfollowNotification = $root.GymLifeRpg.Ui.Models.UnFollowNotification.toObject(message.unfollowNotification, options);
                         if (options.oneofs)
                             object.messagePayload = "unfollowNotification";
                     }
@@ -9211,7 +9211,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this InboxMessageDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -9222,7 +9222,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for InboxMessageDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.InboxMessageDao
+                 * @memberof GymLifeRpg.Ui.Models.InboxMessageDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -9231,7 +9231,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.InboxMessageDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.InboxMessageDao";
                 };
 
                 return InboxMessageDao;
@@ -9241,18 +9241,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FollowRequestDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFollowRequestDao
                  * @property {google.protobuf.IStringValue|null} [name] FollowRequestDao name
                  */
 
                 /**
                  * Constructs a new FollowRequestDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FollowRequestDao.
                  * @implements IFollowRequestDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFollowRequestDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFollowRequestDao=} [properties] Properties to set
                  */
                 function FollowRequestDao(properties) {
                     if (properties)
@@ -9264,7 +9264,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FollowRequestDao name.
                  * @member {google.protobuf.IStringValue|null|undefined} name
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @instance
                  */
                 FollowRequestDao.prototype.name = null;
@@ -9275,7 +9275,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FollowRequestDao _name.
                  * @member {"name"|undefined} _name
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @instance
                  */
                 Object.defineProperty(FollowRequestDao.prototype, "_name", {
@@ -9286,21 +9286,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FollowRequestDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowRequestDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FollowRequestDao} FollowRequestDao instance
+                 * @param {GymLifeRpg.Ui.Models.IFollowRequestDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FollowRequestDao} FollowRequestDao instance
                  */
                 FollowRequestDao.create = function create(properties) {
                     return new FollowRequestDao(properties);
                 };
 
                 /**
-                 * Encodes the specified FollowRequestDao message. Does not implicitly {@link LiftLog.Ui.Models.FollowRequestDao.verify|verify} messages.
+                 * Encodes the specified FollowRequestDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowRequestDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowRequestDao} message FollowRequestDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowRequestDao} message FollowRequestDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9313,11 +9313,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FollowRequestDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FollowRequestDao.verify|verify} messages.
+                 * Encodes the specified FollowRequestDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowRequestDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowRequestDao} message FollowRequestDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowRequestDao} message FollowRequestDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9328,18 +9328,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowRequestDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FollowRequestDao} FollowRequestDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowRequestDao} FollowRequestDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FollowRequestDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FollowRequestDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FollowRequestDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -9360,10 +9360,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowRequestDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FollowRequestDao} FollowRequestDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowRequestDao} FollowRequestDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -9376,7 +9376,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FollowRequestDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -9399,18 +9399,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FollowRequestDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FollowRequestDao} FollowRequestDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowRequestDao} FollowRequestDao
                  */
                 FollowRequestDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FollowRequestDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FollowRequestDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FollowRequestDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.FollowRequestDao();
                     if (object.name != null) {
                         if (typeof object.name !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FollowRequestDao.name: object expected");
+                            throw TypeError(".GymLifeRpg.Ui.Models.FollowRequestDao.name: object expected");
                         message.name = $root.google.protobuf.StringValue.fromObject(object.name);
                     }
                     return message;
@@ -9419,9 +9419,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FollowRequestDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
-                 * @param {LiftLog.Ui.Models.FollowRequestDao} message FollowRequestDao
+                 * @param {GymLifeRpg.Ui.Models.FollowRequestDao} message FollowRequestDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -9440,7 +9440,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FollowRequestDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -9451,7 +9451,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FollowRequestDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FollowRequestDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowRequestDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -9460,7 +9460,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FollowRequestDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FollowRequestDao";
                 };
 
                 return FollowRequestDao;
@@ -9470,19 +9470,19 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FollowResponseDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFollowResponseDao
-                 * @property {LiftLog.Ui.Models.IFollowResponseAcceptedDao|null} [accepted] FollowResponseDao accepted
-                 * @property {LiftLog.Ui.Models.IFollowResponseRejectedDao|null} [rejected] FollowResponseDao rejected
+                 * @property {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao|null} [accepted] FollowResponseDao accepted
+                 * @property {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao|null} [rejected] FollowResponseDao rejected
                  */
 
                 /**
                  * Constructs a new FollowResponseDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FollowResponseDao.
                  * @implements IFollowResponseDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFollowResponseDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseDao=} [properties] Properties to set
                  */
                 function FollowResponseDao(properties) {
                     if (properties)
@@ -9493,16 +9493,16 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * FollowResponseDao accepted.
-                 * @member {LiftLog.Ui.Models.IFollowResponseAcceptedDao|null|undefined} accepted
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @member {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao|null|undefined} accepted
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @instance
                  */
                 FollowResponseDao.prototype.accepted = null;
 
                 /**
                  * FollowResponseDao rejected.
-                 * @member {LiftLog.Ui.Models.IFollowResponseRejectedDao|null|undefined} rejected
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @member {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao|null|undefined} rejected
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @instance
                  */
                 FollowResponseDao.prototype.rejected = null;
@@ -9513,7 +9513,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FollowResponseDao responsePayload.
                  * @member {"accepted"|"rejected"|undefined} responsePayload
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @instance
                  */
                 Object.defineProperty(FollowResponseDao.prototype, "responsePayload", {
@@ -9524,21 +9524,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FollowResponseDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FollowResponseDao} FollowResponseDao instance
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseDao} FollowResponseDao instance
                  */
                 FollowResponseDao.create = function create(properties) {
                     return new FollowResponseDao(properties);
                 };
 
                 /**
-                 * Encodes the specified FollowResponseDao message. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseDao} message FollowResponseDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseDao} message FollowResponseDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9546,18 +9546,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.accepted != null && Object.hasOwnProperty.call(message, "accepted"))
-                        $root.LiftLog.Ui.Models.FollowResponseAcceptedDao.encode(message.accepted, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.encode(message.accepted, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.rejected != null && Object.hasOwnProperty.call(message, "rejected"))
-                        $root.LiftLog.Ui.Models.FollowResponseRejectedDao.encode(message.rejected, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao.encode(message.rejected, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified FollowResponseDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseDao} message FollowResponseDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseDao} message FollowResponseDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9568,29 +9568,29 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FollowResponseDao} FollowResponseDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseDao} FollowResponseDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FollowResponseDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FollowResponseDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FollowResponseDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.accepted = $root.LiftLog.Ui.Models.FollowResponseAcceptedDao.decode(reader, reader.uint32());
+                                message.accepted = $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.decode(reader, reader.uint32());
                                 break;
                             }
                         case 2: {
-                                message.rejected = $root.LiftLog.Ui.Models.FollowResponseRejectedDao.decode(reader, reader.uint32());
+                                message.rejected = $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -9604,10 +9604,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FollowResponseDao} FollowResponseDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseDao} FollowResponseDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -9620,7 +9620,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FollowResponseDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -9632,7 +9632,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.accepted != null && message.hasOwnProperty("accepted")) {
                         properties.responsePayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.FollowResponseAcceptedDao.verify(message.accepted);
+                            let error = $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.verify(message.accepted);
                             if (error)
                                 return "accepted." + error;
                         }
@@ -9642,7 +9642,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             return "responsePayload: multiple values";
                         properties.responsePayload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.FollowResponseRejectedDao.verify(message.rejected);
+                            let error = $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao.verify(message.rejected);
                             if (error)
                                 return "rejected." + error;
                         }
@@ -9653,24 +9653,24 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FollowResponseDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FollowResponseDao} FollowResponseDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseDao} FollowResponseDao
                  */
                 FollowResponseDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FollowResponseDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FollowResponseDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FollowResponseDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.FollowResponseDao();
                     if (object.accepted != null) {
                         if (typeof object.accepted !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FollowResponseDao.accepted: object expected");
-                        message.accepted = $root.LiftLog.Ui.Models.FollowResponseAcceptedDao.fromObject(object.accepted);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FollowResponseDao.accepted: object expected");
+                        message.accepted = $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.fromObject(object.accepted);
                     }
                     if (object.rejected != null) {
                         if (typeof object.rejected !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.FollowResponseDao.rejected: object expected");
-                        message.rejected = $root.LiftLog.Ui.Models.FollowResponseRejectedDao.fromObject(object.rejected);
+                            throw TypeError(".GymLifeRpg.Ui.Models.FollowResponseDao.rejected: object expected");
+                        message.rejected = $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao.fromObject(object.rejected);
                     }
                     return message;
                 };
@@ -9678,9 +9678,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FollowResponseDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
-                 * @param {LiftLog.Ui.Models.FollowResponseDao} message FollowResponseDao
+                 * @param {GymLifeRpg.Ui.Models.FollowResponseDao} message FollowResponseDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -9689,12 +9689,12 @@ export const LiftLog = $root.LiftLog = (() => {
                         options = {};
                     let object = {};
                     if (message.accepted != null && message.hasOwnProperty("accepted")) {
-                        object.accepted = $root.LiftLog.Ui.Models.FollowResponseAcceptedDao.toObject(message.accepted, options);
+                        object.accepted = $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.toObject(message.accepted, options);
                         if (options.oneofs)
                             object.responsePayload = "accepted";
                     }
                     if (message.rejected != null && message.hasOwnProperty("rejected")) {
-                        object.rejected = $root.LiftLog.Ui.Models.FollowResponseRejectedDao.toObject(message.rejected, options);
+                        object.rejected = $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao.toObject(message.rejected, options);
                         if (options.oneofs)
                             object.responsePayload = "rejected";
                     }
@@ -9704,7 +9704,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FollowResponseDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -9715,7 +9715,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FollowResponseDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FollowResponseDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -9724,7 +9724,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FollowResponseDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FollowResponseDao";
                 };
 
                 return FollowResponseDao;
@@ -9734,7 +9734,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FollowResponseAcceptedDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFollowResponseAcceptedDao
                  * @property {Uint8Array|null} [aesKey] FollowResponseAcceptedDao aesKey
                  * @property {string|null} [followSecret] FollowResponseAcceptedDao followSecret
@@ -9742,11 +9742,11 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Constructs a new FollowResponseAcceptedDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FollowResponseAcceptedDao.
                  * @implements IFollowResponseAcceptedDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFollowResponseAcceptedDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao=} [properties] Properties to set
                  */
                 function FollowResponseAcceptedDao(properties) {
                     if (properties)
@@ -9758,7 +9758,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FollowResponseAcceptedDao aesKey.
                  * @member {Uint8Array} aesKey
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @instance
                  */
                 FollowResponseAcceptedDao.prototype.aesKey = $util.newBuffer([]);
@@ -9766,7 +9766,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * FollowResponseAcceptedDao followSecret.
                  * @member {string} followSecret
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @instance
                  */
                 FollowResponseAcceptedDao.prototype.followSecret = "";
@@ -9774,21 +9774,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FollowResponseAcceptedDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseAcceptedDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao instance
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao instance
                  */
                 FollowResponseAcceptedDao.create = function create(properties) {
                     return new FollowResponseAcceptedDao(properties);
                 };
 
                 /**
-                 * Encodes the specified FollowResponseAcceptedDao message. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseAcceptedDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseAcceptedDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseAcceptedDao} message FollowResponseAcceptedDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao} message FollowResponseAcceptedDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9803,11 +9803,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FollowResponseAcceptedDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseAcceptedDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseAcceptedDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseAcceptedDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseAcceptedDao} message FollowResponseAcceptedDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseAcceptedDao} message FollowResponseAcceptedDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -9818,18 +9818,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseAcceptedDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FollowResponseAcceptedDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FollowResponseAcceptedDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -9854,10 +9854,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseAcceptedDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -9870,7 +9870,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FollowResponseAcceptedDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -9890,15 +9890,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FollowResponseAcceptedDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseAcceptedDao} FollowResponseAcceptedDao
                  */
                 FollowResponseAcceptedDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FollowResponseAcceptedDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.FollowResponseAcceptedDao();
+                    let message = new $root.GymLifeRpg.Ui.Models.FollowResponseAcceptedDao();
                     if (object.aesKey != null)
                         if (typeof object.aesKey === "string")
                             $util.base64.decode(object.aesKey, message.aesKey = $util.newBuffer($util.base64.length(object.aesKey)), 0);
@@ -9912,9 +9912,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a FollowResponseAcceptedDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.FollowResponseAcceptedDao} message FollowResponseAcceptedDao
+                 * @param {GymLifeRpg.Ui.Models.FollowResponseAcceptedDao} message FollowResponseAcceptedDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -9942,7 +9942,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FollowResponseAcceptedDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -9953,7 +9953,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FollowResponseAcceptedDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FollowResponseAcceptedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseAcceptedDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -9962,7 +9962,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FollowResponseAcceptedDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FollowResponseAcceptedDao";
                 };
 
                 return FollowResponseAcceptedDao;
@@ -9972,17 +9972,17 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a FollowResponseRejectedDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IFollowResponseRejectedDao
                  */
 
                 /**
                  * Constructs a new FollowResponseRejectedDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a FollowResponseRejectedDao.
                  * @implements IFollowResponseRejectedDao
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IFollowResponseRejectedDao=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao=} [properties] Properties to set
                  */
                 function FollowResponseRejectedDao(properties) {
                     if (properties)
@@ -9994,21 +9994,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new FollowResponseRejectedDao instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseRejectedDao=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao instance
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao instance
                  */
                 FollowResponseRejectedDao.create = function create(properties) {
                     return new FollowResponseRejectedDao(properties);
                 };
 
                 /**
-                 * Encodes the specified FollowResponseRejectedDao message. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseRejectedDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseRejectedDao message. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseRejectedDao.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseRejectedDao} message FollowResponseRejectedDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao} message FollowResponseRejectedDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -10019,11 +10019,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified FollowResponseRejectedDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FollowResponseRejectedDao.verify|verify} messages.
+                 * Encodes the specified FollowResponseRejectedDao message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.FollowResponseRejectedDao.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.IFollowResponseRejectedDao} message FollowResponseRejectedDao message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IFollowResponseRejectedDao} message FollowResponseRejectedDao message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -10034,18 +10034,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseRejectedDao message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 FollowResponseRejectedDao.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.FollowResponseRejectedDao();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -10062,10 +10062,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a FollowResponseRejectedDao message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -10078,7 +10078,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a FollowResponseRejectedDao message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -10092,23 +10092,23 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a FollowResponseRejectedDao message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
+                 * @returns {GymLifeRpg.Ui.Models.FollowResponseRejectedDao} FollowResponseRejectedDao
                  */
                 FollowResponseRejectedDao.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.FollowResponseRejectedDao)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao)
                         return object;
-                    return new $root.LiftLog.Ui.Models.FollowResponseRejectedDao();
+                    return new $root.GymLifeRpg.Ui.Models.FollowResponseRejectedDao();
                 };
 
                 /**
                  * Creates a plain object from a FollowResponseRejectedDao message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
-                 * @param {LiftLog.Ui.Models.FollowResponseRejectedDao} message FollowResponseRejectedDao
+                 * @param {GymLifeRpg.Ui.Models.FollowResponseRejectedDao} message FollowResponseRejectedDao
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -10119,7 +10119,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this FollowResponseRejectedDao to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -10130,7 +10130,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for FollowResponseRejectedDao
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.FollowResponseRejectedDao
+                 * @memberof GymLifeRpg.Ui.Models.FollowResponseRejectedDao
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -10139,7 +10139,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.FollowResponseRejectedDao";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.FollowResponseRejectedDao";
                 };
 
                 return FollowResponseRejectedDao;
@@ -10149,18 +10149,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of an UnFollowNotification.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface IUnFollowNotification
                  * @property {string|null} [followSecret] UnFollowNotification followSecret
                  */
 
                 /**
                  * Constructs a new UnFollowNotification.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents an UnFollowNotification.
                  * @implements IUnFollowNotification
                  * @constructor
-                 * @param {LiftLog.Ui.Models.IUnFollowNotification=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.IUnFollowNotification=} [properties] Properties to set
                  */
                 function UnFollowNotification(properties) {
                     if (properties)
@@ -10172,7 +10172,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * UnFollowNotification followSecret.
                  * @member {string} followSecret
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @instance
                  */
                 UnFollowNotification.prototype.followSecret = "";
@@ -10180,21 +10180,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new UnFollowNotification instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
-                 * @param {LiftLog.Ui.Models.IUnFollowNotification=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.UnFollowNotification} UnFollowNotification instance
+                 * @param {GymLifeRpg.Ui.Models.IUnFollowNotification=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.UnFollowNotification} UnFollowNotification instance
                  */
                 UnFollowNotification.create = function create(properties) {
                     return new UnFollowNotification(properties);
                 };
 
                 /**
-                 * Encodes the specified UnFollowNotification message. Does not implicitly {@link LiftLog.Ui.Models.UnFollowNotification.verify|verify} messages.
+                 * Encodes the specified UnFollowNotification message. Does not implicitly {@link GymLifeRpg.Ui.Models.UnFollowNotification.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
-                 * @param {LiftLog.Ui.Models.IUnFollowNotification} message UnFollowNotification message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUnFollowNotification} message UnFollowNotification message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -10207,11 +10207,11 @@ export const LiftLog = $root.LiftLog = (() => {
                 };
 
                 /**
-                 * Encodes the specified UnFollowNotification message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.UnFollowNotification.verify|verify} messages.
+                 * Encodes the specified UnFollowNotification message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.UnFollowNotification.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
-                 * @param {LiftLog.Ui.Models.IUnFollowNotification} message UnFollowNotification message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.IUnFollowNotification} message UnFollowNotification message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -10222,18 +10222,18 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an UnFollowNotification message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.UnFollowNotification} UnFollowNotification
+                 * @returns {GymLifeRpg.Ui.Models.UnFollowNotification} UnFollowNotification
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 UnFollowNotification.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.UnFollowNotification();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.UnFollowNotification();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
@@ -10254,10 +10254,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes an UnFollowNotification message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.UnFollowNotification} UnFollowNotification
+                 * @returns {GymLifeRpg.Ui.Models.UnFollowNotification} UnFollowNotification
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -10270,7 +10270,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies an UnFollowNotification message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -10287,15 +10287,15 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates an UnFollowNotification message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.UnFollowNotification} UnFollowNotification
+                 * @returns {GymLifeRpg.Ui.Models.UnFollowNotification} UnFollowNotification
                  */
                 UnFollowNotification.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.UnFollowNotification)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.UnFollowNotification)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.UnFollowNotification();
+                    let message = new $root.GymLifeRpg.Ui.Models.UnFollowNotification();
                     if (object.followSecret != null)
                         message.followSecret = String(object.followSecret);
                     return message;
@@ -10304,9 +10304,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from an UnFollowNotification message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
-                 * @param {LiftLog.Ui.Models.UnFollowNotification} message UnFollowNotification
+                 * @param {GymLifeRpg.Ui.Models.UnFollowNotification} message UnFollowNotification
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -10324,7 +10324,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this UnFollowNotification to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -10335,7 +10335,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for UnFollowNotification
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.UnFollowNotification
+                 * @memberof GymLifeRpg.Ui.Models.UnFollowNotification
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -10344,7 +10344,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.UnFollowNotification";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.UnFollowNotification";
                 };
 
                 return UnFollowNotification;
@@ -10354,7 +10354,7 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Namespace ProgramBlueprintDao.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @namespace
                  */
                 const ProgramBlueprintDao = {};
@@ -10363,19 +10363,19 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a ProgramBlueprintDaoContainerV1.
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao
                      * @interface IProgramBlueprintDaoContainerV1
-                     * @property {Object.<string,LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>|null} [programBlueprints] ProgramBlueprintDaoContainerV1 programBlueprints
+                     * @property {Object.<string,GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>|null} [programBlueprints] ProgramBlueprintDaoContainerV1 programBlueprints
                      * @property {google.protobuf.IStringValue|null} [activeProgramId] ProgramBlueprintDaoContainerV1 activeProgramId
                      */
 
                     /**
                      * Constructs a new ProgramBlueprintDaoContainerV1.
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao
                      * @classdesc Represents a ProgramBlueprintDaoContainerV1.
                      * @implements IProgramBlueprintDaoContainerV1
                      * @constructor
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1=} [properties] Properties to set
                      */
                     function ProgramBlueprintDaoContainerV1(properties) {
                         this.programBlueprints = {};
@@ -10387,8 +10387,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * ProgramBlueprintDaoContainerV1 programBlueprints.
-                     * @member {Object.<string,LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>} programBlueprints
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @member {Object.<string,GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>} programBlueprints
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @instance
                      */
                     ProgramBlueprintDaoContainerV1.prototype.programBlueprints = $util.emptyObject;
@@ -10396,7 +10396,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ProgramBlueprintDaoContainerV1 activeProgramId.
                      * @member {google.protobuf.IStringValue|null|undefined} activeProgramId
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @instance
                      */
                     ProgramBlueprintDaoContainerV1.prototype.activeProgramId = null;
@@ -10407,7 +10407,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ProgramBlueprintDaoContainerV1 _activeProgramId.
                      * @member {"activeProgramId"|undefined} _activeProgramId
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @instance
                      */
                     Object.defineProperty(ProgramBlueprintDaoContainerV1.prototype, "_activeProgramId", {
@@ -10418,21 +10418,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new ProgramBlueprintDaoContainerV1 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1 instance
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1 instance
                      */
                     ProgramBlueprintDaoContainerV1.create = function create(properties) {
                         return new ProgramBlueprintDaoContainerV1(properties);
                     };
 
                     /**
-                     * Encodes the specified ProgramBlueprintDaoContainerV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
+                     * Encodes the specified ProgramBlueprintDaoContainerV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -10442,7 +10442,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.programBlueprints != null && Object.hasOwnProperty.call(message, "programBlueprints"))
                             for (let keys = Object.keys(message.programBlueprints), i = 0; i < keys.length; ++i) {
                                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                                $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.programBlueprints[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                                $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.programBlueprints[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
                             }
                         if (message.activeProgramId != null && Object.hasOwnProperty.call(message, "activeProgramId"))
                             $root.google.protobuf.StringValue.encode(message.activeProgramId, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
@@ -10450,11 +10450,11 @@ export const LiftLog = $root.LiftLog = (() => {
                     };
 
                     /**
-                     * Encodes the specified ProgramBlueprintDaoContainerV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
+                     * Encodes the specified ProgramBlueprintDaoContainerV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -10465,18 +10465,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     ProgramBlueprintDaoContainerV1.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1(), key, value;
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1(), key, value;
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -10495,7 +10495,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                             key = reader.string();
                                             break;
                                         case 2:
-                                            value = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
+                                            value = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
                                             break;
                                         default:
                                             reader.skipType(tag2 & 7);
@@ -10520,10 +10520,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -10536,7 +10536,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a ProgramBlueprintDaoContainerV1 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -10550,7 +10550,7 @@ export const LiftLog = $root.LiftLog = (() => {
                                 return "programBlueprints: object expected";
                             let key = Object.keys(message.programBlueprints);
                             for (let i = 0; i < key.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.programBlueprints[key[i]]);
+                                let error = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.programBlueprints[key[i]]);
                                 if (error)
                                     return "programBlueprints." + error;
                             }
@@ -10569,28 +10569,28 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a ProgramBlueprintDaoContainerV1 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} ProgramBlueprintDaoContainerV1
                      */
                     ProgramBlueprintDaoContainerV1.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1();
+                        let message = new $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1();
                         if (object.programBlueprints) {
                             if (typeof object.programBlueprints !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.programBlueprints: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.programBlueprints: object expected");
                             message.programBlueprints = {};
                             for (let keys = Object.keys(object.programBlueprints), i = 0; i < keys.length; ++i) {
                                 if (typeof object.programBlueprints[keys[i]] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.programBlueprints: object expected");
-                                message.programBlueprints[keys[i]] = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.programBlueprints[keys[i]]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.programBlueprints: object expected");
+                                message.programBlueprints[keys[i]] = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.programBlueprints[keys[i]]);
                             }
                         }
                         if (object.activeProgramId != null) {
                             if (typeof object.activeProgramId !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.activeProgramId: object expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.activeProgramId: object expected");
                             message.activeProgramId = $root.google.protobuf.StringValue.fromObject(object.activeProgramId);
                         }
                         return message;
@@ -10599,9 +10599,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a ProgramBlueprintDaoContainerV1 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1} message ProgramBlueprintDaoContainerV1
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -10615,7 +10615,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.programBlueprints && (keys2 = Object.keys(message.programBlueprints)).length) {
                             object.programBlueprints = {};
                             for (let j = 0; j < keys2.length; ++j)
-                                object.programBlueprints[keys2[j]] = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.programBlueprints[keys2[j]], options);
+                                object.programBlueprints[keys2[j]] = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.programBlueprints[keys2[j]], options);
                         }
                         if (message.activeProgramId != null && message.hasOwnProperty("activeProgramId")) {
                             object.activeProgramId = $root.google.protobuf.StringValue.toObject(message.activeProgramId, options);
@@ -10628,7 +10628,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this ProgramBlueprintDaoContainerV1 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -10639,7 +10639,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for ProgramBlueprintDaoContainerV1
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -10648,7 +10648,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1";
                     };
 
                     return ProgramBlueprintDaoContainerV1;
@@ -10658,20 +10658,20 @@ export const LiftLog = $root.LiftLog = (() => {
 
                     /**
                      * Properties of a ProgramBlueprintDaoV1.
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao
                      * @interface IProgramBlueprintDaoV1
                      * @property {string|null} [name] ProgramBlueprintDaoV1 name
-                     * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessions] ProgramBlueprintDaoV1 sessions
-                     * @property {LiftLog.Ui.Models.IDateOnlyDao|null} [lastEdited] ProgramBlueprintDaoV1 lastEdited
+                     * @property {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>|null} [sessions] ProgramBlueprintDaoV1 sessions
+                     * @property {GymLifeRpg.Ui.Models.IDateOnlyDao|null} [lastEdited] ProgramBlueprintDaoV1 lastEdited
                      */
 
                     /**
                      * Constructs a new ProgramBlueprintDaoV1.
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao
                      * @classdesc Represents a ProgramBlueprintDaoV1.
                      * @implements IProgramBlueprintDaoV1
                      * @constructor
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1=} [properties] Properties to set
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1=} [properties] Properties to set
                      */
                     function ProgramBlueprintDaoV1(properties) {
                         this.sessions = [];
@@ -10684,23 +10684,23 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ProgramBlueprintDaoV1 name.
                      * @member {string} name
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @instance
                      */
                     ProgramBlueprintDaoV1.prototype.name = "";
 
                     /**
                      * ProgramBlueprintDaoV1 sessions.
-                     * @member {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessions
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @member {Array.<GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2>} sessions
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @instance
                      */
                     ProgramBlueprintDaoV1.prototype.sessions = $util.emptyArray;
 
                     /**
                      * ProgramBlueprintDaoV1 lastEdited.
-                     * @member {LiftLog.Ui.Models.IDateOnlyDao|null|undefined} lastEdited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @member {GymLifeRpg.Ui.Models.IDateOnlyDao|null|undefined} lastEdited
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @instance
                      */
                     ProgramBlueprintDaoV1.prototype.lastEdited = null;
@@ -10711,7 +10711,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * ProgramBlueprintDaoV1 _lastEdited.
                      * @member {"lastEdited"|undefined} _lastEdited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @instance
                      */
                     Object.defineProperty(ProgramBlueprintDaoV1.prototype, "_lastEdited", {
@@ -10722,21 +10722,21 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a new ProgramBlueprintDaoV1 instance using the specified properties.
                      * @function create
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1=} [properties] Properties to set
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1 instance
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1=} [properties] Properties to set
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1 instance
                      */
                     ProgramBlueprintDaoV1.create = function create(properties) {
                         return new ProgramBlueprintDaoV1(properties);
                     };
 
                     /**
-                     * Encodes the specified ProgramBlueprintDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
+                     * Encodes the specified ProgramBlueprintDaoV1 message. Does not implicitly {@link GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
                      * @function encode
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1} message ProgramBlueprintDaoV1 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1} message ProgramBlueprintDaoV1 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -10747,18 +10747,18 @@ export const LiftLog = $root.LiftLog = (() => {
                             writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                         if (message.sessions != null && message.sessions.length)
                             for (let i = 0; i < message.sessions.length; ++i)
-                                $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessions[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                                $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.encode(message.sessions[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                         if (message.lastEdited != null && Object.hasOwnProperty.call(message, "lastEdited"))
-                            $root.LiftLog.Ui.Models.DateOnlyDao.encode(message.lastEdited, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                            $root.GymLifeRpg.Ui.Models.DateOnlyDao.encode(message.lastEdited, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                         return writer;
                     };
 
                     /**
-                     * Encodes the specified ProgramBlueprintDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
+                     * Encodes the specified ProgramBlueprintDaoV1 message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
                      * @function encodeDelimited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1} message ProgramBlueprintDaoV1 message or plain object to encode
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1} message ProgramBlueprintDaoV1 message or plain object to encode
                      * @param {$protobuf.Writer} [writer] Writer to encode to
                      * @returns {$protobuf.Writer} Writer
                      */
@@ -10769,18 +10769,18 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer.
                      * @function decode
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                      * @param {number} [length] Message length if known beforehand
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
                     ProgramBlueprintDaoV1.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
-                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1();
+                        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1();
                         while (reader.pos < end) {
                             let tag = reader.uint32();
                             if (tag === error)
@@ -10793,11 +10793,11 @@ export const LiftLog = $root.LiftLog = (() => {
                             case 5: {
                                     if (!(message.sessions && message.sessions.length))
                                         message.sessions = [];
-                                    message.sessions.push($root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
+                                    message.sessions.push($root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.decode(reader, reader.uint32()));
                                     break;
                                 }
                             case 6: {
-                                    message.lastEdited = $root.LiftLog.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
+                                    message.lastEdited = $root.GymLifeRpg.Ui.Models.DateOnlyDao.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -10811,10 +10811,10 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer, length delimited.
                      * @function decodeDelimited
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
                      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
@@ -10827,7 +10827,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Verifies a ProgramBlueprintDaoV1 message.
                      * @function verify
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
                      * @param {Object.<string,*>} message Plain object to verify
                      * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -10843,7 +10843,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             if (!Array.isArray(message.sessions))
                                 return "sessions: array expected";
                             for (let i = 0; i < message.sessions.length; ++i) {
-                                let error = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessions[i]);
+                                let error = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify(message.sessions[i]);
                                 if (error)
                                     return "sessions." + error;
                             }
@@ -10851,7 +10851,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.lastEdited != null && message.hasOwnProperty("lastEdited")) {
                             properties._lastEdited = 1;
                             {
-                                let error = $root.LiftLog.Ui.Models.DateOnlyDao.verify(message.lastEdited);
+                                let error = $root.GymLifeRpg.Ui.Models.DateOnlyDao.verify(message.lastEdited);
                                 if (error)
                                     return "lastEdited." + error;
                             }
@@ -10862,31 +10862,31 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a ProgramBlueprintDaoV1 message from a plain object. Also converts values to their respective internal types.
                      * @function fromObject
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
                      * @param {Object.<string,*>} object Plain object
-                     * @returns {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
+                     * @returns {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} ProgramBlueprintDaoV1
                      */
                     ProgramBlueprintDaoV1.fromObject = function fromObject(object) {
-                        if (object instanceof $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1)
+                        if (object instanceof $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1)
                             return object;
-                        let message = new $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1();
+                        let message = new $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1();
                         if (object.name != null)
                             message.name = String(object.name);
                         if (object.sessions) {
                             if (!Array.isArray(object.sessions))
-                                throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.sessions: array expected");
+                                throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.sessions: array expected");
                             message.sessions = [];
                             for (let i = 0; i < object.sessions.length; ++i) {
                                 if (typeof object.sessions[i] !== "object")
-                                    throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.sessions: object expected");
-                                message.sessions[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessions[i]);
+                                    throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.sessions: object expected");
+                                message.sessions[i] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.fromObject(object.sessions[i]);
                             }
                         }
                         if (object.lastEdited != null) {
                             if (typeof object.lastEdited !== "object")
-                                throw TypeError(".LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.lastEdited: object expected");
-                            message.lastEdited = $root.LiftLog.Ui.Models.DateOnlyDao.fromObject(object.lastEdited);
+                                throw TypeError(".GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.lastEdited: object expected");
+                            message.lastEdited = $root.GymLifeRpg.Ui.Models.DateOnlyDao.fromObject(object.lastEdited);
                         }
                         return message;
                     };
@@ -10894,9 +10894,9 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Creates a plain object from a ProgramBlueprintDaoV1 message. Also converts values to other types if specified.
                      * @function toObject
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
-                     * @param {LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} message ProgramBlueprintDaoV1
+                     * @param {GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1} message ProgramBlueprintDaoV1
                      * @param {$protobuf.IConversionOptions} [options] Conversion options
                      * @returns {Object.<string,*>} Plain object
                      */
@@ -10913,10 +10913,10 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.sessions && message.sessions.length) {
                             object.sessions = [];
                             for (let j = 0; j < message.sessions.length; ++j)
-                                object.sessions[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessions[j], options);
+                                object.sessions[j] = $root.GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.toObject(message.sessions[j], options);
                         }
                         if (message.lastEdited != null && message.hasOwnProperty("lastEdited")) {
-                            object.lastEdited = $root.LiftLog.Ui.Models.DateOnlyDao.toObject(message.lastEdited, options);
+                            object.lastEdited = $root.GymLifeRpg.Ui.Models.DateOnlyDao.toObject(message.lastEdited, options);
                             if (options.oneofs)
                                 object._lastEdited = "lastEdited";
                         }
@@ -10926,7 +10926,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Converts this ProgramBlueprintDaoV1 to JSON.
                      * @function toJSON
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @instance
                      * @returns {Object.<string,*>} JSON object
                      */
@@ -10937,7 +10937,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     /**
                      * Gets the default type url for ProgramBlueprintDaoV1
                      * @function getTypeUrl
-                     * @memberof LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
+                     * @memberof GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1
                      * @static
                      * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns {string} The default type url
@@ -10946,7 +10946,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (typeUrlPrefix === undefined) {
                             typeUrlPrefix = "type.googleapis.com";
                         }
-                        return typeUrlPrefix + "/LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1";
+                        return typeUrlPrefix + "/GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1";
                     };
 
                     return ProgramBlueprintDaoV1;
@@ -10959,18 +10959,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a SharedItemPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface ISharedItemPayload
-                 * @property {LiftLog.Ui.Models.ISharedProgramBlueprintPayload|null} [sharedProgramBlueprint] SharedItemPayload sharedProgramBlueprint
+                 * @property {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload|null} [sharedProgramBlueprint] SharedItemPayload sharedProgramBlueprint
                  */
 
                 /**
                  * Constructs a new SharedItemPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a SharedItemPayload.
                  * @implements ISharedItemPayload
                  * @constructor
-                 * @param {LiftLog.Ui.Models.ISharedItemPayload=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.ISharedItemPayload=} [properties] Properties to set
                  */
                 function SharedItemPayload(properties) {
                     if (properties)
@@ -10981,8 +10981,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * SharedItemPayload sharedProgramBlueprint.
-                 * @member {LiftLog.Ui.Models.ISharedProgramBlueprintPayload|null|undefined} sharedProgramBlueprint
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @member {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload|null|undefined} sharedProgramBlueprint
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @instance
                  */
                 SharedItemPayload.prototype.sharedProgramBlueprint = null;
@@ -10993,7 +10993,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * SharedItemPayload payload.
                  * @member {"sharedProgramBlueprint"|undefined} payload
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @instance
                  */
                 Object.defineProperty(SharedItemPayload.prototype, "payload", {
@@ -11004,21 +11004,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new SharedItemPayload instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedItemPayload=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.SharedItemPayload} SharedItemPayload instance
+                 * @param {GymLifeRpg.Ui.Models.ISharedItemPayload=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.SharedItemPayload} SharedItemPayload instance
                  */
                 SharedItemPayload.create = function create(properties) {
                     return new SharedItemPayload(properties);
                 };
 
                 /**
-                 * Encodes the specified SharedItemPayload message. Does not implicitly {@link LiftLog.Ui.Models.SharedItemPayload.verify|verify} messages.
+                 * Encodes the specified SharedItemPayload message. Does not implicitly {@link GymLifeRpg.Ui.Models.SharedItemPayload.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedItemPayload} message SharedItemPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISharedItemPayload} message SharedItemPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -11026,16 +11026,16 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.sharedProgramBlueprint != null && Object.hasOwnProperty.call(message, "sharedProgramBlueprint"))
-                        $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload.encode(message.sharedProgramBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.encode(message.sharedProgramBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified SharedItemPayload message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SharedItemPayload.verify|verify} messages.
+                 * Encodes the specified SharedItemPayload message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SharedItemPayload.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedItemPayload} message SharedItemPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISharedItemPayload} message SharedItemPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -11046,25 +11046,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SharedItemPayload message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.SharedItemPayload} SharedItemPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedItemPayload} SharedItemPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 SharedItemPayload.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SharedItemPayload();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SharedItemPayload();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.sharedProgramBlueprint = $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload.decode(reader, reader.uint32());
+                                message.sharedProgramBlueprint = $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -11078,10 +11078,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SharedItemPayload message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.SharedItemPayload} SharedItemPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedItemPayload} SharedItemPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -11094,7 +11094,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a SharedItemPayload message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -11106,7 +11106,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (message.sharedProgramBlueprint != null && message.hasOwnProperty("sharedProgramBlueprint")) {
                         properties.payload = 1;
                         {
-                            let error = $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload.verify(message.sharedProgramBlueprint);
+                            let error = $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.verify(message.sharedProgramBlueprint);
                             if (error)
                                 return "sharedProgramBlueprint." + error;
                         }
@@ -11117,19 +11117,19 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a SharedItemPayload message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.SharedItemPayload} SharedItemPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedItemPayload} SharedItemPayload
                  */
                 SharedItemPayload.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.SharedItemPayload)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.SharedItemPayload)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.SharedItemPayload();
+                    let message = new $root.GymLifeRpg.Ui.Models.SharedItemPayload();
                     if (object.sharedProgramBlueprint != null) {
                         if (typeof object.sharedProgramBlueprint !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.SharedItemPayload.sharedProgramBlueprint: object expected");
-                        message.sharedProgramBlueprint = $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload.fromObject(object.sharedProgramBlueprint);
+                            throw TypeError(".GymLifeRpg.Ui.Models.SharedItemPayload.sharedProgramBlueprint: object expected");
+                        message.sharedProgramBlueprint = $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.fromObject(object.sharedProgramBlueprint);
                     }
                     return message;
                 };
@@ -11137,9 +11137,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a SharedItemPayload message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.SharedItemPayload} message SharedItemPayload
+                 * @param {GymLifeRpg.Ui.Models.SharedItemPayload} message SharedItemPayload
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -11148,7 +11148,7 @@ export const LiftLog = $root.LiftLog = (() => {
                         options = {};
                     let object = {};
                     if (message.sharedProgramBlueprint != null && message.hasOwnProperty("sharedProgramBlueprint")) {
-                        object.sharedProgramBlueprint = $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload.toObject(message.sharedProgramBlueprint, options);
+                        object.sharedProgramBlueprint = $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.toObject(message.sharedProgramBlueprint, options);
                         if (options.oneofs)
                             object.payload = "sharedProgramBlueprint";
                     }
@@ -11158,7 +11158,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Converts this SharedItemPayload to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -11169,7 +11169,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for SharedItemPayload
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.SharedItemPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedItemPayload
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -11178,7 +11178,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.SharedItemPayload";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SharedItemPayload";
                 };
 
                 return SharedItemPayload;
@@ -11188,18 +11188,18 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * Properties of a SharedProgramBlueprintPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @interface ISharedProgramBlueprintPayload
-                 * @property {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1|null} [programBlueprint] SharedProgramBlueprintPayload programBlueprint
+                 * @property {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1|null} [programBlueprint] SharedProgramBlueprintPayload programBlueprint
                  */
 
                 /**
                  * Constructs a new SharedProgramBlueprintPayload.
-                 * @memberof LiftLog.Ui.Models
+                 * @memberof GymLifeRpg.Ui.Models
                  * @classdesc Represents a SharedProgramBlueprintPayload.
                  * @implements ISharedProgramBlueprintPayload
                  * @constructor
-                 * @param {LiftLog.Ui.Models.ISharedProgramBlueprintPayload=} [properties] Properties to set
+                 * @param {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload=} [properties] Properties to set
                  */
                 function SharedProgramBlueprintPayload(properties) {
                     if (properties)
@@ -11210,8 +11210,8 @@ export const LiftLog = $root.LiftLog = (() => {
 
                 /**
                  * SharedProgramBlueprintPayload programBlueprint.
-                 * @member {LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1|null|undefined} programBlueprint
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @member {GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1|null|undefined} programBlueprint
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @instance
                  */
                 SharedProgramBlueprintPayload.prototype.programBlueprint = null;
@@ -11219,21 +11219,21 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a new SharedProgramBlueprintPayload instance using the specified properties.
                  * @function create
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedProgramBlueprintPayload=} [properties] Properties to set
-                 * @returns {LiftLog.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload instance
+                 * @param {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload=} [properties] Properties to set
+                 * @returns {GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload instance
                  */
                 SharedProgramBlueprintPayload.create = function create(properties) {
                     return new SharedProgramBlueprintPayload(properties);
                 };
 
                 /**
-                 * Encodes the specified SharedProgramBlueprintPayload message. Does not implicitly {@link LiftLog.Ui.Models.SharedProgramBlueprintPayload.verify|verify} messages.
+                 * Encodes the specified SharedProgramBlueprintPayload message. Does not implicitly {@link GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.verify|verify} messages.
                  * @function encode
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedProgramBlueprintPayload} message SharedProgramBlueprintPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload} message SharedProgramBlueprintPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -11241,16 +11241,16 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.programBlueprint != null && Object.hasOwnProperty.call(message, "programBlueprint"))
-                        $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.programBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.encode(message.programBlueprint, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     return writer;
                 };
 
                 /**
-                 * Encodes the specified SharedProgramBlueprintPayload message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SharedProgramBlueprintPayload.verify|verify} messages.
+                 * Encodes the specified SharedProgramBlueprintPayload message, length delimited. Does not implicitly {@link GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.verify|verify} messages.
                  * @function encodeDelimited
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.ISharedProgramBlueprintPayload} message SharedProgramBlueprintPayload message or plain object to encode
+                 * @param {GymLifeRpg.Ui.Models.ISharedProgramBlueprintPayload} message SharedProgramBlueprintPayload message or plain object to encode
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
@@ -11261,25 +11261,25 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SharedProgramBlueprintPayload message from the specified reader or buffer.
                  * @function decode
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                  * @param {number} [length] Message length if known beforehand
-                 * @returns {LiftLog.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
                 SharedProgramBlueprintPayload.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload();
                     while (reader.pos < end) {
                         let tag = reader.uint32();
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.programBlueprint = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
+                                message.programBlueprint = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -11293,10 +11293,10 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Decodes a SharedProgramBlueprintPayload message from the specified reader or buffer, length delimited.
                  * @function decodeDelimited
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
                  * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {LiftLog.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
@@ -11309,7 +11309,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Verifies a SharedProgramBlueprintPayload message.
                  * @function verify
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -11318,7 +11318,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
                     if (message.programBlueprint != null && message.hasOwnProperty("programBlueprint")) {
-                        let error = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.programBlueprint);
+                        let error = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify(message.programBlueprint);
                         if (error)
                             return "programBlueprint." + error;
                     }
@@ -11328,19 +11328,19 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a SharedProgramBlueprintPayload message from a plain object. Also converts values to their respective internal types.
                  * @function fromObject
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
                  * @param {Object.<string,*>} object Plain object
-                 * @returns {LiftLog.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
+                 * @returns {GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload} SharedProgramBlueprintPayload
                  */
                 SharedProgramBlueprintPayload.fromObject = function fromObject(object) {
-                    if (object instanceof $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload)
+                    if (object instanceof $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload)
                         return object;
-                    let message = new $root.LiftLog.Ui.Models.SharedProgramBlueprintPayload();
+                    let message = new $root.GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload();
                     if (object.programBlueprint != null) {
                         if (typeof object.programBlueprint !== "object")
-                            throw TypeError(".LiftLog.Ui.Models.SharedProgramBlueprintPayload.programBlueprint: object expected");
-                        message.programBlueprint = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.programBlueprint);
+                            throw TypeError(".GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload.programBlueprint: object expected");
+                        message.programBlueprint = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.fromObject(object.programBlueprint);
                     }
                     return message;
                 };
@@ -11348,9 +11348,9 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Creates a plain object from a SharedProgramBlueprintPayload message. Also converts values to other types if specified.
                  * @function toObject
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
-                 * @param {LiftLog.Ui.Models.SharedProgramBlueprintPayload} message SharedProgramBlueprintPayload
+                 * @param {GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload} message SharedProgramBlueprintPayload
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
@@ -11361,14 +11361,14 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (options.defaults)
                         object.programBlueprint = null;
                     if (message.programBlueprint != null && message.hasOwnProperty("programBlueprint"))
-                        object.programBlueprint = $root.LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.programBlueprint, options);
+                        object.programBlueprint = $root.GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.toObject(message.programBlueprint, options);
                     return object;
                 };
 
                 /**
                  * Converts this SharedProgramBlueprintPayload to JSON.
                  * @function toJSON
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @instance
                  * @returns {Object.<string,*>} JSON object
                  */
@@ -11379,7 +11379,7 @@ export const LiftLog = $root.LiftLog = (() => {
                 /**
                  * Gets the default type url for SharedProgramBlueprintPayload
                  * @function getTypeUrl
-                 * @memberof LiftLog.Ui.Models.SharedProgramBlueprintPayload
+                 * @memberof GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload
                  * @static
                  * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns {string} The default type url
@@ -11388,7 +11388,7 @@ export const LiftLog = $root.LiftLog = (() => {
                     if (typeUrlPrefix === undefined) {
                         typeUrlPrefix = "type.googleapis.com";
                     }
-                    return typeUrlPrefix + "/LiftLog.Ui.Models.SharedProgramBlueprintPayload";
+                    return typeUrlPrefix + "/GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload";
                 };
 
                 return SharedProgramBlueprintPayload;
@@ -11400,7 +11400,7 @@ export const LiftLog = $root.LiftLog = (() => {
         return Ui;
     })();
 
-    return LiftLog;
+    return GymLifeRpg;
 })();
 
 export const google = $root.google = (() => {

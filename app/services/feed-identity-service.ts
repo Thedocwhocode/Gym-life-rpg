@@ -5,7 +5,7 @@ import { DeleteUserRequest } from '@/models/feed-api-models';
 import { FeedIdentity } from '@/models/feed-models';
 import { SessionBlueprint } from '@/models/blueprint-models';
 import { toCurrentPlanDao } from '@/models/storage/conversions.to-dao';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { ApiResult } from '@/services/api-error';
 
 export class FeedIdentityService {
@@ -87,7 +87,7 @@ export class FeedIdentityService {
       : undefined;
     const currentPlanDao = toCurrentPlanDao(currentPlan);
     const currentPlanBytes =
-      LiftLog.Ui.Models.CurrentPlanDaoV1.encode(currentPlanDao).finish();
+      GymLifeRpg.Ui.Models.CurrentPlanDaoV1.encode(currentPlanDao).finish();
     const encryptedCurrentPlan = publishPlan
       ? (
           await this.encryptionService.signRsa256PssAndEncryptAesCbcAsync(

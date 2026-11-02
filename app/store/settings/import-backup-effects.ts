@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import {
   fromProgramBlueprintDao,
   fromSessionBlueprintDao,
@@ -103,9 +103,9 @@ export function addImportBackupEffects() {
 function tryParseProto(
   bytes: Uint8Array,
   logger: Logger,
-): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2 | undefined {
+): GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2 | undefined {
   try {
-    return LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.decode(bytes);
+    return GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.decode(bytes);
   } catch (e) {
     logger.warn('Could not parse bytes as proto', e);
     return undefined;

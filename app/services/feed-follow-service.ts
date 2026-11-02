@@ -7,7 +7,7 @@ import {
   PutUserFollowSecretRequest,
   DeleteUserFollowSecretRequest,
 } from '@/models/feed-api-models';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { FeedInboxDecryptionService } from './feed-inbox-decryption-service';
 import { uuid } from '@/utils/uuid';
 import { toStringValue, toUuidDao } from '@/models/storage/conversions.to-dao';
@@ -23,7 +23,7 @@ export class FeedFollowService {
     identity: FeedIdentity,
     toFollow: FeedUser,
   ): Promise<ApiResult<void>> {
-    const inboxMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+    const inboxMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
       fromUserId: toUuidDao(identity.id),
       followRequest: {
         name: toStringValue(identity.name),
@@ -41,7 +41,7 @@ export class FeedFollowService {
     inboxMessage.signature = signature;
 
     const messageBytes =
-      LiftLog.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
+      GymLifeRpg.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
     const encryptedMessage =
       await this.encryptionService.encryptRsaOaepSha256Async(
         messageBytes,
@@ -73,7 +73,7 @@ export class FeedFollowService {
       return ApiResult.fromFailure(putFollowSecretResponse);
     }
 
-    const inboxMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+    const inboxMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
       fromUserId: toUuidDao(identity.id),
       followResponse: {
         accepted: {
@@ -94,7 +94,7 @@ export class FeedFollowService {
     inboxMessage.signature = signature;
 
     const messageBytes =
-      LiftLog.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
+      GymLifeRpg.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
     const encryptedMessage =
       await this.encryptionService.encryptRsaOaepSha256Async(
         messageBytes,
@@ -118,7 +118,7 @@ export class FeedFollowService {
     request: FollowRequest,
     userPublicKey: RsaPublicKey,
   ): Promise<ApiResult<void>> {
-    const inboxMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+    const inboxMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
       fromUserId: toUuidDao(identity.id),
       followResponse: {
         rejected: {},
@@ -137,7 +137,7 @@ export class FeedFollowService {
 
     try {
       const messageBytes =
-        LiftLog.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
+        GymLifeRpg.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
       const encryptedMessage =
         await this.encryptionService.encryptRsaOaepSha256Async(
           messageBytes,

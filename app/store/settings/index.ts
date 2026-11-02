@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { RemoteData } from '@/models/remote';
 import { WeightUnit } from '@/models/weight';
 import { DayOfWeek, Instant } from '@js-joda/core';
@@ -146,10 +146,10 @@ export type PlaintextExportFormat = 'CSV' | 'JSON';
 
 export const importData = createAction('importData');
 export const importDataDao = createAction<{
-  dao: LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+  dao: GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
 }>('importDataDao');
 export const beginFeedImport =
-  createAction<LiftLog.Ui.Models.IFeedStateDaoV1>('beginFeedImport');
+  createAction<GymLifeRpg.Ui.Models.IFeedStateDaoV1>('beginFeedImport');
 export const exportData = createAction<{ includeFeed: boolean }>('exportData');
 
 export const exportPlainText = createAction<{ format: PlaintextExportFormat }>(

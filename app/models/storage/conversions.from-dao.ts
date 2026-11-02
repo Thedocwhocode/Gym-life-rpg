@@ -1,4 +1,4 @@
-import { google, LiftLog } from '@/gen/proto';
+import { google, GymLifeRpg } from '@/gen/proto';
 import {
   SessionBlueprint,
   WeightedExerciseBlueprint,
@@ -48,7 +48,7 @@ import { match, P } from 'ts-pattern';
 
 // Converts a UUID DAO to a string
 export function fromUuidDao(
-  dao: LiftLog.Ui.Models.IUuidDao | null | undefined,
+  dao: GymLifeRpg.Ui.Models.IUuidDao | null | undefined,
 ): string {
   if (!dao?.value) {
     throw new Error('UUID dao cannot be null');
@@ -78,12 +78,12 @@ export function fromUuidDao(
 const nanoFactor = BigNumber('1000000000');
 
 // Converts a DecimalValue DAO to a BigNumber
-export function fromDecimalDao(dao: LiftLog.Ui.Models.IDecimalValue): BigNumber;
+export function fromDecimalDao(dao: GymLifeRpg.Ui.Models.IDecimalValue): BigNumber;
 export function fromDecimalDao(
-  dao: LiftLog.Ui.Models.IDecimalValue | null | undefined,
+  dao: GymLifeRpg.Ui.Models.IDecimalValue | null | undefined,
 ): BigNumber | undefined;
 export function fromDecimalDao(
-  dao: LiftLog.Ui.Models.IDecimalValue | null | undefined,
+  dao: GymLifeRpg.Ui.Models.IDecimalValue | null | undefined,
 ): BigNumber | undefined {
   if (dao?.nanos == null || dao?.units == null) {
     return undefined;
@@ -94,7 +94,7 @@ export function fromDecimalDao(
 }
 
 export function fromTimeOnlyDao(
-  dao: LiftLog.Ui.Models.ITimeOnlyDao | null | undefined,
+  dao: GymLifeRpg.Ui.Models.ITimeOnlyDao | null | undefined,
 ): LocalTime {
   if (!dao) {
     throw new Error('TimeOnlyDao cannot be null');
@@ -106,7 +106,7 @@ export function fromTimeOnlyDao(
 }
 
 export function fromDateOnlyDao(
-  dao: LiftLog.Ui.Models.IDateOnlyDao | null | undefined,
+  dao: GymLifeRpg.Ui.Models.IDateOnlyDao | null | undefined,
 ): LocalDate {
   if (!dao) {
     throw new Error('DateOnlyDao cannot be null');
@@ -115,7 +115,7 @@ export function fromDateOnlyDao(
 }
 
 function fromDateTimeDao(
-  dao: LiftLog.Ui.Models.IDateTimeDao | null | undefined,
+  dao: GymLifeRpg.Ui.Models.IDateTimeDao | null | undefined,
 ): OffsetDateTime | undefined {
   if (!dao) {
     return undefined;
@@ -143,8 +143,8 @@ export function fromTimestampDao(
 
 // Converts a RecordedSet DAO to a RecordedSetPOJO
 export function fromRecordedSetDao(
-  sessionDate: LiftLog.Ui.Models.IDateOnlyDao,
-  recordedSetDao: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2,
+  sessionDate: GymLifeRpg.Ui.Models.IDateOnlyDao,
+  recordedSetDao: GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2,
 ): RecordedSet {
   const dateCompleted = recordedSetDao.completionDate ?? sessionDate;
   const completionLocalDateTime = fromDateOnlyDao(dateCompleted).atTime(
@@ -166,9 +166,9 @@ export function fromRecordedSetDao(
 
 // Converts a PotentialSet DAO to a PotentialSetPOJO
 function fromPotentialSetDao(
-  sessionDate: LiftLog.Ui.Models.IDateOnlyDao,
+  sessionDate: GymLifeRpg.Ui.Models.IDateOnlyDao,
   dao:
-    | LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2
+    | GymLifeRpg.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2
     | null
     | undefined,
 ): PotentialSet {
@@ -188,16 +188,16 @@ function fromPotentialSetDao(
 
 // Converts a RecordedExercise DAO to a RecordedExercisePOJO
 function fromRecordedExerciseDao(
-  sessionDate: LiftLog.Ui.Models.IDateOnlyDao,
+  sessionDate: GymLifeRpg.Ui.Models.IDateOnlyDao,
   dao:
-    | LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2
+    | GymLifeRpg.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2
     | null
     | undefined,
 ): RecordedExercise {
   if (!dao) {
     throw new Error('Recorded exercise DAO cannot be null');
   }
-  if (dao.type === LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
+  if (dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
     return RecordedCardioExercise.fromPOJO({
       notes: dao.notes?.value ?? undefined,
       blueprint: fromExerciseBlueprintDao(
@@ -229,7 +229,7 @@ function fromRecordedExerciseDao(
 
 // Converts a Session DAO to a SessionPOJO
 export function fromSessionDao(
-  dao: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2 | null | undefined,
+  dao: GymLifeRpg.Ui.Models.SessionHistoryDao.ISessionDaoV2 | null | undefined,
 ): Session {
   if (!dao) {
     throw new Error('Session dao cannot be null');
@@ -255,17 +255,17 @@ export function fromSessionDao(
 
 function fromWeight(
   value: BigNumber,
-  daoUnit: LiftLog.Ui.Models.WeightUnit | null | undefined,
+  daoUnit: GymLifeRpg.Ui.Models.WeightUnit | null | undefined,
 ): Weight {
   const unit = match(daoUnit)
     .returnType<WeightUnit>()
     .with(P.nullish, () => 'nil')
-    .with(LiftLog.Ui.Models.WeightUnit.NIL satisfies 0 as 0, () => 'nil')
+    .with(GymLifeRpg.Ui.Models.WeightUnit.NIL satisfies 0 as 0, () => 'nil')
     .with(
-      LiftLog.Ui.Models.WeightUnit.KILOGRAMS satisfies 1 as 1,
+      GymLifeRpg.Ui.Models.WeightUnit.KILOGRAMS satisfies 1 as 1,
       () => 'kilograms',
     )
-    .with(LiftLog.Ui.Models.WeightUnit.POUNDS satisfies 2 as 2, () => 'pounds')
+    .with(GymLifeRpg.Ui.Models.WeightUnit.POUNDS satisfies 2 as 2, () => 'pounds')
     .exhaustive();
 
   return new Weight(value, unit);
@@ -273,7 +273,7 @@ function fromWeight(
 
 // Converts a SessionHistory DAO to a Map of Sessions
 export function fromSessionHistoryDao(
-  sessionHistoryModel: LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2,
+  sessionHistoryModel: GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2,
 ): Map<string, Session> {
   return sessionHistoryModel.completedSessions.reduce((map, item) => {
     map.set(
@@ -286,7 +286,7 @@ export function fromSessionHistoryDao(
 
 // Converts a SessionBlueprint DAO to a SessionBlueprint
 export function fromSessionBlueprintDao(
-  dao: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2,
+  dao: GymLifeRpg.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2,
 ): SessionBlueprint {
   return new SessionBlueprint(
     dao.name!,
@@ -297,14 +297,14 @@ export function fromSessionBlueprintDao(
 
 export function fromExerciseBlueprintDao(
   dao:
-    | LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2
+    | GymLifeRpg.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2
     | null
     | undefined,
 ): ExerciseBlueprint {
   if (!dao) {
     throw new Error('ExerciseBlueprint dao should not be null');
   }
-  if (dao.type === LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
+  if (dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
     return new CardioExerciseBlueprint(
       dao.name!,
       fromCardioTargetDao(dao.cardioTarget!),
@@ -329,7 +329,7 @@ export function fromExerciseBlueprintDao(
 }
 
 function fromCardioTargetDao(
-  dao: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget,
+  dao: GymLifeRpg.Ui.Models.SessionBlueprintDao.ICardioTarget,
 ): CardioTarget {
   return {
     type: dao.type as 'distance' | 'time',
@@ -344,7 +344,7 @@ function fromCardioTargetDao(
 }
 
 export function fromRestDao(
-  dao: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2 | null | undefined,
+  dao: GymLifeRpg.Ui.Models.SessionBlueprintDao.IRestDaoV2 | null | undefined,
 ): Rest {
   return {
     minRest: fromDurationDao(dao?.minRest) ?? Duration.ZERO,
@@ -355,7 +355,7 @@ export function fromRestDao(
 
 // Converts a ProgramBlueprint DAO to a ProgramBlueprint
 export function fromProgramBlueprintDao(
-  dao: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1,
+  dao: GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1,
 ): ProgramBlueprint {
   return new ProgramBlueprint(
     dao.name!,
@@ -364,7 +364,7 @@ export function fromProgramBlueprintDao(
   );
 }
 
-export function fromFeedStateDao(dao: LiftLog.Ui.Models.IFeedStateDaoV1) {
+export function fromFeedStateDao(dao: GymLifeRpg.Ui.Models.IFeedStateDaoV1) {
   return {
     feed: dao.feedItems?.map(fromFeedItemDao).map((x) => x.toPOJO()) ?? [],
     followedUsers:
@@ -405,7 +405,7 @@ export function fromDurationDao(
 }
 
 export function fromFeedItemDao(
-  dao: LiftLog.Ui.Models.IFeedItemDaoV1,
+  dao: GymLifeRpg.Ui.Models.IFeedItemDaoV1,
 ): FeedItem {
   return new SessionFeedItem(
     fromUuidDao(dao.userId),
@@ -418,7 +418,7 @@ export function fromFeedItemDao(
 
 // Converts a FeedIdentity DAO to a FeedIdentity
 export function fromFeedIdentityDao(
-  dao: LiftLog.Ui.Models.IFeedIdentityDaoV1,
+  dao: GymLifeRpg.Ui.Models.IFeedIdentityDaoV1,
 ): FeedIdentity {
   return new FeedIdentity(
     fromUuidDao(dao.id),
@@ -439,7 +439,7 @@ export function fromFeedIdentityDao(
 
 // Converts a FeedUser DAO to a FeedUser
 export function fromFeedUserDao(
-  dao: LiftLog.Ui.Models.IFeedUserDaoV1,
+  dao: GymLifeRpg.Ui.Models.IFeedUserDaoV1,
 ): FeedUser {
   return new FeedUser(
     fromUuidDao(dao.id),
@@ -455,13 +455,13 @@ export function fromFeedUserDao(
 
 // Converts a CurrentPlan DAO to a CurrentPlan
 export function fromCurrentPlanDao(
-  dao: LiftLog.Ui.Models.ICurrentPlanDaoV1,
+  dao: GymLifeRpg.Ui.Models.ICurrentPlanDaoV1,
 ): SessionBlueprint[] {
   return dao.sessions!.map(fromSessionBlueprintDao);
 }
 
 export function fromCurrentSessionDao(
-  dao: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2,
+  dao: GymLifeRpg.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2,
 ) {
   return {
     latestSetTimerNotificationId:
@@ -474,7 +474,7 @@ export function fromCurrentSessionDao(
 }
 
 export function fromSharedItemDao(
-  dao: LiftLog.Ui.Models.SharedItemPayload,
+  dao: GymLifeRpg.Ui.Models.SharedItemPayload,
 ): SharedItem | null {
   if (dao.sharedProgramBlueprint?.programBlueprint) {
     return new SharedProgramBlueprint(
@@ -484,7 +484,7 @@ export function fromSharedItemDao(
   return null;
 }
 function fromFollowRequestDao(
-  value: LiftLog.Ui.Models.IInboxMessageDao,
+  value: GymLifeRpg.Ui.Models.IInboxMessageDao,
 ): FollowRequestPOJO {
   return FollowRequest.fromPOJO({
     name: value.followRequest?.name?.value ?? '',

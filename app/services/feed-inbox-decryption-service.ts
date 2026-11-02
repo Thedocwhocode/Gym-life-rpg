@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { EncryptionService } from './encryption-service';
 import { RsaPublicKey } from '@/models/encryption-models';
 import { FeedApiService } from './feed-api';
@@ -16,7 +16,7 @@ export class FeedInboxDecryptionService {
   async decryptIfValid(
     identity: FeedIdentity,
     inboxMessage: GetInboxMessageResponse,
-  ): Promise<LiftLog.Ui.Models.InboxMessageDao | null> {
+  ): Promise<GymLifeRpg.Ui.Models.InboxMessageDao | null> {
     try {
       const decrypted = await this.encryptionService.decryptRsaOaepSha256Async(
         { dataChunks: inboxMessage.encryptedMessage },
@@ -24,7 +24,7 @@ export class FeedInboxDecryptionService {
       );
 
       const unverifiedInboxMessage =
-        LiftLog.Ui.Models.InboxMessageDao.decode(decrypted);
+        GymLifeRpg.Ui.Models.InboxMessageDao.decode(decrypted);
 
       if (
         !unverifiedInboxMessage.signature ||
@@ -61,7 +61,7 @@ export class FeedInboxDecryptionService {
   }
 
   static getSignaturePayload(
-    inboxMessage: LiftLog.Ui.Models.InboxMessageDao,
+    inboxMessage: GymLifeRpg.Ui.Models.InboxMessageDao,
     toUserId: string,
   ): Uint8Array {
     const payloadBytes = this.getPayloadBytes(inboxMessage);
@@ -82,15 +82,15 @@ export class FeedInboxDecryptionService {
   }
 
   private static getPayloadBytes(
-    inboxMessage: LiftLog.Ui.Models.InboxMessageDao,
+    inboxMessage: GymLifeRpg.Ui.Models.InboxMessageDao,
   ): Uint8Array {
     // Create a copy without the signature for payload calculation
-    const messageForPayload = LiftLog.Ui.Models.InboxMessageDao.create({
+    const messageForPayload = GymLifeRpg.Ui.Models.InboxMessageDao.create({
       ...inboxMessage,
       signature: null,
     });
 
-    return LiftLog.Ui.Models.InboxMessageDao.encode(messageForPayload).finish();
+    return GymLifeRpg.Ui.Models.InboxMessageDao.encode(messageForPayload).finish();
   }
 
   private async getUserPublicKey(userId: string): Promise<RsaPublicKey> {

@@ -12,7 +12,7 @@ import {
   setIsHydrated,
   updateFeedIdentity,
 } from '@/store/feed';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { fromFeedStateDao } from '@/models/storage/conversions.from-dao';
 import { toFeedStateDao } from '@/models/storage/conversions.to-dao';
 import { RemoteData } from '@/models/remote';
@@ -48,7 +48,7 @@ export function applyFeedEffects() {
           if (!version || version === '1') {
             try {
               const feedStateDao =
-                LiftLog.Ui.Models.FeedStateDaoV1.decode(state);
+                GymLifeRpg.Ui.Models.FeedStateDaoV1.decode(state);
               const feedState = fromFeedStateDao(feedStateDao);
 
               if (feedState.identity.isSuccess()) {
@@ -151,7 +151,7 @@ export function applyFeedEffects() {
         return;
       }
       const dao = toFeedStateDao(stateAfterReduce.feed);
-      const bytes = LiftLog.Ui.Models.FeedStateDaoV1.encode(dao).finish();
+      const bytes = GymLifeRpg.Ui.Models.FeedStateDaoV1.encode(dao).finish();
 
       await keyValueStore.setItem(StorageKey, bytes);
       await keyValueStore.setItem(`${StorageKey}Version`, '1');

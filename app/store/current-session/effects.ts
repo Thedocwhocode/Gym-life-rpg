@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import {
   EmptySession,
   RecordedWeightedExercise,
@@ -41,7 +41,7 @@ export function applyCurrentSessionEffects() {
           (await keyValueStore.getItem(`${storageKey}-Version`)) ?? '2';
 
         let currentSessionStateDao:
-          | LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+          | GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
           | undefined;
         switch (currentSessionVersion) {
           case '2':
@@ -49,7 +49,7 @@ export function applyCurrentSessionEffects() {
               (await keyValueStore.getItemBytes(storageKey)) ??
               Uint8Array.from([]);
             currentSessionStateDao =
-              LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.decode(
+              GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.decode(
                 bytes,
               );
             break;
@@ -123,7 +123,7 @@ export function applyCurrentSessionEffects() {
               stateAfterReduce.currentSession.latestSetTimerNotificationId,
           });
           const bytes =
-            LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.encode(
+            GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.encode(
               currentSessionStateDao,
             ).finish();
           await keyValueStore.setItem(`${storageKey}-Version`, '2');
