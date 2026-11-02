@@ -8,6 +8,7 @@ import { Linking, Platform } from 'react-native';
 import { Text, Dialog, Icon, List, Portal } from 'react-native-paper';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import * as Application from 'expo-application';
+import { isProAvailable } from '@/services/api-consts';
 
 export default function Settings() {
   const { t } = useTranslate();
@@ -74,14 +75,16 @@ export default function Settings() {
         ></List.Item>
       </List.Section>
 
-      <List.Section title={t('settings.pro_features.title')}>
-        <List.Item
-          onPress={() => push('/(tabs)/settings/ai/planner')}
-          title={t('ai.planner.title')}
-          description={t('ai.planner.subtitle')}
-          left={(props) => <List.Icon icon={'bolt'} {...props} />}
-        ></List.Item>
-      </List.Section>
+      {isProAvailable && (
+        <List.Section title={t('settings.pro_features.title')}>
+          <List.Item
+            onPress={() => push('/(tabs)/settings/ai/planner')}
+            title={t('ai.planner.title')}
+            description={t('ai.planner.subtitle')}
+            left={(props) => <List.Icon icon={'bolt'} {...props} />}
+          ></List.Item>
+        </List.Section>
+      )}
 
       <List.Section title={t('settings.support.title')}>
         <List.Item

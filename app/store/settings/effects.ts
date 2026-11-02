@@ -27,7 +27,8 @@ import { addExportPlaintextEffects } from '@/store/settings/export-plaintext-eff
 import { addImportBackupEffects } from '@/store/settings/import-backup-effects';
 import { addRemoteBackupEffects } from '@/store/settings/remote-backup-effects';
 import Purchases from 'react-native-purchases';
-import { I18nManager, Platform } from 'react-native';
+import { I18nManager } from 'react-native';
+import { revenueCatApiKey, sentryDsn } from '@/services/api-consts';
 import { captureException } from '@sentry/react-native';
 import { detectLanguageFromDateLocale } from '@/utils/language-detector';
 import { supportedLanguages } from '@/services/tolgee';
@@ -112,17 +113,24 @@ export function applySettingsEffects() {
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
       dispatch(setForceDarkMode(forceDarkMode));
 
-      if (Platform.OS === 'ios') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY!,
-        });
-      } else if (Platform.OS === 'android') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY!,
-        });
+      // Without a key, configure() throws and the app would never hydrate.
+      let purchasesConfigured = false;
+      if (revenueCatApiKey) {
+        try {
+          Purchases.configure({ apiKey: revenueCatApiKey });
+          purchasesConfigured = true;
+        } catch (err) {
+          captureException(
+            new Error('Failed to configure purchases', { cause: err }),
+          );
+        }
       }
       // migrate pro token to a revenuecat
-      if (proToken && !proToken.startsWith('$RCAnonymousID')) {
+      if (
+        purchasesConfigured &&
+        proToken &&
+        !proToken.startsWith('$RCAnonymousID')
+      ) {
         try {
           const customerInfo = await Purchases.getCustomerInfo();
           await Purchases.syncPurchases();
@@ -219,9 +227,9 @@ export function applySettingsEffects() {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setCrashReportsEnabled(action.payload);
       }
-      if (action.payload) {
+      if (action.payload && sentryDsn) {
         Sentry.init({
-          dsn: 'https://86576716425e1558b5e8622ba65d4544@o4505937515249664.ingest.us.sentry.io/4509717493383168',
+          dsn: sentryDsn,
 
           // Adds more context data to events (IP address, cookies, user, etc.)
           // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/

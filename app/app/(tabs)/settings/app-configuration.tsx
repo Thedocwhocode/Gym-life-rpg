@@ -19,6 +19,7 @@ import { Stack } from 'expo-router';
 import { List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { spacing } from '@/hooks/useAppTheme';
+import { isBackendConfigured } from '@/services/api-consts';
 
 export default function AppConfiguration() {
   const { t } = useTranslate();
@@ -44,12 +45,14 @@ export default function AppConfiguration() {
           value={settings.showBodyweight}
           onValueChange={(value) => dispatch(setShowBodyweight(value))}
         />
-        <ListSwitch
-          headline={<T keyName="feed.show_feed.label" />}
-          supportingText={<T keyName="feed.show_feed.subtitle" />}
-          value={settings.showFeed}
-          onValueChange={(value) => dispatch(setShowFeed(value))}
-        />
+        {isBackendConfigured && (
+          <ListSwitch
+            headline={<T keyName="feed.show_feed.label" />}
+            supportingText={<T keyName="feed.show_feed.subtitle" />}
+            value={settings.showFeed}
+            onValueChange={(value) => dispatch(setShowFeed(value))}
+          />
+        )}
 
         <ListSwitch
           headline={<T keyName="workout.notes_expanded_by_default.label" />}

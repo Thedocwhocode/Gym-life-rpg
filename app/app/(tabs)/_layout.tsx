@@ -1,4 +1,5 @@
 import { MaterialBottomTabs as Tabs } from '@/components/presentation/material-bottom-tabs';
+import { isBackendConfigured } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
 import { selectFollowRequestCount } from '@/store/feed';
 import { useTranslate } from '@tolgee/react';
@@ -7,7 +8,9 @@ import { Icon } from 'react-native-paper';
 export default function Layout() {
   const { t } = useTranslate();
   const followRequestCount = useAppSelector(selectFollowRequestCount);
-  const showFeed = useAppSelector((x) => x.settings.showFeed);
+  const showFeed = useAppSelector(
+    (x) => x.settings.showFeed && isBackendConfigured,
+  );
   return (
     <Tabs>
       <Tabs.Screen

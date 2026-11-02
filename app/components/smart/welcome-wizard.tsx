@@ -27,6 +27,7 @@ import { Icon, List, Portal, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
+import { isBackendConfigured } from '@/services/api-consts';
 
 const RPG_CLASSES: {
   id: RpgClass;
@@ -306,18 +307,22 @@ export function WelcomeWizard() {
           onValueChange={(value) => dispatch(setRestNotifications(value))}
         />
 
-        <Text
-          variant="titleMedium"
-          style={[styles.sectionTitle, styles.topSpacing]}
-        >
-          {t('feed.feed.title')}
-        </Text>
-        <ListSwitch
-          headline={t('feed.show_feed.label')}
-          supportingText={t('feed.show_feed.subtitle')}
-          value={settings.showFeed}
-          onValueChange={(value) => dispatch(setShowFeed(value))}
-        />
+        {isBackendConfigured && (
+          <>
+            <Text
+              variant="titleMedium"
+              style={[styles.sectionTitle, styles.topSpacing]}
+            >
+              {t('feed.feed.title')}
+            </Text>
+            <ListSwitch
+              headline={t('feed.show_feed.label')}
+              supportingText={t('feed.show_feed.subtitle')}
+              value={settings.showFeed}
+              onValueChange={(value) => dispatch(setShowFeed(value))}
+            />
+          </>
+        )}
       </View>
     </View>
   );

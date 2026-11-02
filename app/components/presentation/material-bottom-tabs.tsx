@@ -1,4 +1,5 @@
 import { Tabs, useRouter } from 'expo-router';
+import { isBackendConfigured } from '@/services/api-consts';
 import { CommonActions } from '@react-navigation/core';
 import { PropsWithChildren } from 'react';
 import { BottomNavigation, BottomNavigationProps } from 'react-native-paper';
@@ -23,7 +24,9 @@ export function MaterialBottomTabs({
   children,
   ...props
 }: MaterialBottomTabsProps) {
-  const showFeed = useAppSelector((x) => x.settings.showFeed);
+  const showFeed = useAppSelector(
+    (x) => x.settings.showFeed && isBackendConfigured,
+  );
   const { dismissTo } = useRouter();
   return (
     <Tabs

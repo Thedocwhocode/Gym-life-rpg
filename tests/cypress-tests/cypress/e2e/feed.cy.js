@@ -35,7 +35,7 @@ describe('Feed functionality', () => {
     // Click the share button to get the share URL and visit it
     cy.getByTestId('share-url').then(e => {
       const shareUrl = e.data('share-url')
-      cy.visit(shareUrl.replace('https://app.liftlog.online', ''))
+      cy.visit(shareUrl.replace(/^https?:\/\/[^/]+/, ''))
     })
 
     // Accept the follow request on the share page

@@ -12,6 +12,7 @@ import {
 } from '@/store/feed';
 import { addEffect } from '@/store/store';
 import { toUrlSafeHexString } from '@/utils/to-url-safe-hex-string';
+import { webBaseUrl } from '@/services/api-consts';
 
 export function addSharedItemEffects() {
   addEffect(
@@ -125,5 +126,5 @@ export function addSharedItemEffects() {
 }
 
 function getShareUrl(sharedItemId: string, aesKey: AesKey) {
-  return `https://app.liftlog.online/feed/shared-item/${sharedItemId}?k=${toUrlSafeHexString(aesKey.value)}`;
+  return `${webBaseUrl}/feed/shared-item/${sharedItemId}?k=${toUrlSafeHexString(aesKey.value)}`;
 }

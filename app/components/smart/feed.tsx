@@ -32,6 +32,7 @@ import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import { FlashList } from '@shopify/flash-list';
+import { webBaseUrl } from '@/services/api-consts';
 
 export default function Feed() {
   const feedItems = useAppSelector(selectFeedSessionItems);
@@ -81,7 +82,7 @@ function FeedProfile({ identity }: { identity: FeedIdentity }) {
   const dispatch = useDispatch();
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [focusPublish, setFocusPublish] = useState(false);
-  const shareUrl = `https://app.liftlog.online/feed/share?id=${identity.lookup}${
+  const shareUrl = `${webBaseUrl}/feed/share?id=${identity.lookup}${
     identity.name ? `&name=${encodeURIComponent(identity.name)}` : ''
   }`;
   const { t } = useTranslate();
