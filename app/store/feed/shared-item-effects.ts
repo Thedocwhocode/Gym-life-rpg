@@ -113,7 +113,7 @@ export function addSharedItemEffects() {
         dispatch(
           setSharedItem(
             RemoteData.error(
-              'Could not read shared item. Please update LiftLog.',
+              'Could not read shared item. Please update GymLife RPG.',
             ),
           ),
         );

@@ -214,7 +214,7 @@ export function WelcomeWizard() {
           {t('onboarding.open_source.body')}
         </Text>
         <Button
-          onPress={() => openUrl('https://github.com/LiamMorrow/LiftLog')}
+          onPress={() => openUrl('https://github.com/Thedocwhocode/Gym-life-rpg')}
         >
           {t('onboarding.open_source.button')}
         </Button>
@@ -230,7 +230,7 @@ export function WelcomeWizard() {
           value={settings.crashReportsEnabled}
           onValueChange={(value) => dispatch(setCrashReportsEnabled(value))}
         />
-        <Button onPress={() => openUrl('https://liftlog.online/privacy.html')}>
+        <Button onPress={() => openUrl('https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/PRIVACY.md')}>
           {t('onboarding.privacy_policy.button')}
         </Button>
       </View>

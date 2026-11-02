@@ -304,7 +304,7 @@ export default function Index() {
     >
       <Stack.Screen
         options={{
-          title: 'LiftLog',
+          title: 'GymLife RPG',
         }}
       />
       <AndroidNotificationAlert />

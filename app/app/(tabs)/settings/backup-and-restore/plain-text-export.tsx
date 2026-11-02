@@ -39,7 +39,7 @@ export default function PlainTextExportPage() {
           <Button
             onPress={() =>
               openUrl(
-                'https://github.com/LiamMorrow/LiftLog/blob/main/docs/PlaintextExport.md',
+                'https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/docs/PlaintextExport.md',
               )
             }
           >
