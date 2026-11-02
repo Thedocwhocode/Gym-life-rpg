@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>LiftLog</string>
+    <string>GymLife RPG</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -43,14 +43,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>liftlog</string>
-          <string>com.limajuice.liftlog</string>
+          <string>gymliferpg</string>
+          <string>com.thedocwhocode.gymliferpg</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+liftlog</string>
+          <string>exp+gym-life-rpg</string>
         </array>
       </dict>
     </array>

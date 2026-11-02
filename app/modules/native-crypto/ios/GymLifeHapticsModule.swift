@@ -1,9 +1,9 @@
 import ExpoModulesCore
 import UIKit
 
-public class LiftLogHapticsModule: Module {
+public class GymLifeHapticsModule: Module {
   public func definition() -> ModuleDefinition {
-    Name("LiftLogHaptics")
+    Name("GymLifeHaptics")
 
     AsyncFunction("triggerClickHaptic") { () -> Void in
       let generator = UIImpactFeedbackGenerator(style: .heavy)

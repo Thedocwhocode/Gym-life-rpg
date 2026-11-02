@@ -1,4 +1,4 @@
-package com.limajuice.liftlog
+package com.thedocwhocode.gymliferpg
 
 import android.app.Application
 import android.content.res.Configuration

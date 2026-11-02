@@ -116,7 +116,7 @@ export class NotificationService {
     }
 
     await startActivityAsync('android.settings.REQUEST_SCHEDULE_EXACT_ALARM', {
-      data: 'package:com.limajuice.liftlog',
+      data: 'package:com.thedocwhocode.gymliferpg',
     });
 
     return await canScheduleExactAlarms();

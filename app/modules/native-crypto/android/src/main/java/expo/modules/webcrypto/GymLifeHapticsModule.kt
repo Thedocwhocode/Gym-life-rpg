@@ -3,9 +3,9 @@ package expo.modules.webcrypto
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 
-class LiftLogHapticsModule : Module() {
+class GymLifeHapticsModule : Module() {
     override fun definition() = ModuleDefinition {
-        Name("LiftLogHaptics")
+        Name("GymLifeHaptics")
 
         AsyncFunction("triggerClickHaptic") {
             val context = appContext.reactContext

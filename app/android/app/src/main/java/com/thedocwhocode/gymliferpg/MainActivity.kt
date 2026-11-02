@@ -1,4 +1,4 @@
-package com.limajuice.liftlog
+package com.thedocwhocode.gymliferpg
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

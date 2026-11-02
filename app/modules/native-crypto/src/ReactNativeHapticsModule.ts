@@ -18,7 +18,7 @@ const module =
         triggerSlowRiseHaptic() {},
         cancelHaptic() {},
       }
-    : requireNativeModule<ReactNativeHapticsModule>('LiftLogHaptics');
+    : requireNativeModule<ReactNativeHapticsModule>('GymLifeHaptics');
 
 export const triggerSlowRiseHaptic = () => {
   module.triggerSlowRiseHaptic();
