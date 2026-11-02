@@ -34,7 +34,7 @@
 | Campo        | Valor                                                      |
 |--------------|------------------------------------------------------------|
 | Repositório  | https://github.com/Thedocwhocode/Gym-life-rpg              |
-| Branch ativa | `claude/setup-docs-and-tasks-wDjD8`                        |
+| Branch ativa | `feat/rebrand-gymlife-rpg`                                 |
 | Autor        | Thedocwhocode (luizrodolfocc@gmail.com)                    |
 | Objetivo     | Transformar o LiftLog num app gamificado de academia + RPG |
 | Marca        | GymLife RPG · slug `gym-life-rpg` · scheme `gymliferpg`    |
@@ -153,9 +153,9 @@ npm run lint      # ESLint
 
 ## Branch de Trabalho
 
-Sempre desenvolver na branch: `claude/setup-docs-and-tasks-wDjD8`
+Sempre desenvolver na branch: `feat/rebrand-gymlife-rpg`
 
 ```bash
-git checkout claude/setup-docs-and-tasks-wDjD8
-git push -u origin claude/setup-docs-and-tasks-wDjD8
+git checkout feat/rebrand-gymlife-rpg
+git push -u origin feat/rebrand-gymlife-rpg
 ```
