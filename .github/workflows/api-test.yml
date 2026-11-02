@@ -18,7 +18,7 @@ jobs:
         image: postgres:17
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: liftlog
+          POSTGRES_DB: gymliferpg
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -35,10 +35,10 @@ jobs:
           dotnet-version: 10.0.x
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./tests/LiftLog.Tests.Api
+        working-directory: ./tests/GymLifeRpg.Tests.Api
       - name: Build
         run: dotnet build
-        working-directory: ./tests/LiftLog.Tests.Api
+        working-directory: ./tests/GymLifeRpg.Tests.Api
       - name: Test
         run: dotnet run --no-restore --verbosity normal
-        working-directory: ./tests/LiftLog.Tests.Api
+        working-directory: ./tests/GymLifeRpg.Tests.Api

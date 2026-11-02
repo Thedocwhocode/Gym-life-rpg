@@ -1,13 +1,13 @@
 {
   "name": "cypress-tests",
   "version": "1.0.0",
-  "description": "A collection of cypress tests for testing LiftLog.Web",
+  "description": "A collection of cypress tests for testing the GymLife RPG web app",
   "main": "index.js",
   "scripts": {
     "cypress-ci": "cypress run --browser=chrome",
     "cypress-open": "cypress open",
-    "local-api": "dotnet run --project ../../backend/LiftLog.Api",
-    "local-api-with-deps": "docker compose -f ../../backend/LiftLog.Api/docker-compose.yml up -d && npm run local-api",
+    "local-api": "dotnet run --project ../../backend/GymLifeRpg.Api",
+    "local-api-with-deps": "docker compose -f ../../backend/GymLifeRpg.Api/docker-compose.yml up -d && npm run local-api",
     "server": "npm run web --prefix ../../app",
     "server-ci": "npm run web --prefix ../../app",
     "test": "LANG=en_AU.UTF-8 run-p -r server cypress-open local-api-with-deps",

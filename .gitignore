@@ -381,5 +381,5 @@ my.secrets
 purchaseToken.txt
 
 appsettings.development.json
-backend/LiftLog.Api/appsettings.Development.json
+backend/GymLifeRpg.Api/appsettings.Development.json
 

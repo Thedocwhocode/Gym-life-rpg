@@ -15,7 +15,7 @@ jobs:
         image: postgres:17
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: liftlog
+          POSTGRES_DB: gymliferpg
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -24,8 +24,8 @@ jobs:
         ports:
           - 5432:5432
     env:
-      ConnectionStrings__UserDataContext: Host=localhost;Port=5432;Database=liftlog;Username=postgres;Password=password
-      ConnectionStrings__RateLimitContext: Host=localhost;Port=5432;Database=liftlog;Username=postgres;Password=password
+      ConnectionStrings__UserDataContext: Host=localhost;Port=5432;Database=gymliferpg;Username=postgres;Password=password
+      ConnectionStrings__RateLimitContext: Host=localhost;Port=5432;Database=gymliferpg;Username=postgres;Password=password
       OpenAiApiKey: "sk-123"
       WebAuthApiKey: "1234"
       GooglePlayServiceAccountEmail: "123"
