@@ -228,9 +228,34 @@ Foco principal: **Dashboard Gamificado** e **Frontend RPG**.
 
 ---
 
+## FASE 6 — Efeitos numéricos da Jornada (pós-redesign)
+
+> Registrado na `/plan-eng-review` de 2026-11-04 (`docs/redesign/PLANO.md`).
+
+- [x] ~~Ligar os multiplicadores de XP de classe, skill, status e itens que o design descreve.~~
+  **Incorporado à F6 do redesign** na `/plan-design-review` de 2026-11-04 (DR11 no PLANO.md). Na v1 do
+  redesign, skills e itens são só cosméticos (D6/D7), e a regra de empilhamento (D3: somados, teto
+  de ±50%) fica sem uso.
+  - **Por quê:** transforma skills e itens em progressão real.
+  - **Cuidado:** o estado RPG é uma projeção pura das sessões, então um multiplicador novo
+    reescreve o XP do passado. Ele precisa entrar como escolha datada (`{desde, regra}`) e valer só
+    para sessões a partir daquela data.
+  - **Onde:** `store/journey/rules/*` + `store/rpg/derive.ts`.
+  - **Depende de:** F6 do redesign pronta; D3 confirmada.
+
 ## Referências de Inspiração
 
 - Habitica (gamificação de hábitos)
 - Final Fantasy (ficha de personagem, barra de XP)
 - Dark Souls (visual dark fantasy, progressão de stats)
 - Pokémon GO (conquistas, streaks diários)
+
+## Pós-redesign — Arte própria
+
+> Registrado na `/plan-design-review` de 2026-11-04 (`docs/redesign/PLANO.md`, DR12).
+
+- [ ] Sprites próprios: retratos de classe, ícones de item e tiles de masmorra, no lugar dos
+  substitutos do lançamento (quadro parado do pixelfx e glifos Pixelarticons).
+  - **Por quê:** o DR12 evita as listras do export, mas classe e item ainda ficam genéricos.
+  - **Prós:** identidade visual e itens desejáveis. **Contras:** custo de arte, sem prazo.
+  - **Depende de:** F6 pronta (lista final de itens e classes).
