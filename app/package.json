@@ -19,12 +19,15 @@
     "protots": "pbts -o ./gen/proto.d.ts ./gen/proto.js",
     "proto": "npm run protojs && npm run protots",
     "fx:sheets": "node scripts/fx-sheets.mjs",
+    "icons:pixel": "node scripts/build-pixel-icons.mjs",
     "test": "vitest",
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@expo-google-fonts/pixelify-sans": "^0.4.2",
     "@expo-google-fonts/press-start-2p": "^0.4.1",
+    "@expo-google-fonts/space-mono": "^0.4.2",
     "@expo-google-fonts/vt323": "^0.4.1",
     "@expo/metro-runtime": "~6.1.2",
     "@gorhom/bottom-sheet": "^5.1.8",

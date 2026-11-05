@@ -45,6 +45,18 @@ Cypress.Commands.add('completeWelcomeWizard', () => {
     return cy.getByTestId('welcome-wizard-next').click().click().click()
 });
 
+// Screenshots the element with this test id and diffs it against cypress/snapshots/<testId>.png.
+Cypress.Commands.add('matchSnapshot', (testId) => {
+    let screenshotPath
+    return cy.getByTestId(testId)
+        .screenshot(testId, { overwrite: true, onAfterScreenshot: (_el, props) => { screenshotPath = props.path } })
+        .then(() => cy.task('compareSnapshot', { name: testId, screenshotPath }))
+        .then((result) => {
+            if (result.status === 'new') cy.log(`new reference: snapshots/new/${testId}.png`)
+            expect(result.status, result.reason).not.to.equal('failed')
+        })
+});
+
 Cypress.Commands.add('recursionLoop', { times: 'optional' }, function (fn, times) {
     if (typeof times === 'undefined') {
         times = 0;

@@ -14,6 +14,14 @@ import ServicesProvider from '@/components/smart/services-provider';
 import { useFonts } from 'expo-font';
 import { PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
 import { VT323_400Regular } from '@expo-google-fonts/vt323';
+import {
+  PixelifySans_500Medium,
+  PixelifySans_600SemiBold,
+} from '@expo-google-fonts/pixelify-sans';
+import {
+  SpaceMono_400Regular,
+  SpaceMono_700Bold,
+} from '@expo-google-fonts/space-mono';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import LevelUpOverlay from '@/components/presentation/rpg/LevelUpOverlay';
@@ -38,6 +46,11 @@ export default Sentry.wrap(function RootLayout() {
   const [fontsLoaded] = useFonts({
     PressStart2P_400Regular,
     VT323_400Regular,
+    // Redesign fonts; the F1 theme switches fontConfig over to them.
+    PixelifySans_500Medium,
+    PixelifySans_600SemiBold,
+    SpaceMono_400Regular,
+    SpaceMono_700Bold,
   });
 
   useEffect(() => {

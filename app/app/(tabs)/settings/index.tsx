@@ -86,6 +86,17 @@ export default function Settings() {
         </List.Section>
       )}
 
+      {__DEV__ && (
+        <List.Section title="Dev">
+          <List.Item
+            testID="devGallery"
+            onPress={() => push('/(tabs)/settings/dev-gallery')}
+            title="Galeria (dev)"
+            left={(props) => <List.Icon icon={'star'} {...props} />}
+          ></List.Item>
+        </List.Section>
+      )}
+
       <List.Section title={t('settings.support.title')}>
         <List.Item
           onPress={() =>
