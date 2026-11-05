@@ -5,10 +5,7 @@ import StatAttributeCard from '@/components/presentation/rpg/StatAttributeCard';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { useAppSelector } from '@/store';
 import { selectSessions } from '@/store/stored-sessions';
-import {
-  RecordedWeightedExercise,
-  Session,
-} from '@/models/session-models';
+import { RecordedWeightedExercise, Session } from '@/models/session-models';
 import { YearMonth } from '@js-joda/core';
 import { Stack } from 'expo-router';
 import { useMemo } from 'react';

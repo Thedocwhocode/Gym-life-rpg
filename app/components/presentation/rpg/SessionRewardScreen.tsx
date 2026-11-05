@@ -33,8 +33,8 @@ export default function SessionRewardScreen() {
   }));
 
   const dismiss = () => {
-    opacity.value = withTiming(0, { duration: 250 });
-    translateY.value = withTiming(40, { duration: 250 });
+    opacity.set(withTiming(0, { duration: 250 }));
+    translateY.set(withTiming(40, { duration: 250 }));
     setTimeout(() => dispatch(clearSessionReward()), 260);
   };
 

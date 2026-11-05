@@ -278,9 +278,7 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
   const colorSchemeSeed = useAppSelector(
     (state) => state.settings.colorSchemeSeed,
   );
-  const forceDarkMode = useAppSelector(
-    (state) => state.settings.forceDarkMode,
-  );
+  const forceDarkMode = useAppSelector((state) => state.settings.forceDarkMode);
 
   const colorScheme = useColorScheme();
   const isDark = forceDarkMode || colorScheme === 'dark';
@@ -305,7 +303,7 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
   const paperTheme = isDark
     ? { ...MD3DarkTheme, colors: theme.dark, fonts }
     : { ...MD3LightTheme, colors: theme.light, fonts };
-  const appTheme = {
+  const appTheme: AppTheme = {
     colors: {
       ...schemedTheme,
       ...colorPair('orange', 'ffffa500', schemedTheme.primary, isDark),

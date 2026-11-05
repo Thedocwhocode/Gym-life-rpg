@@ -84,7 +84,9 @@ export function toTimestampDao(instant: Instant): google.protobuf.Timestamp {
   });
 }
 
-export function toDateOnlyDao(date: LocalDate): GymLifeRpg.Ui.Models.DateOnlyDao {
+export function toDateOnlyDao(
+  date: LocalDate,
+): GymLifeRpg.Ui.Models.DateOnlyDao {
   return new GymLifeRpg.Ui.Models.DateOnlyDao({
     year: date.year(),
     month: date.monthValue(),
@@ -92,7 +94,9 @@ export function toDateOnlyDao(date: LocalDate): GymLifeRpg.Ui.Models.DateOnlyDao
   });
 }
 
-export function toTimeOnlyDao(time: LocalTime): GymLifeRpg.Ui.Models.TimeOnlyDao {
+export function toTimeOnlyDao(
+  time: LocalTime,
+): GymLifeRpg.Ui.Models.TimeOnlyDao {
   const nano = time.nano();
   return new GymLifeRpg.Ui.Models.TimeOnlyDao({
     hour: time.hour(),
@@ -340,19 +344,23 @@ export function toCurrentSessionDao(model: {
   historySession: Session | undefined;
   latestSetTimerNotificationId: string | undefined;
 }): GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2 {
-  return new GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2({
-    historySession:
-      (model.historySession && toSessionDao(model.historySession)) ?? null,
-    workoutSession:
-      (model.workoutSession && toSessionDao(model.workoutSession)) ?? null,
-    latestSetTimerNotificationId:
-      (model.latestSetTimerNotificationId &&
-        toUuidDao(model.latestSetTimerNotificationId)) ||
-      null,
-  });
+  return new GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2(
+    {
+      historySession:
+        (model.historySession && toSessionDao(model.historySession)) ?? null,
+      workoutSession:
+        (model.workoutSession && toSessionDao(model.workoutSession)) ?? null,
+      latestSetTimerNotificationId:
+        (model.latestSetTimerNotificationId &&
+          toUuidDao(model.latestSetTimerNotificationId)) ||
+        null,
+    },
+  );
 }
 
-export function toFeedItemDao(item: FeedItem): GymLifeRpg.Ui.Models.FeedItemDaoV1 {
+export function toFeedItemDao(
+  item: FeedItem,
+): GymLifeRpg.Ui.Models.FeedItemDaoV1 {
   return new GymLifeRpg.Ui.Models.FeedItemDaoV1({
     eventId: toUuidDao(item.eventId),
     expiry: toTimestampDao(item.expiry),

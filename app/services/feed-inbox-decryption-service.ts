@@ -90,7 +90,9 @@ export class FeedInboxDecryptionService {
       signature: null,
     });
 
-    return GymLifeRpg.Ui.Models.InboxMessageDao.encode(messageForPayload).finish();
+    return GymLifeRpg.Ui.Models.InboxMessageDao.encode(
+      messageForPayload,
+    ).finish();
   }
 
   private async getUserPublicKey(userId: string): Promise<RsaPublicKey> {

@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  xpForLevel,
-  levelFromXp,
-  titleForLevel,
-  xpProgress,
-} from './index';
+import { xpForLevel, levelFromXp, titleForLevel, xpProgress } from './index';
 
 describe('xpForLevel', () => {
   it('level 1 requires 0 XP', () => {

@@ -203,19 +203,21 @@ async function persistPrograms(
 ) {
   try {
     const currentSessionStateDao =
-      new GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1({
-        activeProgramId: toStringValue(
-          stateAfterReduce.program.activeProgramId,
-        ),
-        programBlueprints: Object.fromEntries(
-          Object.entries(stateAfterReduce.program.savedPrograms).map(
-            ([key, program]) => [
-              key,
-              toProgramBlueprintDao(ProgramBlueprint.fromPOJO(program)),
-            ],
+      new GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1(
+        {
+          activeProgramId: toStringValue(
+            stateAfterReduce.program.activeProgramId,
           ),
-        ),
-      });
+          programBlueprints: Object.fromEntries(
+            Object.entries(stateAfterReduce.program.savedPrograms).map(
+              ([key, program]) => [
+                key,
+                toProgramBlueprintDao(ProgramBlueprint.fromPOJO(program)),
+              ],
+            ),
+          ),
+        },
+      );
     const bytes =
       GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.encode(
         currentSessionStateDao,
