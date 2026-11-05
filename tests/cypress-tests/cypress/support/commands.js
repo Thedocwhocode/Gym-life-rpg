@@ -42,7 +42,9 @@ Cypress.Commands.add('dialog', () => {
     return cy.get('[data-testid=fullscreen-dialog]:visible, [data-testid=modal-surface]:visible')
 });
 Cypress.Commands.add('completeWelcomeWizard', () => {
-    return cy.getByTestId('welcome-wizard-next').click().click().click()
+    // One click per page (welcome-wizard.tsx totalPages = 4); re-query because the button re-renders.
+    for (let page = 0; page < 4; page++) cy.getByTestId('welcome-wizard-next').click()
+    return cy.getByTestId('welcome-wizard-next').should('not.exist')
 });
 
 // Screenshots the element with this test id and diffs it against cypress/snapshots/<testId>.png.
