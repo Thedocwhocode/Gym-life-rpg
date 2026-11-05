@@ -10,13 +10,13 @@
       "output": "single"
     },
     "splash": {
-      "backgroundColor": "#0d0d0d",
+      "backgroundColor": "#0b0c0d",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
-    "backgroundColor": "#0d0d0d",
-    "primaryColor": "#c62828",
+    "backgroundColor": "#0b0c0d",
+    "primaryColor": "#e6a94f",
     "plugins": [
       "expo-router",
       [
@@ -47,7 +47,7 @@
       "package": "com.thedocwhocode.gymliferpg",
       "permissions": ["android.permission.SCHEDULE_EXACT_ALARM"],
       "adaptiveIcon": {
-        "backgroundColor": "#0d0d0d",
+        "backgroundColor": "#0b0c0d",
         "foregroundImage": "./assets/icon_foreground.png",
         "monochromeImage": "./assets/icon_monochrome.png"
       }

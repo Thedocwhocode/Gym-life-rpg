@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
-import { AppThemeProvider } from '@/hooks/useAppTheme';
-import { I18nManager, LogBox, Platform, useColorScheme } from 'react-native';
+import { AppThemeProvider, useAppTheme } from '@/hooks/useAppTheme';
+import Scanlines from '@/components/presentation/pixel/Scanlines';
+import { I18nManager, LogBox, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
@@ -12,8 +13,6 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import * as Sentry from '@sentry/react-native';
 import ServicesProvider from '@/components/smart/services-provider';
 import { useFonts } from 'expo-font';
-import { PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
-import { VT323_400Regular } from '@expo-google-fonts/vt323';
 import {
   PixelifySans_500Medium,
   PixelifySans_600SemiBold,
@@ -41,12 +40,30 @@ if (Platform.OS === 'android') {
   I18nManager.swapLeftAndRightInRTL(true);
 }
 
+function RootStack() {
+  const { colorScheme } = useAppTheme();
+  return (
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          statusBarStyle:
+            Platform.OS === 'android'
+              ? colorScheme === 'dark'
+                ? 'light'
+                : 'dark'
+              : undefined,
+          gestureEnabled: false,
+        }}
+      />
+      <Scanlines />
+    </>
+  );
+}
+
 export default Sentry.wrap(function RootLayout() {
-  const colorScheme = useColorScheme();
   const [fontsLoaded] = useFonts({
-    PressStart2P_400Regular,
-    VT323_400Regular,
-    // Redesign fonts; the F1 theme switches fontConfig over to them.
+    // Redesign fonts (theme/tokens.ts fontFamily).
     PixelifySans_500Medium,
     PixelifySans_600SemiBold,
     SpaceMono_400Regular,
@@ -74,18 +91,7 @@ export default Sentry.wrap(function RootLayout() {
                   <SnackbarProvider>
                     <LevelUpOverlay />
                     <SessionRewardScreen />
-                    <Stack
-                      screenOptions={{
-                        headerShown: false,
-                        statusBarStyle:
-                          Platform.OS === 'android'
-                            ? colorScheme === 'dark'
-                              ? 'light'
-                              : 'dark'
-                            : undefined,
-                        gestureEnabled: false,
-                      }}
-                    />
+                    <RootStack />
                   </SnackbarProvider>
                 </AppStateProvider>
               </AppThemeProvider>

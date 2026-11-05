@@ -3,14 +3,14 @@ import { addEffect } from '@/store/store';
 import {
   initializeSettingsStateSlice,
   setBackupReminder,
-  setColorSchemeSeed,
   setCrashReportsEnabled,
+  setEffectsMode,
   setFirstDayOfWeek,
-  setForceDarkMode,
   setIsHydrated,
   setKeepScreenAwakeDuringWorkout,
   setLastBackup,
   setNotesExpandedByDefault,
+  setPalette,
   setPreferredLanguage,
   setProToken,
   setRemoteBackupSettings,
@@ -60,11 +60,11 @@ export function applySettingsEffects() {
         lastBackupTime,
         backupReminder,
         firstDayOfWeek,
-        colorSchemeSeed,
+        palette,
         proToken,
         notesExpandedByDefault,
         keepScreenAwakeDuringWorkout,
-        forceDarkMode,
+        effectsMode,
       ] = await Promise.all([
         preferenceService.getUseImperialUnits(),
         preferenceService.getShowBodyweight(),
@@ -79,13 +79,13 @@ export function applySettingsEffects() {
         preferenceService.getLastBackupTime(),
         preferenceService.getBackupReminder(),
         preferenceService.getFirstDayOfWeek(),
-        preferenceService.getColorSchemeSeed(),
+        preferenceService.getPalette(),
         preferenceService.getProToken(),
         preferenceService.getNotesExpandedByDefault(),
         preferenceService.getKeepScreenAwakeDuringWorkout(),
-        preferenceService.getForceDarkMode(),
+        preferenceService.getEffectsMode(),
       ]);
-      dispatch(setColorSchemeSeed(colorSchemeSeed));
+      dispatch(setPalette(palette));
       dispatch(setUseImperialUnits(useImperialUnits));
       dispatch(setShowBodyweight(showBodyweight));
       dispatch(setShowTips(showTips));
@@ -111,7 +111,7 @@ export function applySettingsEffects() {
       dispatch(setProToken(proToken));
       dispatch(setNotesExpandedByDefault(notesExpandedByDefault));
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
-      dispatch(setForceDarkMode(forceDarkMode));
+      if (effectsMode) dispatch(setEffectsMode(effectsMode));
 
       // Without a key, configure() throws and the app would never hydrate.
       let purchasesConfigured = false;
@@ -299,10 +299,10 @@ export function applySettingsEffects() {
   );
 
   addEffect(
-    setColorSchemeSeed,
+    setPalette,
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
-        await preferenceService.setColorSchemeSeed(action.payload);
+        await preferenceService.setPalette(action.payload);
       }
     },
   );
@@ -326,10 +326,10 @@ export function applySettingsEffects() {
   );
 
   addEffect(
-    setForceDarkMode,
+    setEffectsMode,
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
-        await preferenceService.setForceDarkMode(action.payload);
+        await preferenceService.setEffectsMode(action.payload);
       }
     },
   );

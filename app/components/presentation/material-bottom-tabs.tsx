@@ -3,7 +3,8 @@ import { isBackendConfigured } from '@/services/api-consts';
 import { CommonActions } from '@react-navigation/core';
 import { PropsWithChildren } from 'react';
 import { BottomNavigation, BottomNavigationProps } from 'react-native-paper';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
+import { fontFamily } from '@/theme/tokens';
 import { useAppSelector } from '@/store';
 
 export type MaterialBottomTabsProps = PropsWithChildren<
@@ -96,6 +97,22 @@ export function MaterialBottomTabs({
               }
 
               return null;
+            }}
+            renderLabel={({ route, color }) => {
+              const { options } = descriptors[route.key];
+              return (
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    fontFamily: fontFamily.monoBold,
+                    fontSize: 10,
+                    textAlign: 'center',
+                    color,
+                  }}
+                >
+                  {String(options.tabBarLabel ?? options.title ?? route.name)}
+                </Text>
+              );
             }}
             getLabelText={({ route }) => {
               const { options } = descriptors[route.key];
