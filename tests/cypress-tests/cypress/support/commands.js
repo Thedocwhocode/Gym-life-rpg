@@ -42,7 +42,21 @@ Cypress.Commands.add('dialog', () => {
     return cy.get('[data-testid=fullscreen-dialog]:visible, [data-testid=modal-surface]:visible')
 });
 Cypress.Commands.add('completeWelcomeWizard', () => {
-    return cy.getByTestId('welcome-wizard-next').click().click().click()
+    // One click per page (welcome-wizard.tsx totalPages = 4); re-query because the button re-renders.
+    for (let page = 0; page < 4; page++) cy.getByTestId('welcome-wizard-next').click()
+    return cy.getByTestId('welcome-wizard-next').should('not.exist')
+});
+
+// Screenshots the element with this test id and diffs it against cypress/snapshots/<testId>.png.
+Cypress.Commands.add('matchSnapshot', (testId) => {
+    let screenshotPath
+    return cy.getByTestId(testId)
+        .screenshot(testId, { overwrite: true, onAfterScreenshot: (_el, props) => { screenshotPath = props.path } })
+        .then(() => cy.task('compareSnapshot', { name: testId, screenshotPath }))
+        .then((result) => {
+            if (result.status === 'new') cy.log(`new reference: snapshots/new/${testId}.png`)
+            expect(result.status, result.reason).not.to.equal('failed')
+        })
 });
 
 Cypress.Commands.add('recursionLoop', { times: 'optional' }, function (fn, times) {

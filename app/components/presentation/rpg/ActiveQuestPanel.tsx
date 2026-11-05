@@ -21,9 +21,14 @@ export default function ActiveQuestPanel() {
         gap: spacing[3],
       }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[2] }}>
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[2] }}
+      >
         <Icon source="menuBook" size={20} color={colors.primary} />
-        <Text variant="titleSmall" style={{ color: colors.primary, letterSpacing: 1 }}>
+        <Text
+          variant="titleSmall"
+          style={{ color: colors.primary, letterSpacing: 1 }}
+        >
           MISSÕES DA SEMANA
         </Text>
       </View>
@@ -70,13 +75,22 @@ export default function ActiveQuestPanel() {
                 +{quest.xpReward} XP
               </Text>
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[2] }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: spacing[2],
+              }}
+            >
               <ProgressBar
                 progress={Math.min(ratio, 1)}
                 color={isDone ? colors.green : colors.primary}
                 style={{ flex: 1, height: 4, borderRadius: 2 }}
               />
-              <Text variant="labelSmall" style={{ color: colors.onSurfaceVariant }}>
+              <Text
+                variant="labelSmall"
+                style={{ color: colors.onSurfaceVariant }}
+              >
                 {quest.progress}/{quest.target}
               </Text>
             </View>

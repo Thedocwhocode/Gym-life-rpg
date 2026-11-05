@@ -221,9 +221,10 @@ export function applyStoredSessionsEffects() {
       { cancelActiveListeners, getState, extra: { keyValueStore } },
     ) => {
       cancelActiveListeners();
-      const s = GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.encode(
-        toSessionHistoryDao(getState().storedSessions.sessions),
-      );
+      const s =
+        GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.encode(
+          toSessionHistoryDao(getState().storedSessions.sessions),
+        );
       await Promise.all([
         keyValueStore.setItem(`${storageKey}-Version`, '2'),
         keyValueStore.setItem(storageKey, s.finish()),

@@ -3,6 +3,7 @@ import { Image, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import type { PixelFxAsset } from './pixel-fx-assets';
 import { frameAt, frameRect, isFinished } from './pixel-fx-frames';
+import { FREEZE_MOTION } from '@/utils/motion';
 
 interface PixelFxProps {
   fx: PixelFxAsset;
@@ -23,7 +24,7 @@ export default function PixelFx({ fx, scale = 2, style }: PixelFxProps) {
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || FREEZE_MOTION) return;
     const start = performance.now();
     let raf = requestAnimationFrame(function tick(now) {
       const elapsed = now - start;

@@ -86,7 +86,9 @@ export default function AchievementBadge({
               width: 64,
               height: 64,
               borderRadius: 4,
-              backgroundColor: unlocked ? colors.primaryContainer : colors.surfaceVariant,
+              backgroundColor: unlocked
+                ? colors.primaryContainer
+                : colors.surfaceVariant,
               borderWidth: 1,
               borderColor: unlocked ? colors.primary : colors.outline,
               alignItems: 'center',
@@ -99,7 +101,10 @@ export default function AchievementBadge({
               color={unlocked ? colors.primary : colors.onSurfaceVariant}
             />
           </View>
-          <Text variant="titleMedium" style={{ color: colors.onSurface, textAlign: 'center' }}>
+          <Text
+            variant="titleMedium"
+            style={{ color: colors.onSurface, textAlign: 'center' }}
+          >
             {name}
           </Text>
           <Text
@@ -114,7 +119,10 @@ export default function AchievementBadge({
             </Text>
           )}
           {!unlocked && (
-            <Text variant="labelSmall" style={{ color: colors.onSurfaceVariant }}>
+            <Text
+              variant="labelSmall"
+              style={{ color: colors.onSurfaceVariant }}
+            >
               BLOQUEADA
             </Text>
           )}

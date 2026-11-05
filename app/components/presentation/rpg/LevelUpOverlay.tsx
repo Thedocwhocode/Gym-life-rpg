@@ -45,8 +45,7 @@ export default function LevelUpOverlay() {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingLevelUp]);
+  }, [pendingLevelUp, opacity, scale, dispatch]);
 
   const overlayStyle = useAnimatedStyle(() => ({ opacity: opacity.value }));
   const cardStyle = useAnimatedStyle(() => ({
