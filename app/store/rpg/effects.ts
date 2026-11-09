@@ -116,9 +116,12 @@ function buildWeeklyQuests(weekKey: string, level: number): Quest[] {
   ];
 }
 
-function serializeRpg(state: RpgState): Omit<RpgState, 'isHydrated'> {
+/** Estado gravado: sem flags de carga nem a recompensa da tela de fim de missão (só vale até fechar). */
+function serializeRpg(
+  state: RpgState,
+): Omit<RpgState, 'isHydrated' | 'lastSessionReward'> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { isHydrated: _, ...rest } = state;
+  const { isHydrated: _, lastSessionReward: __, ...rest } = state;
   return rest;
 }
 
@@ -132,6 +135,8 @@ export function applyRpgEffects() {
           const parsed = JSON.parse(raw) as Partial<
             Omit<RpgState, 'isHydrated'>
           >;
+          // Gravações antigas traziam a recompensa e reabriam a tela a cada carga.
+          delete parsed.lastSessionReward;
           dispatch(hydrateRpgState(parsed));
         } catch {
           dispatch(hydrateRpgState({}));
