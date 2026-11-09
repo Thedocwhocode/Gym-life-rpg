@@ -439,5 +439,9 @@
   "rpg.next.see_plans": "See plans",
   "rpg.next.exercises": "Exercises: {count}",
   "rpg.next.start": "Start",
-  "rpg.next.resume": "Resume"
+  "rpg.next.resume": "Resume",
+  "rpg.train.current": "Quest in progress",
+  "rpg.train.upcoming": "Next quests",
+  "rpg.train.in_progress": "In progress",
+  "rpg.train.in_progress_sets": "In progress · {done}/{total} sets"
 }

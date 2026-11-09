@@ -382,5 +382,9 @@
   "rpg.next.see_plans": "Ver planos",
   "rpg.next.exercises": "Exercícios: {count}",
   "rpg.next.start": "Iniciar",
-  "rpg.next.resume": "Retomar"
+  "rpg.next.resume": "Retomar",
+  "rpg.train.current": "Missão em andamento",
+  "rpg.train.upcoming": "Próximas missões",
+  "rpg.train.in_progress": "Em andamento",
+  "rpg.train.in_progress_sets": "Em andamento · {done}/{total} séries"
 }

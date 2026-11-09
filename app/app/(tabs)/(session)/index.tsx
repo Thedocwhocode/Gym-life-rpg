@@ -1,16 +1,16 @@
-import CardActions from '@/components/presentation/card-actionts';
-import CardList from '@/components/presentation/card-list';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
-import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
+import { headerOptions } from '@/components/presentation/pixel/AppHeader';
+import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
+import Button from '@/components/presentation/pixel/Button';
+import Fab from '@/components/presentation/pixel/Fab';
+import IconButton from '@/components/presentation/pixel/IconButton';
+import SessionCard from '@/components/presentation/rpg/SessionCard';
 import { Remote } from '@/components/presentation/remote';
-import SessionSummary from '@/components/presentation/session-summary';
-import SessionSummaryTitle from '@/components/presentation/session-summary-title';
-import SplitCardControl from '@/components/presentation/split-card-control';
 import AndroidNotificationAlert from '@/components/smart/android-notification-alert';
 import { spacing } from '@/hooks/useAppTheme';
-import { Session } from '@/models/session-models';
+import { RecordedWeightedExercise, Session } from '@/models/session-models';
 import { RootState, useAppSelector, useAppSelectorWithArg } from '@/store';
 import {
   selectCurrentSession,
@@ -21,12 +21,10 @@ import { fetchUpcomingSessions, selectActiveProgram } from '@/store/program';
 import { setEditingSession } from '@/store/session-editor';
 import { executeRemoteBackup } from '@/store/settings';
 import { LocalDate } from '@js-joda/core';
-import { T, useTranslate } from '@tolgee/react';
+import { useTranslate } from '@tolgee/react';
 import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Card, FAB, Text, Tooltip } from 'react-native-paper';
-import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import { useDebouncedCallback } from 'use-debounce';
 import { MigrateToWeightUnitsWizard } from '@/components/smart/migrate-to-weight-units';
@@ -35,35 +33,48 @@ import { SessionDiffSaveDialog } from '@/components/smart/session-diff-save-dial
 
 function PlanManager() {
   const { push } = useRouter();
-
+  const { t } = useTranslate();
   const activeProgramId = useAppSelector(
     (s: RootState) => s.program.activeProgramId,
   );
 
   return (
-    <View style={{ flexDirection: 'row', gap: spacing[2] }}>
+    <View style={{ flexDirection: 'row', gap: 8 }}>
       <Button
-        mode="outlined"
+        variant="secondary"
+        icon="list-box"
         style={{ flex: 1 }}
-        icon={'assignment'}
         onPress={() => push(`/settings/program-list`, { withAnchor: true })}
       >
-        <T keyName="plan.choose.button" />
+        {t('plan.choose.button')}
       </Button>
       <Button
-        mode="contained-tonal"
+        variant="secondary"
+        icon="edit"
         style={{ flex: 1 }}
-        icon={'edit'}
         onPress={() =>
           push(`/settings/manage-workouts/${activeProgramId}`, {
             withAnchor: true,
           })
         }
       >
-        <T keyName="workout.edit_workouts.button" />
+        {t('workout.edit_workouts.button')}
       </Button>
     </View>
   );
+}
+
+/** "Em andamento · 2/9 séries" (só conta séries de força). */
+function useProgressEyebrow(session: Session | undefined) {
+  const { t } = useTranslate();
+  if (!session) return undefined;
+  const sets = session.recordedExercises.flatMap((ex) =>
+    ex instanceof RecordedWeightedExercise ? ex.potentialSets : [],
+  );
+  const done = sets.filter((x) => x.set !== undefined).length;
+  return sets.length
+    ? t('rpg.train.in_progress_sets', { done, total: sets.length })
+    : t('rpg.train.in_progress');
 }
 
 function ListUpcomingWorkouts({
@@ -84,6 +95,7 @@ function ListUpcomingWorkouts({
   const dispatch = useDispatch();
   const [confirmDeleteSessionOpen, setConfirmDeleteSessionOpen] =
     useState(false);
+  const eyebrow = useProgressEyebrow(currentSession);
   const clearCurrentSession = () => {
     dispatch(
       setCurrentSession({ session: undefined, target: 'workoutSession' }),
@@ -91,95 +103,87 @@ function ListUpcomingWorkouts({
     dispatch(fetchUpcomingSessions());
   };
   return (
-    <View style={{ flex: 1, gap: spacing[2], paddingTop: spacing[4] }}>
+    <View style={{ flex: 1, gap: 10, paddingTop: 16, paddingBottom: 72 }}>
       <SessionDiffSaveDialog />
       <WelcomeWizard />
       <PlanManager />
       {currentSession && (
-        <>
-          <Text style={{ marginTop: spacing[2] }} variant="titleSmall">
-            {t('workout.current.title')}
-          </Text>
-          <Card mode="contained">
-            <Card.Content>
-              <SessionCardContent session={currentSession} />
-            </Card.Content>
-            <CardActions style={{ marginTop: spacing[2] }}>
-              <Tooltip title={t('workout.clear_current.button')}>
+        <View style={{ gap: 10, marginTop: 12 }}>
+          <AsciiDivider label={t('rpg.train.current')} />
+          <SessionCard
+            highlight
+            session={currentSession}
+            eyebrow={eyebrow}
+            actions={
+              <>
                 <IconButton
                   testID="clear-current-workout"
-                  icon={'delete'}
-                  mode="contained"
+                  icon="trash"
+                  variant="secondary"
+                  label={t('workout.clear_current.button')}
                   onPress={() => setConfirmDeleteSessionOpen(true)}
                 />
-              </Tooltip>
-              <Button
-                icon={'playCircle'}
-                mode="contained"
-                testID="resume-workout-button"
-                onPress={() => selectSession(currentSession)}
-              >
-                <T keyName="workout.resume.button" />
-              </Button>
-            </CardActions>
-          </Card>
-        </>
+                <Button
+                  icon="play"
+                  testID="resume-workout-button"
+                  onPress={() => selectSession(currentSession)}
+                >
+                  {t('workout.resume.button')}
+                </Button>
+              </>
+            }
+          />
+        </View>
       )}
       {!!upcoming.length && (
-        <Text style={{ marginTop: spacing[2] }} variant="titleSmall">
-          {t('workout.upcoming.title')}
-        </Text>
+        <View style={{ marginTop: 12 }}>
+          <AsciiDivider label={t('rpg.train.upcoming')} />
+        </View>
       )}
-      <CardList
-        cardType="contained"
-        items={upcoming}
-        renderItemContent={(session) => {
-          return (
-            <Card.Content>
-              <SessionCardContent session={session} />
-            </Card.Content>
+      {upcoming.map((session, index) => {
+        const sessionPlanIndex = plan.sessions.findIndex((x) =>
+          x.equals(session.blueprint),
+        );
+        const handleEditPress = () => {
+          dispatch(setEditingSession(session.blueprint));
+          push(
+            `/(tabs)/settings/manage-workouts/${planId}/manage-session/${sessionPlanIndex}`,
+            { withAnchor: true },
           );
-        }}
-        renderItemActions={(session) => {
-          const sessionPlanIndex = plan.sessions.findIndex((x) =>
-            x.equals(session.blueprint),
-          );
-          const handleEditPress = () => {
-            dispatch(setEditingSession(session.blueprint));
-            push(
-              `/(tabs)/settings/manage-workouts/${planId}/manage-session/${sessionPlanIndex}`,
-              { withAnchor: true },
-            );
-          };
-          return (
-            <CardActions style={{ marginTop: spacing[2] }}>
-              {sessionPlanIndex !== -1 ? (
-                <IconButton
-                  icon={'edit'}
-                  mode="contained"
-                  onPress={handleEditPress}
-                />
-              ) : undefined}
-              <Button
-                mode="contained"
-                icon={'playCircle'}
-                testID="start-resume-workout-button"
-                onPress={() => selectSession(session)}
-              >
-                {session.isStarted ? (
-                  <T keyName="workout.resume.button" />
-                ) : (
-                  <T keyName="workout.start.button" />
+        };
+        return (
+          <SessionCard
+            key={index}
+            session={session}
+            actions={
+              <>
+                {sessionPlanIndex !== -1 && (
+                  <IconButton
+                    icon="edit"
+                    variant="secondary"
+                    label={t('workout.edit_workouts.button')}
+                    onPress={handleEditPress}
+                  />
                 )}
-              </Button>
-            </CardActions>
-          );
-        }}
-      />
+                <Button
+                  icon="play"
+                  testID="start-resume-workout-button"
+                  onPress={() => selectSession(session)}
+                >
+                  {session.isStarted
+                    ? t('workout.resume.button')
+                    : t('workout.start.button')}
+                </Button>
+              </>
+            }
+          />
+        );
+      })}
       <ConfirmationDialog
         headline={t('workout.clear_current.confirm.title')}
         textContent={t('workout.clear_current.confirm.body')}
         okText={t('generic.clear.button')}
+        danger
         onOk={() => {
           clearCurrentSession();
           setConfirmDeleteSessionOpen(false);
@@ -191,21 +195,9 @@ function ListUpcomingWorkouts({
   );
 }
 
-function SessionCardContent({ session }: { session: Session }) {
-  return (
-    <SplitCardControl
-      titleContent={
-        <SessionSummaryTitle isFilled={session.isStarted} session={session} />
-      }
-      mainContent={
-        <SessionSummary session={session} isFilled={false} showWeight />
-      }
-    />
-  );
-}
-
 export default function Index() {
   const upcomingSessions = useAppSelector((s) => s.program.upcomingSessions);
+  const activePlan = useAppSelector(selectActiveProgram);
   // const program = useAppSelector(selectActiveProgram);
   const dispatch = useDispatch();
   const { t } = useTranslate();
@@ -286,10 +278,8 @@ export default function Index() {
   const floatingBottomContainer = (
     <FloatingBottomContainer
       fab={
-        <FAB
-          variant="surface"
-          size="small"
-          icon="fitnessCenter"
+        <Fab
+          icon="zap"
           label={t('workout.freeform.title')}
           onPress={createFreeformSession}
         />
@@ -303,9 +293,7 @@ export default function Index() {
       scrollStyle={{ paddingHorizontal: spacing.pageHorizontalMargin }}
     >
       <Stack.Screen
-        options={{
-          title: 'GymLife RPG',
-        }}
+        options={headerOptions('GymLife RPG', activePlan.name || undefined)}
       />
       <AndroidNotificationAlert />
       <MigrateToWeightUnitsWizard />
@@ -323,10 +311,10 @@ export default function Index() {
       <ConfirmationDialog
         open={!!selectedSession}
         onCancel={() => setSelectedSession(undefined)}
-        okText="Replace"
+        okText={t('generic.replace.button')}
         onOk={replaceSessionDialogAction}
-        headline={<T keyName="workout.replace_current.confirm.title" />}
-        textContent={<T keyName="workout.replace_in_progress.confirm.body" />}
+        headline={t('workout.replace_current.confirm.title')}
+        textContent={t('workout.replace_in_progress.confirm.body')}
       />
     </FullHeightScrollView>
   );
