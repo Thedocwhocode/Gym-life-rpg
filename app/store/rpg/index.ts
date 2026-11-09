@@ -191,7 +191,11 @@ const rpgSlice = createSlice({
       } else {
         state.streakDays = 1;
       }
-      state.lastWorkoutDate = action.payload.date;
+      // Sessão lançada com data passada não pode fazer o último treino voltar no tempo
+      // (senão a perda por inatividade aparece sem o herói ter parado).
+      if ((state.lastWorkoutDate ?? '').slice(0, 10) < action.payload.date) {
+        state.lastWorkoutDate = action.payload.date;
+      }
     },
     unlockAchievement(
       state,

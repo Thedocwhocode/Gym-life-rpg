@@ -2,6 +2,7 @@ import {
   applyInactivityDecay,
   awardXp,
   hydrateRpgState,
+  recordWorkout,
   rpgReducer,
 } from '@/store/rpg';
 import { decayedXp, inactivityLoss } from '@/store/rpg/decay';
@@ -60,5 +61,15 @@ describe('applyInactivityDecay + awardXp', () => {
     );
     expect(decayed.xp).toBe(960);
     expect(rpgReducer(decayed, awardXp(50)).xp).toBe(1010);
+  });
+});
+
+describe('recordWorkout com data passada', () => {
+  it('não faz o último treino voltar no tempo', () => {
+    const s = rpgReducer(
+      rpgReducer(undefined, hydrateRpgState({ lastWorkoutDate: '2026-11-08' })),
+      recordWorkout({ date: '2026-10-01', xpGained: 0, newAchievementIds: [] }),
+    );
+    expect(s.lastWorkoutDate).toBe('2026-11-08');
   });
 });
