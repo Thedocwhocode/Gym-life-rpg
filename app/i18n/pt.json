@@ -400,5 +400,6 @@
   "rpg.class.warrior": "Guerreiro",
   "rpg.class.scout": "Explorador",
   "rpg.class.paladin": "Paladino",
-  "rpg.class.none": "Sem classe"
+  "rpg.class.none": "Sem classe",
+  "rpg.feed.eyebrow": "Feed social"
 }

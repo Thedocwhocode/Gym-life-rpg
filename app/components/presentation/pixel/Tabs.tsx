@@ -39,7 +39,8 @@ export default function Tabs<T extends string>({
             key={tab.value}
             testID={`tab-${tab.value}`}
             accessibilityRole="tab"
-            accessibilityState={{ selected: active }}
+            // ponytail: RN web não traduz accessibilityState.selected em aria-selected.
+            aria-selected={active}
             onPress={() => onChange(tab.value)}
             style={{
               flex: 1,
