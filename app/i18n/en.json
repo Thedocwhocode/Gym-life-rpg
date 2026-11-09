@@ -458,5 +458,7 @@
   "rpg.class.scout": "Scout",
   "rpg.class.paladin": "Paladin",
   "rpg.class.none": "No class",
-  "rpg.feed.eyebrow": "Social feed"
+  "rpg.feed.eyebrow": "Social feed",
+  "rpg.stats.eyebrow": "Character sheet",
+  "rpg.stats.search": "Search exercise"
 }

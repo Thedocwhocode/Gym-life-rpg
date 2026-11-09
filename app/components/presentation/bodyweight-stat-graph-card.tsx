@@ -1,13 +1,14 @@
 import { StatisticOverTime } from '@/store/stats';
 import { usePreferredWeightUnit } from '@/hooks/usePreferredWeightUnit';
 import { LineChart, lineDataItem } from 'react-native-gifted-charts';
-import { View } from 'react-native';
-import { spacing, useAppTheme } from '@/hooks/useAppTheme';
+import { Text, View } from 'react-native';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import { useState } from 'react';
-import { SurfaceText } from '@/components/presentation/surface-text';
 import { useTranslate } from '@tolgee/react';
 import { useAppSelector } from '@/store';
 import { lineGraphProps } from '@/components/presentation/line-graph-props';
+import PixelBox from '@/components/presentation/pixel/PixelBox';
+import { type } from '@/theme/tokens';
 
 export default function BodyweightStatGraphCard(props: {
   bodyweightStats: StatisticOverTime;
@@ -15,13 +16,13 @@ export default function BodyweightStatGraphCard(props: {
   const weightUnit = usePreferredWeightUnit();
   const { t } = useTranslate();
   const showBodyweight = useAppSelector((x) => x.settings.showBodyweight);
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
   const points: lineDataItem[] = props.bodyweightStats.statistics.map(
     (stat): lineDataItem => ({
       value: stat.value.convertTo(weightUnit).value.toNumber(),
       dataPointText: stat.value.shortLocaleFormat(2),
       textShiftY: -10,
-      dataPointColor: colors.primary,
+      dataPointColor: palette.success,
     }),
   );
   const [width, setWidth] = useState(0);
@@ -29,25 +30,26 @@ export default function BodyweightStatGraphCard(props: {
     return undefined;
   }
   return (
-    <View
-      onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-      style={{ gap: spacing[2] }}
+    <PixelBox
+      padding={12}
+      innerStyle={{ gap: 8 }}
       testID="bodyweight-stat-card"
     >
-      <SurfaceText font="text-2xl" style={{ textAlign: 'center' }}>
+      <Text style={{ ...type.label, color: palette.text2 }}>
         {t('exercise.bodyweight.label')}
-      </SurfaceText>
-      <LineChart
-        color={colors.primary}
-        data={points}
-        strokeDashArray={[1]}
-        yAxisOffset={
-          props.bodyweightStats.minValue
-            .convertTo(weightUnit)
-            .value.toNumber() * 0.9
-        }
-        {...lineGraphProps(colors, width, points.length)}
-      />
-    </View>
+      </Text>
+      <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>
+        <LineChart
+          color={palette.success}
+          data={points}
+          yAxisOffset={
+            props.bodyweightStats.minValue
+              .convertTo(weightUnit)
+              .value.toNumber() * 0.9
+          }
+          {...lineGraphProps(palette, width, points.length)}
+        />
+      </View>
+    </PixelBox>
   );
 }

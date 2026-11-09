@@ -1,6 +1,5 @@
 import { Loader } from '@/components/presentation/loader';
 import SingleValueStatisticCard from '@/components/presentation/single-value-statistic-card';
-import { SurfaceText } from '@/components/presentation/surface-text';
 import { useAppSelector, useAppSelectorWithArg } from '@/store';
 import {
   ExerciseStatistics,
@@ -14,24 +13,25 @@ import {
 import { formatDuration } from '@/utils/format-date';
 import { useTranslate } from '@tolgee/react';
 import { Stack, useFocusEffect } from 'expo-router';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { FlatGrid } from 'react-native-super-grid';
-import WeightFormat from '@/components/presentation/weight-format';
 import ExerciseStatGraphCard from '@/components/presentation/exercise-stat-graph-card';
-import { spacing } from '@/hooks/useAppTheme';
 import SelectButton, {
   SelectButtonOption,
 } from '@/components/presentation/select-button';
 import { LocalDate, Period } from '@js-joda/core';
 import { selectCompletedDistinctSessionNames } from '@/store/stored-sessions';
-import { Divider, Searchbar } from 'react-native-paper';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import BodyweightStatGraphCard from '@/components/presentation/bodyweight-stat-graph-card';
 import { useScroll } from '@/hooks/useScrollListener';
 import { FlashList, FlashListRef } from '@shopify/flash-list';
 import SessionStatGraphCard from '@/components/presentation/session-stat-graph-card';
 import { Weight } from '@/models/weight';
+import { headerOptions } from '@/components/presentation/pixel/AppHeader';
+import TextField from '@/components/presentation/pixel/TextField';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { accentText } from '@/theme/palettes';
+import { type } from '@/theme/tokens';
 
 export default function StatsPage() {
   const { t } = useTranslate();
@@ -62,9 +62,10 @@ export default function StatsPage() {
   return (
     <>
       <Stack.Screen
-        options={{
-          title: t('stats.statistics.title'),
-        }}
+        options={headerOptions(
+          t('stats.statistics.title'),
+          t('rpg.stats.eyebrow'),
+        )}
       />
       <FlashList
         ref={scrollRef}
@@ -77,9 +78,8 @@ export default function StatsPage() {
           />
         }
         data={data}
-        ItemSeparatorComponent={() => (
-          <Divider style={{ marginVertical: spacing[4] }} />
-        )}
+        contentContainerStyle={{ padding: 16, paddingBottom: 32 }}
+        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         keyExtractor={(item) => item.exerciseName}
         renderItem={({ item }) => (
           <ExerciseStatGraphCard
@@ -146,9 +146,16 @@ function ListHeader({
       label: t('workout.all.title'),
     });
   return (
-    <View style={{ gap: spacing[2], marginBottom: spacing[2] }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+    <View style={{ gap: 12, marginBottom: 12 }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          gap: 8,
+        }}
+      >
         <SelectButton
+          size="sm"
           value={sessionName}
           options={sessions}
           onChange={(name) => {
@@ -159,6 +166,7 @@ function ListHeader({
         />
         <SelectButton
           testID="stats-time-selector"
+          size="sm"
           value={time}
           options={timeOptions}
           onChange={(x) => {
@@ -168,22 +176,21 @@ function ListHeader({
           }}
         />
       </View>
-      <Searchbar
-        placeholder={t('generic.search.button')}
+      <TextField
+        prefix="⌕"
+        placeholder={t('rpg.stats.search')}
+        accessibilityLabel={t('generic.search.button')}
         value={searchText}
         onChangeText={setSearchText}
-        style={{ marginHorizontal: spacing.pageHorizontalMargin }}
       />
       {searchText ? undefined : (
         <>
-          <FlatGrid
-            scrollEnabled={false}
-            data={[0, 1, 2, 3]}
-            maxItemsPerRow={2}
-            renderItem={({ item }) => (
-              <TopLevelStatCard index={item} stats={stats} />
-            )}
-          ></FlatGrid>
+          {[0, 2].map((row) => (
+            <View key={row} style={{ flexDirection: 'row', gap: 12 }}>
+              <TopLevelStatCard index={row} stats={stats} />
+              <TopLevelStatCard index={row + 1} stats={stats} />
+            </View>
+          ))}
           <SessionStatGraphCard sessionStats={stats.sessionStats} />
           <BodyweightStatGraphCard bodyweightStats={stats.bodyweightStats} />
         </>
@@ -191,6 +198,21 @@ function ListHeader({
     </View>
   );
 }
+
+function StatValue({ children }: { children: string }) {
+  const { palette } = useAppTheme();
+  return (
+    <Text
+      numberOfLines={2}
+      style={{ ...type.stat, color: accentText(palette) }}
+    >
+      {children}
+    </Text>
+  );
+}
+
+const weightText = (w: Weight | undefined) =>
+  w && !w.value.isZero() ? w.shortLocaleFormat(1) : '-';
 
 function TopLevelStatCard(props: {
   index: number;
@@ -204,64 +226,41 @@ function TopLevelStatCard(props: {
         <SingleValueStatisticCard
           title={t('stats.max_weight_in_workout.label')}
         >
-          <WeightFormat
-            color={'tertiary'}
-            fontSize="text-xl"
-            fontWeight={'bold'}
-            weight={
-              stats.maxWeightLiftedInAWorkout !== undefined
-                ? stats.maxWeightLiftedInAWorkout
-                : Weight.NIL
-            }
-          />
+          <StatValue>{weightText(stats.maxWeightLiftedInAWorkout)}</StatValue>
         </SingleValueStatisticCard>
       );
     case 1:
       return (
         <SingleValueStatisticCard title={t('workout.average_length.label')}>
-          <SurfaceText
-            color="tertiary"
-            font="text-xl"
-            weight={'bold'}
-            style={{ textAlign: 'center' }}
-          >
+          <StatValue>
             {formatDuration(stats.averageSessionLength, 'mins')}
-          </SurfaceText>
+          </StatValue>
         </SingleValueStatisticCard>
       );
     case 2:
       return (
         <SingleValueStatisticCard title={t('stats.most_time_spent.label')}>
-          <SurfaceText
-            color="tertiary"
-            font="text-xl"
-            weight={'bold'}
-            style={{ textAlign: 'center' }}
-          >
+          <StatValue>
             {stats.exerciseMostTimeSpent?.exerciseName ?? '-'}
-          </SurfaceText>
+          </StatValue>
         </SingleValueStatisticCard>
       );
     case 3:
       return (
         <SingleValueStatisticCard title={t('stats.heaviest_lift.label')}>
-          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <WeightFormat
-              color={'tertiary'}
-              fontSize="text-xl"
-              fontWeight={'bold'}
-              weight={stats.heaviestLift?.weight ?? Weight.NIL}
-            />
-            <SurfaceText
-              color="tertiary"
-              font="text-xl"
-              weight={'bold'}
-              style={{ textAlign: 'center' }}
-            >
-              {stats.heaviestLift?.exerciseName ?? '-'}
-            </SurfaceText>
-          </View>
+          <StatValue>{weightText(stats.heaviestLift?.weight)}</StatValue>
+          <HeaviestName name={stats.heaviestLift?.exerciseName} />
         </SingleValueStatisticCard>
       );
   }
+}
+
+function HeaviestName({ name }: { name: string | undefined }) {
+  const { palette } = useAppTheme();
+  if (!name) return undefined;
+  return (
+    <Text numberOfLines={1} style={{ ...type.small, color: palette.text2 }}>
+      {name}
+    </Text>
+  );
 }
