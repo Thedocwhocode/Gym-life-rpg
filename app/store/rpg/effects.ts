@@ -40,7 +40,7 @@ function currentWeekKey(): string {
   return isoWeekKey(new Date().toISOString().slice(0, 10));
 }
 
-function sessionXp(session: Session): number {
+export function sessionXp(session: Session): number {
   let xp = 50;
   for (const ex of session.recordedExercises) {
     if (ex instanceof RecordedWeightedExercise) {

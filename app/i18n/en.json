@@ -443,5 +443,10 @@
   "rpg.train.current": "Quest in progress",
   "rpg.train.upcoming": "Next quests",
   "rpg.train.in_progress": "In progress",
-  "rpg.train.in_progress_sets": "In progress · {done}/{total} sets"
+  "rpg.train.in_progress_sets": "In progress · {done}/{total} sets",
+  "rpg.calendar.previous": "Previous month",
+  "rpg.calendar.next": "Next month",
+  "rpg.history.eyebrow": "History",
+  "rpg.history.complete": "Quest complete",
+  "rpg.history.partial": "Partial quest"
 }
