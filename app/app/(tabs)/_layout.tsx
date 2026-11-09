@@ -3,7 +3,6 @@ import { isBackendConfigured } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
 import { selectFollowRequestCount } from '@/store/feed';
 import { useTranslate } from '@tolgee/react';
-import { Icon } from 'react-native-paper';
 
 export default function Layout() {
   const { t } = useTranslate();
@@ -16,45 +15,24 @@ export default function Layout() {
       <Tabs.Screen
         name="dashboard"
         options={{
-          tabBarLabel: 'Dashboard',
+          tabBarLabel: t('rpg.tab.dashboard'),
           tabBarButtonTestID: 'nav__dashboard',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'shieldFill' : 'shield'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
 
       <Tabs.Screen
         name="(session)"
         options={{
-          tabBarLabel: 'Treinar',
+          tabBarLabel: t('rpg.tab.train'),
           tabBarButtonTestID: 'nav__workout',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'fitnessCenterFill' : 'fitnessCenter'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
 
       <Tabs.Screen
         name="history"
         options={{
-          tabBarLabel: 'Quest Log',
+          tabBarLabel: t('rpg.tab.history'),
           tabBarButtonTestID: 'nav__history',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'menuBookFill' : 'menuBook'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
 
@@ -62,46 +40,25 @@ export default function Layout() {
         name="feed"
         redirect={!showFeed}
         options={{
-          tabBarLabel: 'Guilda',
+          tabBarLabel: t('rpg.tab.feed'),
           tabBarButtonTestID: 'nav__feed',
           tabBarBadge: followRequestCount || undefined!,
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'groupsFill' : 'groups'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
 
       <Tabs.Screen
         name="stats"
         options={{
-          tabBarLabel: t('stats.stats.title'),
+          tabBarLabel: t('rpg.tab.stats'),
           tabBarButtonTestID: 'nav__stats',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'analyticsFill' : 'analytics'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
 
       <Tabs.Screen
         name="settings"
         options={{
-          tabBarLabel: 'Herói',
+          tabBarLabel: t('rpg.tab.settings'),
           tabBarButtonTestID: 'nav__settings',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Icon
-              source={focused ? 'personFill' : 'person'}
-              size={size}
-              color={color}
-            />
-          ),
         }}
       />
     </Tabs>
