@@ -35,6 +35,11 @@ export const type = {
     fontSize: typeSize.titleSm,
     lineHeight: 20,
   },
+  bodyLg: {
+    fontFamily: fontFamily.mono,
+    fontSize: typeSize.bodyLg,
+    lineHeight: 22,
+  },
   body: {
     fontFamily: fontFamily.mono,
     fontSize: typeSize.body,

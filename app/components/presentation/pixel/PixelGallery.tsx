@@ -10,10 +10,18 @@ import PixelBar from '@/components/presentation/pixel/PixelBar';
 import PixelBox, {
   type PixelTone,
 } from '@/components/presentation/pixel/PixelBox';
+import ListItem from '@/components/presentation/pixel/ListItem';
+import Segmented from '@/components/presentation/pixel/Segmented';
+import Switch from '@/components/presentation/pixel/Switch';
+import Tabs from '@/components/presentation/pixel/Tabs';
 import Tag from '@/components/presentation/pixel/Tag';
+import TextField from '@/components/presentation/pixel/TextField';
+import EmptyInfo from '@/components/presentation/empty-info';
+import SelectButton from '@/components/presentation/select-button';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { PALETTE_IDS } from '@/theme/palettes';
 import { fontFamily } from '@/theme/tokens';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 // Só desenvolvimento: mostra os primitivos do redesign (usada por settings/dev-gallery e pelo teste visual).
@@ -42,6 +50,82 @@ function Section({
       <AsciiDivider label={title} />
       {children}
     </View>
+  );
+}
+
+function ControlsDemo() {
+  const [on, setOn] = useState(true);
+  const [seg, setSeg] = useState<'todos' | 'forca' | 'cardio'>('todos');
+  const [tab, setTab] = useState<'feed' | 'seguindo' | 'seguidores'>('feed');
+  const [period, setPeriod] = useState(30);
+  const [text, setText] = useState('');
+  return (
+    <>
+      <View style={styles.row}>
+        <Switch value={on} onValueChange={setOn} label="Demo" />
+        <Switch value={false} disabled label="Desligado" />
+      </View>
+      <Segmented
+        value={seg}
+        onChange={setSeg}
+        options={[
+          { value: 'todos', label: 'Todos' },
+          { value: 'forca', label: 'Força' },
+          { value: 'cardio', label: 'Cardio' },
+        ]}
+      />
+      <SelectButton
+        value={period}
+        onChange={setPeriod}
+        options={[
+          { value: 7, label: '7 dias' },
+          { value: 30, label: '30 dias' },
+          { value: 90, label: '90 dias' },
+        ]}
+      />
+      <TextField
+        label="Buscar exercício"
+        prefix="⌕"
+        value={text}
+        onChangeText={setText}
+        placeholder="Agachamento"
+      />
+      <TextField
+        label="Endpoint"
+        value="http://x"
+        error="O endpoint precisa começar com https://"
+      />
+      <Tabs
+        value={tab}
+        onChange={setTab}
+        tabs={[
+          { value: 'feed', label: 'Feed' },
+          { value: 'seguindo', label: 'Seguindo' },
+          { value: 'seguidores', label: 'Seguidores', badge: 1 },
+        ]}
+      />
+      <View>
+        <ListItem
+          icon="list-box"
+          title="Gerenciar planos"
+          description="Planos e treinos"
+          onPress={() => undefined}
+        />
+        <ListItem
+          icon="briefcase"
+          title="Inventário"
+          meta="3/20"
+          onPress={() => undefined}
+        />
+        <ListItem
+          icon="trash"
+          title="Apagar dados"
+          danger
+          onPress={() => undefined}
+        />
+      </View>
+      <EmptyInfo icon="calendar">Nada registrado neste mês</EmptyInfo>
+    </>
   );
 }
 
@@ -187,6 +271,10 @@ export default function PixelGallery() {
           <Icon name="heart" size={24} color={palette.danger} />
           <Icon name="zap" size={24} color={palette.accent} />
         </View>
+      </Section>
+
+      <Section id="controls" title="Controles">
+        <ControlsDemo />
       </Section>
 
       <Section id="toast" title="Toast">

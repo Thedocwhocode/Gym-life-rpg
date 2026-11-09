@@ -1,10 +1,14 @@
-import { SurfaceText } from '@/components/presentation/surface-text';
-import { spacing } from '@/hooks/useAppTheme';
-import { View, ViewProps } from 'react-native';
-import { Icon } from 'react-native-paper';
+import Icon from '@/components/presentation/pixel/Icon';
+import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { type } from '@/theme/tokens';
+import { Text, View, ViewProps } from 'react-native';
 
+/** Estado vazio: ícone pixel 48 em text-3 e texto centralizado. */
 export default function EmptyInfo(props: ViewProps & { icon?: string }) {
-  const { icon, style, ...rest } = props;
+  const { icon, style, children, ...rest } = props;
+  const { palette } = useAppTheme();
+  const glyph = resolvePixelIcon(icon ?? 'info');
   return (
     <View
       {...rest}
@@ -12,16 +16,22 @@ export default function EmptyInfo(props: ViewProps & { icon?: string }) {
         {
           alignItems: 'center',
           justifyContent: 'center',
-          paddingHorizontal: spacing[4],
-          gap: spacing[4],
+          paddingHorizontal: 16,
+          paddingVertical: 24,
+          gap: 12,
         },
         style,
       ]}
     >
-      <Icon source={props.icon ?? 'info'} size={30} />
-      <SurfaceText color="onSurface" style={{ textAlign: 'center' }}>
-        {props.children}
-      </SurfaceText>
+      <Icon
+        name={glyph.name}
+        rotate={glyph.rotate}
+        size={48}
+        color={palette.text3}
+      />
+      <Text style={{ ...type.body, color: palette.text2, textAlign: 'center' }}>
+        {children}
+      </Text>
     </View>
   );
 }
