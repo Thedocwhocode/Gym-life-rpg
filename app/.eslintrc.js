@@ -34,6 +34,25 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      // Regras puras recebem `today: LocalDate`; relógio e UTC aqui erram a semana (R2).
+      files: ['store/**/derive*.ts', 'store/journey/rules/**/*.ts'],
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'NewExpression[callee.name="Date"]',
+            message: 'Sem new Date() em regra pura: receba today: LocalDate.',
+          },
+          {
+            selector: 'CallExpression[callee.property.name="toISOString"]',
+            message: 'Sem toISOString(): é UTC. Use LocalDate (js-joda).',
+          },
+        ],
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     projectService: true,

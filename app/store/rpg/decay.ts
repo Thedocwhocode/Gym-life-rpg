@@ -26,24 +26,3 @@ export function inactivityLoss(daysInactive: number): number {
 export function daysBetween(from: LocalDate, to: LocalDate): number {
   return ChronoUnit.DAYS.between(from, to);
 }
-
-/** Aceita "YYYY-MM-DD" ou ISO com hora; data inválida = sem perda. */
-export function parseDay(value: string | undefined): LocalDate | undefined {
-  if (!value) return undefined;
-  try {
-    return LocalDate.parse(value.slice(0, 10));
-  } catch {
-    return undefined;
-  }
-}
-
-/** XP depois da pausa entre o último treino e `on`. */
-export function decayedXp(
-  xp: number,
-  lastWorkoutDate: string | undefined,
-  on: LocalDate,
-): number {
-  const last = parseDay(lastWorkoutDate);
-  if (!last) return xp;
-  return Math.floor(xp * (1 - inactivityLoss(daysBetween(last, on))));
-}

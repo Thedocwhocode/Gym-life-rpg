@@ -1,35 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { decayedXp } from '@/store/rpg/decay';
-import { RootState } from '@/store/store';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LocalDate } from '@js-joda/core';
+import { selectSessions } from '@/store/stored-sessions';
+import {
+  deriveProgress,
+  ProjectionDiff,
+  sessionFacts,
+  titleForLevel,
+  xpProgress,
+} from '@/store/rpg/derive';
 
-export function xpForLevel(level: number): number {
-  return Math.pow(level - 1, 2) * 100;
-}
-
-export function levelFromXp(xp: number): number {
-  return Math.floor(1 + Math.sqrt(Math.max(0, xp) / 100));
-}
-
-const TITLES: [number, string][] = [
-  [20, 'Lenda da Academia'],
-  [15, 'Mestre das Placas'],
-  [10, 'Cavaleiro do Ferro'],
-  [6, 'Espadachim da Academia'],
-  [3, 'Guerreiro Novato'],
-  [1, 'Iniciante'],
-];
-
-export function titleForLevel(level: number): string {
-  return TITLES.find(([min]) => level >= min)?.[1] ?? 'Iniciante';
-}
-
-export function xpProgress(xp: number): { current: number; needed: number } {
-  const level = levelFromXp(xp);
-  const cur = xpForLevel(level);
-  const next = xpForLevel(level + 1);
-  return { current: xp - cur, needed: next - cur };
-}
+export {
+  levelFromXp,
+  titleForLevel,
+  xpForLevel,
+  xpProgress,
+  type Quest,
+} from '@/store/rpg/derive';
+export type { RpgClass } from '@/store/choices';
 
 export interface Achievement {
   id: string;
@@ -95,175 +82,56 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
 ];
 
-export interface Quest {
-  id: string;
-  title: string;
-  description: string;
-  target: number;
-  progress: number;
-  xpReward: number;
-  type: 'workouts_this_week' | 'total_sets_this_week' | 'streak_days';
-  weekKey: string;
-  completedAt?: string;
-}
-
-export type RpgClass = 'warrior' | 'scout' | 'paladin';
-
+/** Só estado de tela (nada é gravado): XP, nível, quests e conquistas vêm de `derive.ts`. */
 export interface RpgState {
-  xp: number;
-  totalWorkouts: number;
-  streakDays: number;
-  lastWorkoutDate?: string;
-  achievements: Record<string, string>;
   pendingLevelUp: boolean;
   levelUpNewLevel?: number;
-  weeklyQuests: Quest[];
-  isHydrated: boolean;
   lastSessionReward?: { xpGained: number; newAchievementIds: string[] };
-  rpgClass?: RpgClass;
 }
 
-const initialState: RpgState = {
-  xp: 0,
-  totalWorkouts: 0,
-  streakDays: 0,
-  achievements: {},
-  pendingLevelUp: false,
-  weeklyQuests: [],
-  isHydrated: false,
-};
+const initialState: RpgState = { pendingLevelUp: false };
 
 const rpgSlice = createSlice({
   name: 'rpg',
   initialState,
   reducers: {
-    hydrateRpgState(
-      _,
-      action: PayloadAction<Partial<Omit<RpgState, 'isHydrated'>>>,
-    ) {
-      return { ...initialState, ...action.payload, isHydrated: true };
-    },
-    awardXp(state, action: PayloadAction<number>) {
-      const prevLevel = levelFromXp(state.xp);
-      state.xp += action.payload;
-      const newLevel = levelFromXp(state.xp);
-      if (newLevel > prevLevel) {
+    sessionRewarded(state, action: PayloadAction<ProjectionDiff>) {
+      const { xpGained, newAchievementIds, newLevel } = action.payload;
+      state.lastSessionReward = { xpGained, newAchievementIds };
+      if (newLevel !== undefined) {
         state.pendingLevelUp = true;
         state.levelUpNewLevel = newLevel;
       }
-    },
-    /** Torna permanente a perda da pausa até `date` (antes do XP do treino novo). */
-    applyInactivityDecay(state, action: PayloadAction<{ date: string }>) {
-      state.xp = decayedXp(
-        state.xp,
-        state.lastWorkoutDate,
-        LocalDate.parse(action.payload.date),
-      );
     },
     clearLevelUp(state) {
       state.pendingLevelUp = false;
       delete state.levelUpNewLevel;
     },
-    recordWorkout(
-      state,
-      action: PayloadAction<{
-        date: string;
-        xpGained: number;
-        newAchievementIds: string[];
-      }>,
-    ) {
-      state.totalWorkouts += 1;
-      state.lastSessionReward = {
-        xpGained: action.payload.xpGained,
-        newAchievementIds: action.payload.newAchievementIds,
-      };
-      if (state.lastWorkoutDate) {
-        const last = new Date(state.lastWorkoutDate);
-        const today = new Date(action.payload.date);
-        const diffDays = Math.round(
-          (today.getTime() - last.getTime()) / 86400000,
-        );
-        if (diffDays === 1) {
-          state.streakDays += 1;
-        } else if (diffDays > 1) {
-          state.streakDays = 1;
-        }
-      } else {
-        state.streakDays = 1;
-      }
-      // Sessão lançada com data passada não pode fazer o último treino voltar no tempo
-      // (senão a perda por inatividade aparece sem o herói ter parado).
-      if ((state.lastWorkoutDate ?? '').slice(0, 10) < action.payload.date) {
-        state.lastWorkoutDate = action.payload.date;
-      }
-    },
-    unlockAchievement(
-      state,
-      action: PayloadAction<{ id: string; date: string }>,
-    ) {
-      if (!state.achievements[action.payload.id]) {
-        state.achievements[action.payload.id] = action.payload.date;
-      }
-    },
-    setWeeklyQuests(state, action: PayloadAction<Quest[]>) {
-      state.weeklyQuests = action.payload;
-    },
-    updateQuestProgress(
-      state,
-      action: PayloadAction<{
-        questId: string;
-        progress: number;
-        completedAt?: string | undefined;
-      }>,
-    ) {
-      const quest = state.weeklyQuests.find(
-        (q) => q.id === action.payload.questId,
-      );
-      if (quest) {
-        quest.progress = Math.min(action.payload.progress, quest.target);
-        if (action.payload.completedAt && !quest.completedAt) {
-          quest.completedAt = action.payload.completedAt;
-        }
-      }
-    },
     clearSessionReward(state) {
       delete state.lastSessionReward;
     },
-    setRpgClass(state, action: PayloadAction<RpgClass>) {
-      state.rpgClass = action.payload;
-    },
-    initializeRpgStateSlice() {},
   },
 });
 
-export const {
-  hydrateRpgState,
-  awardXp,
-  applyInactivityDecay,
-  clearLevelUp,
-  recordWorkout,
-  unlockAchievement,
-  setWeeklyQuests,
-  updateQuestProgress,
-  clearSessionReward,
-  setRpgClass,
-  initializeRpgStateSlice,
-} = rpgSlice.actions;
+export const { sessionRewarded, clearLevelUp, clearSessionReward } =
+  rpgSlice.actions;
 
 export const rpgReducer = rpgSlice.reducer;
 
-/** XP de hoje: o gravado menos a perda da pausa atual (14+ dias sem treinar). */
-export const selectEffectiveXp = (state: RootState) =>
-  decayedXp(state.rpg.xp, state.rpg.lastWorkoutDate, LocalDate.now());
-export const selectRpgLevel = (state: RootState) =>
-  levelFromXp(selectEffectiveXp(state));
-export const selectRpgTitle = (state: RootState) =>
-  titleForLevel(selectRpgLevel(state));
-export const selectXpProgress = (state: RootState) =>
-  xpProgress(selectEffectiveXp(state));
-export const selectAllAchievements = (state: RootState) =>
-  ACHIEVEMENTS.map((def) => ({
-    ...def,
-    unlockedAt: state.rpg.achievements[def.id],
-  }));
-export const selectActiveQuests = (state: RootState) => state.rpg.weeklyQuests;
+// ponytail: LocalDate.now() no seletor só recalcula quando as sessões mudam; virar a meia-noite
+// com o app aberto mantém a projeção de ontem até a próxima mudança (igual a useHeroAttributes).
+export const selectProgress = createSelector([selectSessions], (sessions) =>
+  deriveProgress(sessions.map(sessionFacts), LocalDate.now()),
+);
+export const selectRpgLevel = createSelector([selectProgress], (p) => p.level);
+export const selectRpgTitle = createSelector([selectRpgLevel], titleForLevel);
+export const selectXpProgress = createSelector([selectProgress], (p) =>
+  xpProgress(p.xp),
+);
+export const selectAllAchievements = createSelector([selectProgress], (p) =>
+  ACHIEVEMENTS.map((def) => ({ ...def, unlockedAt: p.achievements[def.id] })),
+);
+export const selectActiveQuests = createSelector(
+  [selectProgress],
+  (p) => p.quests,
+);

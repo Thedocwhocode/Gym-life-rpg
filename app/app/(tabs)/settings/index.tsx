@@ -10,7 +10,8 @@ import type { PixelIconName } from '@/components/presentation/pixel-icons.genera
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { isProAvailable } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
-import { RpgClass, selectRpgLevel, selectRpgTitle } from '@/store/rpg';
+import { selectRpgLevel, selectRpgTitle } from '@/store/rpg';
+import { RpgClass, selectRpgClass } from '@/store/choices';
 import { accentText } from '@/theme/palettes';
 import { steps, type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
@@ -64,7 +65,7 @@ function HeroCard() {
   const { palette } = useAppTheme();
   const level = useAppSelector(selectRpgLevel);
   const title = useAppSelector(selectRpgTitle);
-  const rpgClass = useAppSelector((s) => s.rpg.rpgClass);
+  const rpgClass = useAppSelector(selectRpgClass);
   const tag = rpgClass ? CLASS_TAG[rpgClass] : undefined;
   return (
     <PixelBox

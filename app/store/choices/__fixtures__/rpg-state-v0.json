@@ -1,0 +1,15 @@
+{
+  "xp": 70,
+  "totalWorkouts": 1,
+  "streakDays": 1,
+  "achievements": { "first_quest": "2026-11-09T22:54:19.148Z" },
+  "pendingLevelUp": false,
+  "weeklyQuests": [
+    { "id": "2026-W46-workouts", "title": "Missões da Semana", "description": "Complete 2 treinos esta semana", "target": 2, "progress": 1, "xpReward": 100, "type": "workouts_this_week", "weekKey": "2026-W46" },
+    { "id": "2026-W46-sets", "title": "Volume de Ferro", "description": "Complete 20 séries esta semana", "target": 20, "progress": 2, "xpReward": 150, "type": "total_sets_this_week", "weekKey": "2026-W46" },
+    { "id": "2026-W46-streak", "title": "Combo de Batalhas", "description": "Treine 2 dias seguidos", "target": 2, "progress": 1, "xpReward": 200, "type": "streak_days", "weekKey": "2026-W46" }
+  ],
+  "lastSessionReward": { "xpGained": 70, "newAchievementIds": ["first_quest"] },
+  "lastWorkoutDate": "2026-11-09",
+  "rpgClass": "paladin"
+}

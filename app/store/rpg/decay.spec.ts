@@ -1,12 +1,4 @@
-import {
-  applyInactivityDecay,
-  awardXp,
-  hydrateRpgState,
-  recordWorkout,
-  rpgReducer,
-} from '@/store/rpg';
-import { decayedXp, inactivityLoss } from '@/store/rpg/decay';
-import { LocalDate } from '@js-joda/core';
+import { inactivityLoss } from '@/store/rpg/decay';
 import { describe, expect, it } from 'vitest';
 
 describe('inactivityLoss', () => {
@@ -32,44 +24,5 @@ describe('inactivityLoss', () => {
 
   it('para no teto', () => {
     expect(inactivityLoss(365)).toBe(0.8);
-  });
-});
-
-describe('decayedXp', () => {
-  const on = LocalDate.parse('2026-11-11');
-  it('aplica a pausa desde o último treino', () => {
-    expect(decayedXp(1000, '2026-10-28', on)).toBe(990); // 14 dias
-    expect(decayedXp(1000, '2026-11-01', on)).toBe(1000);
-    expect(decayedXp(1000, '2026-10-28T10:00:00.000Z', on)).toBe(990);
-  });
-  it('sem data ou data inválida não perde', () => {
-    expect(decayedXp(1000, undefined, on)).toBe(1000);
-    expect(decayedXp(1000, 'lixo', on)).toBe(1000);
-  });
-});
-
-describe('applyInactivityDecay + awardXp', () => {
-  it('a pausa vira perda permanente e o XP novo entra inteiro', () => {
-    const start = rpgReducer(
-      undefined,
-      hydrateRpgState({ xp: 1000, lastWorkoutDate: '2026-10-01' }),
-    );
-    // 01/10 → 29/10 = 28 dias: perde 4%.
-    const decayed = rpgReducer(
-      start,
-      applyInactivityDecay({ date: '2026-10-29' }),
-    );
-    expect(decayed.xp).toBe(960);
-    expect(rpgReducer(decayed, awardXp(50)).xp).toBe(1010);
-  });
-});
-
-describe('recordWorkout com data passada', () => {
-  it('não faz o último treino voltar no tempo', () => {
-    const s = rpgReducer(
-      rpgReducer(undefined, hydrateRpgState({ lastWorkoutDate: '2026-11-08' })),
-      recordWorkout({ date: '2026-10-01', xpGained: 0, newAchievementIds: [] }),
-    );
-    expect(s.lastWorkoutDate).toBe('2026-11-08');
   });
 });

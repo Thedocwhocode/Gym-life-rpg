@@ -17,7 +17,8 @@ import { applyStatsEffects } from '@/store/stats/effects';
 import { applyAiPlannerEffects } from '@/store/ai-planner/effects';
 import { initializeAiPlannerStateSlice } from '@/store/ai-planner';
 import { applyRpgEffects } from '@/store/rpg/effects';
-import { initializeRpgStateSlice } from '@/store/rpg';
+import { applyChoicesEffects } from '@/store/choices/effects';
+import { initializeChoicesStateSlice } from '@/store/choices';
 import { clearAllListeners } from '@reduxjs/toolkit';
 
 export { store, RootState, AppDispatch };
@@ -32,13 +33,14 @@ applyFeedEffects();
 applyStatsEffects();
 applyAiPlannerEffects();
 applyRpgEffects();
+applyChoicesEffects();
 
 store.dispatch(initializeSettingsStateSlice());
 store.dispatch(initializeAppStateSlice());
 store.dispatch(initializeProgramStateSlice());
 store.dispatch(initializeFeedStateSlice());
 store.dispatch(initializeAiPlannerStateSlice());
-store.dispatch(initializeRpgStateSlice());
+store.dispatch(initializeChoicesStateSlice());
 
 export const useAppSelector = untypedUseSelector.withTypes<RootState>();
 

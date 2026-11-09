@@ -7,7 +7,7 @@ import { headerOptions } from '@/components/presentation/pixel/AppHeader';
 import Button from '@/components/presentation/pixel/Button';
 import IconButton from '@/components/presentation/pixel/IconButton';
 import SessionCard from '@/components/presentation/rpg/SessionCard';
-import { sessionXp } from '@/store/rpg/effects';
+import { sessionXp } from '@/store/rpg/derive';
 import { Session } from '@/models/session-models';
 import { useAppSelector, useAppSelectorWithArg } from '@/store';
 import {
