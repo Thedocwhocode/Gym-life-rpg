@@ -448,5 +448,14 @@
   "rpg.calendar.next": "Next month",
   "rpg.history.eyebrow": "History",
   "rpg.history.complete": "Quest complete",
-  "rpg.history.partial": "Partial quest"
+  "rpg.history.partial": "Partial quest",
+  "rpg.hero.eyebrow": "Tavern",
+  "rpg.hero.class_level": "{class} · Level {level}",
+  "rpg.hero.class_tag": "class: {attr}",
+  "rpg.hero.app_info_body": "GymLife RPG is an open source app, based on LiftLog and licensed under AGPL-3.0. Source on",
+  "rpg.hero.app_version": "Version {version}",
+  "rpg.class.warrior": "Warrior",
+  "rpg.class.scout": "Scout",
+  "rpg.class.paladin": "Paladin",
+  "rpg.class.none": "No class"
 }
