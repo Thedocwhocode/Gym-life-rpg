@@ -1,5 +1,6 @@
 import { addDebouncedEffect, addEffect } from '@/store/store';
 import {
+  applyInactivityDecay,
   awardXp,
   hydrateRpgState,
   initializeRpgStateSlice,
@@ -7,11 +8,13 @@ import {
   Quest,
   recordWorkout,
   RpgState,
+  selectRpgLevel,
   setRpgClass,
   setWeeklyQuests,
   unlockAchievement,
   updateQuestProgress,
 } from './index';
+import { decayedXp } from '@/store/rpg/decay';
 import { addStoredSession } from '@/store/stored-sessions';
 import { selectSessions } from '@/store/stored-sessions';
 import {
@@ -142,7 +145,7 @@ export function applyRpgEffects() {
         (q) => q.weekKey === weekKey,
       );
       if (!hasCurrentWeekQuests) {
-        const level = levelFromXp(getState().rpg.xp);
+        const level = selectRpgLevel(getState());
         dispatch(setWeeklyQuests(buildWeeklyQuests(weekKey, level)));
       }
     },
@@ -172,7 +175,8 @@ export function applyRpgEffects() {
       const dateIso = new Date().toISOString();
 
       const totalWorkoutsAfter = rpg.totalWorkouts + 1;
-      const levelAfter = levelFromXp(rpg.xp + xpGained);
+      const xpBefore = decayedXp(rpg.xp, rpg.lastWorkoutDate, newSession.date);
+      const levelAfter = levelFromXp(xpBefore + xpGained);
       const streakAfter = computeNewStreak(rpg, today);
 
       const newAchievementIds: string[] = [];
@@ -209,6 +213,7 @@ export function applyRpgEffects() {
         ),
       );
 
+      dispatch(applyInactivityDecay({ date: today }));
       dispatch(awardXp(xpGained));
       dispatch(recordWorkout({ date: today, xpGained, newAchievementIds }));
       for (const id of toUnlock) {

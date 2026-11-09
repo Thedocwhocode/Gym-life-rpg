@@ -515,8 +515,14 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   "Pular" fica sempre visível e "Compartilhar" aparece na última página. A crônica semanal (E4)
   nunca abre na mesma abertura do RewardDialog; fica para a próxima. Afeta a F5 e a F6.
 - **DR4 Atributos cumulativos:** STR, DEX, CON e STA mostram o total da vida (ou um nível derivado
-  dele), com o subtítulo "esta semana +N". O herói nunca fica mais fraco. É uma fórmula pura a mais
-  em `derive.ts`, com teste. Afeta a F2 (T1).
+  dele), com o subtítulo "esta semana +N". É uma fórmula pura a mais em `derive.ts`, com teste.
+  Afeta a F2 (T1).
+  - **Revisado em 2026-11-09 (decisão do produto):** o herói **pode** ficar mais fraco. Depois de
+    14 dias sem treinar ele perde XP (logo, nível e título) e atributos (CON etc.). A perda começa
+    pequena e acelera: 1% no dia 14, dobrando a cada 7 dias (2% no 21, 4% no 28, 16% no 42), teto
+    de 80%. Regra pura em `app/store/rpg/decay.ts` (`DECAY` tem os 4 knobs). Enquanto parado, o XP
+    mostrado já vem descontado (`selectEffectiveXp`); ao voltar a treinar, `applyInactivityDecay`
+    grava a perda antes do XP novo. Os atributos descontam cada pausa de 14+ dias do histórico.
 
 #### Passada 2 — Estados de interação (4 → 8)
 - **DR5 Tabela de estados:** a tabela abaixo entra no aceite da fase de cada tela. Regras:
@@ -689,7 +695,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 - [ ] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
   - Origem: Passada 1, DR1 · Arquivos: Painel em `app/app/(tabs)/`, `components/presentation/pixel/` · Verificar: e2e + E3
 - [ ] **TD3 (P1, human ~3h / CC ~15min)** — `derive` — atributos cumulativos + "esta semana +N"
-  - Origem: Passada 1, DR4 · Arquivos: `app/store/rpg/derive.ts` · Verificar: unit
+  - Origem: Passada 1, DR4 (revisado 2026-11-09: perda por inatividade) · Arquivos: `app/store/rpg/derive.ts`, `decay.ts` · Verificar: unit
 - [ ] **TD4 (P1, human ~1d / CC ~30min)** — `journey/rules` — multiplicadores no fold cronológico + `multiplicadoresDesde`
   - Origem: Passada 4, DR11 · Arquivos: `app/store/journey/rules/multipliers.ts`, `derive.ts`, `store/choices` · Verificar: unit (soma, teto, piso, antes/depois da data, troca de classe)
 - [ ] **TD5 (P1, human ~4h / CC ~20min)** — `journey/rules` — `coracoesDesde` + último estado visto + aviso "Faltou na…"

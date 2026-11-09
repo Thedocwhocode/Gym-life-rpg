@@ -48,4 +48,17 @@ describe('deriveAttributes', () => {
     expect(attrs.DEX).toEqual({ total: 1, week: 0 });
     expect(attrs.STR).toEqual({ total: 4, week: 0 });
   });
+
+  it('pausas de 14+ dias cortam os totais, e a pausa atual também', () => {
+    // 01/10 → 11/11 = 41 dias parado: perde 1% × 2^(27/7) ≈ 14,5%.
+    const parado = deriveAttributes([fact('2026-10-01', 100, 0, ['A'])], today);
+    expect(parado.STR).toEqual({ total: 85, week: 0 });
+    // Treinou de novo em 11/11: a perda da pausa fica e o ganho novo entra inteiro.
+    const voltou = deriveAttributes(
+      [fact('2026-10-01', 100, 0, ['A']), fact('2026-11-11', 10, 0, ['A'])],
+      today,
+    );
+    expect(voltou.STR).toEqual({ total: 95, week: 10 });
+    expect(voltou.CON.total).toBe(1);
+  });
 });

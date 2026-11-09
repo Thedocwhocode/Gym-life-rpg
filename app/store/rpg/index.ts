@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { decayedXp } from '@/store/rpg/decay';
 import { RootState } from '@/store/store';
+import { LocalDate } from '@js-joda/core';
 
 export function xpForLevel(level: number): number {
   return Math.pow(level - 1, 2) * 100;
@@ -150,6 +152,14 @@ const rpgSlice = createSlice({
         state.levelUpNewLevel = newLevel;
       }
     },
+    /** Torna permanente a perda da pausa até `date` (antes do XP do treino novo). */
+    applyInactivityDecay(state, action: PayloadAction<{ date: string }>) {
+      state.xp = decayedXp(
+        state.xp,
+        state.lastWorkoutDate,
+        LocalDate.parse(action.payload.date),
+      );
+    },
     clearLevelUp(state) {
       state.pendingLevelUp = false;
       delete state.levelUpNewLevel;
@@ -225,6 +235,7 @@ const rpgSlice = createSlice({
 export const {
   hydrateRpgState,
   awardXp,
+  applyInactivityDecay,
   clearLevelUp,
   recordWorkout,
   unlockAchievement,
@@ -237,10 +248,15 @@ export const {
 
 export const rpgReducer = rpgSlice.reducer;
 
-export const selectRpgLevel = (state: RootState) => levelFromXp(state.rpg.xp);
+/** XP de hoje: o gravado menos a perda da pausa atual (14+ dias sem treinar). */
+export const selectEffectiveXp = (state: RootState) =>
+  decayedXp(state.rpg.xp, state.rpg.lastWorkoutDate, LocalDate.now());
+export const selectRpgLevel = (state: RootState) =>
+  levelFromXp(selectEffectiveXp(state));
 export const selectRpgTitle = (state: RootState) =>
-  titleForLevel(levelFromXp(state.rpg.xp));
-export const selectXpProgress = (state: RootState) => xpProgress(state.rpg.xp);
+  titleForLevel(selectRpgLevel(state));
+export const selectXpProgress = (state: RootState) =>
+  xpProgress(selectEffectiveXp(state));
 export const selectAllAchievements = (state: RootState) =>
   ACHIEVEMENTS.map((def) => ({
     ...def,
