@@ -52,6 +52,12 @@ Cypress.Commands.add('completeWelcomeWizard', () => {
     return cy.getByTestId('welcome-wizard-next').should('not.exist')
 });
 
+// A new completed session opens the reward screen over every tab until CONTINUAR is pressed.
+Cypress.Commands.add('dismissSessionReward', () => {
+    cy.getByTestId('session-reward-continue').click()
+    return cy.getByTestId('session-reward-continue').should('not.exist')
+});
+
 // Screenshots the element with this test id and diffs it against cypress/snapshots/<testId>.png.
 Cypress.Commands.add('matchSnapshot', (testId) => {
     let screenshotPath

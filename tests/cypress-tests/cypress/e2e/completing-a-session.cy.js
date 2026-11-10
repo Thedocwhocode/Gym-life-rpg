@@ -95,6 +95,7 @@ describe('Completing a session', () => {
         // cy.get('.snackbar').should('be.visible').should('contain.text', 'This session').should('contain.text', '680')
 
         cy.getByTestId('save-session-button').click()
+        cy.dismissSessionReward()
 
         cy.getByTestId('session-summary-title').should('contain.text', 'Workout B')
 
@@ -180,6 +181,7 @@ describe('Completing a session', () => {
         // TODO session summary
         // cy.get('.snackbar').should('be.visible').should('contain.text', 'This session').should('contain.text', '687.5')
         cy.getByTestId('save-session-button').click()
+        cy.dismissSessionReward()
 
         cy.getByTestId('session-summary-title').eq(0).should('contain.text', 'Workout B')
         cy.contains('Start workout').click()
@@ -214,6 +216,7 @@ describe('Completing a session', () => {
         }
 
         cy.getByTestId('save-session-button').click()
+        cy.dismissSessionReward()
 
         cy.getByTestId('session-summary-title').eq(0).should('contain.text', 'Workout B')
         cy.contains('Start workout').click()
@@ -233,6 +236,7 @@ describe('Completing a session', () => {
 
         cy.getByTestId('save-session-button').click()
         cy.dialog().find('[data-testid=action-ok]').click()
+        cy.dismissSessionReward()
 
         cy.navigate('History')
 

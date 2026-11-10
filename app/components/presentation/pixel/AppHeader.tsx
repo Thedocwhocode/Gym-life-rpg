@@ -27,6 +27,7 @@ export default function AppHeader({
   return (
     <View
       accessibilityRole="header"
+      testID="appbar-header"
       style={{
         flexDirection: 'row',
         alignItems: 'center',
@@ -41,7 +42,12 @@ export default function AppHeader({
       }}
     >
       {onBack ? (
-        <IconButton icon="chevron-left" label={backLabel} onPress={onBack} />
+        <IconButton
+          icon="chevron-left"
+          label={backLabel}
+          onPress={onBack}
+          testID="icon-button"
+        />
       ) : null}
       <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
         {eyebrow ? (

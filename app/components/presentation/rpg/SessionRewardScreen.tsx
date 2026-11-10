@@ -126,7 +126,12 @@ export default function SessionRewardScreen() {
             </View>
           )}
 
-          <Button mode="contained" onPress={dismiss} style={{ width: '100%' }}>
+          <Button
+            mode="contained"
+            testID="session-reward-continue"
+            onPress={dismiss}
+            style={{ width: '100%' }}
+          >
             CONTINUAR
           </Button>
         </Animated.View>
