@@ -1,3 +1,6 @@
+import { View } from 'react-native';
+import ListItem from '@/components/presentation/pixel/ListItem';
+import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import LimitedHtml from '@/components/presentation/limited-html';
@@ -18,7 +21,6 @@ import { setStatsIsDirty } from '@/store/stats';
 import { T, useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 export default function BackupAndRestorePage() {
@@ -33,45 +35,45 @@ export default function BackupAndRestorePage() {
       <Stack.Screen
         options={{ title: t('backup.export_backup_restore.title') }}
       />
-      <List.Section>
-        <List.Item
+      <View>
+        <ListItem
           title={t('backup.backup_data.title')}
           description={t('backup.backup_data.subtitle')}
-          left={(props) => <List.Icon icon={'backup'} {...props} />}
+          icon={resolvePixelIcon('backup').name}
           onPress={() => setFeedExportDialogOpen(true)}
-        ></List.Item>
-        <List.Item
+        />
+        <ListItem
           title={t('backup.restore_data.title')}
           description={t('backup.restore_data.subtitle')}
-          left={(props) => <List.Icon icon={'history'} {...props} />}
+          icon={resolvePixelIcon('history').name}
           onPress={() => {
             dispatch(importData());
             dispatch(setStatsIsDirty(true));
           }}
-        ></List.Item>
-        <List.Item
+        />
+        <ListItem
           title={t('backup.automatic_remote.title')}
           description={t('backup.automatic_remote.subtitle')}
-          left={(props) => <List.Icon icon={'cloudUpload'} {...props} />}
+          icon={resolvePixelIcon('cloudUpload').name}
           onPress={() =>
             push('/(tabs)/settings/backup-and-restore/remote-backup')
           }
-        ></List.Item>
-        <List.Item
+        />
+        <ListItem
           title={t('backup.plaintext_export.title')}
           description={t('backup.plaintext_export.subtitle')}
-          left={(props) => <List.Icon icon={'description'} {...props} />}
+          icon={resolvePixelIcon('description').name}
           onPress={() =>
             push('/(tabs)/settings/backup-and-restore/plain-text-export')
           }
-        ></List.Item>
+        />
         <ListSwitch
           headline={<T keyName="backup.reminders.title" />}
           supportingText={<T keyName="backup.reminders.subtitle" />}
           value={backupReminders}
           onValueChange={(value) => dispatch(setBackupReminder(value))}
         />
-      </List.Section>
+      </View>
       <ImportFeedDialog
         open={feedImportDialogOpen}
         setOpen={setFeedImportDialogOpen}

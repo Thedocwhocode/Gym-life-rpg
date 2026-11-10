@@ -457,18 +457,18 @@ Nenhum gap crítico (sem teste, sem tratamento e silencioso ao mesmo tempo).
 Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes da F8.
 
 ### Implementation Tasks
-- [ ] **T1 (P1, human ~2d / CC ~40min)**: `store/rpg`: projeção pura `derive.ts` + `store/choices` + reescrita de `effects.ts`
+- [x] **T1 (P1, human ~2d / CC ~40min)**: `store/rpg`: projeção pura `derive.ts` + `store/choices` + reescrita de `effects.ts`
   - Origem: Arquitetura R1 + voz externa 1
   - Arquivos: `app/store/rpg/*`, `app/store/choices/*`
   - Verificar: `npm test` (derive, diffProjection)
-- [ ] **T2 (P1, human ~4h / CC ~15min)**: `store`: migração única de `RpgState` / `forceDarkMode` / `colorSchemeSeed`
+- [x] **T2 (P1, human ~4h / CC ~15min)**: `store`: migração única de `RpgState` / `forceDarkMode` / `colorSchemeSeed`
   - Origem: regressão crítica
   - Arquivos: `app/store/choices`, `app/store/settings`
   - Verificar: teste com snapshot real
 - [ ] **T3 (P1, human ~2h / CC ~10min)**: `derive`: XP de quest na projeção
   - Origem: R3 (`ActiveQuestPanel.tsx:70`)
   - Verificar: unit
-- [ ] **T4 (P1, human ~3h / CC ~10min)**: `derive`: `today: LocalDate` + lint `no-restricted-syntax`
+- [x] **T4 (P1, human ~3h / CC ~10min)**: `derive`: `today: LocalDate` + lint `no-restricted-syntax`
   - Origem: R2 + voz externa 4
   - Arquivos: `app/store/rpg/derive.ts`, `eslint.config.*`
   - Verificar: `npm run lint`, unit na virada de semana
@@ -704,7 +704,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 1/7, DR2 + DR21 + DR23 · Arquivos: `app/app/(tabs)/(session)/`, `store/journey/rules/combat.ts` · Verificar: unit + e2e a 375×667
 - [ ] **TD7 (P1, human ~4h / CC ~20min)** — `RewardDialog` — no máximo 3 páginas, "Pular", "Compartilhar", masmorra limpa, crônica adiada
   - Origem: Passadas 1/7, DR3 + DR22 · Arquivos: overlays em `components/smart/` · Verificar: unit da fila + e2e
-- [ ] **TD8 (P2, human ~3h / CC ~15min)** — `Toast` — sobre o `snackbar-provider`, sucesso/erro, live region
+- [x] **TD8 (P2, human ~3h / CC ~15min)** — `Toast` — sobre o `snackbar-provider`, sucesso/erro, live region
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
 - [ ] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase

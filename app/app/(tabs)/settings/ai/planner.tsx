@@ -7,14 +7,15 @@ import { I18nManager, Platform, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { useDispatch } from 'react-redux';
-import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import Button from '@/components/presentation/gesture-wrappers/button';
+import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
+import PixelIconButton from '@/components/presentation/pixel/IconButton';
+import TextField from '@/components/presentation/pixel/TextField';
+import { ActivityIndicator } from 'react-native-paper';
 import {
-  Appbar,
-  TextInput,
-  ActivityIndicator,
-  Tooltip,
-} from 'react-native-paper';
+  acceptAiDataNotice,
+  selectAiDataNoticeAccepted,
+} from '@/store/choices';
 import { Fragment, useEffect, useState } from 'react';
 import { useAppSelector } from '@/store';
 import {
@@ -61,9 +62,17 @@ export default function AiPlanner() {
     dispatch(initChat());
   });
 
+  const { palette } = useAppTheme();
+  const noticeAccepted = useAppSelector(selectAiDataNoticeAccepted);
+  const [pendingMessage, setPendingMessage] = useState<string>();
   const [messageText, setMessageText] = useState('');
   const sendMessage = (message: string) => {
     if (!isLoadingResponse && message) {
+      // LGPD: antes do 1º envio, avisa para onde o texto vai.
+      if (!noticeAccepted) {
+        setPendingMessage(message);
+        return;
+      }
       setMessageText('');
       dispatch(
         addMessage({
@@ -86,9 +95,11 @@ export default function AiPlanner() {
         options={{
           title: t('ai.planner.title'),
           headerRight: () => (
-            <Tooltip title={t('ai.restart_chat.button')}>
-              <Appbar.Action icon={'replay'} onPress={reset}></Appbar.Action>
-            </Tooltip>
+            <PixelIconButton
+              icon="reload"
+              label={t('ai.restart_chat.button')}
+              onPress={reset}
+            />
           ),
         }}
       />
@@ -123,43 +134,65 @@ export default function AiPlanner() {
           paddingHorizontal: spacing.pageHorizontalMargin,
           paddingVertical: spacing[2],
           flexDirection: 'row',
-          alignItems: 'center',
+          alignItems: 'flex-end',
+          gap: spacing[2],
+          borderTopWidth: 1,
+          borderColor: palette.line1,
+          backgroundColor: palette.bgApp,
         }}
       >
-        <TextInput
-          value={messageText}
-          style={{
-            flex: 1,
-            borderRadius: 30,
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          }}
-          onChangeText={setMessageText}
-          multiline
-          placeholder={t('ai.type_your_message.placeholder')}
-          onSubmitEditing={(e) => setMessageText(e.nativeEvent.text + '\n')}
-          submitBehavior="submit"
-          returnKeyType="default"
-          underlineStyle={{ display: 'none' }}
-        />
-
+        <View style={{ flex: 1 }}>
+          <TextField
+            value={messageText}
+            onChangeText={setMessageText}
+            multiline
+            rows={2}
+            placeholder={t('ai.type_your_message.placeholder')}
+            accessibilityLabel={t('ai.type_your_message.placeholder')}
+            submitBehavior="submit"
+            returnKeyType="default"
+            onSubmitEditing={(e) => setMessageText(e.nativeEvent.text + '\n')}
+          />
+        </View>
         {isLoadingResponse && (
-          <IconButton
-            mode="outlined"
-            icon={'stop'}
-            size={35}
+          <PixelIconButton
+            variant="secondary"
+            icon="close"
+            label={t('ai.stop_generating.button')}
             onPress={() => dispatch(stopAiGenerator())}
           />
         )}
-
-        <IconButton
-          mode="contained"
-          icon={'send'}
-          size={35}
-          mirrored={I18nManager.isRTL}
+        <PixelIconButton
+          variant="primary"
+          icon={I18nManager.isRTL ? 'chevron-left' : 'chevron-right'}
+          label={t('ai.send_message.button')}
+          disabled={isLoadingResponse || !messageText}
           onPress={() => sendMessage(messageText)}
+          testID="ai-send"
         />
       </View>
+      <ConfirmationDialog
+        open={pendingMessage !== undefined}
+        headline={t('ai.data_notice.title')}
+        textContent={t('ai.data_notice.body')}
+        okText={t('ai.data_notice.ok.button')}
+        onCancel={() => setPendingMessage(undefined)}
+        onOk={() => {
+          const message = pendingMessage;
+          dispatch(acceptAiDataNotice());
+          setPendingMessage(undefined);
+          if (!message) return;
+          setMessageText('');
+          dispatch(
+            addMessage({
+              from: 'User',
+              message,
+              id: uuid(),
+              type: 'messageResponse',
+            }),
+          );
+        }}
+      />
     </KeyboardAvoidingView>
   );
 }
@@ -172,13 +205,8 @@ function ChatBubble(props: {
 }) {
   const { message, sameSenderBelow, sameSenderAbove, isLastMessage } = props;
   const isUser = message.from === 'User';
-  const { colors } = useAppTheme();
+  const { colors, palette } = useAppTheme();
 
-  const smallRadius = spacing[1];
-  const normalRadius = spacing[4];
-
-  const topDynamicRadius = sameSenderAbove ? smallRadius : normalRadius;
-  const bottomDynamicRadius = sameSenderBelow ? smallRadius : normalRadius;
   const zoom = isUser ? ZoomInRight : ZoomInLeft;
   return (
     <View
@@ -197,10 +225,10 @@ function ChatBubble(props: {
           backgroundColor: isUser
             ? colors.primary
             : colors.surfaceContainerHighest,
-          borderTopLeftRadius: isUser ? normalRadius : topDynamicRadius,
-          borderTopRightRadius: isUser ? topDynamicRadius : normalRadius,
-          borderBottomLeftRadius: isUser ? normalRadius : bottomDynamicRadius,
-          borderBottomRightRadius: isUser ? bottomDynamicRadius : normalRadius,
+          borderWidth: 1,
+          borderColor: isUser ? palette.accentStrong : palette.line2,
+          marginTop: sameSenderAbove ? 0 : spacing[1],
+          marginBottom: sameSenderBelow ? 0 : spacing[1],
           padding: spacing[3],
           maxWidth: '90%',
         }}

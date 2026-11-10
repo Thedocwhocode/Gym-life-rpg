@@ -1,3 +1,4 @@
+import { View } from 'react-native';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import ProgramListItem from '@/components/smart/program-list-item';
@@ -8,7 +9,7 @@ import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { FAB, List } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
 
 import { useDispatch } from 'react-redux';
 
@@ -37,24 +38,18 @@ export default function ProgramList() {
   const floatingBottomContainer = (
     <FloatingBottomContainer
       fab={
-        <FAB
-          variant="surface"
-          size="small"
-          icon={'add'}
-          label={t('plan.add.button')}
-          onPress={addProgram}
-        />
+        <Fab icon="plus" label={t('plan.add.button')} onPress={addProgram} />
       }
     />
   );
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
       <Stack.Screen options={{ title: t('plan.plans.title') }} />
-      <List.Section testID="program-list">
+      <View testID="program-list">
         {ps.map(({ id }) => (
           <ProgramListItem key={id} id={id} isFocused={focusprogramId === id} />
         ))}
-      </List.Section>
+      </View>
     </FullHeightScrollView>
   );
 }

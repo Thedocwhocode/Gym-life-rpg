@@ -27,7 +27,8 @@ import {
 import { T, useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Card, Icon, List, TextInput } from 'react-native-paper';
+import { Icon, TextInput } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
@@ -214,7 +215,7 @@ function FeedProfileEditor({
             />
           </LabelledFormRow>
         </LabelledForm>
-        <List.Section>
+        <View>
           <ListSwitch
             testID="feed-publish-workouts-switch"
             focus={focusPublish}
@@ -239,7 +240,7 @@ function FeedProfileEditor({
             value={identity.publishPlan}
             onValueChange={(publishPlan) => updateProfile({ publishPlan })}
           />
-        </List.Section>
+        </View>
         <Button onPress={() => setResetAccountDialogOpen(true)}>
           {t('feed.reset_account.button')}
         </Button>

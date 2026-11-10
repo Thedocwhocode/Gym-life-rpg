@@ -26,7 +26,12 @@ function parse(raw: string | undefined): Record<string, unknown> | undefined {
 
 function pick(obj: Record<string, unknown> | undefined): Choices {
   const c = obj?.['rpgClass'];
-  return CLASSES.includes(c as RpgClass) ? { rpgClass: c as RpgClass } : {};
+  return {
+    ...(CLASSES.includes(c as RpgClass) ? { rpgClass: c as RpgClass } : {}),
+    ...(obj?.['aiDataNoticeAccepted'] === true
+      ? { aiDataNoticeAccepted: true }
+      : {}),
+  };
 }
 
 /**

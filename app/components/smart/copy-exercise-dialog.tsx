@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import { spacing } from '@/hooks/useAppTheme';
 import { ExerciseBlueprint, SessionBlueprint } from '@/models/blueprint-models';
 import { useAppSelectorWithArg } from '@/store';
@@ -7,7 +8,9 @@ import { T, useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { Dialog, List, Portal, RadioButton, Text } from 'react-native-paper';
+import { Portal, Text } from 'react-native-paper';
+import Dialog from '@/components/presentation/pixel/Dialog';
+import Check from '@/components/presentation/pixel/Check';
 import { useDispatch } from 'react-redux';
 import Button from '@/components/presentation/gesture-wrappers/button';
 
@@ -74,16 +77,15 @@ export default function CopyExerciseDialog({
   }: {
     item: { session: SessionBlueprint; index: number };
   }) => (
-    <List.Item
+    <ListItem
       title={item.session.name}
       description={`${item.session.exercises.length} exercises`}
-      left={() => (
-        <RadioButton
-          value={item.index.toString()}
-          status={selectedSessionIndex === item.index ? 'checked' : 'unchecked'}
+      leading={
+        <Check
+          checked={selectedSessionIndex === item.index}
           onPress={() => setSelectedSessionIndex(item.index)}
         />
-      )}
+      }
       onPress={() => setSelectedSessionIndex(item.index)}
     />
   );

@@ -49,7 +49,7 @@ export function applyAppEffects() {
 
   addEffect(showSnackbar, async (action, { dispatch, getState }) => {
     dispatch(setCurrentSnackbar(action.payload));
-    await sleep(action.payload.duration ?? 5000);
+    await sleep(action.payload.duration ?? 4000);
     if (getState().app.currentSnackbar === action.payload) {
       dispatch(setCurrentSnackbar(undefined));
     }

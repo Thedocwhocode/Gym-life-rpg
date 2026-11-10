@@ -52,7 +52,10 @@ export const shareString = createAction<{ title: string; value: string }>(
   'shareString',
 );
 
-export type SnackbarDescriptor =
+export type SnackbarDescriptor = {
+  /** Tom do toast: erro usa danger-wash; o padrão é neutro/sucesso. */
+  tone?: 'success' | 'error';
+} & (
   | {
       text: string;
       action?: undefined;
@@ -62,7 +65,8 @@ export type SnackbarDescriptor =
       text: string;
       action: string;
       dispatchAction: UnknownAction | UnknownAction[];
-    };
+    }
+);
 export const showSnackbar = createAction<
   SnackbarDescriptor & { duration?: number }
 >('snackBarWithAction');

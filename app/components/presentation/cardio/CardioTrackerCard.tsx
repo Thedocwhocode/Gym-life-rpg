@@ -1,7 +1,7 @@
 import Holdable from '@/components/presentation/holdable';
 import { spacing } from '@/hooks/useAppTheme';
 import { ReactNode } from 'react';
-import { Card } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
 
 export function CardioTrackerCard(props: {

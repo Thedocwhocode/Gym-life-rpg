@@ -54,7 +54,6 @@ export default function SessionRewardScreen() {
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.primary,
-              borderRadius: 4,
               padding: spacing[6],
               marginHorizontal: spacing[6],
               gap: spacing[5],
@@ -79,7 +78,6 @@ export default function SessionRewardScreen() {
               backgroundColor: colors.primaryContainer,
               paddingHorizontal: spacing[4],
               paddingVertical: spacing[2],
-              borderRadius: 4,
             }}
           >
             <PixelFx fx={PIXEL_FX.xpOrb} scale={1} style={styles.xpOrb} />

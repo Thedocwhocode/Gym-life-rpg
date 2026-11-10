@@ -15,7 +15,9 @@ import { useTranslate } from '@tolgee/react';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
-import { Card, Icon } from 'react-native-paper';
+import Icon from '@/components/presentation/pixel/Icon';
+import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 
@@ -63,7 +65,12 @@ export default function FeedSharePage() {
           <View style={{ padding: spacing.pageHorizontalMargin }}>
             <Card mode="contained">
               <Card.Title
-                left={({ size }) => <Icon source={'personFill'} size={size} />}
+                left={({ size }) => (
+                  <Icon
+                    name={resolvePixelIcon('personFill').name}
+                    size={size}
+                  />
+                )}
                 title={t('feed.profile_share_request.title')}
                 titleVariant="headlineSmall"
               />

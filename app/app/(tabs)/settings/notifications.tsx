@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import ListSwitch from '@/components/presentation/list-switch';
 import AndroidNotificationAlert from '@/components/smart/android-notification-alert';
@@ -6,8 +7,7 @@ import { requestExactNotificationPermission } from '@/store/app';
 import { setRestNotifications } from '@/store/settings';
 import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
-import { Platform } from 'react-native';
-import { List } from 'react-native-paper';
+import { Platform, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 export default function AppConfiguration() {
@@ -18,7 +18,7 @@ export default function AppConfiguration() {
   return (
     <FullHeightScrollView>
       <Stack.Screen options={{ title: t('settings.notifications.title') }} />
-      <List.Section>
+      <View>
         <ListSwitch
           headline={<T keyName="rest.notifications.title" />}
           supportingText={<T keyName="rest.notifications.subtitle" />}
@@ -26,12 +26,12 @@ export default function AppConfiguration() {
           onValueChange={(value) => dispatch(setRestNotifications(value))}
         />
         {Platform.OS === 'android' && (
-          <List.Item
+          <ListItem
             title={t('permissions.exact_notification.button')}
             onPress={() => dispatch(requestExactNotificationPermission(true))}
           />
         )}
-      </List.Section>
+      </View>
       <AndroidNotificationAlert />
     </FullHeightScrollView>
   );

@@ -1,6 +1,7 @@
 import { PALETTE_IDS, PaletteId } from '@/theme/palettes';
 import { View } from 'react-native';
-import { SegmentedButtons, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import Segmented from '@/components/presentation/pixel/Segmented';
 import { spacing } from '@/hooks/useAppTheme';
 
 const LABELS: Record<PaletteId, string> = {
@@ -28,16 +29,13 @@ export default function PaletteChooser({
       }}
     >
       <Text variant="labelLarge">Paleta</Text>
-      <SegmentedButtons
+      <Segmented
         value={value}
-        onValueChange={(v) => onChange(v)}
-        density="small"
-        buttons={PALETTE_IDS.map((id) => ({
+        onChange={(v) => onChange(v)}
+        options={PALETTE_IDS.map((id) => ({
           value: id,
           label: LABELS[id],
           testID: `palette-${id}`,
-          showSelectedCheck: false,
-          labelStyle: { fontSize: 11 },
         }))}
       />
     </View>

@@ -460,5 +460,16 @@
   "rpg.class.none": "No class",
   "rpg.feed.eyebrow": "Social feed",
   "rpg.stats.eyebrow": "Character sheet",
-  "rpg.stats.search": "Search exercise"
+  "rpg.stats.search": "Search exercise",
+  "ai.data_notice.title": "Before sending",
+  "ai.data_notice.body": "• Only the text you type leaves your device.\n• It goes to the AI Planner server and to OpenAI to build the plan.\n• The server does not store the conversation.\n• Don't write names, diagnoses or other health data you don't want to send.",
+  "ai.data_notice.ok.button": "Got it, send",
+  "ai.send_message.button": "Send message",
+  "ai.stop_generating.button": "Stop response",
+  "onboarding.class.title": "Choose your class",
+  "onboarding.class.subtitle": "Your class changes how you earn XP. You can switch later in the Tavern.",
+  "onboarding.class.warrior.bonus": "+10% XP on strength sets",
+  "onboarding.class.scout.bonus": "+15% XP on cardio",
+  "onboarding.class.paladin.bonus": "Streak protected 1×/week",
+  "onboarding.step.label": "Step {current} / {total}"
 }

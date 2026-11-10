@@ -243,7 +243,7 @@ export function addRemoteBackupEffects() {
           errorMessage += ' [unknown]';
         }
 
-        dispatch(showSnackbar({ text: errorMessage }));
+        dispatch(showSnackbar({ text: errorMessage, tone: 'error' }));
 
         // Update state to indicate failure
         dispatch(setLastBackup(RemoteData.error(errorMessage)));

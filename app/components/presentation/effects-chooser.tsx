@@ -1,6 +1,7 @@
 import { EffectsMode } from '@/store/settings';
 import { View } from 'react-native';
-import { SegmentedButtons, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import Segmented from '@/components/presentation/pixel/Segmented';
 import { spacing } from '@/hooks/useAppTheme';
 
 interface EffectsChooserProps {
@@ -21,11 +22,10 @@ export default function EffectsChooser({
       }}
     >
       <Text variant="labelLarge">Efeitos</Text>
-      <SegmentedButtons
+      <Segmented
         value={value}
-        onValueChange={(v) => onChange(v)}
-        density="small"
-        buttons={[
+        onChange={(v) => onChange(v)}
+        options={[
           { value: 'complete', label: 'Completo', testID: 'effects-complete' },
           { value: 'reduced', label: 'Reduzido', testID: 'effects-reduced' },
           { value: 'off', label: 'Desligado', testID: 'effects-off' },

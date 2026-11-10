@@ -4,16 +4,20 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { accentText } from '@/theme/palettes';
 import { type } from '@/theme/tokens';
 import { ReactNode, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Platform, Pressable, Text, View } from 'react-native';
 
 export interface ListItemProps {
   title: ReactNode;
   description?: ReactNode | undefined;
   icon?: PixelIconName | undefined;
+  /** Elemento à esquerda no lugar do ícone (rádio, checkbox). */
+  leading?: ReactNode | undefined;
+  titleColor?: string | undefined;
   /** Texto curto à direita (ex.: "3/20"). */
   meta?: string | undefined;
   trailing?: ReactNode | undefined;
   onPress?: (() => void) | undefined;
+  onLongPress?: (() => void) | undefined;
   danger?: boolean | undefined;
   /** Padrão: aparece quando há `onPress` e nenhum `trailing`. */
   chevron?: boolean | undefined;
@@ -27,9 +31,12 @@ export default function ListItem({
   title,
   description,
   icon,
+  leading,
+  titleColor,
   meta,
   trailing,
   onPress,
+  onLongPress,
   danger = false,
   chevron,
   disabled = false,
@@ -42,10 +49,14 @@ export default function ListItem({
   return (
     <Pressable
       testID={testID}
-      accessibilityRole={onPress ? 'button' : undefined}
+      // No web, role="button" vira <button>; com controle no `trailing` daria botão aninhado.
+      accessibilityRole={
+        onPress && !(Platform.OS === 'web' && trailing) ? 'button' : undefined
+      }
       accessibilityState={{ disabled }}
-      disabled={disabled || !onPress}
+      disabled={disabled || (!onPress && !onLongPress)}
       onPress={onPress}
+      onLongPress={onLongPress}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       style={{
@@ -65,6 +76,7 @@ export default function ListItem({
         opacity: disabled ? 0.4 : 1,
       }}
     >
+      {leading}
       {icon && (
         <Icon
           name={icon}
@@ -76,7 +88,8 @@ export default function ListItem({
         <Text
           style={{
             ...type.bodyLg,
-            color: danger ? palette.dangerStrong : palette.text1,
+            color:
+              titleColor ?? (danger ? palette.dangerStrong : palette.text1),
           }}
         >
           {title}

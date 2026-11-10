@@ -403,5 +403,16 @@
   "rpg.class.none": "Sem classe",
   "rpg.feed.eyebrow": "Feed social",
   "rpg.stats.eyebrow": "Ficha do personagem",
-  "rpg.stats.search": "Buscar exercício"
+  "rpg.stats.search": "Buscar exercício",
+  "ai.data_notice.title": "Antes de enviar",
+  "ai.data_notice.body": "• Só o texto que você digitar sai do aparelho.\n• Ele vai ao servidor do Planejador IA e à OpenAI para montar o plano.\n• O servidor não grava a conversa.\n• Não escreva nome, diagnóstico ou outros dados de saúde que não queira enviar.",
+  "ai.data_notice.ok.button": "Entendi, enviar",
+  "ai.send_message.button": "Enviar mensagem",
+  "ai.stop_generating.button": "Parar resposta",
+  "onboarding.class.title": "Escolha sua classe",
+  "onboarding.class.subtitle": "Sua classe muda como você ganha XP. Dá pra trocar depois na Taverna.",
+  "onboarding.class.warrior.bonus": "+10% XP em séries de força",
+  "onboarding.class.scout.bonus": "+15% XP em cardio",
+  "onboarding.class.paladin.bonus": "Streak protegido 1×/semana",
+  "onboarding.step.label": "Passo {current} / {total}"
 }

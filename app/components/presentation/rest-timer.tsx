@@ -108,9 +108,8 @@ export default function RestTimer({
   // Animated props for SVG paths
   const pillHeight = spacing[14];
   const pillWidth = pillHeight * 2.2;
-  const radius = (pillHeight - 6) / 2;
-  const straightLength = pillWidth - pillHeight;
-  const pillPerimeter = 2 * straightLength + 2 * Math.PI * radius;
+  // Moldura reta (pixel): a barra de progresso percorre o retângulo.
+  const pillPerimeter = 2 * (pillWidth - 6) + 2 * (pillHeight - 6);
 
   // Timer effect to update all timer-related values every 200ms
   useEffect(() => {
@@ -142,7 +141,6 @@ export default function RestTimer({
             height: pillHeight,
             pointerEvents: 'none',
             overflow: 'hidden',
-            borderRadius: pillHeight,
             backgroundColor: colors[timerState.backgroundColor],
             alignItems: 'center',
             justifyContent: 'center',
@@ -240,12 +238,7 @@ function PillProgressBar({
   if (!visible) return null;
   return (
     <AnimatedPath
-      d={`M${3 + pillHeight / 2 - 3},3
-          h${pillWidth - pillHeight + 0}
-          a${pillHeight / 2 - 3},${pillHeight / 2 - 3} 0 0 1 0,${pillHeight - 6}
-          h-${pillWidth - pillHeight + 0}
-          a${pillHeight / 2 - 3},${pillHeight / 2 - 3} 0 0 1 0,-${pillHeight - 6}
-          z`}
+      d={`M3,3 h${pillWidth - 6} v${pillHeight - 6} h-${pillWidth - 6} z`}
       stroke={color}
       strokeWidth={6}
       fill="none"

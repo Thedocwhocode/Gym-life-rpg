@@ -27,6 +27,13 @@ describe('loadChoices (migração do RpgState)', () => {
     expect(kv.data.has(LEGACY_RPG_KEY)).toBe(false);
   });
 
+  it('lembra o aceite do aviso LGPD da IA', async () => {
+    const kv = memoryKv({
+      [CHOICES_KEY]: JSON.stringify({ aiDataNoticeAccepted: true }),
+    });
+    expect(await loadChoices(kv)).toEqual({ aiDataNoticeAccepted: true });
+  });
+
   it('se a gravação falhar, não apaga o RpgState', async () => {
     const kv = memoryKv({ [LEGACY_RPG_KEY]: JSON.stringify(legacy) }, true);
     await expect(loadChoices(kv)).rejects.toThrow();

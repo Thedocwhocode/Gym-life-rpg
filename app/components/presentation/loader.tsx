@@ -1,30 +1,21 @@
-import { useAppTheme, spacing } from '@/hooks/useAppTheme';
-import { T } from '@tolgee/react';
+import AsciiSkeleton from '@/components/presentation/pixel/AsciiSkeleton';
+import { useTranslate } from '@tolgee/react';
 import { ReactNode } from 'react';
-import { Text, View } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import { View } from 'react-native';
 interface LoaderProps {
   children?: ReactNode;
   loadingText?: string;
 }
+/** Carregamento: spinner ASCII (só aparece depois de 300 ms). */
 export function Loader(props: LoaderProps) {
-  const { colors } = useAppTheme();
+  const { t } = useTranslate();
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        marginVertical: 'auto',
-        gap: spacing[4],
-      }}
-    >
-      <View>
-        <ActivityIndicator />
-      </View>
-      {props.children ?? (
-        <Text style={{ color: colors.onSurface, textAlign: 'center' }}>
-          {props.loadingText ?? <T keyName="generic.loading.label" />}
-        </Text>
-      )}
+    <View style={{ justifyContent: 'center', marginVertical: 'auto' }}>
+      <AsciiSkeleton
+        variant="spinner"
+        label={props.loadingText ?? t('generic.loading.label')}
+      />
+      {props.children}
     </View>
   );
 }

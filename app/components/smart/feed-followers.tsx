@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import EmptyInfo from '@/components/presentation/empty-info';
 import LimitedHtml from '@/components/presentation/limited-html';
@@ -16,7 +17,6 @@ import {
 import { T, useTranslate } from '@tolgee/react';
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { List } from 'react-native-paper';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
@@ -90,7 +90,7 @@ function FeedFollowRequest(props: { request: FollowRequest }) {
   };
 
   return (
-    <List.Item
+    <ListItem
       title={props.request.name}
       description={
         <LimitedHtml
@@ -99,25 +99,23 @@ function FeedFollowRequest(props: { request: FollowRequest }) {
           })}
         />
       }
-      right={() => {
-        return (
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <IconButton
-              icon={'close'}
-              iconColor={colors.error}
-              onPress={handleDeny}
-            />
-            <Button
-              testID="feed-accept-follow-request"
-              mode="contained"
-              icon={'check'}
-              onPress={handleAccept}
-            >
-              {t('generic.accept.button')}
-            </Button>
-          </View>
-        );
-      }}
+      trailing={
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <IconButton
+            icon={'close'}
+            iconColor={colors.error}
+            onPress={handleDeny}
+          />
+          <Button
+            testID="feed-accept-follow-request"
+            mode="contained"
+            icon={'check'}
+            onPress={handleAccept}
+          >
+            {t('generic.accept.button')}
+          </Button>
+        </View>
+      }
     />
   );
 }
@@ -147,7 +145,7 @@ function FeedFollowersItem(props: { user: FeedUser; userId: string }) {
           setConfirmRemoveVisible(false);
         }}
       />
-      <List.Item
+      <ListItem
         title={
           <LimitedHtml
             emStyles={{}}
@@ -156,7 +154,7 @@ function FeedFollowersItem(props: { user: FeedUser; userId: string }) {
             })}
           />
         }
-        right={() => (
+        trailing={
           <IconButton
             testID="following-more-btn"
             icon={'personRemove'}
@@ -164,7 +162,7 @@ function FeedFollowersItem(props: { user: FeedUser; userId: string }) {
               setConfirmRemoveVisible(true);
             }}
           />
-        )}
+        }
       />
     </>
   );

@@ -1,3 +1,4 @@
+import { View } from 'react-native';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import ListSwitch from '@/components/presentation/list-switch';
@@ -18,7 +19,6 @@ import {
 } from '@/store/settings';
 import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
-import { List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { spacing } from '@/hooks/useAppTheme';
 import { isBackendConfigured } from '@/services/api-consts';
@@ -34,7 +34,7 @@ export default function AppConfiguration() {
       <Stack.Screen
         options={{ title: t('settings.app_configuration.title') }}
       />
-      <List.Section>
+      <View>
         <PaletteChooser
           value={settings.palette}
           onChange={(palette) => dispatch(setPalette(palette))}
@@ -95,7 +95,7 @@ export default function AppConfiguration() {
         >
           {t('onboarding.start_setup_wizard.button')}
         </Button>
-      </List.Section>
+      </View>
     </FullHeightScrollView>
   );
 }

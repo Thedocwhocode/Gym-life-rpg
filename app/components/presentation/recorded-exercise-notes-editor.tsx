@@ -3,7 +3,8 @@ import { T } from '@tolgee/react';
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
-import { Portal, Dialog, TextInput } from 'react-native-paper';
+import { Portal, TextInput } from 'react-native-paper';
+import Dialog from '@/components/presentation/pixel/Dialog';
 
 export default function RecordedExerciseNotesEditor(props: {
   exerciseName: string;

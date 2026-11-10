@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { SharedProgramBlueprint } from '@/models/feed-models';
 import { useAppSelector, useAppSelectorWithArg } from '@/store';
@@ -16,7 +17,8 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
-import { List, Menu, RadioButton } from 'react-native-paper';
+import Check from '@/components/presentation/pixel/Check';
+import { Menu } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 interface ProgramListItemProps {
@@ -136,34 +138,28 @@ export default function ProgramListItem({
     }
   }, [isFocused, colors.onSecondaryContainer, colors.secondaryContainer]);
   return (
-    <List.Item
+    <ListItem
       title={program.name}
       description={t('date.edited_on.label', {
         date: program.lastEdited.format(DateTimeFormatter.ISO_DATE),
       })}
       onLongPress={() => push(`/settings/manage-workouts/${id}`)}
-      titleStyle={focusStyle}
-      descriptionStyle={focusStyle}
-      contentStyle={focusStyle}
-      right={() => (
-        <View
-          style={{ flexDirection: 'row', alignItems: 'center', ...focusStyle }}
-        >
-          <RadioButton
-            value={id}
-            status={activeProgramId === id ? 'checked' : 'unchecked'}
+      focus={Object.keys(focusStyle).length > 0}
+      trailing={
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Check
+            checked={activeProgramId === id}
             onPress={() => dispatch(setActivePlan({ programId: id }))}
           />
           <ItemMenu id={id} />
         </View>
-      )}
+      }
       onPress={() => {
         if (activeProgramId === id) {
           push(`/settings/manage-workouts/${id}`);
         }
         dispatch(setActivePlan({ programId: id }));
       }}
-      style={{}}
-    ></List.Item>
+    />
   );
 }
