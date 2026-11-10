@@ -50,4 +50,4 @@ jobs:
             -scheme GymLifeRPG \
             -sdk iphonesimulator \
             -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 17'
+            -destination 'generic/platform=iOS Simulator'
