@@ -74,7 +74,7 @@ describe('Completing a session', () => {
       cy.contains('Show tips').click()
       cy.navigate('Settings')
       cy.contains('Manage plans').click()
-      cy.contains("Starting Strength").click()
+      cy.getByTestId('program-list').contains('Starting Strength').click()
       cy.navigate('Workout')
     })
 

@@ -46,14 +46,14 @@ describe('Feed functionality', () => {
 
     cy.reload()
 
-    // Navigate to followers tab (index 2)
-    cy.getByTestId('tab_2').should('be.visible').click()
+    // Navigate to followers tab (followers)
+    cy.getByTestId('tab-followers').should('be.visible').click()
 
     // Accept the follow request
     cy.getByTestId('feed-accept-follow-request').should('be.visible').click()
 
-    // Navigate back to the main feed tab (index 0)
-    cy.getByTestId('tab_0').should('be.visible').click()
+    // Navigate back to the main feed tab (feed)
+    cy.getByTestId('tab-feed').should('be.visible').click()
 
     // Pull to refresh to see the workout in feed
     cy.get('[data-testid="feed-list"]').should('be.visible')
