@@ -81,7 +81,7 @@ function assertPlanFromEditPage(exerciseName, workoutName) {
 
   //  TODO - this works manually, but fails in cypress.
   cy.dialog().findByTestId('exercise-auto-increase').should('have.value', '4.5')
-  cy.dialog().findByTestId('exercise-superset').children().find('[checked]')
+  cy.dialog().findByTestId('exercise-superset').find('[aria-checked=true]')
   // Can't really test this in rn -manual verified it works
   cy.dialog().contains('Long')
 

@@ -217,6 +217,8 @@ describe('Completing a session', () => {
 
         cy.getByTestId('save-session-button').click()
         cy.dismissSessionReward()
+        // The reps differ from the plan, so the 'Update plan' dialog opens: keep the plan as is
+        cy.dialog().findByTestId('dialog-close').click()
 
         cy.getByTestId('session-summary-title').eq(0).should('contain.text', 'Workout B')
         cy.contains('Start workout').click()
