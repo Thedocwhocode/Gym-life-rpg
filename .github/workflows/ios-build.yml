@@ -13,6 +13,8 @@ jobs:
 
     env:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN_REACT }}
+      # The fork has no Sentry token: skip the source map upload instead of failing the build.
+      SENTRY_DISABLE_AUTO_UPLOAD: "true"
 
     steps:
       - name: Checkout repo
