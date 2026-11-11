@@ -42,7 +42,7 @@ export default function Fab({
         borderColor={palette.accent}
         fillColor={palette.surface2}
         innerStyle={{
-          height: size.hitMin,
+          minHeight: size.hitMin,
           flexDirection: 'row',
           alignItems: 'center',
           gap: 8,

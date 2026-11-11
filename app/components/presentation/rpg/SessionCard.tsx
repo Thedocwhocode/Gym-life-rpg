@@ -4,7 +4,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { useFormatDate } from '@/hooks/useFormatDate';
 import { Session } from '@/models/session-models';
 import type { Palette } from '@/theme/palettes';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { LocalDate } from '@js-joda/core';
 import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
@@ -63,6 +63,7 @@ export default function SessionCard({
           </Text>
         )}
         <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           numberOfLines={2}
           style={{
             ...type.titleSm,

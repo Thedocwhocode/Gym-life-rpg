@@ -21,7 +21,10 @@ import { fetchUpcomingSessions, selectActiveProgram } from '@/store/program';
 import { addStoredSession } from '@/store/stored-sessions';
 import { OffsetDateTime } from '@js-joda/core';
 import { selectPreferredWeightUnit } from '@/store/settings';
-import { planDiffAfterPersist } from '@/store/current-session/helpers';
+import {
+  levelDropAfterPersist,
+  planDiffAfterPersist,
+} from '@/store/current-session/helpers';
 import { selectRpgLevel } from '@/store/rpg';
 import { showSnackbar } from '@/store/app';
 
@@ -142,11 +145,16 @@ export function applyCurrentSessionEffects() {
       if (session) {
         const levelBefore = selectRpgLevel(getState());
         dispatch(addStoredSession(session));
-        // DR9: editar o histórico pode baixar o nível; sem overlay de level down, só o Toast.
-        const level = selectRpgLevel(getState());
-        if (a.payload === 'historySession' && level < levelBefore)
+        const dropped = levelDropAfterPersist(
+          a.payload,
+          levelBefore,
+          selectRpgLevel(getState()),
+        );
+        if (dropped !== undefined)
           dispatch(
-            showSnackbar({ text: tolgee.t('rpg.recalc.toast', { level }) }),
+            showSnackbar({
+              text: tolgee.t('rpg.recalc.toast', { level: dropped }),
+            }),
           );
         const diff = planDiffAfterPersist(a.payload, session, program);
         if (diff) dispatch(setCurrentPlanDiff(diff));

@@ -52,3 +52,14 @@ export function getCycledRepCount(
       repsCompleted: x.repsCompleted - 1,
     }));
 }
+
+/** DR9: editar uma sessão do histórico que baixa o nível pede o Toast (sem overlay de level down). */
+export function levelDropAfterPersist(
+  target: SessionTarget,
+  levelBefore: number,
+  levelAfter: number,
+): number | undefined {
+  return target === 'historySession' && levelAfter < levelBefore
+    ? levelAfter
+    : undefined;
+}

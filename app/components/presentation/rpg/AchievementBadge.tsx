@@ -2,7 +2,7 @@ import Icon from '@/components/presentation/pixel/Icon';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { fontFamily, type } from '@/theme/tokens';
+import { fontFamily, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { Pressable, Text } from 'react-native';
@@ -89,6 +89,7 @@ export default function AchievementBadge({
               color={unlocked ? palette.reward : palette.text3}
             />
             <Text
+              maxFontSizeMultiplier={TITLE_MAX_SCALE}
               style={{
                 ...type.title,
                 color: palette.text1,

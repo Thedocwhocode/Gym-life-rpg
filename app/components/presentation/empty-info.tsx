@@ -1,7 +1,7 @@
 import Icon from '@/components/presentation/pixel/Icon';
 import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { ReactNode } from 'react';
 import { Text, View, ViewProps } from 'react-native';
 
@@ -34,6 +34,7 @@ export default function EmptyInfo(
       />
       {title ? (
         <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           style={{ ...type.titleSm, color: palette.text2, textAlign: 'center' }}
         >
           {title}

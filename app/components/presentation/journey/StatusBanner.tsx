@@ -9,7 +9,7 @@ import {
   STATUS_XP,
   type StatusId,
 } from '@/store/journey/rules/status';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import { Text, View } from 'react-native';
 
@@ -54,7 +54,10 @@ export default function StatusBanner({
             {t('rpg.status.xp', { pct: pct > 0 ? `+${pct}` : String(pct) })}
           </Tag>
         </View>
-        <Text style={{ ...type.title, color: palette.text1 }}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          style={{ ...type.title, color: palette.text1 }}
+        >
           {t(key as TranslationKey)}
         </Text>
         <Text style={{ ...type.small, color: palette.text2 }}>

@@ -10,7 +10,7 @@ import {
   type Skill,
   type SkillState,
 } from '@/store/journey/rules/skills';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import { Pressable, Text, View } from 'react-native';
 
@@ -141,7 +141,12 @@ export default function SkillCard({
           <Text style={{ ...type.micro, color: palette.text3 }}>
             {t('rpg.skill.tier', { tier: TIER[skill.tier - 1] })}
           </Text>
-          <Text style={{ ...type.title, color: palette.text1 }}>{name}</Text>
+          <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
+            style={{ ...type.title, color: palette.text1 }}
+          >
+            {name}
+          </Text>
           <View style={{ flexDirection: 'row' }}>
             <Tag tone={STATE_TONE[state]} size="sm">
               {stateLabel}

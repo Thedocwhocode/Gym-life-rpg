@@ -3,7 +3,7 @@ import type { Session } from '@/models/session-models';
 import { Duration } from '@js-joda/core';
 import BigNumber from 'bignumber.js';
 import { describe, expect, it } from 'vitest';
-import { planDiffAfterPersist } from './helpers';
+import { levelDropAfterPersist, planDiffAfterPersist } from './helpers';
 
 const bp = (name: string, sets: number) =>
   SessionBlueprint.fromPOJO({
@@ -59,5 +59,14 @@ describe('planDiffAfterPersist (T5)', () => {
     expect(
       planDiffAfterPersist('feedSession', session(bp('Z', 1)), program),
     ).toBeUndefined();
+  });
+});
+
+describe('levelDropAfterPersist (DR9)', () => {
+  it('só o histórico que baixa o nível pede o Toast', () => {
+    expect(levelDropAfterPersist('historySession', 9, 8)).toBe(8);
+    expect(levelDropAfterPersist('historySession', 8, 8)).toBeUndefined();
+    expect(levelDropAfterPersist('historySession', 8, 9)).toBeUndefined();
+    expect(levelDropAfterPersist('workoutSession', 9, 8)).toBeUndefined();
   });
 });

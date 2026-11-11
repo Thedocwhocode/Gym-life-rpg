@@ -4,7 +4,7 @@ import type { PixelIconName } from '@/components/presentation/pixel-icons.genera
 import { useAppTheme } from '@/hooks/useAppTheme';
 import type { Palette } from '@/theme/palettes';
 import type { AttrKey } from '@/store/rpg/derive';
-import { fontFamily, type } from '@/theme/tokens';
+import { fontFamily, TITLE_MAX_SCALE, type } from '@/theme/tokens';
 import { Text, View } from 'react-native';
 
 export const ATTRIBUTES: Record<
@@ -61,7 +61,9 @@ export default function AttributeStat({
       >
         <Icon name={a.icon} size={24} color={color} />
         <View style={{ minWidth: 0 }}>
-          <Text style={abbr}>{attr}</Text>
+          <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} style={abbr}>
+            {attr}
+          </Text>
           <Text
             numberOfLines={1}
             style={{
@@ -89,7 +91,9 @@ export default function AttributeStat({
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <Icon name={a.icon} size={24} color={color} />
-        <Text style={abbr}>{attr}</Text>
+        <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} style={abbr}>
+          {attr}
+        </Text>
         {delta ? (
           <Text
             style={{

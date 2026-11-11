@@ -18,7 +18,7 @@ import { selectJourney } from '@/store/journey';
 import { BESTIARY } from '@/store/journey/rules/bestiary';
 import { SKILLS, STARTER } from '@/store/journey/rules/skills';
 import { accentText } from '@/theme/palettes';
-import { steps, type } from '@/theme/tokens';
+import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import * as Application from 'expo-application';
 import { Href, Stack, useRouter } from 'expo-router';
@@ -81,7 +81,10 @@ function HeroCard() {
     >
       <Portrait label="sprite" width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
-        <Text style={{ ...type.titleSm, color: palette.text1 }}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          style={{ ...type.titleSm, color: palette.text1 }}
+        >
           {t(title)}
         </Text>
         <Text style={{ ...type.small, color: palette.text2 }}>
@@ -312,7 +315,10 @@ export default function Settings() {
             padding={20}
             innerStyle={{ gap: 12 }}
           >
-            <Text style={{ ...type.titleSm, color: palette.text1 }}>
+            <Text
+              maxFontSizeMultiplier={TITLE_MAX_SCALE}
+              style={{ ...type.titleSm, color: palette.text1 }}
+            >
               {t('settings.app_info.title')}
             </Text>
             <Text style={{ ...type.body, color: palette.text2 }}>
