@@ -39,26 +39,36 @@ function PlanManager() {
   );
 
   return (
-    <View style={{ flexDirection: 'row', gap: 8 }}>
+    <View style={{ gap: 8 }}>
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        <Button
+          variant="secondary"
+          icon="list-box"
+          style={{ flex: 1 }}
+          onPress={() => push(`/settings/program-list`, { withAnchor: true })}
+        >
+          {t('plan.choose.button')}
+        </Button>
+        <Button
+          variant="secondary"
+          icon="edit"
+          style={{ flex: 1 }}
+          onPress={() =>
+            push(`/settings/manage-workouts/${activeProgramId}`, {
+              withAnchor: true,
+            })
+          }
+        >
+          {t('workout.edit_workouts.button')}
+        </Button>
+      </View>
       <Button
-        variant="secondary"
-        icon="list-box"
-        style={{ flex: 1 }}
-        onPress={() => push(`/settings/program-list`, { withAnchor: true })}
+        variant="ghost"
+        icon="upload"
+        testID="pdf-import-entry"
+        onPress={() => push('/settings/pdf-import')}
       >
-        {t('plan.choose.button')}
-      </Button>
-      <Button
-        variant="secondary"
-        icon="edit"
-        style={{ flex: 1 }}
-        onPress={() =>
-          push(`/settings/manage-workouts/${activeProgramId}`, {
-            withAnchor: true,
-          })
-        }
-      >
-        {t('workout.edit_workouts.button')}
+        {t('pdf.entry.button')}
       </Button>
     </View>
   );

@@ -338,6 +338,10 @@ testes e verificação no web (desktop + 375 px) e num Android. Nenhum push sem 
   OpenAI, e fichas podem ter dados de saúde (LGPD). O usuário confirma uma vez e a escolha é
   lembrada. Só o texto extraído sai do aparelho, nunca o arquivo, e o servidor não guarda nada.
 - **Aceite:** um PDF de ficha real vira plano editável; erro claro para PDF escaneado sem texto.
+- **Status (F8):** feito com `pdfjs-dist` 3.x (legacy, import dinâmico) e texto cortado em 24 KB
+  (limite do SignalR). Entradas em Treinar e em Planos. Pendente: o eval com 3 fichas reais
+  anonimizadas e o envio ponta a ponta com pro token e API no ar. O servidor não grava o texto,
+  mas ele fica na memória da conversa do Planejador até ela terminar.
 
 ### F9 — Transições e polimento (≈2–3 dias)
 - `ScreenTransition` com o mapa de `TRANSITIONS` (troca de aba, subpágina, combate…), 2× de

@@ -28,6 +28,11 @@ Nenhum dos itens abaixo funciona sem que você o ative.
   endereço IP. Esses relatórios nunca incluem o conteúdo dos treinos nem chaves de criptografia.
 - **Compras**: assinaturas são processadas pela Google Play/App Store e gerenciadas via
   RevenueCat. Não recebemos dados do seu cartão.
+- **Importar ficha em PDF (pro)**: o texto é extraído no seu aparelho; o arquivo PDF nunca sai
+  dele. Antes do primeiro envio o app pede sua confirmação. O texto vai ao nosso servidor e à
+  OpenAI para montar o plano, sem criptografia ponta a ponta. Fichas podem ter dados de saúde
+  (peso, lesões, observações médicas). Nosso servidor não grava o texto: ele fica só na memória
+  da conversa e some quando ela termina.
 - **Backup remoto**: envia o arquivo de backup só para o servidor que **você** configurar.
 - **Clima do reino**: o Painel consulta o [Open-Meteo](https://open-meteo.com/) para mostrar o
   clima. Sem a sua permissão, a consulta usa São Paulo. Se você tocar na faixa de clima e permitir,

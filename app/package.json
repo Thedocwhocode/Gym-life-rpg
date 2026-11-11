@@ -63,6 +63,7 @@
     "expo-status-bar": "~3.0.8",
     "html2canvas": "^1.4.1",
     "linq": "^4.0.3",
+    "pdfjs-dist": "^3.11.174",
     "protobufjs": "^7.5.0",
     "react": "19.1.0",
     "react-compiler-runtime": "^19.0.0-beta-bafa41b-20250307",
