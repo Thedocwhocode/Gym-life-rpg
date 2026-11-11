@@ -1,9 +1,5 @@
 import { GymLifeRpg } from '@/gen/proto';
-import {
-  EmptySession,
-  RecordedWeightedExercise,
-  Session,
-} from '@/models/session-models';
+import { RecordedWeightedExercise, Session } from '@/models/session-models';
 import { fromCurrentSessionDao } from '@/models/storage/conversions.from-dao';
 import { toCurrentSessionDao } from '@/models/storage/conversions.to-dao';
 import {
@@ -25,7 +21,7 @@ import { fetchUpcomingSessions, selectActiveProgram } from '@/store/program';
 import { addStoredSession } from '@/store/stored-sessions';
 import { OffsetDateTime } from '@js-joda/core';
 import { selectPreferredWeightUnit } from '@/store/settings';
-import { diffSessionBlueprints } from '@/models/blueprint-diff';
+import { planDiffAfterPersist } from '@/store/current-session/helpers';
 
 const storageKey = 'CurrentSessionStateV1';
 export function applyCurrentSessionEffects() {
@@ -141,36 +137,8 @@ export function applyCurrentSessionEffects() {
     const program = selectActiveProgram(getState());
     if (session) {
       dispatch(addStoredSession(session));
-      const sessionInPlan = program.sessions.some((x) =>
-        x.equals(session.blueprint),
-      );
-      if (!sessionInPlan) {
-        const sessionWithSameNameInPlan = program.sessions.find(
-          (x) => x.name === session.blueprint.name,
-        );
-        dispatch(
-          setCurrentPlanDiff(
-            sessionWithSameNameInPlan
-              ? {
-                  type: 'diff',
-                  diff: diffSessionBlueprints(
-                    sessionWithSameNameInPlan,
-                    session.blueprint,
-                  ),
-                  sessionIndex: program.sessions.indexOf(
-                    sessionWithSameNameInPlan,
-                  ),
-                }
-              : {
-                  type: 'add',
-                  diff: diffSessionBlueprints(
-                    EmptySession.blueprint,
-                    session.blueprint,
-                  ),
-                },
-          ),
-        );
-      }
+      const diff = planDiffAfterPersist(a.payload, session, program);
+      if (diff) dispatch(setCurrentPlanDiff(diff));
     }
     dispatch(setCurrentSession({ target: a.payload, session: undefined }));
     dispatch(fetchUpcomingSessions());
