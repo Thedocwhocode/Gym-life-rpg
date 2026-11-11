@@ -704,11 +704,11 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 5/6, DR16 + DR17 · Arquivos: `app/theme/*`, teste Vitest · Verificar: `npm test`
 - [ ] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
   - Origem: Passada 1, DR1 · Arquivos: Painel em `app/app/(tabs)/`, `components/presentation/pixel/` · Verificar: e2e + E3
-- [ ] **TD3 (P1, human ~3h / CC ~15min)** — `derive` — atributos cumulativos + "esta semana +N"
+- [x] **TD3 (P1, human ~3h / CC ~15min)** — `derive` — atributos cumulativos + "esta semana +N"
   - Origem: Passada 1, DR4 (revisado 2026-11-09: perda por inatividade) · Arquivos: `app/store/rpg/derive.ts`, `decay.ts` · Verificar: unit
-- [ ] **TD4 (P1, human ~1d / CC ~30min)** — `journey/rules` — multiplicadores no fold cronológico + `multiplicadoresDesde`
+- [x] **TD4 (P1, human ~1d / CC ~30min)** — `journey/rules` — multiplicadores no fold cronológico + `multiplicadoresDesde`
   - Origem: Passada 4, DR11 · Arquivos: `app/store/journey/rules/multipliers.ts`, `derive.ts`, `store/choices` · Verificar: unit (soma, teto, piso, antes/depois da data, troca de classe)
-- [ ] **TD5 (P1, human ~4h / CC ~20min)** — `journey/rules` — `coracoesDesde` + último estado visto + aviso "Faltou na…"
+- [x] **TD5 (P1, human ~4h / CC ~20min)** — `journey/rules` — `coracoesDesde` + último estado visto + aviso "Faltou na…"
   - Origem: Passada 3, DR8 · Arquivos: `app/store/journey/rules/hearts.ts`, `store/choices` · Verificar: unit
 - [x] **TD6 (P1, human ~1d / CC ~30min)** — `sessão` — regras de combate puras + layout compacto + "Golpear · 5 × 100 kg" + Desfazer + descanso configurado
   - Origem: Passadas 1/7, DR2 + DR21 + DR23 · Arquivos: `app/app/(tabs)/(session)/`, `store/journey/rules/combat.ts` · Verificar: unit + e2e a 375×667
@@ -718,11 +718,11 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
 - [ ] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase
-- [ ] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
+- [x] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
 - [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
   - Origem: Passadas 4/6, DR14 + DR19 · Arquivos: `components/presentation/fx/` · Verificar: unit + medição no spike
-- [ ] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n
+- [ ] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n (F6: card de boas-vindas da Jornada para quem já tinha histórico; wizard e Toast de recálculo ficam para a F9)
   - Origem: Passadas 3/7, DR9 + DR10 + DR25 · Arquivos: `welcome-wizard.tsx`, `store/rpg/index.ts`, i18n · Verificar: unit da migração + e2e
 - [ ] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
   - Origem: Passada 6, DR19 + DR20 · Arquivos: `app/app/(tabs)/settings/`, layout raiz · Verificar: e2e web + 375 px
