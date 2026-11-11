@@ -25,7 +25,9 @@ export default function Switch({
       testID={testID}
       accessibilityRole="switch"
       accessibilityLabel={label}
-      accessibilityState={{ checked: value, disabled }}
+      // RN web 0.21 ignora accessibilityState; aria-* vale no web e no nativo
+      aria-checked={value}
+      aria-disabled={disabled}
       disabled={disabled || !onValueChange}
       onPress={() => onValueChange?.(!value)}
       style={{ opacity: disabled ? 0.4 : 1 }}
