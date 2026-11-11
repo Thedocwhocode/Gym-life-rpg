@@ -6,6 +6,7 @@ on:
       - backend/**
       - .github/**
       - app/**
+      - tests/**
 
 jobs:
   test:
