@@ -31,6 +31,9 @@ export default function Check({
       testID={testID}
       accessibilityRole={kind}
       accessibilityState={{ checked, disabled }}
+      // react-native-web ignora accessibilityState
+      aria-checked={checked}
+      aria-disabled={disabled}
       disabled={disabled || !onPress}
       onPress={onPress}
       hitSlop={10}

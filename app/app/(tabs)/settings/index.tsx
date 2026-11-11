@@ -12,9 +12,12 @@ import { isProAvailable } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
 import { selectRpgLevel, selectRpgTitle } from '@/store/rpg';
 import { RpgClass, selectRpgClass } from '@/store/choices';
+import { selectJourney } from '@/store/journey';
+import { BESTIARY } from '@/store/journey/rules/bestiary';
+import { SKILLS, STARTER } from '@/store/journey/rules/skills';
 import { accentText } from '@/theme/palettes';
 import { steps, type } from '@/theme/tokens';
-import { useTranslate } from '@tolgee/react';
+import { TranslationKey, useTranslate } from '@tolgee/react';
 import * as Application from 'expo-application';
 import { Href, Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -36,6 +39,7 @@ interface Row {
   onPress: () => void;
   testID?: string;
   external?: boolean;
+  meta?: string;
 }
 
 function Section({ label, rows }: { label: string; rows: Row[] }) {
@@ -50,7 +54,7 @@ function Section({ label, rows }: { label: string; rows: Row[] }) {
             title={r.title}
             description={r.description}
             icon={r.icon}
-            meta={r.external ? '↗' : undefined}
+            meta={r.external ? '↗' : r.meta}
             chevron={!r.external}
             onPress={r.onPress}
           />
@@ -106,6 +110,60 @@ export default function Settings() {
     void Linking.canOpenURL(url).then(() => Linking.openURL(url));
   };
   const go = (href: Href) => () => push(href);
+  const journey = useAppSelector(selectJourney);
+  const known =
+    journey.learned.size +
+    (journey.rpgClass && !journey.learned.has(STARTER[journey.rpgClass])
+      ? 1
+      : 0);
+  const defeated = Object.values(journey.beasts).filter(
+    (s) => s === 'defeated',
+  ).length;
+  const journeyRows: Row[] = [
+    {
+      title: t('rpg.journey.inventory'),
+      description: t('rpg.journey.inventory.desc'),
+      icon: 'briefcase',
+      meta: `${journey.drops.length}/${BESTIARY.length}`,
+      onPress: go('/(tabs)/settings/inventory'),
+      testID: 'journey-inventory',
+    },
+    {
+      title: t('rpg.journey.grimoire'),
+      description: t('rpg.journey.grimoire.desc'),
+      icon: 'book-open',
+      meta: `${known}/${SKILLS.length}`,
+      onPress: go('/(tabs)/settings/grimoire'),
+      testID: 'journey-grimoire',
+    },
+    {
+      title: t('rpg.journey.bestiary'),
+      description: t('rpg.journey.bestiary.desc'),
+      icon: 'book',
+      meta: `${defeated}/${BESTIARY.length}`,
+      onPress: go('/(tabs)/settings/bestiary'),
+      testID: 'journey-bestiary',
+    },
+    {
+      title: t('rpg.journey.dungeon'),
+      description: t('rpg.journey.dungeon.desc'),
+      icon: 'map',
+      onPress: go('/(tabs)/(session)/map'),
+      testID: 'journey-dungeon',
+    },
+    {
+      title: t('rpg.journey.days'),
+      description: t('rpg.journey.days.desc'),
+      icon: 'calendar-week',
+      meta: journey.trainingDays.length
+        ? journey.trainingDays
+            .map((d) => t(`rpg.day.short.${d}` as TranslationKey))
+            .join(' ')
+        : t('rpg.journey.days.none'),
+      onPress: go('/(tabs)/settings/training-days'),
+      testID: 'journey-days',
+    },
+  ];
 
   const appVersion =
     Application.nativeApplicationVersion ??
@@ -199,6 +257,7 @@ export default function Settings() {
         options={headerOptions(t('rpg.tab.settings'), t('rpg.hero.eyebrow'))}
       />
       <HeroCard />
+      <Section label={t('rpg.journey.title')} rows={journeyRows} />
       <Section label={t('settings.configuration.title')} rows={configuration} />
       {isProAvailable && (
         <Section
