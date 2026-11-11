@@ -4,9 +4,14 @@ import { LocalDate } from '@js-joda/core';
 import { describe, expect, it } from 'vitest';
 import { google, GymLifeRpg } from '@/gen/proto';
 import { fromSessionHistoryDao } from '@/models/storage/conversions.from-dao';
-import { choicesFromJson, choicesToJson } from '@/store/choices/migrate';
+import {
+  choicesFromJson,
+  choicesToJson,
+  withJourneyDefaults,
+} from '@/store/choices/migrate';
 import { projectProgress } from '@/store/rpg';
-import type { Choices } from '@/store/choices';
+import { selectJourneyContext, type Choices } from '@/store/choices';
+import type { RootState } from '@/store/store';
 
 const Exported = GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
 const TODAY = '2026-11-10';
@@ -50,31 +55,52 @@ describe('backup das escolhas (campo 6)', () => {
     });
   });
 
-  it('restore do backup antigo do LiftLog: XP recalculado e regras novas não mexem no passado', () => {
-    const raw = gunzipSync(
-      readFileSync(__dirname + '/../../models/storage/export.liftlogbackup.gz'),
-    );
-    const sessions = [
-      ...fromSessionHistoryDao(
-        GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.decode(raw),
-      ).values(),
-    ];
+  // Caminho real do import: backup do LiftLog não tem choices_json, então o effect não
+  // despacha restoreChoices e a projeção usa as escolhas que já estavam no aparelho.
+  const liftLogSessions = () => [
+    ...fromSessionHistoryDao(
+      GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.decode(
+        gunzipSync(
+          readFileSync(
+            __dirname + '/../../models/storage/export.liftlogbackup.gz',
+          ),
+        ),
+      ),
+    ).values(),
+  ];
+  const ctxOf = (local: Choices) =>
+    selectJourneyContext({
+      choices: { ...local, isHydrated: true },
+    } as unknown as RootState);
+
+  it('restore do LiftLog num aparelho novo: regras desde hoje, XP passado intacto', () => {
+    const sessions = liftLogSessions();
     const today = LocalDate.parse(TODAY);
-    const ctx = choicesFromJson('{}', TODAY);
-    const withRules = projectProgress(
-      sessions,
-      {
-        multipliersSince: LocalDate.parse(ctx.multiplicadoresDesde!),
-        heartsSince: LocalDate.parse(ctx.coracoesDesde!),
-      },
-      today,
-    );
+    const local = withJourneyDefaults({ rpgClass: 'warrior' }, TODAY);
+    const withRules = projectProgress(sessions, ctxOf(local), today);
     const plain = projectProgress(sessions, {}, today);
     expect(sessions).toHaveLength(85);
     expect(withRules.stats.missions).toBe(85);
     expect(withRules.xp).toBe(plain.xp);
-    expect(withRules.level).toBeGreaterThanOrEqual(1);
     expect(Object.keys(withRules.sources)).toHaveLength(0);
     expect(projectProgress([...sessions].reverse(), {}, today)).toEqual(plain);
+  });
+
+  it('restore do LiftLog com "desde" local antigo: só as sessões a partir dele ganham %', () => {
+    // Decisão: as escolhas locais ficam. Sessão restaurada com data ≥ "desde" conta como se
+    // tivesse sido registrada aqui; antes disso o XP é o de sempre.
+    const sessions = liftLogSessions();
+    const days = sessions.map((s) => s.date.toString()).sort();
+    const desde = days[80];
+    const local = withJourneyDefaults(
+      { rpgClass: 'warrior', multiplicadoresDesde: desde },
+      TODAY,
+    );
+    const p = projectProgress(sessions, ctxOf(local), LocalDate.parse(TODAY));
+    const after = sessions.filter((s) => s.date.toString() >= desde);
+    expect(Object.keys(p.sources).sort()).toEqual(
+      after.map((s) => s.id).sort(),
+    );
+    for (const s of sessions) expect(p.xpBySession[s.id]).toBeGreaterThan(0);
   });
 });

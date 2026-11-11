@@ -285,6 +285,8 @@ export function buildWeeklyQuests(week: string, level: number): Quest[] {
 export interface JourneyContext {
   classHistory?: readonly Dated<RpgClass>[] | undefined;
   skillEquipped?: readonly Dated<string>[] | undefined;
+  /** Skills aprendidas (com o dia): só valem no fold a partir desse dia. */
+  skillsLearned?: readonly Dated<string>[] | undefined;
   itemsEquipped?: readonly Dated<readonly string[]>[] | undefined;
   trainingDays?: readonly Dated<number[]>[] | undefined;
   /** DR11: multiplicadores, status e streak protegido só valem a partir daqui. */
@@ -312,6 +314,8 @@ export interface Progress {
   missionsByWeek: Record<string, number>;
   /** id da sessão → % que valeram nela (só a partir de `multipliersSince`). */
   sources: Record<string, XpSource[]>;
+  /** XP de cada sessão (com os %), o mesmo número que entra no total. */
+  xpBySession: Record<string, number>;
 }
 
 interface WeekTally {
@@ -350,8 +354,14 @@ export function deriveProgress(
     today,
   });
   const classAt = (d: LocalDate) => valueAt(ctx.classHistory, d);
+  const learnedAt = (d: LocalDate) =>
+    new Set(
+      (ctx.skillsLearned ?? [])
+        .filter((l) => l.since <= d.toString())
+        .map((l) => l.value),
+    );
   const skillAt = (d: LocalDate) =>
-    equippedSkill(valueAt(ctx.skillEquipped, d), classAt(d));
+    equippedSkill(valueAt(ctx.skillEquipped, d), classAt(d), learnedAt(d));
   const shielded = (d: LocalDate) =>
     ruled(d) &&
     (classAt(d) === 'paladin' ||
@@ -362,6 +372,7 @@ export function deriveProgress(
   const xpByWeek: Record<string, number> = {};
   const missionsByWeek: Record<string, number> = {};
   const sources: Record<string, XpSource[]> = {};
+  const xpBySession: Record<string, number> = {};
   const best = new Map<string, number>();
   const prWeeks = new Set<string>();
   const shieldWeeks = new Set<string>();
@@ -467,6 +478,7 @@ export function deriveProgress(
       if (f.id) sources[f.id] = src;
     }
     xp += gained;
+    if (f.id) xpBySession[f.id] = gained;
 
     const on = f.date.toString();
     const now: Record<Quest['type'], number> = {
@@ -553,6 +565,7 @@ export function deriveProgress(
     xpByWeek,
     missionsByWeek,
     sources,
+    xpBySession,
   };
 }
 

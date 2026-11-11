@@ -2,7 +2,8 @@ import { LocalDate } from '@js-joda/core';
 import { weekKey } from '@/store/rpg/derive';
 
 // DR22: os nós são os treinos do plano ativo; o último é o chefe de masmorra.
-// Uma "masmorra limpa" = uma sessão do último treino do ciclo.
+// Uma "masmorra limpa" = uma sessão do último treino do ciclo (plano com 2+ treinos; com um só,
+// toda sessão viraria masmorra limpa).
 
 export type NodeState = 'done' | 'current' | 'open' | 'boss';
 
@@ -41,7 +42,7 @@ export function dungeonClears(
   const boss = workouts.at(-1);
   const byWeek: Record<string, number> = {};
   let total = 0;
-  if (boss === undefined) return { total, byWeek };
+  if (boss === undefined || workouts.length < 2) return { total, byWeek };
   for (const s of sessions) {
     if (s.workout !== boss) continue;
     total++;

@@ -212,7 +212,10 @@ describe('skills', () => {
   });
   it('a inicial da classe já vem aprendida e equipada por padrão', () => {
     expect(equippedSkill(undefined, 'paladin')).toBe('respiro');
-    expect(equippedSkill('egide', 'paladin')).toBe('egide');
+    expect(equippedSkill('egide', 'paladin', new Set(['egide']))).toBe('egide');
+    // não aprendida, ou inicial de outra classe: cai na inicial da classe vigente
+    expect(equippedSkill('egide', 'paladin')).toBe('respiro');
+    expect(equippedSkill('corte', 'paladin')).toBe('respiro');
     expect(equippedSkill(undefined, undefined)).toBeUndefined();
     const respiro = SKILLS.find((s) => s.id === 'respiro')!;
     expect(
@@ -370,6 +373,8 @@ describe('masmorra (DR22)', () => {
       total: 0,
       byWeek: {},
     });
+    // plano de um treino só: nenhuma sessão conta como masmorra limpa
+    expect(dungeonClears([{ date: MON, workout: 'C' }], ['C']).total).toBe(0);
   });
 });
 

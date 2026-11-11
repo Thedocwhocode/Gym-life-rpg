@@ -69,12 +69,35 @@ describe('deriveProgress com JourneyContext', () => {
     const p = deriveProgress([a], day(0), {
       ...since(0),
       skillEquipped: [{ since: '2026-11-01', value: 'cruzado' }],
+      skillsLearned: [{ since: '2026-11-01', value: 'cruzado' }],
       itemsEquipped: [{ since: '2026-11-01', value: ['espada-ferro-frio'] }],
     });
     expect(p.sources[a.id!].map((s) => `${s.id}:${s.pct}`)).toEqual([
       'warrior:10',
       'espada-ferro-frio:5',
     ]);
+  });
+
+  it('skill equipada só vale se aprendida ou inicial da classe vigente', () => {
+    const a = fact(0);
+    const b = fact(3);
+    const p = deriveProgress([a, b], day(3), {
+      multipliersSince: MON,
+      classHistory: [
+        { since: '2026-11-01', value: 'warrior' },
+        { since: '2026-11-04', value: 'paladin' },
+      ],
+      // guerreiro re-equipou Corte (vira escolha datada) e depois virou paladino
+      skillEquipped: [{ since: '2026-11-02', value: 'corte' }],
+    });
+    expect(p.sources[a.id!].map((s) => s.id)).toEqual(['warrior', 'corte']);
+    expect(p.sources[b.id!]).toEqual([]);
+    // equipar sem ter aprendido não dá o bônus: cai na inicial (Corte)
+    const q = deriveProgress([a], day(0), {
+      ...since(0),
+      skillEquipped: [{ since: '2026-11-01', value: 'cruzado' }],
+    });
+    expect(q.sources[a.id!].map((s) => s.id)).toEqual(['warrior', 'corte']);
   });
 
   it('Fúria: PR anterior na mesma semana dá +20% às sessões seguintes', () => {

@@ -275,10 +275,17 @@ export function skillState(
     : 'locked';
 }
 
-/** Skill equipada no dia: a escolha datada, ou a inicial da classe. */
+/**
+ * Skill equipada no dia: a escolha datada, se ainda valer (inicial da classe vigente ou já
+ * aprendida); senão a inicial da classe. Trocar de classe não carrega a inicial da antiga.
+ */
 export function equippedSkill(
   chosen: string | undefined,
   rpgClass: RpgClass | undefined,
+  learned: ReadonlySet<string> = new Set(),
 ): string | undefined {
-  return chosen ?? (rpgClass ? STARTER[rpgClass] : undefined);
+  const starter = rpgClass ? STARTER[rpgClass] : undefined;
+  return chosen && (chosen === starter || learned.has(chosen))
+    ? chosen
+    : starter;
 }

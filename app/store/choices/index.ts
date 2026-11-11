@@ -182,6 +182,7 @@ const parseDay = (s: string | undefined) =>
 export const selectJourneyContext = createSelector([selectChoices], (c) => ({
   classHistory: c.classHistory,
   skillEquipped: c.skillEquipped,
+  skillsLearned: c.skillsLearned,
   itemsEquipped: c.itemsEquipped,
   trainingDays: c.trainingDays,
   multipliersSince: parseDay(c.multiplicadoresDesde),

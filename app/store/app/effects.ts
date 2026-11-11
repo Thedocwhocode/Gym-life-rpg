@@ -5,11 +5,14 @@ import {
   setCanScheduleExactNotifications,
   setCurrentSnackbar,
   setIsHydrated,
+  setToday,
   shareString,
   showSnackbar,
 } from '@/store/app';
 import { addEffect } from '@/store/store';
 import { sleep } from '@/utils/sleep';
+import { LocalDate } from '@js-joda/core';
+import { AppState } from 'react-native';
 
 export function applyAppEffects() {
   addEffect(
@@ -27,6 +30,15 @@ export function applyAppEffects() {
       dispatch(setIsHydrated(true));
     },
   );
+
+  // Virar o dia com o app em segundo plano: a projeção (corações, status, crônica) recalcula.
+  addEffect(initializeAppStateSlice, (_, { dispatch, getState }) => {
+    AppState.addEventListener('change', (s) => {
+      const today = LocalDate.now().toString();
+      if (s === 'active' && getState().app.today !== today)
+        dispatch(setToday(today));
+    });
+  });
 
   addEffect(
     refreshNotificationPermissionStatus,

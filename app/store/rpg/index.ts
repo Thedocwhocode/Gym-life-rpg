@@ -3,6 +3,7 @@ import { LocalDate } from '@js-joda/core';
 import { selectSessions } from '@/store/stored-sessions';
 import { selectJourneyContext } from '@/store/choices';
 import type { Session } from '@/models/session-models';
+import type { RootState } from '@/store/store';
 import {
   deriveProgress,
   JourneyContext,
@@ -141,11 +142,13 @@ export const projectProgress = (
   today: LocalDate,
 ) => deriveProgress(sessions.map(sessionFacts), today, ctx);
 
-// ponytail: LocalDate.now() no seletor só recalcula quando as sessões mudam; virar a meia-noite
-// com o app aberto mantém a projeção de ontem até a próxima mudança (igual a useHeroAttributes).
+// ponytail: o dia vem de state.app.today (atualizado ao voltar ao primeiro plano); virar a
+// meia-noite com o app aberto na tela mantém o dia anterior até sair e voltar.
+const selectToday = (s: RootState) => s.app.today;
 export const selectProgress = createSelector(
-  [selectSessions, selectJourneyContext],
-  (sessions, ctx) => projectProgress(sessions, ctx, LocalDate.now()),
+  [selectSessions, selectJourneyContext, selectToday],
+  (sessions, ctx, today) =>
+    projectProgress(sessions, ctx, LocalDate.parse(today)),
 );
 export const selectRpgLevel = createSelector([selectProgress], (p) => p.level);
 export const selectRpgTitle = createSelector([selectRpgLevel], titleForLevel);
