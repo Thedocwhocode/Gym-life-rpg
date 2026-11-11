@@ -39,7 +39,7 @@ export default function Segmented<T extends string>({
             key={o.value}
             testID={o.testID}
             accessibilityRole="radio"
-            accessibilityState={{ selected: active }}
+            accessibilityState={{ checked: active }}
             onPress={() => onChange(o.value)}
             style={{
               flex: 1,
