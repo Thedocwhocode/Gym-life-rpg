@@ -34,7 +34,7 @@
 | Campo        | Valor                                                      |
 |--------------|------------------------------------------------------------|
 | Repositório  | https://github.com/Thedocwhocode/Gym-life-rpg              |
-| Branch ativa | `feat/rebrand-gymlife-rpg`                                 |
+| Branch base  | `main` (redesign em PRs empilhados `feat/redesign-f0…f9`)  |
 | Autor        | Thedocwhocode (luizrodolfocc@gmail.com)                    |
 | Objetivo     | Transformar o LiftLog num app gamificado de academia + RPG |
 | Marca        | GymLife RPG · slug `gym-life-rpg` · scheme `gymliferpg`    |
@@ -171,9 +171,7 @@ npm run lint      # ESLint
 
 ## Branch de Trabalho
 
-Sempre desenvolver na branch: `feat/rebrand-gymlife-rpg`
-
-```bash
-git checkout feat/rebrand-gymlife-rpg
-git push -u origin feat/rebrand-gymlife-rpg
-```
+Cada fase do redesign tem sua branch, empilhada sobre a anterior: `feat/redesign-f0` (base
+`main`) → `feat/redesign-f1` → … → `feat/redesign-f9`, com um PR por fase (#3 a #12). Correção
+de uma fase vai na branch dela; o merge segue a ordem da pilha. Trabalho novo fora do redesign:
+branch própria a partir de `main`.
