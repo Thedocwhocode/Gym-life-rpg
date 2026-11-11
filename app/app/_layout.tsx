@@ -24,6 +24,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import RewardDialog from '@/components/smart/reward-dialog';
+import OpeningOverlay from '@/components/smart/opening-overlay';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -114,6 +115,7 @@ export default Sentry.wrap(function RootLayout() {
                 <AppStateProvider>
                   <SnackbarProvider>
                     <RewardDialog />
+                    <OpeningOverlay />
                     <RootStack />
                   </SnackbarProvider>
                 </AppStateProvider>
