@@ -1,6 +1,6 @@
 import IconButton from '@/components/presentation/pixel/IconButton';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { fontFamily, size } from '@/theme/tokens';
+import { fontFamily, size, TITLE_MAX_SCALE } from '@/theme/tokens';
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
@@ -65,6 +65,7 @@ export default function AppHeader({
           </Text>
         ) : null}
         <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           numberOfLines={1}
           style={{
             fontFamily: fontFamily.display,
