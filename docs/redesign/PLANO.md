@@ -732,7 +732,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
 - [x] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase
-  - Status (F9): Bestiário e Stats ganharam estado vazio; Masmorra, Histórico, Guilda e Inventário já tinham. Erro genérico do `remote.tsx` e "carregando" da sessão traduzidos. Skeleton > 300 ms da Guilda e do Planejador não auditado.
+  - Status (F9): Bestiário e Stats ganharam estado vazio; Masmorra, Histórico, Guilda e Inventário já tinham. Erro genérico do `remote.tsx` e "carregando" da sessão traduzidos. Skeleton > 300 ms da Guilda e do Planejador e o estado offline de cada tela não auditados.
 - [x] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
 - [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
