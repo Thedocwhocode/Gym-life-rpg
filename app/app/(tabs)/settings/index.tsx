@@ -7,6 +7,8 @@ import PixelBox from '@/components/presentation/pixel/PixelBox';
 import Portrait from '@/components/presentation/pixel/Portrait';
 import Tag, { TagTone } from '@/components/presentation/pixel/Tag';
 import type { PixelIconName } from '@/components/presentation/pixel-icons.generated';
+import { useScreenTransition } from '@/components/smart/screen-transition';
+import type { TransitionKind } from '@/components/presentation/fx/transitions';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { isProAvailable } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
@@ -109,7 +111,12 @@ export default function Settings() {
   const openUrl = (url: string) => {
     void Linking.canOpenURL(url).then(() => Linking.openURL(url));
   };
-  const go = (href: Href) => () => push(href);
+  const run = useScreenTransition();
+  // D.7: blinds nas subpáginas da Taverna, diamond-wipe no Grimório/Bestiário/Inventário, glitch na IA.
+  const go =
+    (href: Href, kind: TransitionKind = 'subpage') =>
+    () =>
+      run(kind, () => push(href));
   const journey = useAppSelector(selectJourney);
   const known =
     journey.learned.size +
@@ -125,7 +132,7 @@ export default function Settings() {
       description: t('rpg.journey.inventory.desc'),
       icon: 'briefcase',
       meta: `${journey.drops.length}/${BESTIARY.length}`,
-      onPress: go('/(tabs)/settings/inventory'),
+      onPress: go('/(tabs)/settings/inventory', 'grimoire'),
       testID: 'journey-inventory',
     },
     {
@@ -133,7 +140,7 @@ export default function Settings() {
       description: t('rpg.journey.grimoire.desc'),
       icon: 'book-open',
       meta: `${known}/${SKILLS.length}`,
-      onPress: go('/(tabs)/settings/grimoire'),
+      onPress: go('/(tabs)/settings/grimoire', 'grimoire'),
       testID: 'journey-grimoire',
     },
     {
@@ -141,7 +148,7 @@ export default function Settings() {
       description: t('rpg.journey.bestiary.desc'),
       icon: 'book',
       meta: `${defeated}/${BESTIARY.length}`,
-      onPress: go('/(tabs)/settings/bestiary'),
+      onPress: go('/(tabs)/settings/bestiary', 'grimoire'),
       testID: 'journey-bestiary',
     },
     {
@@ -267,7 +274,7 @@ export default function Settings() {
               title: t('ai.planner.title'),
               description: t('ai.planner.subtitle'),
               icon: 'zap',
-              onPress: go('/(tabs)/settings/ai/planner'),
+              onPress: go('/(tabs)/settings/ai/planner', 'ai'),
             },
           ]}
         />

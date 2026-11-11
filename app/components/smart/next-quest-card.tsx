@@ -12,6 +12,7 @@ import { fetchUpcomingSessions } from '@/store/program';
 import { type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import { useFocusEffect, useRouter } from 'expo-router';
+import { useScreenTransition } from '@/components/smart/screen-transition';
 import { useCallback } from 'react';
 import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -21,6 +22,7 @@ export default function NextQuestCard() {
   const { palette } = useAppTheme();
   const { t } = useTranslate();
   const { push } = useRouter();
+  const run = useScreenTransition();
   const dispatch = useDispatch();
   const current = useAppSelectorWithArg(selectCurrentSession, 'workoutSession');
   const upcoming = useAppSelector((s) => s.program.upcomingSessions);
@@ -62,7 +64,7 @@ export default function NextQuestCard() {
     if (!current) {
       dispatch(setCurrentSession({ target: 'workoutSession', session: next }));
     }
-    push('/session');
+    run('combat', () => push('/session'));
   };
 
   return (
