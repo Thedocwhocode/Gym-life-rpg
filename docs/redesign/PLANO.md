@@ -497,7 +497,7 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
   - Origem: voz externa 2
   - Arquivos: `app/store/current-session/effects.ts`
   - Verificar: unit + e2e
-- [ ] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
+- [x] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
   - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`. `visual.cy.js` compara 11 peças da
     galeria (fontes, ícones, paleta, pixelbox, ascii, barras, tags, botões, tamanhos de ícone,
     controles, toast); o fx fica no teste C6. O run 42958645784 mostrou que a janela de 400×800
@@ -511,7 +511,9 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
     `icons` e `controls` são mais altas que a tela e saíram cobertas pela barra de abas. Agora o
     teste esconde a barra (`nav`) e solta a altura dos ancestrais, de modo que a página rola;
     no preview as peças curtas mantêm a mesma posição e tamanho, e o último ícone (`zap`) fica
-    inteiro na tela. Falta commitar as duas referências que o próximo `ui-test` gerar
+    inteiro na tela. O run 42963596430 passou com as 9 referências e gerou `icons` (366×932,
+    até o `zap`) e `controls` (366×719, até o estado vazio), sem a barra por cima: as 11
+    referências estão commitadas
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`
