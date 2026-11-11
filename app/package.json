@@ -18,7 +18,6 @@
     "protojs": "pbjs -p ../ -t static-module ../proto/**/*.proto ../proto/SharedItem.proto -o ./gen/proto.js -w es6 --es6 --force-long",
     "protots": "pbts -o ./gen/proto.d.ts ./gen/proto.js",
     "proto": "npm run protojs && npm run protots",
-    "fx:sheets": "node scripts/fx-sheets.mjs",
     "icons:pixel": "node scripts/build-pixel-icons.mjs",
     "test": "vitest",
     "typecheck": "tsgo --noEmit"
