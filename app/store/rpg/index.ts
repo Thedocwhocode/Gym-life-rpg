@@ -1,8 +1,11 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LocalDate } from '@js-joda/core';
 import { selectSessions } from '@/store/stored-sessions';
+import { selectJourneyContext } from '@/store/choices';
+import type { Session } from '@/models/session-models';
 import {
   deriveProgress,
+  JourneyContext,
   ProjectionDiff,
   sessionFacts,
   titleForLevel,
@@ -131,10 +134,18 @@ export const { sessionRewarded, clearLevelUp, clearSessionReward } =
 
 export const rpgReducer = rpgSlice.reducer;
 
+/** A projeção única: o seletor e o effect da recompensa (effects.ts) chamam esta mesma função. */
+export const projectProgress = (
+  sessions: readonly Session[],
+  ctx: JourneyContext,
+  today: LocalDate,
+) => deriveProgress(sessions.map(sessionFacts), today, ctx);
+
 // ponytail: LocalDate.now() no seletor só recalcula quando as sessões mudam; virar a meia-noite
 // com o app aberto mantém a projeção de ontem até a próxima mudança (igual a useHeroAttributes).
-export const selectProgress = createSelector([selectSessions], (sessions) =>
-  deriveProgress(sessions.map(sessionFacts), LocalDate.now()),
+export const selectProgress = createSelector(
+  [selectSessions, selectJourneyContext],
+  (sessions, ctx) => projectProgress(sessions, ctx, LocalDate.now()),
 );
 export const selectRpgLevel = createSelector([selectProgress], (p) => p.level);
 export const selectRpgTitle = createSelector([selectRpgLevel], titleForLevel);

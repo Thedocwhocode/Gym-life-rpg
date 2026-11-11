@@ -283,14 +283,14 @@ export function buildWeeklyQuests(week: string, level: number): Quest[] {
 
 /** Escolhas datadas que a projeção usa (store/choices). `*Since` ausente = regra desligada. */
 export interface JourneyContext {
-  classHistory?: readonly Dated<RpgClass>[];
-  skillEquipped?: readonly Dated<string>[];
-  itemsEquipped?: readonly Dated<readonly string[]>[];
-  trainingDays?: readonly Dated<number[]>[];
+  classHistory?: readonly Dated<RpgClass>[] | undefined;
+  skillEquipped?: readonly Dated<string>[] | undefined;
+  itemsEquipped?: readonly Dated<readonly string[]>[] | undefined;
+  trainingDays?: readonly Dated<number[]>[] | undefined;
   /** DR11: multiplicadores, status e streak protegido só valem a partir daqui. */
-  multipliersSince?: LocalDate;
+  multipliersSince?: LocalDate | undefined;
   /** DR8: corações só contam a partir daqui. */
-  heartsSince?: LocalDate;
+  heartsSince?: LocalDate | undefined;
 }
 
 export interface Progress {
