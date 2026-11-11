@@ -20,13 +20,17 @@ import SelectButton, {
   SelectButtonOption,
 } from '@/components/presentation/select-button';
 import { LocalDate, Period } from '@js-joda/core';
-import { selectCompletedDistinctSessionNames } from '@/store/stored-sessions';
+import {
+  selectCompletedDistinctSessionNames,
+  selectSessions,
+} from '@/store/stored-sessions';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import BodyweightStatGraphCard from '@/components/presentation/bodyweight-stat-graph-card';
 import { useScroll } from '@/hooks/useScrollListener';
 import { FlashList, FlashListRef } from '@shopify/flash-list';
 import SessionStatGraphCard from '@/components/presentation/session-stat-graph-card';
 import { Weight } from '@/models/weight';
+import EmptyInfo from '@/components/presentation/empty-info';
 import { headerOptions } from '@/components/presentation/pixel/AppHeader';
 import TextField from '@/components/presentation/pixel/TextField';
 import { useAppTheme } from '@/hooks/useAppTheme';
@@ -40,6 +44,7 @@ export default function StatsPage() {
     dispatch(fetchOverallStats());
   });
   const stats = useAppSelector(selectOverallView);
+  const sessionCount = useAppSelector((s) => selectSessions(s).length);
   const [searchText, setSearchText] = useState<string>('');
   const { handleScroll } = useScroll();
   const scrollRef = useRef<FlashListRef<ExerciseStatistics>>(null);
@@ -67,27 +72,34 @@ export default function StatsPage() {
           t('rpg.stats.eyebrow'),
         )}
       />
-      <FlashList
-        ref={scrollRef}
-        onScroll={handleScroll}
-        ListHeaderComponent={
-          <ListHeader
-            searchText={searchText}
-            setSearchText={setSearchText}
-            stats={stats}
-          />
-        }
-        data={data}
-        contentContainerStyle={{ padding: 16, paddingBottom: 32 }}
-        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-        keyExtractor={(item) => item.exerciseName}
-        renderItem={({ item }) => (
-          <ExerciseStatGraphCard
-            exerciseStats={item}
-            title={item.exerciseName}
-          />
-        )}
-      />
+      {/* DR5: com menos de 2 sessões não há tendência; nada de gráfico vazio. */}
+      {sessionCount < 2 ? (
+        <EmptyInfo testID="stats-empty" icon="barChart">
+          {t('rpg.stats.empty')}
+        </EmptyInfo>
+      ) : (
+        <FlashList
+          ref={scrollRef}
+          onScroll={handleScroll}
+          ListHeaderComponent={
+            <ListHeader
+              searchText={searchText}
+              setSearchText={setSearchText}
+              stats={stats}
+            />
+          }
+          data={data}
+          contentContainerStyle={{ padding: 16, paddingBottom: 32 }}
+          ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+          keyExtractor={(item) => item.exerciseName}
+          renderItem={({ item }) => (
+            <ExerciseStatGraphCard
+              exerciseStats={item}
+              title={item.exerciseName}
+            />
+          )}
+        />
+      )}
     </>
   );
 }

@@ -354,9 +354,9 @@ testes e verificação no web (desktop + 375 px) e num Android. Nenhum push sem 
   1,6 s) nas subpáginas de Ajustes, na entrada do combate e na importação de PDF. Troca de aba segue sem
   transição (o DR20 prevalece sobre o pixel-dissolve do D.7). PixelFx legado e sprite sheets
   removidos. Títulos com teto de escala 1,3×, alvos de 44 px no calendário, × na série falhada,
-  pt.json sem chave caindo no inglês, Toast de histórico recalculado. Fica de fora com motivo:
-  T7 (simulador iOS não roda no Windows) e TD9 (a tabela de estados não foi auditada tela a
-  tela; cada fase cobriu os seus estados). A animação das transições só foi conferida pelo DOM.
+  pt.json sem chave caindo no inglês, Toast de histórico recalculado, estados vazios de Bestiário
+  e Stats. Fica de fora com motivo: T7 (simulador iOS não roda no Windows). A animação das
+  transições só foi conferida pelo DOM; TalkBack/VoiceOver e fonte a 200% não foram testados.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
@@ -730,8 +730,9 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 1/7, DR3 + DR22 · Arquivos: overlays em `components/smart/` · Verificar: unit da fila + e2e
 - [x] **TD8 (P2, human ~3h / CC ~15min)** — `Toast` — sobre o `snackbar-provider`, sucesso/erro, live region
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
-- [ ] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
+- [x] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase
+  - Status (F9): Bestiário e Stats ganharam estado vazio; Masmorra, Histórico, Guilda e Inventário já tinham. Erro genérico do `remote.tsx` e "carregando" da sessão traduzidos. Skeleton > 300 ms da Guilda e do Planejador não auditado.
 - [x] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
 - [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
@@ -744,6 +745,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passada 7, DR24 · Arquivos: componente do cartão + `expo-sharing` · Verificar: e2e (fallback web)
 - [x] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
   - Origem: Passada 6, DR18 (adiado) · Arquivos: primitivos `pixel/` · Verificar: TalkBack/VoiceOver + fonte de 200%
+  - Status (F9): `TITLE_MAX_SCALE` (1,3×) nos títulos dos primitivos, cards, diálogos e telas de Ajustes; botões, Fab, Tabs e TabBar usam `minHeight` para crescer com a fonte. Títulos internos do Paper (Appbar, Dialog.Title) ficam sem teto. TalkBack/VoiceOver e fonte de 200% não verificados.
 
 ## Approved Mockups
 
