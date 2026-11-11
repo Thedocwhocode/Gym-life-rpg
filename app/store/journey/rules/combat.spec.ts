@@ -150,6 +150,14 @@ describe('rewardPages', () => {
     expect(rewardPages(true, 0)).toEqual(['mission', 'levelup']);
     expect(rewardPages(true, 4)).toEqual(['mission', 'levelup', 'loot']);
   });
+  it('Masmorra limpa substitui o Espólio e não passa de 3 páginas', () => {
+    expect(rewardPages(true, 4, true)).toEqual([
+      'mission',
+      'levelup',
+      'dungeon',
+    ]);
+    expect(rewardPages(false, 0, true)).toEqual(['mission', 'dungeon']);
+  });
 });
 
 describe('shareCardFields', () => {

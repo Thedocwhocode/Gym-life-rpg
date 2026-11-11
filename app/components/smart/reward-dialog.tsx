@@ -2,6 +2,7 @@ import FxStage from '@/components/presentation/fx/FxStage';
 import Button from '@/components/presentation/pixel/Button';
 import Dialog from '@/components/presentation/pixel/Dialog';
 import Icon from '@/components/presentation/pixel/Icon';
+import Tag from '@/components/presentation/pixel/Tag';
 import ShareCard from '@/components/presentation/rpg/ShareCard';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useHaptic } from '@/hooks/useHaptic';
@@ -14,11 +15,14 @@ import {
   rewardPages,
   shareCardFields,
 } from '@/store/journey/rules/combat';
+import { selectJourney, selectPlanWorkouts } from '@/store/journey';
+import type { XpSource } from '@/store/journey/rules/multipliers';
 import { titleForLevel } from '@/store/rpg/derive';
 import {
   ACHIEVEMENTS,
   clearLevelUp,
   clearSessionReward,
+  selectProgress,
   selectRpgLevel,
 } from '@/store/rpg';
 import { selectSessions } from '@/store/stored-sessions';
@@ -45,6 +49,9 @@ export default function RewardDialog() {
   );
   const level = useAppSelector(selectRpgLevel);
   const sessions = useAppSelector(selectSessions);
+  const workouts = useAppSelector(selectPlanWorkouts);
+  const { clears } = useAppSelector(selectJourney);
+  const { sources } = useAppSelector(selectProgress);
   const [page, setPage] = useState(0);
   const [sharing, setSharing] = useState(false);
   const cardRef = useRef<View>(null);
@@ -53,7 +60,16 @@ export default function RewardDialog() {
     const a = ACHIEVEMENTS.find((x) => x.id === id);
     return a ? [a] : [];
   });
-  const pages = rewardPages(newLevel !== undefined, loot.length);
+  const session = reward?.sessionId
+    ? sessions.find((s) => s.id === reward.sessionId)
+    : undefined;
+  // DR22: masmorra limpa = a sessão salva é o último treino de um plano com 2+ treinos.
+  const dungeon =
+    !!session &&
+    workouts.length >= 2 &&
+    session.blueprint.name === workouts.at(-1);
+  const bonus: XpSource[] = (session && sources[session.id]) ?? [];
+  const pages = rewardPages(newLevel !== undefined, loot.length, dungeon);
   const current = pages[Math.min(page, pages.length - 1)];
   const last = page >= pages.length - 1;
 
@@ -69,9 +85,12 @@ export default function RewardDialog() {
     dispatch(clearSessionReward());
   };
 
-  const session = reward.sessionId
-    ? sessions.find((s) => s.id === reward.sessionId)
-    : undefined;
+  const sourceLabel = (b: XpSource) =>
+    t(
+      (b.source === 'class'
+        ? `rpg.class.${b.id}`
+        : `rpg.${b.source}.${b.id}`) as TranslationKey,
+    );
   const bossDown =
     !!session &&
     enemiesFor(combatExercises(session), session.isFreeform).some(
@@ -140,6 +159,32 @@ export default function RewardDialog() {
                     {`+${reward.xpGained} XP`}
                   </Text>
                 </View>
+                {bonus.length > 0 && (
+                  <View style={{ alignItems: 'center', gap: 6 }}>
+                    <Text style={{ ...type.micro, color: palette.text3 }}>
+                      {t('rpg.reward.sources')}
+                    </Text>
+                    <View
+                      testID="reward-sources"
+                      style={{
+                        flexDirection: 'row',
+                        flexWrap: 'wrap',
+                        gap: 6,
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {bonus.map((b) => (
+                        <Tag
+                          key={`${b.source}-${b.id}`}
+                          tone={b.pct < 0 ? 'danger' : 'success'}
+                          size="sm"
+                        >
+                          {`${sourceLabel(b)} ${b.pct > 0 ? '+' : ''}${b.pct}%`}
+                        </Tag>
+                      ))}
+                    </View>
+                  </View>
+                )}
               </>
             ) : current === 'levelup' ? (
               <>
@@ -163,6 +208,28 @@ export default function RewardDialog() {
                   {t(titleForLevel(shownLevel))}
                 </Text>
               </>
+            ) : current === 'dungeon' ? (
+              <>
+                <FxStage
+                  fx="ui/quest-complete"
+                  fill
+                  repeat={false}
+                  label={t('rpg.reward.dungeon', { n: clears.total })}
+                />
+                <Icon name="trophy" size={32} color={palette.reward} />
+                <Dialog.Title style={[center, { color: palette.reward }]}>
+                  {t('rpg.reward.dungeon', { n: clears.total })}
+                </Dialog.Title>
+                <Text style={{ ...type.body, ...center, color: palette.text2 }}>
+                  {t('rpg.reward.dungeon.body')}
+                </Text>
+                {loot.length > 0 && (
+                  <Text style={{ ...type.label, color: palette.reward }}>
+                    {t('reward.achievements.label')}
+                  </Text>
+                )}
+                <LootList loot={loot} />
+              </>
             ) : (
               <>
                 <Icon name="gift" size={32} color={palette.reward} />
@@ -172,25 +239,7 @@ export default function RewardDialog() {
                 <Text style={{ ...type.label, color: palette.reward }}>
                   {t('reward.achievements.label')}
                 </Text>
-                <View style={{ alignSelf: 'stretch', gap: 8 }}>
-                  {loot.map((a) => (
-                    <View
-                      key={a.id}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 8,
-                      }}
-                    >
-                      <Icon name="trophy" size={16} color={palette.accent} />
-                      <Text
-                        style={{ ...type.body, color: palette.text1, flex: 1 }}
-                      >
-                        {a.name}
-                      </Text>
-                    </View>
-                  ))}
-                </View>
+                <LootList loot={loot} />
               </>
             )}
             {pages.length > 1 ? (
@@ -248,5 +297,24 @@ export default function RewardDialog() {
         />
       </View>
     </>
+  );
+}
+
+function LootList({ loot }: { loot: readonly { id: string; name: string }[] }) {
+  const { palette } = useAppTheme();
+  return (
+    <View style={{ alignSelf: 'stretch', gap: 8 }}>
+      {loot.map((a) => (
+        <View
+          key={a.id}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+        >
+          <Icon name="trophy" size={16} color={palette.accent} />
+          <Text style={{ ...type.body, color: palette.text1, flex: 1 }}>
+            {a.name}
+          </Text>
+        </View>
+      ))}
+    </View>
   );
 }

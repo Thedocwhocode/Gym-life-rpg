@@ -652,5 +652,6 @@
   "rpg.chronicle.perfect": "Semana perfeita!",
   "rpg.intro.title": "A jornada começa",
   "rpg.intro.body": "Seu nível foi recalculado a partir de todo o histórico. De hoje em diante, classe, skills, itens e status mudam o XP de cada missão, e os corações contam os dias de treino que você definir. Missões passadas mantêm o XP.",
-  "rpg.intro.days": "Definir dias de treino"
+  "rpg.intro.days": "Definir dias de treino",
+  "rpg.sheet.energy": "EN"
 }

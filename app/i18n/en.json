@@ -709,5 +709,6 @@
   "rpg.chronicle.perfect": "Perfect week!",
   "rpg.intro.title": "The journey begins",
   "rpg.intro.body": "Your level was recalculated from your whole history. From today on, class, skills, items and statuses change the XP of each mission, and hearts count the training days you set. Past missions keep their XP.",
-  "rpg.intro.days": "Set training days"
+  "rpg.intro.days": "Set training days",
+  "rpg.sheet.energy": "EN"
 }

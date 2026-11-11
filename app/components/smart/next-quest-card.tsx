@@ -7,6 +7,7 @@ import {
   selectCurrentSession,
   setCurrentSession,
 } from '@/store/current-session';
+import { selectJourney } from '@/store/journey';
 import { fetchUpcomingSessions } from '@/store/program';
 import { type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
@@ -23,6 +24,7 @@ export default function NextQuestCard() {
   const dispatch = useDispatch();
   const current = useAppSelectorWithArg(selectCurrentSession, 'workoutSession');
   const upcoming = useAppSelector((s) => s.program.upcomingSessions);
+  const { restRecommended } = useAppSelector(selectJourney);
 
   useFocusEffect(
     useCallback(() => {
@@ -75,6 +77,14 @@ export default function NextQuestCard() {
         <Text style={{ ...type.small, color: palette.text2 }}>
           {t('rpg.next.exercises', { count: next.recordedExercises.length })}
         </Text>
+        {restRecommended && !resume && (
+          <Text
+            testID="next-quest-rest"
+            style={{ ...type.small, color: palette.barEnergy }}
+          >
+            {t('rpg.next.rest')}
+          </Text>
+        )}
       </View>
       <Button
         testID="next-quest-button"

@@ -5,6 +5,8 @@ import AttributeStat from '@/components/presentation/rpg/AttributeStat';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useHeroAttributes, weekDelta } from '@/hooks/useHeroAttributes';
 import { useAppSelector } from '@/store';
+import { selectJourney } from '@/store/journey';
+import { ENERGY } from '@/store/journey/rules/energy';
 import { selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
 import type { AttrKey } from '@/store/rpg/derive';
 import { fontFamily, type } from '@/theme/tokens';
@@ -21,6 +23,7 @@ export default function CharacterSheet() {
   const title = useAppSelector(selectRpgTitle);
   const xp = useAppSelector(selectXpProgress);
   const attrs = useHeroAttributes();
+  const { energy } = useAppSelector(selectJourney);
   const ratio = xp.needed > 0 ? xp.current / xp.needed : 0;
 
   return (
@@ -53,6 +56,14 @@ export default function CharacterSheet() {
           </Text>
           <View style={{ gap: 4, marginTop: 6 }}>
             <AsciiBar value={ratio} cells={12} label="XP" fontSize={12} />
+            <AsciiBar
+              testID="energy-bar"
+              value={energy / ENERGY.max}
+              cells={12}
+              tone="energy"
+              label={t('rpg.sheet.energy')}
+              fontSize={12}
+            />
             <Text style={{ ...type.micro, color: palette.text3 }}>
               {t('rpg.sheet.xp', {
                 current: xp.current,
