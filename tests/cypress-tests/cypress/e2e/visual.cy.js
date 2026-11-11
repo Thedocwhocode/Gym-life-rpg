@@ -28,9 +28,6 @@ const GALLERY_PIECES = [
 
 describe('Dev gallery', () => {
   beforeEach(() => {
-    // Tall enough for the whole gallery (~5000px at 400 wide): no inner scroll, so element
-    // screenshots are never clipped to 1px and the width never loses 15px to a scrollbar.
-    cy.viewport(400, 6000)
     cy.visit('/')
     cy.completeWelcomeWizard()
     cy.navigate('Settings')
@@ -53,6 +50,15 @@ describe('Dev gallery', () => {
   // T6: one reference per piece. gallery-fx stays out: its canvas is covered by the C6 test.
   for (const piece of GALLERY_PIECES) {
     it(`matches the ${piece} reference`, () => {
+      // Only this piece is shown, so it starts on screen: below the fold of the inner ScrollView
+      // element screenshots came out 1px tall. Hidden scrollbars keep the width at 366px.
+      cy.document().then((doc) => {
+        const style = doc.createElement('style')
+        style.textContent =
+          `[data-testid^="gallery-"]:not([data-testid="gallery-${piece}"]){display:none!important}` +
+          '*::-webkit-scrollbar{display:none}*{scrollbar-width:none}'
+        doc.head.appendChild(style)
+      })
       cy.matchSnapshot(`gallery-${piece}`)
     })
   }

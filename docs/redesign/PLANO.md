@@ -502,9 +502,11 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
     galeria (fontes, ícones, paleta, pixelbox, ascii, barras, tags, botões, tamanhos de ícone,
     controles, toast); o fx fica no teste C6. O run 42958645784 mostrou que a janela de 400×800
     não serve: abaixo da dobra a captura saía com 1 px (rolagem interna) e a largura oscilava 15 px
-    (barra de rolagem). Agora o teste usa 400×6000, em que a galeria inteira cabe sem rolagem e
-    todas as peças medem 366 px de largura (conferido no preview). O `compare-snapshot` recusa
-    capturas com menos de 2 px de altura. As referências antigas de fontes e ícones (351 px) saíram;
+    (barra de rolagem). A janela de 400×6000 também falhou (run 42960349128): o Cypress reduz a
+    tela a 10% e a captura continua com 1 px. Agora cada teste esconde as outras peças e as
+    barras de rolagem, de modo que a peça começa na tela e mede 366 px de largura (conferido
+    no preview a 400×800). O `compare-snapshot` recusa capturas com menos de 2 px de altura, e
+    isso pegou as 9 capturas cortadas no run 42960349128. As referências antigas de fontes e ícones (351 px) saíram;
     as 11 nascem em `snapshots/new/` no próximo `ui-test` e precisam ser baixadas do artifact
     `visual-snapshots` e commitadas em `cypress/snapshots/`
   - Origem: voz externa 3
