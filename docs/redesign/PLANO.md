@@ -506,9 +506,12 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
     tela a 10% e a captura continua com 1 px. Agora cada teste esconde as outras peças e as
     barras de rolagem, de modo que a peça começa na tela e mede 366 px de largura (conferido
     no preview a 400×800). O `compare-snapshot` recusa capturas com menos de 2 px de altura, e
-    isso pegou as 9 capturas cortadas no run 42960349128. As referências antigas de fontes e ícones (351 px) saíram;
-    as 11 nascem em `snapshots/new/` no próximo `ui-test` e precisam ser baixadas do artifact
-    `visual-snapshots` e commitadas em `cypress/snapshots/`
+    isso pegou as 9 capturas cortadas no run 42960349128. O run 42961880722 passou e gerou as 11:
+    9 conferidas (366 px de largura, altura igual à do preview) e commitadas em `5dca4f6e`.
+    `icons` e `controls` são mais altas que a tela e saíram cobertas pela barra de abas. Agora o
+    teste esconde a barra (`nav`) e solta a altura dos ancestrais, de modo que a página rola;
+    no preview as peças curtas mantêm a mesma posição e tamanho, e o último ícone (`zap`) fica
+    inteiro na tela. Falta commitar as duas referências que o próximo `ui-test` gerar
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`
