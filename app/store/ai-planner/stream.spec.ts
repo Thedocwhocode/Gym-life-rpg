@@ -46,4 +46,14 @@ describe('streamAgentReply (TD9/DR7)', () => {
     });
     expect(onError).toHaveBeenCalledOnce();
   });
+
+  it('stream que termina sem nada (invoke falhou) também é falha', async () => {
+    const dispatch = vi.fn<(a: { payload: ChatMessage }) => void>();
+    async function* empty(): AsyncGenerator<AiChatResponse> {}
+    await streamAgentReply(dispatch, empty(), 'a1', 'oi');
+    expect(dispatch.mock.calls.at(-1)![0].payload).toMatchObject({
+      failed: true,
+      retryText: 'oi',
+    });
+  });
 });

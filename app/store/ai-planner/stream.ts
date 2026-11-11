@@ -5,7 +5,8 @@ type Dispatch = (action: ReturnType<typeof updateMessage>) => unknown;
 
 /**
  * Escreve a resposta do agente no balão `id` conforme chega. Se o stream falhar (offline, 5xx),
- * o balão sai do carregamento marcado `failed`, com `retryText` para o "Tentar" (DR7).
+ * ou terminar sem resposta, o balão sai do carregamento marcado `failed`, com `retryText` para o
+ * "Tentar" (DR7).
  */
 export async function streamAgentReply(
   dispatch: Dispatch,
@@ -26,6 +27,8 @@ export async function streamAgentReply(
       latest = chunk;
       dispatch(updateMessage({ ...base, ...chunk, isLoading: true }));
     }
+    // O serviço termina o stream vazio quando o invoke falha: nenhuma resposta = falha.
+    if (!latest) throw new Error('AI planner: empty reply');
     dispatch(updateMessage({ ...base, ...latest, isLoading: false }));
   } catch (e) {
     onError?.(e);

@@ -40,6 +40,15 @@ export default function Feed() {
   const feedItems = useAppSelector(selectFeedSessionItems);
   const { handleScroll } = useScroll();
   const fetchingFeedItems = useAppSelector((x) => x.feed.isFetching);
+  // DR7: com a identidade em erro, o erro ocupa o lugar do conteúdo (sem o vazio embaixo).
+  const identityFailed = useAppSelector((x) =>
+    selectFeedIdentityRemote(x).match({
+      notAsked: () => false,
+      loading: () => false,
+      success: () => false,
+      error: () => true,
+    }),
+  );
   const dispatch = useDispatch();
   return (
     <FlashList
@@ -50,9 +59,11 @@ export default function Feed() {
         dispatch(fetchFeedItems({ fromUserAction: true }));
       }}
       ListEmptyComponent={
-        <EmptyInfo style={{ marginTop: spacing[8] }}>
-          <T keyName="feed.no_following_data.message" />
-        </EmptyInfo>
+        identityFailed ? null : (
+          <EmptyInfo style={{ marginTop: spacing[8] }}>
+            <T keyName="feed.no_following_data.message" />
+          </EmptyInfo>
+        )
       }
       refreshing={fetchingFeedItems}
       onScroll={handleScroll}
