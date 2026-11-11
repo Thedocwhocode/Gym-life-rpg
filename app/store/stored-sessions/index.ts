@@ -228,7 +228,7 @@ export const selectRecentlyCompletedExercises = createSelector(
       ] ?? [],
 );
 
-/** Melhor peso de cada exercÃ­cio nas sessÃµes salvas, menos a sessÃ£o `exceptId` (a do combate, F5). */
+/** Melhor peso de cada exercício nas sessões salvas, menos a sessão `exceptId` (a do combate, F5). */
 export const selectBestWeights = createSelector(
   [
     storedSessionsSlice.selectors.selectSessions,

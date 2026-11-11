@@ -114,6 +114,9 @@ export function useSessionCombat(
 
   const next = enabled && session ? nextStrike(session) : undefined;
   const strike = () => {
+    // lido na hora do toque: com toque duplo o `next` do render já está velho
+    const live = selectCurrentSession(store.getState(), 'workoutSession');
+    const next = live ? nextStrike(live) : undefined;
     if (!next) return;
     const target = 'workoutSession' as const;
     const where = {

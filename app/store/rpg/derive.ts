@@ -135,7 +135,7 @@ const TITLES: [number, TranslationKey][] = [
   [1, 'rpg.title.beginner'],
 ];
 
-/** Chave de i18n do tÃ­tulo do nÃ­vel. */
+/** Chave de i18n do título do nível. */
 export function titleForLevel(level: number): TranslationKey {
   return TITLES.find(([min]) => level >= min)?.[1] ?? 'rpg.title.beginner';
 }

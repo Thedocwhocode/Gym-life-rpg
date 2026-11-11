@@ -81,7 +81,7 @@ export default function SessionComponent(props: {
   };
 
   const isReadonly = props.target === 'feedSession';
-  // Combate sÃ³ no treino em andamento (F5); histÃ³rico e feed ficam como estavam.
+  // Combate só no treino em andamento (F5); histórico e feed ficam como estavam.
   const combat = useSessionCombat(session, props.target === 'workoutSession');
 
   const [exerciseToEditIndex, setExerciseToEditIndex] = useState<
@@ -400,7 +400,7 @@ export default function SessionComponent(props: {
     </View>
   );
 
-  // RodapÃ© â‰¤ 120 px (DR2): descanso + concluir numa linha, "Golpear" embaixo.
+  // Rodapé ≤ 120 px (DR2): descanso + concluir numa linha, "Golpear" embaixo.
   const floatingBottomContainer = isReadonly ? null : (
     <FloatingBottomContainer
       additionalContent={

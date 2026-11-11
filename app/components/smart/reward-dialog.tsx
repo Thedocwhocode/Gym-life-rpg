@@ -27,6 +27,7 @@ import { shareCardImage } from '@/utils/share-card';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import { useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
+import { Portal } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 /**
@@ -101,131 +102,134 @@ export default function RewardDialog() {
   const center = { textAlign: 'center' } as const;
   return (
     <>
-      <Dialog visible dismissable={false}>
-        <View
-          style={{ alignItems: 'center', gap: 12 }}
-          testID={`reward-page-${current}`}
-        >
-          {current === 'mission' ? (
-            <>
-              <FxStage
-                fx="ui/quest-complete"
-                fill
-                repeat={false}
-                label={t('reward.mission.title')}
-              />
-              <Icon name="check" size={32} color={palette.success} />
-              <Dialog.Title style={center}>
-                {t('reward.mission.title')}
-              </Dialog.Title>
-              <View
-                style={{
-                  borderWidth: 1,
-                  borderColor: palette.reward,
-                  paddingHorizontal: 16,
-                  paddingVertical: 8,
-                }}
-              >
-                <Text
-                  testID="reward-xp"
+      {/* Portal: sem ele o Modal do Paper fica sob o RootStack */}
+      <Portal>
+        <Dialog visible dismissable={false}>
+          <View
+            style={{ alignItems: 'center', gap: 12 }}
+            testID={`reward-page-${current}`}
+          >
+            {current === 'mission' ? (
+              <>
+                <FxStage
+                  fx="ui/quest-complete"
+                  fill
+                  repeat={false}
+                  label={t('reward.mission.title')}
+                />
+                <Icon name="check" size={32} color={palette.success} />
+                <Dialog.Title style={center}>
+                  {t('reward.mission.title')}
+                </Dialog.Title>
+                <View
                   style={{
-                    fontFamily: fontFamily.monoBold,
-                    fontSize: 24,
-                    color: palette.reward,
+                    borderWidth: 1,
+                    borderColor: palette.reward,
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
                   }}
                 >
-                  {`+${reward.xpGained} XP`}
-                </Text>
-              </View>
-            </>
-          ) : current === 'levelup' ? (
-            <>
-              <FxStage
-                fx="ui/level-up"
-                fill
-                repeat={false}
-                label={t('reward.levelup.title', { level: shownLevel })}
-              />
-              <Dialog.Title style={[center, { color: palette.reward }]}>
-                {t('reward.levelup.title', { level: shownLevel })}
-              </Dialog.Title>
-              <Text
-                style={{
-                  ...type.label,
-                  ...center,
-                  color: palette.accent,
-                  textTransform: 'uppercase',
-                }}
-              >
-                {t(titleForLevel(shownLevel))}
-              </Text>
-            </>
-          ) : (
-            <>
-              <Icon name="gift" size={32} color={palette.reward} />
-              <Dialog.Title style={center}>
-                {t('reward.loot.title')}
-              </Dialog.Title>
-              <Text style={{ ...type.label, color: palette.reward }}>
-                {t('reward.achievements.label')}
-              </Text>
-              <View style={{ alignSelf: 'stretch', gap: 8 }}>
-                {loot.map((a) => (
-                  <View
-                    key={a.id}
+                  <Text
+                    testID="reward-xp"
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 8,
+                      fontFamily: fontFamily.monoBold,
+                      fontSize: 24,
+                      color: palette.reward,
                     }}
                   >
-                    <Icon name="trophy" size={16} color={palette.accent} />
-                    <Text
-                      style={{ ...type.body, color: palette.text1, flex: 1 }}
+                    {`+${reward.xpGained} XP`}
+                  </Text>
+                </View>
+              </>
+            ) : current === 'levelup' ? (
+              <>
+                <FxStage
+                  fx="ui/level-up"
+                  fill
+                  repeat={false}
+                  label={t('reward.levelup.title', { level: shownLevel })}
+                />
+                <Dialog.Title style={[center, { color: palette.reward }]}>
+                  {t('reward.levelup.title', { level: shownLevel })}
+                </Dialog.Title>
+                <Text
+                  style={{
+                    ...type.label,
+                    ...center,
+                    color: palette.accent,
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {t(titleForLevel(shownLevel))}
+                </Text>
+              </>
+            ) : (
+              <>
+                <Icon name="gift" size={32} color={palette.reward} />
+                <Dialog.Title style={center}>
+                  {t('reward.loot.title')}
+                </Dialog.Title>
+                <Text style={{ ...type.label, color: palette.reward }}>
+                  {t('reward.achievements.label')}
+                </Text>
+                <View style={{ alignSelf: 'stretch', gap: 8 }}>
+                  {loot.map((a) => (
+                    <View
+                      key={a.id}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
                     >
-                      {a.name}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-            </>
-          )}
-          {pages.length > 1 ? (
-            <Text style={{ ...type.small, color: palette.text3 }}>
-              {t('reward.page.label', {
-                current: page + 1,
-                total: pages.length,
-              })}
-            </Text>
-          ) : null}
-        </View>
-        <Dialog.Actions>
-          <Button
-            variant="ghost"
-            testID="session-reward-continue"
-            onPress={close}
-          >
-            {t('reward.skip.button')}
-          </Button>
-          {last ? (
+                      <Icon name="trophy" size={16} color={palette.accent} />
+                      <Text
+                        style={{ ...type.body, color: palette.text1, flex: 1 }}
+                      >
+                        {a.name}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </>
+            )}
+            {pages.length > 1 ? (
+              <Text style={{ ...type.small, color: palette.text3 }}>
+                {t('reward.page.label', {
+                  current: page + 1,
+                  total: pages.length,
+                })}
+              </Text>
+            ) : null}
+          </View>
+          <Dialog.Actions>
             <Button
-              variant="secondary"
-              icon="upload"
-              testID="reward-share"
-              disabled={sharing}
-              onPress={() => void share()}
+              variant="ghost"
+              testID="session-reward-continue"
+              onPress={close}
             >
-              {t('reward.share.button')}
+              {t('reward.skip.button')}
             </Button>
-          ) : null}
-          <Button
-            testID="reward-next"
-            onPress={last ? close : () => setPage((p) => p + 1)}
-          >
-            {t(last ? 'reward.finish.button' : 'reward.continue.button')}
-          </Button>
-        </Dialog.Actions>
-      </Dialog>
+            {last ? (
+              <Button
+                variant="secondary"
+                icon="upload"
+                testID="reward-share"
+                disabled={sharing}
+                onPress={() => void share()}
+              >
+                {t('reward.share.button')}
+              </Button>
+            ) : null}
+            <Button
+              testID="reward-next"
+              onPress={last ? close : () => setPage((p) => p + 1)}
+            >
+              {t(last ? 'reward.finish.button' : 'reward.continue.button')}
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
       {/* E2: cartão fora da tela, só para a captura (fora do Dialog: a moldura cortaria) */}
       <View
         style={{ position: 'absolute', left: -10000, top: 0 }}

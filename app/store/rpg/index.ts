@@ -89,7 +89,7 @@ export interface RpgState {
   lastSessionReward?: {
     xpGained: number;
     newAchievementIds: string[];
-    /** SessÃ£o que gerou a recompensa (cartÃ£o E2). */
+    /** Sessão que gerou a recompensa (cartão E2). */
     sessionId?: string;
   };
 }

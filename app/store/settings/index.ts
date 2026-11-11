@@ -21,7 +21,7 @@ interface SettingsState {
   proToken: string | undefined;
   useImperialUnits: boolean;
   showBodyweight: boolean;
-  /** VibraÃ§Ã£o nos momentos do combate (E1). */
+  /** Vibração nos momentos do combate (E1). */
   haptics: boolean;
   showTips: boolean;
   tipToShow: number;
