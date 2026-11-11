@@ -23,8 +23,7 @@ import {
 } from '@expo-google-fonts/space-mono';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import LevelUpOverlay from '@/components/presentation/rpg/LevelUpOverlay';
-import SessionRewardScreen from '@/components/presentation/rpg/SessionRewardScreen';
+import RewardDialog from '@/components/smart/reward-dialog';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -114,8 +113,7 @@ export default Sentry.wrap(function RootLayout() {
               <AppThemeProvider>
                 <AppStateProvider>
                   <SnackbarProvider>
-                    <LevelUpOverlay />
-                    <SessionRewardScreen />
+                    <RewardDialog />
                     <RootStack />
                   </SnackbarProvider>
                 </AppStateProvider>

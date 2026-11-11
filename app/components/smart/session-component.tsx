@@ -50,6 +50,8 @@ import WeightFormat from '@/components/presentation/weight-format';
 import { formatDuration } from '@/utils/format-date';
 import { match, P } from 'ts-pattern';
 import { CardioExercise } from '@/components/presentation/cardio/CardioExercise';
+import Button from '@/components/presentation/pixel/Button';
+import { useSessionCombat } from '@/components/smart/session-combat';
 
 export default function SessionComponent(props: {
   target: SessionTarget;
@@ -79,6 +81,8 @@ export default function SessionComponent(props: {
   };
 
   const isReadonly = props.target === 'feedSession';
+  // Combate sÃ³ no treino em andamento (F5); histÃ³rico e feed ficam como estavam.
+  const combat = useSessionCombat(session, props.target === 'workoutSession');
 
   const [exerciseToEditIndex, setExerciseToEditIndex] = useState<
     number | undefined
@@ -190,6 +194,7 @@ export default function SessionComponent(props: {
           recordedExercise={item}
           toStartNext={session.nextExercise === item}
           updateRepCountForSet={(setIndex, reps) => {
+            const before = item.potentialSets[setIndex]?.set?.repsCompleted;
             dispatch(setExerciseReps, {
               exerciseIndex: index,
               reps,
@@ -205,8 +210,10 @@ export default function SessionComponent(props: {
             });
             if (props.target === 'workoutSession')
               storeDispatch(notifySetTimer());
+            combat.onSetChanged(index, setIndex, before);
           }}
           cycleRepCountForSet={(setIndex) => {
+            const before = item.potentialSets[setIndex]?.set?.repsCompleted;
             dispatch(cycleExerciseReps, {
               exerciseIndex: index,
               setIndex,
@@ -221,6 +228,7 @@ export default function SessionComponent(props: {
             });
             if (props.target === 'workoutSession')
               storeDispatch(notifySetTimer());
+            combat.onSetChanged(index, setIndex, before);
           }}
           updateWeightForSet={(setIndex, weight, applyTo) =>
             dispatch(updateWeightForSet, {
@@ -392,19 +400,33 @@ export default function SessionComponent(props: {
     </View>
   );
 
+  // RodapÃ© â‰¤ 120 px (DR2): descanso + concluir numa linha, "Golpear" embaixo.
   const floatingBottomContainer = isReadonly ? null : (
     <FloatingBottomContainer
       additionalContent={
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          {/* Centre the timer */}
-          <View style={{ flex: 1 }}></View>
-          {restTimer}
-          {saveButton}
+        <View testID="session-footer" style={{ gap: spacing[2] }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            {/* Centre the timer */}
+            <View style={{ flex: 1 }}></View>
+            {restTimer}
+            {saveButton}
+          </View>
+          {combat.strike ? (
+            <Button
+              variant="danger"
+              icon="zap"
+              block
+              testID="strike-button"
+              onPress={combat.strike}
+            >
+              {combat.strikeLabel}
+            </Button>
+          ) : null}
         </View>
       }
     />
@@ -454,6 +476,16 @@ export default function SessionComponent(props: {
 
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
+      {combat.stage ? (
+        <View
+          style={{
+            marginHorizontal: spacing.pageHorizontalMargin,
+            marginTop: spacing[2],
+          }}
+        >
+          {combat.stage}
+        </View>
+      ) : null}
       {notesComponent}
       {emptyInfo}
       <ItemList items={session.recordedExercises} renderItem={renderItem} />

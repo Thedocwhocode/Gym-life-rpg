@@ -69,7 +69,7 @@ describe('flashesPerSecond', () => {
 describe('UI_MOMENTS', () => {
   const args: Record<keyof typeof UI_MOMENTS, unknown[]> = {
     combo: [7, 'Sequência'],
-    pr: [120, 'Recorde'],
+    pr: ['102,5kg', 'Recorde'],
     set: [10],
     xp: [],
     achievement: ['Conquista', 'Desbloqueada'],

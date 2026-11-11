@@ -16,6 +16,7 @@ import {
   setRemoteBackupSettings,
   setRestNotifications,
   setShowBodyweight,
+  setHaptics,
   setShowFeed,
   setShowTips,
   setTipToShow,
@@ -65,6 +66,7 @@ export function applySettingsEffects() {
         notesExpandedByDefault,
         keepScreenAwakeDuringWorkout,
         effectsMode,
+        haptics,
       ] = await Promise.all([
         preferenceService.getUseImperialUnits(),
         preferenceService.getShowBodyweight(),
@@ -84,10 +86,12 @@ export function applySettingsEffects() {
         preferenceService.getNotesExpandedByDefault(),
         preferenceService.getKeepScreenAwakeDuringWorkout(),
         preferenceService.getEffectsMode(),
+        preferenceService.getHaptics(),
       ]);
       dispatch(setPalette(palette));
       dispatch(setUseImperialUnits(useImperialUnits));
       dispatch(setShowBodyweight(showBodyweight));
+      dispatch(setHaptics(haptics));
       dispatch(setShowTips(showTips));
       dispatch(setTipToShow(tipToShow));
       dispatch(setShowFeed(showFeed));
@@ -165,6 +169,14 @@ export function applySettingsEffects() {
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setShowBodyweight(action.payload);
+      }
+    },
+  );
+  addEffect(
+    setHaptics,
+    async (action, { stateAfterReduce, extra: { preferenceService } }) => {
+      if (stateAfterReduce.settings.isHydrated) {
+        await preferenceService.setHaptics(action.payload);
       }
     },
   );

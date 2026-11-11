@@ -1,3 +1,4 @@
+import type { TranslationKey } from '@tolgee/react';
 import {
   RecordedCardioExercise,
   RecordedWeightedExercise,
@@ -124,17 +125,19 @@ export function levelFromXp(xp: number): number {
   return Math.floor(1 + Math.sqrt(Math.max(0, xp) / 100));
 }
 
-const TITLES: [number, string][] = [
-  [20, 'Lenda da Academia'],
-  [15, 'Mestre das Placas'],
-  [10, 'Cavaleiro do Ferro'],
-  [6, 'Espadachim da Academia'],
-  [3, 'Guerreiro Novato'],
-  [1, 'Iniciante'],
+// Chaves de i18n (DR25): quem mostra traduz com t().
+const TITLES: [number, TranslationKey][] = [
+  [20, 'rpg.title.legend'],
+  [15, 'rpg.title.master'],
+  [10, 'rpg.title.knight'],
+  [6, 'rpg.title.swordsman'],
+  [3, 'rpg.title.novice'],
+  [1, 'rpg.title.beginner'],
 ];
 
-export function titleForLevel(level: number): string {
-  return TITLES.find(([min]) => level >= min)?.[1] ?? 'Iniciante';
+/** Chave de i18n do tÃ­tulo do nÃ­vel. */
+export function titleForLevel(level: number): TranslationKey {
+  return TITLES.find(([min]) => level >= min)?.[1] ?? 'rpg.title.beginner';
 }
 
 export function xpProgress(xp: number): { current: number; needed: number } {

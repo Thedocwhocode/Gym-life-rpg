@@ -86,7 +86,12 @@ export const ACHIEVEMENTS: Achievement[] = [
 export interface RpgState {
   pendingLevelUp: boolean;
   levelUpNewLevel?: number;
-  lastSessionReward?: { xpGained: number; newAchievementIds: string[] };
+  lastSessionReward?: {
+    xpGained: number;
+    newAchievementIds: string[];
+    /** SessÃ£o que gerou a recompensa (cartÃ£o E2). */
+    sessionId?: string;
+  };
 }
 
 const initialState: RpgState = { pendingLevelUp: false };
@@ -95,9 +100,17 @@ const rpgSlice = createSlice({
   name: 'rpg',
   initialState,
   reducers: {
-    sessionRewarded(state, action: PayloadAction<ProjectionDiff>) {
-      const { xpGained, newAchievementIds, newLevel } = action.payload;
-      state.lastSessionReward = { xpGained, newAchievementIds };
+    sessionRewarded(
+      state,
+      action: PayloadAction<ProjectionDiff & { sessionId?: string }>,
+    ) {
+      const { xpGained, newAchievementIds, newLevel, sessionId } =
+        action.payload;
+      state.lastSessionReward = {
+        xpGained,
+        newAchievementIds,
+        ...(sessionId ? { sessionId } : {}),
+      };
       if (newLevel !== undefined) {
         state.pendingLevelUp = true;
         state.levelUpNewLevel = newLevel;

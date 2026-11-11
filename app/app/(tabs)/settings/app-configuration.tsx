@@ -13,6 +13,7 @@ import {
   setNotesExpandedByDefault,
   setPalette,
   setShowBodyweight,
+  setHaptics,
   setShowFeed,
   setShowTips,
   setWelcomeWizardCompleted,
@@ -49,6 +50,13 @@ export default function AppConfiguration() {
           supportingText={<T keyName="settings.show_bodyweight.subtitle" />}
           value={settings.showBodyweight}
           onValueChange={(value) => dispatch(setShowBodyweight(value))}
+        />
+        <ListSwitch
+          testID="setHaptics"
+          headline={<T keyName="settings.haptics.label" />}
+          supportingText={<T keyName="settings.haptics.subtitle" />}
+          value={settings.haptics}
+          onValueChange={(value) => dispatch(setHaptics(value))}
         />
         {isBackendConfigured && (
           <ListSwitch
