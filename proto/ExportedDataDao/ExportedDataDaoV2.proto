@@ -13,4 +13,6 @@ message ExportedDataDaoV2 {
   map<string, GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1> saved_programs    = 3;
   google.protobuf.StringValue                                              active_program_id = 4;
   GymLifeRpg.Ui.Models.FeedStateDaoV1                                         feed_state        = 5;
+  // Escolhas do RPG (store/choices) em JSON. XP, nível etc. são recalculados das sessões.
+  google.protobuf.StringValue                                              choices_json      = 6;
 }

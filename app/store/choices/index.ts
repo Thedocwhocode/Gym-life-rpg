@@ -52,6 +52,10 @@ const choicesSlice = createSlice({
     hydrateChoices(_, action: PayloadAction<Choices>) {
       return { ...action.payload, isHydrated: true };
     },
+    /** Restore de backup: troca tudo e grava (hydrate só carrega do disco). */
+    restoreChoices(_, action: PayloadAction<Choices>) {
+      return { ...action.payload, isHydrated: true };
+    },
     setRpgClass: {
       reducer(state, { payload }: DatedAction<RpgClass>) {
         state.rpgClass = payload.value;
@@ -135,6 +139,7 @@ const choicesSlice = createSlice({
 
 export const {
   hydrateChoices,
+  restoreChoices,
   setRpgClass,
   setTrainingDays,
   equipSkill,
@@ -150,6 +155,7 @@ export const {
 
 /** Actions que mudam o que é gravado (o effect de debounce escuta todas). */
 export const PERSISTED_CHOICE_ACTIONS = [
+  restoreChoices,
   setRpgClass,
   setTrainingDays,
   equipSkill,

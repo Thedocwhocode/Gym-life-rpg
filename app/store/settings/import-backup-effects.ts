@@ -1,3 +1,5 @@
+import { restoreChoices } from '@/store/choices';
+import { choicesFromJson } from '@/store/choices/migrate';
 import { GymLifeRpg } from '@/gen/proto';
 import {
   fromProgramBlueprintDao,
@@ -93,6 +95,15 @@ export function addImportBackupEffects() {
         }),
       );
       dispatch(checkIfWeightMigrationRequired());
+      // Backup antigo (LiftLog ou pré-F6) não tem escolhas: ficam as locais e a projeção
+      // recalcula XP, nível e quests a partir das sessões restauradas.
+      if (dao.choicesJson?.value) {
+        dispatch(
+          restoreChoices(
+            choicesFromJson(dao.choicesJson.value, LocalDate.now().toString()),
+          ),
+        );
+      }
       if (dao.feedState) {
         dispatch(beginFeedImport(dao.feedState));
       }

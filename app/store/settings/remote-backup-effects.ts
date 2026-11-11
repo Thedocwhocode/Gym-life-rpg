@@ -1,3 +1,4 @@
+import { choicesToJson } from '@/store/choices/migrate';
 import { google, GymLifeRpg } from '@/gen/proto';
 import {
   toFeedStateDao,
@@ -115,6 +116,9 @@ export function addRemoteBackupEffects() {
           }),
           feedState: feedStateDao,
           savedPrograms: savedProgramsDao,
+          choicesJson: new google.protobuf.StringValue({
+            value: choicesToJson(getState().choices),
+          }),
         });
 
         // Yield before expensive serialization

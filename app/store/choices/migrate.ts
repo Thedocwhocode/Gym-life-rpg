@@ -120,3 +120,14 @@ export async function loadChoices(kv: Kv, today?: string): Promise<Choices> {
     await kv.setItem(CHOICES_KEY, JSON.stringify(full));
   return full;
 }
+
+/** Backup (campo `choices_json`): grava só as escolhas, sem o estado de tela. */
+export function choicesToJson(state: Choices & { isHydrated?: boolean }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { isHydrated, ...choices } = state;
+  return JSON.stringify(choices);
+}
+
+/** Restore: valida o JSON do backup e completa os "desde" com o dia do restore. */
+export const choicesFromJson = (json: string, today: string): Choices =>
+  withJourneyDefaults(pick(parse(json)), today);

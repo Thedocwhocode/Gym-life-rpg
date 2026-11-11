@@ -5697,6 +5697,7 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                      * @property {Object.<string,GymLifeRpg.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1>|null} [savedPrograms] ExportedDataDaoV2 savedPrograms
                      * @property {google.protobuf.IStringValue|null} [activeProgramId] ExportedDataDaoV2 activeProgramId
                      * @property {GymLifeRpg.Ui.Models.IFeedStateDaoV1|null} [feedState] ExportedDataDaoV2 feedState
+                     * @property {google.protobuf.IStringValue|null} [choicesJson] ExportedDataDaoV2 choicesJson
                      */
 
                     /**
@@ -5758,6 +5759,14 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                     ExportedDataDaoV2.prototype.feedState = null;
 
                     /**
+                     * ExportedDataDaoV2 choicesJson.
+                     * @member {google.protobuf.IStringValue|null|undefined} choicesJson
+                     * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
+                     * @instance
+                     */
+                    ExportedDataDaoV2.prototype.choicesJson = null;
+
+                    /**
                      * Creates a new ExportedDataDaoV2 instance using the specified properties.
                      * @function create
                      * @memberof GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2
@@ -5796,6 +5805,8 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                             $root.google.protobuf.StringValue.encode(message.activeProgramId, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         if (message.feedState != null && Object.hasOwnProperty.call(message, "feedState"))
                             $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.encode(message.feedState, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                        if (message.choicesJson != null && Object.hasOwnProperty.call(message, "choicesJson"))
+                            $root.google.protobuf.StringValue.encode(message.choicesJson, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                         return writer;
                     };
 
@@ -5875,6 +5886,10 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                                     message.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.decode(reader, reader.uint32());
                                     break;
                                 }
+                            case 6: {
+                                    message.choicesJson = $root.google.protobuf.StringValue.decode(reader, reader.uint32());
+                                    break;
+                                }
                             default:
                                 reader.skipType(tag & 7);
                                 break;
@@ -5948,6 +5963,11 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                             if (error)
                                 return "feedState." + error;
                         }
+                        if (message.choicesJson != null && message.hasOwnProperty("choicesJson")) {
+                            let error = $root.google.protobuf.StringValue.verify(message.choicesJson);
+                            if (error)
+                                return "choicesJson." + error;
+                        }
                         return null;
                     };
 
@@ -6003,6 +6023,11 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                                 throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.feedState: object expected");
                             message.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.fromObject(object.feedState);
                         }
+                        if (object.choicesJson != null) {
+                            if (typeof object.choicesJson !== "object")
+                                throw TypeError(".GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.choicesJson: object expected");
+                            message.choicesJson = $root.google.protobuf.StringValue.fromObject(object.choicesJson);
+                        }
                         return message;
                     };
 
@@ -6028,6 +6053,7 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                         if (options.defaults) {
                             object.activeProgramId = null;
                             object.feedState = null;
+                            object.choicesJson = null;
                         }
                         if (message.sessions && message.sessions.length) {
                             object.sessions = [];
@@ -6049,6 +6075,8 @@ export const GymLifeRpg = $root.GymLifeRpg = (() => {
                             object.activeProgramId = $root.google.protobuf.StringValue.toObject(message.activeProgramId, options);
                         if (message.feedState != null && message.hasOwnProperty("feedState"))
                             object.feedState = $root.GymLifeRpg.Ui.Models.FeedStateDaoV1.toObject(message.feedState, options);
+                        if (message.choicesJson != null && message.hasOwnProperty("choicesJson"))
+                            object.choicesJson = $root.google.protobuf.StringValue.toObject(message.choicesJson, options);
                         return object;
                     };
 
