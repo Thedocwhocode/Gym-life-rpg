@@ -498,8 +498,11 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
   - Arquivos: `app/store/current-session/effects.ts`
   - Verificar: unit + e2e
 - [ ] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
-  - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`; `visual.cy.js` só compara fontes e
-    ícones da galeria. Falta a referência por peça (as imagens nascem no primeiro run do CI)
+  - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`. `visual.cy.js` compara 11 peças da
+    galeria (fontes, ícones, paleta, pixelbox, ascii, barras, tags, botões, tamanhos de ícone,
+    controles, toast); o fx fica no teste C6. Referências de fontes e ícones commitadas a partir
+    do artifact do CI Linux. As outras 9 nascem em `snapshots/new/` no próximo `ui-test` e
+    precisam ser baixadas do artifact `visual-snapshots` e commitadas em `cypress/snapshots/`
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`

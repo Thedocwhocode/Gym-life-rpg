@@ -12,6 +12,20 @@ const REDESIGN_FONTS = [
   'SpaceMono_700Bold',
 ]
 
+const GALLERY_PIECES = [
+  'fonts',
+  'icons',
+  'palette',
+  'pixelbox',
+  'ascii',
+  'bars',
+  'tags',
+  'buttons',
+  'icons-sizes',
+  'controls',
+  'toast',
+]
+
 describe('Dev gallery', () => {
   beforeEach(() => {
     cy.visit('/')
@@ -33,10 +47,12 @@ describe('Dev gallery', () => {
     )
   })
 
-  it('matches the reference snapshots', () => {
-    cy.matchSnapshot('gallery-fonts')
-    cy.matchSnapshot('gallery-icons')
-  })
+  // T6: one reference per piece. gallery-fx stays out: its canvas is covered by the C6 test.
+  for (const piece of GALLERY_PIECES) {
+    it(`matches the ${piece} reference`, () => {
+      cy.matchSnapshot(`gallery-${piece}`)
+    })
+  }
 
   // PLANO C6: an effect that throws disappears and the screen around it keeps working.
   it('survives a broken pixelfx effect', () => {
