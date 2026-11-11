@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createStage, flashesPerSecond, toFxText } from './engine';
+import { UI_MOMENTS } from './moments';
 import { FX_IDS } from './registry';
 
 describe('toFxText', () => {
@@ -63,4 +64,41 @@ describe('flashesPerSecond', () => {
     }
     expect(flashesPerSecond(luma)).toBeLessThanOrEqual(3);
   });
+});
+
+describe('UI_MOMENTS', () => {
+  const args: Record<keyof typeof UI_MOMENTS, unknown[]> = {
+    combo: [7, 'Sequência'],
+    pr: [120, 'Recorde'],
+    set: [10],
+    xp: [],
+    achievement: ['Conquista', 'Desbloqueada'],
+    heartLost: [],
+    bossHit: [0.8, 0.4],
+    countdown: [],
+    alert: [],
+    confetti: [],
+    quest: ['Missão concluída'],
+    levelUp: [],
+  };
+  it.each(Object.keys(args) as (keyof typeof UI_MOMENTS)[])(
+    '%s monta sem fundo e termina',
+    (name) => {
+      const { fx, options } = (
+        UI_MOMENTS[name] as (
+          ...a: unknown[]
+        ) => ReturnType<(typeof UI_MOMENTS)['xp']>
+      )(...args[name]);
+      const stage = createStage({ fx, options, bg: 'none', repeat: false });
+      const out = new Uint8ClampedArray(stage.w * stage.h * 4);
+      let ended = false;
+      for (let i = 0; i < 300 && !ended; i++) {
+        ended = stage.advance(1 / 30).ended;
+        if (i === 15) stage.render(out);
+      }
+      expect(ended).toBe(true);
+      // sem fundo, só o efeito pinta: algo opaco no quadro do meio
+      expect(out.some((b, k) => k % 4 === 3 && b > 0)).toBe(true);
+    },
+  );
 });

@@ -26,7 +26,7 @@ export interface FxStageProps extends StageSpec {
 
 /** Um efeito quebrado some e vai para o Sentry; a tela em volta segue (PLANO C6). */
 class FxBoundary extends Component<
-  { fx: string; children: ReactNode },
+  { fx: string; onDone?: (() => void) | undefined; children: ReactNode },
   { failed: boolean }
 > {
   override state = { failed: false };
@@ -40,6 +40,7 @@ class FxBoundary extends Component<
       scope.setTag('fx', this.props.fx);
       Sentry.captureException(error);
     });
+    this.props.onDone?.(); // efeito quebrado conta como encerrado
   }
 
   override componentDidUpdate(prev: { fx: string }) {
@@ -55,7 +56,7 @@ class FxBoundary extends Component<
 /** Player pixelfx ao vivo: palco escuro, escala inteira, pausa fora de foco, quadro parado com movimento reduzido. */
 export default function FxStage(props: FxStageProps) {
   return (
-    <FxBoundary fx={props.fx}>
+    <FxBoundary fx={props.fx} onDone={props.onDone}>
       <FxSurface {...props} />
     </FxBoundary>
   );

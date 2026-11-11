@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, Platform } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import { FREEZE_MOTION } from '@/utils/motion';
-import { createStage, type StageSpec } from './engine';
+import { createStage, type Stage, type StageSpec } from './engine';
 import type { FxStageProps } from './FxStage';
 
 export type FxDraw = (
@@ -69,11 +69,20 @@ export function useFxLoop(props: FxStageProps, draw: FxDraw) {
     [stage],
   );
 
+  // onDone uma vez por cena: trocar foco/AppState reexecuta o efeito abaixo.
+  const doneFor = useRef<Stage | null>(null);
   const frozen = reduced || FREEZE_MOTION;
   useEffect(() => {
-    if (frozen) {
+    // Sem animação o efeito único "termina" na hora: quem espera onDone (FxBurst, fila da F5) não trava.
+    const freeze = () => {
       stage.still();
       drawRef.current(rgba, stage.render(rgba));
+      if (stage.loop || live.current.hold || doneFor.current === stage) return;
+      doneFor.current = stage;
+      live.current.onDone?.();
+    };
+    if (frozen) {
+      freeze();
       return;
     }
     drawRef.current(rgba, stage.render(rgba));
@@ -93,15 +102,17 @@ export function useFxLoop(props: FxStageProps, draw: FxDraw) {
           now - start > PROBE_MS &&
           ticks / (PROBE_MS / 1000) < MIN_FPS
         ) {
-          stage.still();
-          drawRef.current(rgba, stage.render(rgba));
+          freeze();
           return;
         }
         const { moved, ended } = stage.advance(
           p.paused ? 0 : dt * (p.speed ?? 1),
           p.hold,
         );
-        if (ended) p.onDone?.();
+        if (ended) {
+          doneFor.current = stage;
+          p.onDone?.();
+        }
         if (moved) drawRef.current(rgba, stage.render(rgba));
         raf = requestAnimationFrame(tick);
       } catch (e) {

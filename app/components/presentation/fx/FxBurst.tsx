@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { View, type DimensionValue } from 'react-native';
-import { toFxText } from './engine';
 import FxStage from './FxStage';
 import type { FxId } from './registry';
 
@@ -67,40 +66,3 @@ export default function FxBurst({
     </View>
   );
 }
-
-/** Qual efeito responde a qual momento do app. Os textos chegam traduzidos e viram ASCII (DR14). */
-export const UI_MOMENTS = {
-  combo: (n: number, label: string) => ({
-    fx: 'ui/combo-counter',
-    options: { count: n, label: toFxText(label) },
-  }),
-  pr: (kg: number, label: string) => ({
-    fx: 'ui/crit-number',
-    options: { label: toFxText(label), text: `${kg}KG!` },
-  }),
-  set: (reps: number) => ({
-    fx: 'ui/damage-number',
-    options: { text: `-${reps}` },
-  }),
-  xp: () => ({ fx: 'ui/coin-collect', options: {} }),
-  achievement: (title: string, text: string) => ({
-    fx: 'ui/achievement',
-    options: { title: toFxText(title), text: toFxText(text) },
-  }),
-  heartLost: () => ({ fx: 'ui/heart-lost', options: {} }),
-  bossHit: (from: number, to: number) => ({
-    fx: 'ui/health-bar-hit',
-    options: { from, to },
-  }),
-  countdown: () => ({ fx: 'ui/countdown', options: {} }),
-  alert: () => ({ fx: 'ui/exclamation', options: {} }),
-  confetti: () => ({ fx: 'ui/confetti', options: {} }),
-  quest: (text: string) => ({
-    fx: 'ui/quest-complete',
-    options: { text: toFxText(text) },
-  }),
-  levelUp: () => ({ fx: 'ui/level-up', options: {} }),
-} satisfies Record<
-  string,
-  (...args: never[]) => { fx: FxId; options: Record<string, unknown> }
->;

@@ -37,9 +37,11 @@ export interface StageSpec {
 export interface Stage {
   w: number;
   h: number;
+  /** Efeito em laço: nunca termina sozinho. */
+  loop: boolean;
   /** Avança `dt` segundos em passos de 1/fps; `ended` vale true só no passo em que o efeito termina. */
   advance(dt: number, hold?: boolean): { moved: boolean; ended: boolean };
-  /** Quadro parado para movimento reduzido (meio do efeito, onde ele é mais legível). */
+  /** Quadro parado para movimento reduzido (meio do efeito, onde ele é mais legível). Idempotente. */
   still(): void;
   /** Escreve o quadro atual em `out` (w*h*4) e devolve o tremor [x, y] da cena. */
   render(out: Uint8ClampedArray): readonly [number, number];
@@ -174,6 +176,7 @@ export function createStage(
   return {
     w,
     h,
+    loop: !!meta.loop,
     advance(dt, hold = false) {
       acc += Math.min(dt, 0.1);
       let moved = false,
@@ -196,6 +199,7 @@ export function createStage(
       return { moved, ended };
     },
     still() {
+      inst = make();
       inst.update(meta.loop ? 0.5 : meta.duration * 0.45);
     },
     render(out) {

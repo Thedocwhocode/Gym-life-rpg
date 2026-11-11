@@ -4,7 +4,9 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { type } from '@/theme/tokens';
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
+import FxBurst from './FxBurst';
 import FxStage from './FxStage';
+import { UI_MOMENTS } from './moments';
 import { FX_IDS, type FxId } from './registry';
 
 // Só desenvolvimento (galeria): toca os 68 efeitos, testa o error boundary e a carga de 8 palcos
@@ -20,6 +22,7 @@ export default function FxGallery() {
   const [fx, setFx] = useState<FxId>('ui/level-up');
   const [broken, setBroken] = useState(false);
   const [eight, setEight] = useState(false);
+  const [burst, setBurst] = useState(0);
 
   return (
     <View testID="gallery-fx" style={{ gap: 12 }}>
@@ -27,6 +30,17 @@ export default function FxGallery() {
       <View style={{ alignItems: 'center', minHeight: 160 }}>
         <FxStage fx={fx} scale={2} testID="fx-stage" label={fx} />
         <Text style={[type.micro, { color: palette.text3 }]}>{fx}</Text>
+        {burst > 0 && (
+          // cada toque troca o momento e dispara de novo; some sozinho no fim
+          <FxBurst
+            {...[
+              UI_MOMENTS.levelUp(),
+              UI_MOMENTS.combo(burst, 'Combo'),
+              UI_MOMENTS.quest('Missão concluída'),
+            ][burst % 3]}
+            playKey={burst}
+          />
+        )}
       </View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
         <Button
@@ -44,6 +58,14 @@ export default function FxGallery() {
           onPress={() => setEight((v) => !v)}
         >
           {eight ? 'Parar 8 palcos' : '8 palcos juntos'}
+        </Button>
+        <Button
+          size="sm"
+          variant="secondary"
+          testID="fx-burst"
+          onPress={() => setBurst((n) => n + 1)}
+        >
+          Burst
         </Button>
       </View>
       {broken && (
