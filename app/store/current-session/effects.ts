@@ -22,6 +22,8 @@ import { addStoredSession } from '@/store/stored-sessions';
 import { OffsetDateTime } from '@js-joda/core';
 import { selectPreferredWeightUnit } from '@/store/settings';
 import { planDiffAfterPersist } from '@/store/current-session/helpers';
+import { selectRpgLevel } from '@/store/rpg';
+import { showSnackbar } from '@/store/app';
 
 const storageKey = 'CurrentSessionStateV1';
 export function applyCurrentSessionEffects() {
@@ -131,18 +133,28 @@ export function applyCurrentSessionEffects() {
     },
   );
 
-  addEffect(persistCurrentSession, async (a, { dispatch, getState }) => {
-    dispatch(clearSetTimerNotification());
-    const session = selectCurrentSession(getState(), a.payload);
-    const program = selectActiveProgram(getState());
-    if (session) {
-      dispatch(addStoredSession(session));
-      const diff = planDiffAfterPersist(a.payload, session, program);
-      if (diff) dispatch(setCurrentPlanDiff(diff));
-    }
-    dispatch(setCurrentSession({ target: a.payload, session: undefined }));
-    dispatch(fetchUpcomingSessions());
-  });
+  addEffect(
+    persistCurrentSession,
+    async (a, { dispatch, getState, extra: { tolgee } }) => {
+      dispatch(clearSetTimerNotification());
+      const session = selectCurrentSession(getState(), a.payload);
+      const program = selectActiveProgram(getState());
+      if (session) {
+        const levelBefore = selectRpgLevel(getState());
+        dispatch(addStoredSession(session));
+        // DR9: editar o histórico pode baixar o nível; sem overlay de level down, só o Toast.
+        const level = selectRpgLevel(getState());
+        if (a.payload === 'historySession' && level < levelBefore)
+          dispatch(
+            showSnackbar({ text: tolgee.t('rpg.recalc.toast', { level }) }),
+          );
+        const diff = planDiffAfterPersist(a.payload, session, program);
+        if (diff) dispatch(setCurrentPlanDiff(diff));
+      }
+      dispatch(setCurrentSession({ target: a.payload, session: undefined }));
+      dispatch(fetchUpcomingSessions());
+    },
+  );
 
   addEffect(
     clearSetTimerNotification,
