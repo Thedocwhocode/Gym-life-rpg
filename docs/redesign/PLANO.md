@@ -350,6 +350,13 @@ testes e verificação no web (desktop + 375 px) e num Android. Nenhum push sem 
   rótulos), 375 px, textos em `en`.
 - Atualizar `README.md`, `CLAUDE.md` (fontes, paletas, novas rotas) e `NOTICE.md`
   (Pixelarticons MIT, pixelfx MIT, fontes OFL).
+- **Status (F9):** transições por timer (a navegação acontece com a tela coberta; teto de
+  1,6 s) nas subpáginas de Ajustes, na entrada do combate e na importação de PDF. Troca de aba segue sem
+  transição (o DR20 prevalece sobre o pixel-dissolve do D.7). PixelFx legado e sprite sheets
+  removidos. Títulos com teto de escala 1,3×, alvos de 44 px no calendário, × na série falhada,
+  pt.json sem chave caindo no inglês, Toast de histórico recalculado. Fica de fora com motivo:
+  T7 (simulador iOS não roda no Windows) e TD9 (a tabela de estados não foi auditada tela a
+  tela; cada fase cobriu os seus estados). A animação das transições só foi conferida pelo DOM.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
@@ -479,22 +486,25 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
   - Origem: regressão crítica
   - Arquivos: `app/store/choices`, `app/store/settings`
   - Verificar: teste com snapshot real
-- [ ] **T3 (P1, human ~2h / CC ~10min)**: `derive`: XP de quest na projeção
+- [x] **T3 (P1, human ~2h / CC ~10min)**: `derive`: XP de quest na projeção
   - Origem: R3 (`ActiveQuestPanel.tsx:70`)
   - Verificar: unit
 - [x] **T4 (P1, human ~3h / CC ~10min)**: `derive`: `today: LocalDate` + lint `no-restricted-syntax`
   - Origem: R2 + voz externa 4
   - Arquivos: `app/store/rpg/derive.ts`, `eslint.config.*`
   - Verificar: `npm run lint`, unit na virada de semana
-- [ ] **T5 (P2, human ~2h / CC ~10min)**: `diff`: overlays só em `persistCurrentSession('workoutSession')`
+- [x] **T5 (P2, human ~2h / CC ~10min)**: `diff`: overlays só em `persistCurrentSession('workoutSession')`
   - Origem: voz externa 2
   - Arquivos: `app/store/current-session/effects.ts`
   - Verificar: unit + e2e
 - [ ] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
+  - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`; `visual.cy.js` só compara fontes e
+    ícones da galeria. Falta a referência por peça (as imagens nascem no primeiro run do CI)
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`
 - [ ] **T7 (P2, human ~1h / CC ~5min)**: verificação iOS (simulador) nas F1 e F5
+  - Status (F9): não feito — o simulador iOS exige macOS
   - Origem: voz externa 4
   - Verificar: checklist §7
 
@@ -704,7 +714,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 - Descanso configurável por exercício: o timer do DR23.
 
 #### Implementation Tasks (design)
-- [ ] **TD1 (P1, human ~3h / CC ~15min)** — `theme` — contraste ≥ 4,5, `attr-*`/glow por paleta, teste de matriz e de chaves
+- [x] **TD1 (P1, human ~3h / CC ~15min)** — `theme` — contraste ≥ 4,5, `attr-*`/glow por paleta, teste de matriz e de chaves
   - Origem: Passadas 5/6, DR16 + DR17 · Arquivos: `app/theme/*`, teste Vitest · Verificar: `npm test`
 - [x] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
   - Origem: Passada 1, DR1 · Arquivos: Painel em `app/app/(tabs)/`, `components/presentation/pixel/` · Verificar: e2e + E3
@@ -726,13 +736,13 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
 - [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
   - Origem: Passadas 4/6, DR14 + DR19 · Arquivos: `components/presentation/fx/` · Verificar: unit + medição no spike
-- [ ] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n (F6: card de boas-vindas da Jornada para quem já tinha histórico; wizard e Toast de recálculo ficam para a F9)
+- [x] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n (F6: card de boas-vindas da Jornada para quem já tinha histórico; wizard e Toast de recálculo ficam para a F9)
   - Origem: Passadas 3/7, DR9 + DR10 + DR25 · Arquivos: `welcome-wizard.tsx`, `store/rpg/index.ts`, i18n · Verificar: unit da migração + e2e
-- [ ] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
+- [x] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
   - Origem: Passada 6, DR19 + DR20 · Arquivos: `app/app/(tabs)/settings/`, layout raiz · Verificar: e2e web + 375 px
 - [x] **TD14 (P2, human ~2h / CC ~10min)** — `share` — cartão E2 1080×1350 na Brasa
   - Origem: Passada 7, DR24 · Arquivos: componente do cartão + `expo-sharing` · Verificar: e2e (fallback web)
-- [ ] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
+- [x] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
   - Origem: Passada 6, DR18 (adiado) · Arquivos: primitivos `pixel/` · Verificar: TalkBack/VoiceOver + fonte de 200%
 
 ## Approved Mockups

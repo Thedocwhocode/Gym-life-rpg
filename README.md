@@ -8,7 +8,11 @@ semanais e desbloqueia conquistas. Roda em Android, iOS e web (React Native + Ex
 
 - Registro de treinos (séries, repetições, carga, cardio) e progressão automática de carga
 - XP, níveis, títulos, missões semanais e conquistas
-- Visual dark fantasy com tipografia pixel art e efeitos de recompensa em pixel art
+- Jornada: classe, skills, itens, corações dos dias de treino, mapa de masmorras com chefes e
+  combate por série (cada série golpeia o monstro)
+- Visual pixel art em 4 paletas (Brasa, Ferro, Fósforo, Pergaminho), efeitos e transições de
+  tela com pixelfx; ajuste "Efeitos: Completo / Reduzido / Desligado" e vibração separada
+- Importar ficha em PDF pelo planejador IA (o texto é lido no aparelho; recurso pro)
 - Backup local/remoto e exportação em CSV/JSON
 - Opcionais, só com backend próprio configurado: feed social com criptografia ponta a ponta
   e planejador de treinos com IA

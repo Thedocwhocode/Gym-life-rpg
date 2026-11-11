@@ -90,6 +90,24 @@ O objetivo não é um skin superficial: é repensar cada tela como um elemento n
 
 ---
 
+## Redesign (F0–F9, `docs/redesign/`)
+
+O plano e a spec do redesign estão em `docs/redesign/PLANO.md` e `docs/redesign/design-spec.md`.
+O que mudou em relação às seções acima:
+
+- **Fontes:** Pixelify Sans (títulos) e Space Mono (corpo), via `@expo-google-fonts/*`. Press
+  Start 2P e VT323 saíram. Tokens em `app/theme/tokens.ts`.
+- **Paletas:** Brasa (padrão), Ferro, Fósforo e Pergaminho em `app/theme/palettes.ts`, com teste
+  de contraste ≥ 4,5:1. Primitivos pixel em `app/components/presentation/pixel/`.
+- **Efeitos:** pixelfx vendorizado em `app/vendor/pixelfx/`, palco em
+  `components/presentation/fx/FxStage.tsx`, transições de tela em `fx/transitions.ts` +
+  `components/smart/screen-transition.tsx`. Ajuste "Efeitos: Completo/Reduzido/Desligado".
+- **Rotas novas:** `(tabs)/dashboard` (Painel), `(session)/map` (mapa de masmorras),
+  `settings/{inventory,grimoire,bestiary,training-days,pdf-import,dev-gallery}`.
+- **Regras da jornada:** puras em `app/store/journey/rules/`, projeção em `app/store/rpg/derive.ts`.
+
+---
+
 ## Estrutura do Projeto
 
 ```
@@ -124,7 +142,7 @@ Gym-life-rpg/
 | Navegação       | Expo Router (file-based)                          |
 | Estado          | Redux Toolkit + react-redux                       |
 | UI Base         | React Native Paper (MD3) + Material3 Theme        |
-| Tipografia RPG  | Press Start 2P (títulos) + VT323 (corpo)          |
+| Tipografia RPG  | Pixelify Sans (títulos) + Space Mono (corpo)      |
 | Gráficos        | react-native-gifted-charts + @shopify/react-native-skia |
 | Backend         | .NET 10 WebAPI (GymLifeRpg.Api)                   |
 | IA              | OpenAI (planejador de treinos)                    |
