@@ -16,6 +16,7 @@ import { FeedIdentity, FeedItem, SessionFeedItem } from '@/models/feed-models';
 import { useAppSelector } from '@/store';
 import { shareString } from '@/store/app';
 import {
+  createFeedIdentity,
   fetchFeedItems,
   fetchInboxItems,
   resetFeedAccount,
@@ -70,10 +71,23 @@ export default function Feed() {
 
 function FeedProfileHeader() {
   const identityRemote = useAppSelector(selectFeedIdentityRemote);
+  const dispatch = useDispatch();
+  // Offline na 1ª abertura a identidade não nasce: "Tentar" refaz com os padrões do init (DR7).
+  const retry = () =>
+    dispatch(
+      createFeedIdentity({
+        name: undefined,
+        publishBodyweight: false,
+        publishPlan: false,
+        publishWorkouts: false,
+        fromUserAction: true,
+      }),
+    );
 
   return (
     <Remote
       value={identityRemote}
+      retry={retry}
       success={(identity) => <FeedProfile identity={identity} />}
     />
   );

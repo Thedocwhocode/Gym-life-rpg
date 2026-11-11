@@ -1,10 +1,10 @@
-import { AiChatResponse } from '@/models/ai-models';
 import {
   addMessage,
   ChatMessage,
   initChat,
   initializeAiPlannerStateSlice,
   restartChat,
+  retryAgentReply,
   stopAiGenerator,
   updateMessage,
 } from '@/store/ai-planner';
@@ -12,6 +12,15 @@ import { setIsHydrated } from '@/store/ai-planner';
 
 import { addEffect } from '@/store/store';
 import { uuid } from '@/utils/uuid';
+import { streamAgentReply } from './stream';
+
+const agentPlaceholder = (id: string): ChatMessage => ({
+  from: 'Agent',
+  id,
+  message: '',
+  type: 'messageResponse',
+  isLoading: true,
+});
 
 export function applyAiPlannerEffects() {
   addEffect(initializeAiPlannerStateSlice, async (_, { dispatch }) => {
@@ -22,41 +31,36 @@ export function applyAiPlannerEffects() {
     addMessage,
     async (
       { payload: message },
-      { getState, dispatch, extra: { aiChatService } },
+      { dispatch, extra: { aiChatService, logger } },
     ) => {
       if (message.from === 'Agent' || message.type !== 'messageResponse') {
         return;
       }
-      const originalMessage: ChatMessage = {
-        from: 'Agent',
-        id: uuid(),
-        message: '',
-        type: 'messageResponse',
-        isLoading: true,
-      };
-      dispatch(addMessage(originalMessage));
-      let latestMessage: AiChatResponse | undefined = undefined;
-      for await (const chatResponse of aiChatService.sendMessage(
+      const id = uuid();
+      dispatch(addMessage(agentPlaceholder(id)));
+      await streamAgentReply(
+        dispatch,
+        aiChatService.sendMessage(message.message),
+        id,
         message.message,
-      )) {
-        latestMessage = chatResponse;
-        dispatch(
-          updateMessage({
-            id: originalMessage.id,
-            from: 'Agent',
-            isLoading: true,
-            ...chatResponse,
-          }),
-        );
+        (e) => logger.warn('AI planner reply failed', e),
+      );
+    },
+  );
+  addEffect(
+    retryAgentReply,
+    async ({ payload }, { dispatch, extra: { aiChatService, logger } }) => {
+      if (payload.retryText === undefined) {
+        dispatch(restartChat());
+        return;
       }
-
-      dispatch(
-        updateMessage({
-          id: originalMessage.id,
-          from: 'Agent',
-          ...(latestMessage ?? originalMessage),
-          isLoading: false,
-        }),
+      dispatch(updateMessage(agentPlaceholder(payload.id)));
+      await streamAgentReply(
+        dispatch,
+        aiChatService.sendMessage(payload.retryText),
+        payload.id,
+        payload.retryText,
+        (e) => logger.warn('AI planner reply failed', e),
       );
     },
   );
@@ -71,36 +75,21 @@ export function applyAiPlannerEffects() {
     dispatch(restartChat());
   });
 
-  addEffect(restartChat, async (_, { dispatch, extra: { aiChatService } }) => {
-    await aiChatService.restartChat();
-    const originalMessage: ChatMessage = {
-      from: 'Agent',
-      id: uuid(),
-      message: '',
-      type: 'messageResponse',
-      isLoading: true,
-    };
-    dispatch(addMessage(originalMessage));
-    let latestMessage: AiChatResponse | undefined = undefined;
-    for await (const chatResponse of aiChatService.introduce()) {
-      latestMessage = chatResponse;
-      dispatch(
-        updateMessage({
-          id: originalMessage.id,
-          from: 'Agent',
-          isLoading: true,
-          ...chatResponse,
-        }),
+  addEffect(
+    restartChat,
+    async (_, { dispatch, extra: { aiChatService, logger } }) => {
+      const id = uuid();
+      dispatch(addMessage(agentPlaceholder(id)));
+      await streamAgentReply(
+        dispatch,
+        (async function* () {
+          await aiChatService.restartChat();
+          yield* aiChatService.introduce();
+        })(),
+        id,
+        undefined,
+        (e) => logger.warn('AI planner intro failed', e),
       );
-    }
-
-    dispatch(
-      updateMessage({
-        id: originalMessage.id,
-        from: 'Agent',
-        ...(latestMessage ?? originalMessage),
-        isLoading: false,
-      }),
-    );
-  });
+    },
+  );
 }
