@@ -28,6 +28,9 @@ const GALLERY_PIECES = [
 
 describe('Dev gallery', () => {
   beforeEach(() => {
+    // Tall enough for the whole gallery (~5000px at 400 wide): no inner scroll, so element
+    // screenshots are never clipped to 1px and the width never loses 15px to a scrollbar.
+    cy.viewport(400, 6000)
     cy.visit('/')
     cy.completeWelcomeWizard()
     cy.navigate('Settings')

@@ -500,9 +500,13 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
 - [ ] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
   - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`. `visual.cy.js` compara 11 peças da
     galeria (fontes, ícones, paleta, pixelbox, ascii, barras, tags, botões, tamanhos de ícone,
-    controles, toast); o fx fica no teste C6. Referências de fontes e ícones commitadas a partir
-    do artifact do CI Linux. As outras 9 nascem em `snapshots/new/` no próximo `ui-test` e
-    precisam ser baixadas do artifact `visual-snapshots` e commitadas em `cypress/snapshots/`
+    controles, toast); o fx fica no teste C6. O run 42958645784 mostrou que a janela de 400×800
+    não serve: abaixo da dobra a captura saía com 1 px (rolagem interna) e a largura oscilava 15 px
+    (barra de rolagem). Agora o teste usa 400×6000, em que a galeria inteira cabe sem rolagem e
+    todas as peças medem 366 px de largura (conferido no preview). O `compare-snapshot` recusa
+    capturas com menos de 2 px de altura. As referências antigas de fontes e ícones (351 px) saíram;
+    as 11 nascem em `snapshots/new/` no próximo `ui-test` e precisam ser baixadas do artifact
+    `visual-snapshots` e commitadas em `cypress/snapshots/`
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`
