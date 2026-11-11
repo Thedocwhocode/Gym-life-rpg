@@ -23,9 +23,10 @@ export default function Check({
       ? checked
         ? 'radio-on'
         : 'circle'
-      : checked
-        ? 'checkbox-on'
-        : 'checkbox';
+      : // pixelarticons: `checkbox` é o quadrado marcado; `checkbox-on` é o vazio
+        checked
+        ? 'checkbox'
+        : 'checkbox-on';
   return (
     <Pressable
       testID={testID}
