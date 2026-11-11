@@ -73,17 +73,22 @@ export function useFxLoop(props: FxStageProps, draw: FxDraw) {
   const doneFor = useRef<Stage | null>(null);
   const frozen = reduced || FREEZE_MOTION;
   useEffect(() => {
-    // Sem animação o efeito único "termina" na hora: quem espera onDone (FxBurst, fila da F5) não trava.
+    // Sem animação o quadro parado fica a duração do efeito e então avisa o fim: o FxBurst aparece
+    // e quem espera onDone (fila da F5) não trava.
+    // ponytail: hold solto depois do congelamento não reavisa; incluir hold nas deps se a fila usar.
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const freeze = () => {
       stage.still();
       drawRef.current(rgba, stage.render(rgba));
       if (stage.loop || live.current.hold || doneFor.current === stage) return;
-      doneFor.current = stage;
-      live.current.onDone?.();
+      timer = setTimeout(() => {
+        doneFor.current = stage;
+        live.current.onDone?.();
+      }, stage.duration * 1000);
     };
     if (frozen) {
       freeze();
-      return;
+      return () => clearTimeout(timer);
     }
     drawRef.current(rgba, stage.render(rgba));
     if (!focused || !active) return;
@@ -120,7 +125,10 @@ export function useFxLoop(props: FxStageProps, draw: FxDraw) {
       }
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, [stage, rgba, frozen, focused, active]);
 
   return stage;

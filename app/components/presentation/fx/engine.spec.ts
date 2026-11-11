@@ -102,3 +102,25 @@ describe('UI_MOMENTS', () => {
     },
   );
 });
+
+describe('texto nos efeitos', () => {
+  const ascii = Array.from({ length: 95 }, (_, i) =>
+    String.fromCharCode(32 + i),
+  ).join('');
+  it.each([
+    ['ui/quest-complete', { text: ascii }],
+    ['ui/quest-complete', { text: '' }],
+    ['ui/crit-number', { label: ascii, text: '62.5KG!' }],
+    ['ui/crit-number', { label: '', text: '' }],
+    ['ui/achievement', { title: ascii, text: '' }],
+  ] as const)('%s aceita %j', (fx, options) => {
+    const stage = createStage({ fx, options, bg: 'none', repeat: false });
+    const out = new Uint8ClampedArray(stage.w * stage.h * 4);
+    let ended = false;
+    for (let i = 0; i < 300 && !ended; i++) {
+      ended = stage.advance(1 / 30).ended;
+      stage.render(out);
+    }
+    expect(ended).toBe(true);
+  });
+});

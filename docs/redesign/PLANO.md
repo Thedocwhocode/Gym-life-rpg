@@ -124,10 +124,11 @@ com recuo automático para B).
 (núcleo puro `engine.ts` + `FxSurface.web.tsx` em canvas 2D e `FxSurface.tsx` em imagem Skia).
 O spike num Android físico **não foi feito** (não havia aparelho nesta máquina). Por isso o nativo
 mede a taxa de quadros nos 2 primeiros segundos e, abaixo de 24 fps, congela o efeito num quadro
-parado. O recuo é para quadro parado, não para sheets (B): só gerar sheets se o aparelho médio
-reprovar. No web o efeito anima a 30 fps; com a aba ou o painel oculto, o navegador reduz o rAF e o
+parado (24, e não os 30 do resultado parcial acima: telas de 30 Hz oscilam em 29 e congelariam à toa). O recuo é para quadro parado, não para sheets (B): só gerar sheets se o aparelho médio
+reprovar. No web o efeito anima a 30 fps (medido: 60 quadros desenhados em 2 s em `weather/rain`); com a aba ou o painel oculto, o navegador reduz o rAF e o
 efeito só desacelera, sem congelar. Flashes (DR19): medidos pela luminância média do palco, o pior
-dos 68 efeitos dá 1 flash/s (`ui/countdown`); nenhum precisou ser desacelerado.
+dos 68 efeitos dá 1 flash/s (`ui/countdown`); nenhum precisou ser desacelerado. Com movimento reduzido o palco mostra um quadro parado e o
+efeito único avisa o fim depois da sua duração, para o FxBurst aparecer e a fila de momentos não travar.
 
 Web: o `PixelFx.web.tsx` atual evita Skia (CanvasKit ~7 MB); no web o runtime (A) desenha num
 `<canvas>` 2D, que é o ambiente original do pixelfx.

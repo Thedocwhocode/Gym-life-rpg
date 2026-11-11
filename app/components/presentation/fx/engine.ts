@@ -39,6 +39,8 @@ export interface Stage {
   h: number;
   /** Efeito em laço: nunca termina sozinho. */
   loop: boolean;
+  /** Duração nominal em segundos (meta do efeito). */
+  duration: number;
   /** Avança `dt` segundos em passos de 1/fps; `ended` vale true só no passo em que o efeito termina. */
   advance(dt: number, hold?: boolean): { moved: boolean; ended: boolean };
   /** Quadro parado para movimento reduzido (meio do efeito, onde ele é mais legível). Idempotente. */
@@ -177,6 +179,7 @@ export function createStage(
     w,
     h,
     loop: !!meta.loop,
+    duration: meta.duration,
     advance(dt, hold = false) {
       acc += Math.min(dt, 0.1);
       let moved = false,
