@@ -28,6 +28,15 @@
       "@sentry/react-native/expo",
       "expo-localization",
       [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "O GymLife RPG usa sua localização aproximada só para mostrar o clima do reino no Painel.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
+        }
+      ],
+      [
         "react-native-edge-to-edge",
         {
           "android": {

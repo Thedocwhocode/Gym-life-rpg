@@ -6,6 +6,7 @@ import CharacterSheet from '@/components/presentation/rpg/CharacterSheet';
 import QuestPanel from '@/components/presentation/rpg/QuestPanel';
 import JourneyPanel from '@/components/smart/journey-panel';
 import NextQuestCard from '@/components/smart/next-quest-card';
+import WeatherBanner from '@/components/smart/weather-banner';
 import { useFormatDate } from '@/hooks/useFormatDate';
 import { useHeroAttributes } from '@/hooks/useHeroAttributes';
 import type { AttrKey } from '@/store/rpg/derive';
@@ -19,7 +20,7 @@ const GRID: AttrKey[][] = [
   ['CON', 'STA'],
 ];
 
-/** DR1: ficha → próxima missão → quests → atributos → conquistas. */
+/** DR1: ficha → próxima missão → quests → clima → atributos → conquistas. */
 export default function DashboardPage() {
   const { t } = useTranslate();
   const formatDate = useFormatDate();
@@ -45,6 +46,7 @@ export default function DashboardPage() {
         <JourneyPanel />
         <NextQuestCard />
         <QuestPanel />
+        <WeatherBanner />
         <View style={{ gap: 10 }}>
           <AsciiDivider
             label={t('rpg.attr.title')}

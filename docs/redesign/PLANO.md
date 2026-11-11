@@ -702,7 +702,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 #### Implementation Tasks (design)
 - [ ] **TD1 (P1, human ~3h / CC ~15min)** — `theme` — contraste ≥ 4,5, `attr-*`/glow por paleta, teste de matriz e de chaves
   - Origem: Passadas 5/6, DR16 + DR17 · Arquivos: `app/theme/*`, teste Vitest · Verificar: `npm test`
-- [ ] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
+- [x] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
   - Origem: Passada 1, DR1 · Arquivos: Painel em `app/app/(tabs)/`, `components/presentation/pixel/` · Verificar: e2e + E3
 - [x] **TD3 (P1, human ~3h / CC ~15min)** — `derive` — atributos cumulativos + "esta semana +N"
   - Origem: Passada 1, DR4 (revisado 2026-11-09: perda por inatividade) · Arquivos: `app/store/rpg/derive.ts`, `decay.ts` · Verificar: unit
