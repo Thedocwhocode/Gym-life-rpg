@@ -6,7 +6,7 @@ import { Duration } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { SegmentedButtons } from 'react-native-paper';
+import Segmented from '@/components/presentation/pixel/Segmented';
 import { match } from 'ts-pattern';
 import LabelledFormRow from '@/components/presentation/labelled-form-row';
 
@@ -75,11 +75,10 @@ export default function RestEditorGroup(props: RestEditorGroupProps) {
       icon="airlineSeatReclineExtraFill"
     >
       <View style={{ width: '100%' }}>
-        <SegmentedButtons
-          style={{ width: '100%' }}
+        <Segmented
           value={buttonValue}
-          onValueChange={(s) => handleValueChange(s as ButtonValues)}
-          buttons={[
+          onChange={(s) => handleValueChange(s as ButtonValues)}
+          options={[
             {
               value: 'short',
               label: t('rest.short.label'),

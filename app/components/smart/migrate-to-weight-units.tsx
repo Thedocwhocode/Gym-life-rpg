@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import FullScreenDialog from '@/components/presentation/full-screen-dialog';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { AppIconSource } from '@/components/presentation/ms-icon-source';
@@ -13,7 +14,7 @@ import { FlashList } from '@shopify/flash-list';
 import { useTranslate } from '@tolgee/react';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { Icon, List, Text } from 'react-native-paper';
+import { Icon, Text } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 export function MigrateToWeightUnitsWizard() {
@@ -98,9 +99,9 @@ export function MigrateToWeightUnitsWizard() {
         }
         data={exercisesRequiringWeightMigration}
         renderItem={(d) => (
-          <List.Item
+          <ListItem
             title={d.item.name || 'Empty exercise name'}
-            right={() => (
+            trailing={
               <SelectButton
                 options={[
                   {
@@ -127,7 +128,7 @@ export function MigrateToWeightUnitsWizard() {
                   )
                 }
               />
-            )}
+            }
           />
         )}
       />

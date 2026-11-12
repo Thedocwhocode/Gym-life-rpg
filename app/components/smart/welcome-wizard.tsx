@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import ListSwitch from '@/components/presentation/list-switch';
 import SelectButton, {
@@ -22,41 +23,24 @@ import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { useMemo, useState } from 'react';
-import { Linking, Pressable, StyleSheet, View } from 'react-native';
-import { Icon, List, Portal, Text } from 'react-native-paper';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Portal } from 'react-native-paper';
+import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
+import PixelBar from '@/components/presentation/pixel/PixelBar';
+import PixelBox from '@/components/presentation/pixel/PixelBox';
+import Portrait from '@/components/presentation/pixel/Portrait';
+import Tag, { type TagTone } from '@/components/presentation/pixel/Tag';
+import { type } from '@/theme/tokens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
 import { isBackendConfigured } from '@/services/api-consts';
 
-const RPG_CLASSES: {
-  id: RpgClass;
-  name: string;
-  description: string;
-  bonus: string;
-  icon: string;
-}[] = [
-  {
-    id: 'warrior',
-    name: 'Guerreiro',
-    description: 'Especialista em força e resistência bruta.',
-    bonus: '+20% XP em séries de musculação',
-    icon: 'fitnessCenter',
-  },
-  {
-    id: 'scout',
-    name: 'Explorador',
-    description: 'Ágil e resistente — domina cardio e variedade.',
-    bonus: '+20% XP em cardio e exercícios distintos',
-    icon: 'directionsRun',
-  },
-  {
-    id: 'paladin',
-    name: 'Paladino',
-    description: 'Equilíbrio entre força, resistência e recuperação.',
-    bonus: 'Bônus equilibrado em todas as atividades',
-    icon: 'shield',
-  },
+// ponytail: o bônus descrito só vira número na F6 (multiplicadores DR11).
+const RPG_CLASSES: { id: RpgClass; attr: string; tone: TagTone }[] = [
+  { id: 'warrior', attr: 'STR', tone: 'str' },
+  { id: 'scout', attr: 'DEX', tone: 'dex' },
+  { id: 'paladin', attr: 'CON', tone: 'con' },
 ];
 
 export function WelcomeWizard() {
@@ -96,7 +80,12 @@ export function WelcomeWizard() {
   const dispatch = useDispatch();
   const settings = useAppSelector((state) => state.settings);
   const welcomeWizardCompleted = settings.welcomeWizardCompleted;
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
+  const tx = {
+    title: [type.title, { color: palette.text1 }],
+    sub: [type.body, { color: palette.text2 }],
+    section: [type.label, { color: palette.text2 }],
+  };
   const [currentPage, setCurrentPage] = useState(0);
   const openUrl = (url: string) => {
     void Linking.canOpenURL(url).then(() => Linking.openURL(url));
@@ -133,74 +122,66 @@ export function WelcomeWizard() {
   const renderClassSelectionPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
-          Escolha sua Classe
+        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
+          {t('onboarding.class.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
-          Sua classe define seu estilo de jornada. Você pode mudar depois.
+        <Text style={[styles.pageSubtitle, tx.sub]}>
+          {t('onboarding.class.subtitle')}
         </Text>
       </View>
 
-      <View style={[styles.settingsSection, { gap: spacing[3] }]}>
+      <View style={[styles.settingsSection, { gap: 12 }]}>
         {RPG_CLASSES.map((cls) => {
           const selected = rpgClass === cls.id;
           return (
             <Pressable
               key={cls.id}
+              testID={`class-${cls.id}`}
+              accessibilityRole="radio"
+              accessibilityState={{ checked: selected }}
               onPress={() => dispatch(setRpgClass(cls.id))}
-              style={[
-                styles.classCard,
-                selected && { borderColor: colors.primary, borderWidth: 2 },
-              ]}
+              style={styles.classCard}
             >
-              <View
-                style={{
+              <PixelBox
+                tone={selected ? 'accent' : 'default'}
+                padding={12}
+                innerStyle={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  gap: spacing[3],
+                  gap: 14,
                 }}
               >
-                <View
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 4,
-                    backgroundColor: selected
-                      ? colors.primaryContainer
-                      : colors.surfaceVariant,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                <Portrait
+                  width={64}
+                  height={80}
+                  label={t('rpg.sheet.portrait')}
+                />
+                <View style={{ flex: 1, gap: 6, alignItems: 'flex-start' }}>
+                  <Text
+                    style={[
+                      type.title,
+                      { color: selected ? palette.accent : palette.text1 },
+                    ]}
+                  >
+                    {t(`rpg.class.${cls.id}`)}
+                  </Text>
+                  <Tag tone={cls.tone} size="sm">
+                    {cls.attr}
+                  </Tag>
+                  <Text style={[type.small, { color: palette.text2 }]}>
+                    {t(`onboarding.class.${cls.id}.bonus`)}
+                  </Text>
+                </View>
+                <Text
+                  aria-hidden
+                  style={[
+                    type.bodyLg,
+                    { color: selected ? palette.accent : palette.line2 },
+                  ]}
                 >
-                  <Icon
-                    source={cls.icon}
-                    size={24}
-                    color={selected ? colors.primary : colors.onSurfaceVariant}
-                  />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text
-                    variant="titleSmall"
-                    style={{
-                      color: selected ? colors.primary : colors.onSurface,
-                    }}
-                  >
-                    {cls.name}
-                  </Text>
-                  <Text
-                    variant="bodySmall"
-                    style={{ color: colors.onSurfaceVariant }}
-                  >
-                    {cls.description}
-                  </Text>
-                  <Text
-                    variant="labelSmall"
-                    style={{ color: colors.primary, marginTop: 2 }}
-                  >
-                    {cls.bonus}
-                  </Text>
-                </View>
-              </View>
+                  {selected ? '◆' : '◇'}
+                </Text>
+              </PixelBox>
             </Pressable>
           );
         })}
@@ -211,19 +192,19 @@ export function WelcomeWizard() {
   const renderCrashReportsPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
           {t('onboarding.welcome.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('onboarding.welcome.subtitle')}
         </Text>
       </View>
 
       <View style={styles.settingsSection}>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('onboarding.open_source.title')}
         </Text>
-        <Text variant="bodyMedium" style={styles.sectionDescription}>
+        <Text style={[styles.sectionDescription, tx.sub]}>
           {t('onboarding.open_source.body')}
         </Text>
         <Button
@@ -233,10 +214,10 @@ export function WelcomeWizard() {
         >
           {t('onboarding.open_source.button')}
         </Button>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('onboarding.crash_reports.title')}
         </Text>
-        <Text variant="bodyMedium" style={styles.sectionDescription}>
+        <Text style={[styles.sectionDescription, tx.sub]}>
           {t('onboarding.crash_reports.explanation')}
         </Text>
         <ListSwitch
@@ -261,10 +242,10 @@ export function WelcomeWizard() {
   const renderLocalizationPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
           {t('settings.localisation.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('settings.localisation.subtitle')}
         </Text>
       </View>
@@ -276,27 +257,27 @@ export function WelcomeWizard() {
           value={settings.useImperialUnits}
           onValueChange={(value) => dispatch(setUseImperialUnits(value))}
         />
-        <List.Item
+        <ListItem
           title={t('settings.first_day_of_week.label')}
           description={t('settings.first_day_of_week.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               value={settings.firstDayOfWeek}
               options={daysOfWeekOptions}
               onChange={(value) => dispatch(setFirstDayOfWeek(value))}
             />
-          )}
+          }
         />
-        <List.Item
+        <ListItem
           title={t('settings.set_language.button')}
           description={t('settings.set_language.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               value={settings.preferredLanguage}
               options={languageOptions}
               onChange={(value) => dispatch(setPreferredLanguage(value))}
             />
-          )}
+          }
         />
         <PaletteChooser
           value={settings.palette}
@@ -309,16 +290,16 @@ export function WelcomeWizard() {
   const renderNotificationsAndFeedPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
           {t('onboarding.notifications_and_feed.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('onboarding.notifications_and_feed.subtitle')}
         </Text>
       </View>
 
       <View style={styles.settingsSection}>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('settings.notifications.title')}
         </Text>
         <ListSwitch
@@ -330,10 +311,7 @@ export function WelcomeWizard() {
 
         {isBackendConfigured && (
           <>
-            <Text
-              variant="titleMedium"
-              style={[styles.sectionTitle, styles.topSpacing]}
-            >
+            <Text style={[styles.sectionTitle, styles.topSpacing, tx.section]}>
               {t('feed.feed.title')}
             </Text>
             <ListSwitch
@@ -365,22 +343,26 @@ export function WelcomeWizard() {
   return (
     !welcomeWizardCompleted && (
       <Portal>
-        <SafeAreaView style={{ flex: 1, backgroundColor: colors.surface }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: palette.bgApp }}>
           <View style={[styles.container]}>
+            <View style={styles.stepHeader}>
+              <Text style={[type.label, { color: palette.text3 }]}>
+                {t('onboarding.step.label', {
+                  current: currentPage + 1,
+                  total: totalPages,
+                })}
+              </Text>
+              <PixelBar
+                value={(currentPage + 1) / totalPages}
+                segments={totalPages}
+                height={6}
+                gap={4}
+              />
+            </View>
             {renderPage()}
 
             <View style={styles.footer}>
-              <View style={styles.pageIndicator}>
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <View
-                    key={index}
-                    style={[
-                      styles.dot,
-                      currentPage === index && styles.activeDot,
-                    ]}
-                  />
-                ))}
-              </View>
+              <AsciiDivider />
 
               <View style={styles.buttonRow}>
                 <Button
@@ -416,19 +398,19 @@ const styles = StyleSheet.create({
   },
   pageContent: {
     flex: 1,
-    marginTop: spacing.pageHorizontalMargin,
+    marginTop: 20,
   },
   headerSection: {
-    marginBottom: spacing[8],
-    alignItems: 'center',
+    marginBottom: 20,
+    marginHorizontal: spacing.pageHorizontalMargin,
+    gap: 6,
   },
-  pageTitle: {
-    textAlign: 'center',
-    marginBottom: spacing[2],
-  },
-  pageSubtitle: {
-    textAlign: 'center',
-    opacity: 0.7,
+  pageTitle: {},
+  pageSubtitle: {},
+  stepHeader: {
+    gap: 8,
+    paddingHorizontal: spacing.pageHorizontalMargin,
+    paddingTop: 24,
   },
   settingsSection: {
     flex: 1,
@@ -439,7 +421,6 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.pageHorizontalMargin,
   },
   sectionDescription: {
-    opacity: 0.7,
     marginBottom: spacing[4],
     marginHorizontal: spacing.pageHorizontalMargin,
   },
@@ -450,22 +431,7 @@ const styles = StyleSheet.create({
     padding: spacing.pageHorizontalMargin,
     paddingBottom: spacing[8],
     marginTop: 'auto',
-  },
-  pageIndicator: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: spacing[4],
-    gap: spacing[2],
-  },
-  dot: {
-    width: spacing[2],
-    height: spacing[2],
-    borderRadius: spacing[1],
-    backgroundColor: 'rgba(128, 128, 128, 0.3)',
-  },
-  activeDot: {
-    backgroundColor: 'rgba(128, 128, 128, 0.8)',
-    width: spacing[6],
+    gap: 16,
   },
   buttonRow: {
     flexDirection: 'row',
@@ -476,10 +442,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   classCard: {
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: 'rgba(128,128,128,0.3)',
-    padding: spacing[3],
     marginHorizontal: spacing.pageHorizontalMargin,
   },
 });

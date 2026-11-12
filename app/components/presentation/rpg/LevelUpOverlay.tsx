@@ -66,7 +66,6 @@ export default function LevelUpOverlay() {
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.amber,
-              borderRadius: 4,
               padding: spacing[8],
               alignItems: 'center',
               gap: spacing[4],

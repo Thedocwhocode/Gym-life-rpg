@@ -2,11 +2,14 @@ import Icon from '@/components/presentation/pixel/Icon';
 import { resolvePixelIcon } from '@/components/presentation/pixel-icon-map';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { type } from '@/theme/tokens';
+import { ReactNode } from 'react';
 import { Text, View, ViewProps } from 'react-native';
 
-/** Estado vazio: ícone pixel 48 em text-3 e texto centralizado. */
-export default function EmptyInfo(props: ViewProps & { icon?: string }) {
-  const { icon, style, children, ...rest } = props;
+/** Estado vazio (EmptyState): ícone pixel 48, título opcional, texto e ação opcional. */
+export default function EmptyInfo(
+  props: ViewProps & { icon?: string; title?: string; action?: ReactNode },
+) {
+  const { icon, title, action, style, children, ...rest } = props;
   const { palette } = useAppTheme();
   const glyph = resolvePixelIcon(icon ?? 'info');
   return (
@@ -27,11 +30,26 @@ export default function EmptyInfo(props: ViewProps & { icon?: string }) {
         name={glyph.name}
         rotate={glyph.rotate}
         size={48}
-        color={palette.text3}
+        color={palette.line2}
       />
-      <Text style={{ ...type.body, color: palette.text2, textAlign: 'center' }}>
+      {title ? (
+        <Text
+          style={{ ...type.titleSm, color: palette.text2, textAlign: 'center' }}
+        >
+          {title}
+        </Text>
+      ) : null}
+      <Text
+        style={{
+          ...(title ? type.small : type.body),
+          color: title ? palette.text3 : palette.text2,
+          textAlign: 'center',
+          maxWidth: 280,
+        }}
+      >
         {children}
       </Text>
+      {action}
     </View>
   );
 }

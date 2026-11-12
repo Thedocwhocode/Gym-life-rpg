@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+import ListItem from '@/components/presentation/pixel/ListItem';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import ListSwitch from '@/components/presentation/list-switch';
 import SelectButton, {
@@ -15,7 +17,6 @@ import { DayOfWeek } from '@js-joda/core';
 import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
 import { useMemo } from 'react';
-import { List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
 
@@ -83,7 +84,7 @@ export default function Localization() {
   return (
     <FullHeightScrollView>
       <Stack.Screen options={{ title: t('settings.localisation.title') }} />
-      <List.Section>
+      <View>
         <ListSwitch
           testID="setUseImperialUnits"
           headline={<T keyName="settings.use_imperial_units.label" />}
@@ -91,31 +92,31 @@ export default function Localization() {
           value={settings.useImperialUnits}
           onValueChange={(value) => dispatch(setUseImperialUnits(value))}
         />
-        <List.Item
+        <ListItem
           title={t('settings.first_day_of_week.label')}
           description={t('settings.first_day_of_week.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               testID="setFirstDayOfWeek"
               value={settings.firstDayOfWeek}
               options={daysOfWeekOptions}
               onChange={(value) => dispatch(setFirstDayOfWeek(value))}
             />
-          )}
+          }
         />
-        <List.Item
+        <ListItem
           title={t('settings.set_language.button')}
           description={t('settings.set_language.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               testID="setPreferredLanguage"
               value={settings.preferredLanguage}
               options={languageOptions}
               onChange={(value) => dispatch(setPreferredLanguage(value))}
             />
-          )}
+          }
         />
-      </List.Section>
+      </View>
     </FullHeightScrollView>
   );
 }

@@ -6,6 +6,7 @@ import { Pressable, Text } from 'react-native';
 export interface SegmentedOption<T extends string> {
   value: T;
   label: string;
+  testID?: string | undefined;
 }
 
 export interface SegmentedProps<T extends string> {
@@ -36,8 +37,9 @@ export default function Segmented<T extends string>({
         return (
           <Pressable
             key={o.value}
+            testID={o.testID}
             accessibilityRole="radio"
-            accessibilityState={{ selected: active }}
+            accessibilityState={{ checked: active }}
             onPress={() => onChange(o.value)}
             style={{
               flex: 1,

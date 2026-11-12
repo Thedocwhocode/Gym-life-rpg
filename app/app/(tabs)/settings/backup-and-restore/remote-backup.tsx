@@ -1,3 +1,4 @@
+import TextField from '@/components/presentation/pixel/TextField';
 import EmptyInfo from '@/components/presentation/empty-info';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import LabelledForm from '@/components/presentation/labelled-form';
@@ -12,7 +13,7 @@ import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Linking, View } from 'react-native';
-import { Card, HelperText, TextInput } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 
@@ -100,24 +101,24 @@ export default function RemoteBackupPage() {
       </Card>
       <LabelledForm>
         <LabelledFormRow label={t('backup.endpoint.label')} icon={'publicFill'}>
-          <TextInput
-            mode="outlined"
+          <TextField
             placeholder="https://example.com/backup"
             value={endpointValue}
-            error={!!endpointError}
+            error={endpointError || undefined}
             onChangeText={updateEndpoint}
             autoCorrect={false}
+            autoCapitalize="none"
+            accessibilityLabel={t('backup.endpoint.label')}
           />
-          <HelperText type="error">{endpointError}</HelperText>
         </LabelledFormRow>
         <LabelledFormRow label={t('backup.api_key.label')} icon={'vpnKeyFill'}>
-          <TextInput
-            mode="outlined"
+          <TextField
             value={apiKeyValue}
             onChangeText={setApiKey}
             autoCorrect={false}
+            autoCapitalize="none"
+            accessibilityLabel={t('backup.api_key.label')}
           />
-          <HelperText type="error">{endpointError}</HelperText>
         </LabelledFormRow>
         <ListSwitch
           headline={t('feed.backup_account.title')}

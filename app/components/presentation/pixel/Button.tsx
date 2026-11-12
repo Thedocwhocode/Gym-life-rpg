@@ -4,14 +4,14 @@ import type { PixelIconName } from '@/components/presentation/pixel-icons.genera
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { accentText, type Palette } from '@/theme/palettes';
 import { fontFamily, size } from '@/theme/tokens';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
 
 export type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'ghost';
 const HEIGHT = { sm: 36, md: size.hitMin, lg: 56 } as const;
 
 export interface ButtonProps {
-  children: string;
+  children: ReactNode;
   onPress?: (() => void) | undefined;
   variant?: ButtonVariant | undefined;
   size?: keyof typeof HEIGHT | undefined;
@@ -114,7 +114,7 @@ export default function Button({
       testID={testID}
       accessibilityRole="button"
       accessibilityState={{ disabled }}
-      accessibilityLabel={children}
+      accessibilityLabel={typeof children === 'string' ? children : undefined}
       disabled={disabled}
       onPress={onPress}
       onPressIn={() => setPressed(true)}

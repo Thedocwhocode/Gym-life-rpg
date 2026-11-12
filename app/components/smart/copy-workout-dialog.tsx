@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import { spacing } from '@/hooks/useAppTheme';
 import { ProgramBlueprint, SessionBlueprint } from '@/models/blueprint-models';
 import { useAppSelector } from '@/store';
@@ -7,7 +8,9 @@ import { T, useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { Dialog, List, Portal, RadioButton, Text } from 'react-native-paper';
+import { Portal, Text } from 'react-native-paper';
+import Dialog from '@/components/presentation/pixel/Dialog';
+import Check from '@/components/presentation/pixel/Check';
 import { useDispatch } from 'react-redux';
 import Button from '@/components/presentation/gesture-wrappers/button';
 
@@ -63,15 +66,14 @@ export default function CopyWorkoutDialog({
   }: {
     item: { id: string; program: ProgramBlueprint };
   }) => (
-    <List.Item
+    <ListItem
       title={item.program.name}
-      left={() => (
-        <RadioButton
-          value={item.id}
-          status={selectedProgramId === item.id ? 'checked' : 'unchecked'}
+      leading={
+        <Check
+          checked={selectedProgramId === item.id}
           onPress={() => setSelectedProgramId(item.id)}
         />
-      )}
+      }
       onPress={() => setSelectedProgramId(item.id)}
     />
   );

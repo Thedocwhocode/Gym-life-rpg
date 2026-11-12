@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+import TextField from '@/components/presentation/pixel/TextField';
 import CardList from '@/components/presentation/card-list';
 import EmptyInfo from '@/components/presentation/empty-info';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
@@ -16,7 +18,8 @@ import {
 import { setEditingSession } from '@/store/session-editor';
 import { useTranslate } from '@tolgee/react';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { Card, FAB, TextInput } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
+import Card from '@/components/presentation/pixel/Card';
 import { useDispatch } from 'react-redux';
 
 export default function ManageWorkouts() {
@@ -45,13 +48,7 @@ export default function ManageWorkouts() {
   const floatingBottomContainer = (
     <FloatingBottomContainer
       fab={
-        <FAB
-          variant="surface"
-          size="small"
-          icon={'add'}
-          label={t('workout.add.button')}
-          onPress={addWorkout}
-        />
+        <Fab icon="plus" label={t('workout.add.button')} onPress={addWorkout} />
       }
     />
   );
@@ -68,14 +65,15 @@ export default function ManageWorkouts() {
       }}
     >
       <Stack.Screen options={{ title: program.name }} />
-      <TextInput
-        value={program.name}
-        style={{ marginBottom: spacing[2] }}
-        mode="flat"
-        onChangeText={(name) =>
-          dispatch(setSavedPlanName({ programId: programId, name }))
-        }
-      />
+      <View style={{ marginBottom: spacing[2] }}>
+        <TextField
+          value={program.name}
+          accessibilityLabel={t('plan.name.label')}
+          onChangeText={(name) =>
+            dispatch(setSavedPlanName({ programId: programId, name }))
+          }
+        />
+      </View>
       {emptyInfo}
 
       <CardList

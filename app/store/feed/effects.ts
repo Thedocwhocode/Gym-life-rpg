@@ -116,7 +116,7 @@ export function applyFeedEffects() {
 
   addEffect(feedApiError, async (action, { dispatch, extra: { logger } }) => {
     if (action.payload.action.payload.fromUserAction) {
-      dispatch(showSnackbar({ text: action.payload.message }));
+      dispatch(showSnackbar({ text: action.payload.message, tone: 'error' }));
     }
     logger.error(
       action.payload.message +

@@ -10,13 +10,8 @@ import { View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import Button from '@/components/presentation/gesture-wrappers/button';
-import {
-  Dialog,
-  Portal,
-  TextInput,
-  Tooltip,
-  useTheme,
-} from 'react-native-paper';
+import { Portal, TextInput, Tooltip, useTheme } from 'react-native-paper';
+import Dialog from '@/components/presentation/pixel/Dialog';
 import { Weight, WeightUnit } from '@/models/weight';
 import SelectButton from '@/components/presentation/select-button';
 import { usePreferredWeightUnit } from '@/hooks/usePreferredWeightUnit';

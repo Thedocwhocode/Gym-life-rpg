@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import AppBottomSheet from '@/components/presentation/app-bottom-sheet';
 import DurationEditor from '@/components/presentation/duration-editor';
 import EditableIncrementer from '@/components/presentation/editable-incrementer';
@@ -31,7 +32,9 @@ import { useTranslate } from '@tolgee/react';
 import BigNumber from 'bignumber.js';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, View } from 'react-native';
-import { Card, List, SegmentedButtons, TextInput } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
+import Segmented from '@/components/presentation/pixel/Segmented';
+import Card from '@/components/presentation/pixel/Card';
 import { match, P } from 'ts-pattern';
 
 interface ExerciseEditorProps {
@@ -118,27 +121,25 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
           label={t('exercise.type.label')}
           icon={'fitnessCenterFill'}
         >
-          <SegmentedButtons
+          <Segmented
             value={
               exercise instanceof WeightedExerciseBlueprint
                 ? 'weighted'
                 : 'cardio'
             }
-            buttons={[
+            options={[
               {
                 value: 'weighted',
                 label: 'Weighted',
-                icon: 'fitnessCenter',
                 testID: 'weighted-button',
               },
               {
                 value: 'cardio',
                 label: 'Cardio/Time',
-                icon: 'directionsRun',
                 testID: 'cardio-button',
               },
             ]}
-            onValueChange={handleTypeChange}
+            onChange={handleTypeChange}
           />
         </LabelledFormRow>
         {exerciseEditor}
@@ -184,7 +185,7 @@ function ExerciseSearchListItem(props: {
 }) {
   const exercise = useAppSelectorWithArg(selectExerciseById, props.exerciseId);
   return (
-    <List.Item title={exercise.name} onPress={() => props.onPress(exercise)} />
+    <ListItem title={exercise.name} onPress={() => props.onPress(exercise)} />
   );
 }
 
@@ -204,7 +205,7 @@ function CardioExerciseEditor({
       />
       <SharedFieldsEditor exercise={exercise} updateExercise={updateExercise} />
 
-      <List.Section>
+      <View>
         <ListSwitch
           value={exercise.trackDuration || exercise.target.type === 'time'}
           onValueChange={(trackDuration) => updateExercise({ trackDuration })}
@@ -229,7 +230,7 @@ function CardioExerciseEditor({
           onValueChange={(trackIncline) => updateExercise({ trackIncline })}
           headline={t('exercise.track_incline.label')}
         />
-      </List.Section>
+      </View>
     </>
   );
 }
@@ -303,20 +304,18 @@ function CardioTargetEditor(props: {
         label={t('exercise.cardio_target.label')}
         icon={'targetFill'}
       >
-        <SegmentedButtons
+        <Segmented
           value={target.type}
-          onValueChange={handleTypeChange}
-          buttons={[
+          onChange={handleTypeChange}
+          options={[
             {
               value: 'distance',
               label: t('exercise.distance.label'),
-              icon: 'trailLength',
               testID: 'distance-button',
             },
             {
               value: 'time',
               label: t('generic.time.label'),
-              icon: 'timer',
               testID: 'time-button',
             },
           ]}

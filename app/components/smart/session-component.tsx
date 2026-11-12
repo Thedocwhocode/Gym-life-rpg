@@ -17,7 +17,9 @@ import {
   updateResistanceForCardioExercise,
   updateWeightForSet,
 } from '@/store/current-session';
-import { Card, FAB, Icon, Text } from 'react-native-paper';
+import { Icon, Text } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
+import Card from '@/components/presentation/pixel/Card';
 import { useDispatch, useStore } from 'react-redux';
 import { Linking, View } from 'react-native';
 import EmptyInfo from '@/components/presentation/empty-info';
@@ -377,17 +379,16 @@ export default function SessionComponent(props: {
   ) : undefined;
   const saveButton = props.saveAndClose && (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-      <FAB
+      <Fab
         onPress={props.saveAndClose}
-        variant="surface"
-        icon={'inventory'}
+        icon="save"
         testID="save-session-button"
         label={
           props.target === 'workoutSession'
             ? t('generic.finish.button')
             : t('generic.save.button')
         }
-      ></FAB>
+      />
     </View>
   );
 

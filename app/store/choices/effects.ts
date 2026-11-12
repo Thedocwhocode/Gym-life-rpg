@@ -1,5 +1,6 @@
 import { addDebouncedEffect, addEffect } from '@/store/store';
 import {
+  acceptAiDataNotice,
   hydrateChoices,
   initializeChoicesStateSlice,
   setRpgClass,
@@ -20,7 +21,7 @@ export function applyChoicesEffects() {
   );
 
   addDebouncedEffect(
-    [setRpgClass],
+    [setRpgClass, acceptAiDataNotice],
     async (_, { getState, extra: { keyValueStore } }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { isHydrated, ...choices } = getState().choices;

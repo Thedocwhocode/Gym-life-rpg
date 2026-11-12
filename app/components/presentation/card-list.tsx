@@ -1,7 +1,8 @@
 import { spacing } from '@/hooks/useAppTheme';
 import { Key, ReactElement, ReactNode } from 'react';
 import { View, ViewProps } from 'react-native';
-import { Card, CardProps } from 'react-native-paper';
+import { CardProps } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 
 interface CardListProps<T> extends ViewProps {
   items: readonly T[];

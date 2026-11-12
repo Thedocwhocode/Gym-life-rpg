@@ -14,7 +14,7 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ## Usage
  * ```js
  * import * as React from 'react';
- * import { Card  } from 'react-native-paper';
+ * import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
  *
  * const MyComponent = () => (
