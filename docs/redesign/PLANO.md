@@ -433,7 +433,10 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     quadro 0, texto de divulgação).
   - **Limites:** cada exercício precisa de poses à mão (~5 chaves), e o boneco tem 38 px. O movimento é
     reconhecível, mas não serve para ensinar técnica fina (joelho, coluna). Só 1.324 exercícios têm
-    passos em pt-BR. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
+    passos em pt-BR (contagem conferida no `pt-BR.json` da fonte), e o clipe mostra só os 3 primeiros
+    passos (no agachamento, é só a preparação). O personagem é o herói neutro do pixelfx, porque o app
+    ainda não tem sprite próprio (o `Portrait.tsx` é o espaço reservado do DR12); quando o sprite
+    existir, troca-se o desenho em `render()`. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
     clipe entra na tela do exercício (mp4 no bundle) ou se é desenhado ao vivo pelo FxStage.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
