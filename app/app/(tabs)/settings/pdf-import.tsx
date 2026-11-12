@@ -11,6 +11,12 @@ import { useServices } from '@/components/smart/services-provider';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import type { AiWorkoutPlan } from '@/models/ai-models';
 import { ProgramBlueprint } from '@/models/blueprint-models';
+import {
+  displayName,
+  loadCatalog,
+  match,
+  type CatalogExercise,
+} from '@/services/exercise-catalog';
 import type { PickedFile } from '@/services/file-picker-service';
 import {
   importPdf,
@@ -26,9 +32,9 @@ import { setProToken } from '@/store/settings';
 import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
-import { TranslationKey, useTranslate } from '@tolgee/react';
+import { TranslationKey, useTolgee, useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, Text, View } from 'react-native';
 import Purchases from 'react-native-purchases';
 import { Portal } from 'react-native-paper';
@@ -53,6 +59,17 @@ export default function PdfImport() {
   const proToken = useAppSelector((s) => s.settings.proToken);
   const [phase, setPhase] = useState<Phase>({ kind: 'pick' });
   const [name, setName] = useState('');
+  const lang = useTolgee(['language']).getLanguage() ?? 'en';
+  // F11: o nome lido continua o da ficha; o catálogo só mostra com o que ele casou.
+  const [catalog, setCatalog] = useState<CatalogExercise[]>();
+  useEffect(() => {
+    if (phase.kind === 'done' && !catalog)
+      loadCatalog().then(setCatalog, () => undefined);
+  }, [phase.kind, catalog]);
+  const matched = (exercise: string) => {
+    const m = catalog && match(catalog, exercise);
+    return m ? displayName(m, lang) : undefined;
+  };
 
   const run = async (file: PickedFile, token = proToken) => {
     const log: string[] = [];
@@ -210,11 +227,16 @@ export default function PdfImport() {
               </Text>
               {s.exercises.map((e, j) => (
                 <View key={j} style={{ flexDirection: 'row', gap: 8 }}>
-                  <Text
-                    style={{ ...type.small, color: palette.text1, flex: 1 }}
-                  >
-                    {e.name}
-                  </Text>
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ ...type.small, color: palette.text1 }}>
+                      {e.name}
+                    </Text>
+                    {!!matched(e.name) && (
+                      <Text style={{ ...type.micro, color: palette.text3 }}>
+                        {t('pdf.done.match', { name: matched(e.name) })}
+                      </Text>
+                    )}
+                  </View>
                   {'sets' in e && (
                     <Text style={{ ...type.small, color: palette.text2 }}>
                       {e.sets}×{e.repsPerSet}
