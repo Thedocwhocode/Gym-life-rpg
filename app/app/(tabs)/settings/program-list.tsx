@@ -10,6 +10,7 @@ import { LocalDate } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import Fab from '@/components/presentation/pixel/Fab';
+import Button from '@/components/presentation/pixel/Button';
 
 import { useDispatch } from 'react-redux';
 
@@ -45,6 +46,14 @@ export default function ProgramList() {
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
       <Stack.Screen options={{ title: t('plan.plans.title') }} />
+      <Button
+        variant="secondary"
+        icon="upload"
+        style={{ margin: 16, marginBottom: 0 }}
+        onPress={() => push('/settings/pdf-import')}
+      >
+        {t('pdf.entry.button')}
+      </Button>
       <View testID="program-list">
         {ps.map(({ id }) => (
           <ProgramListItem key={id} id={id} isFocused={focusprogramId === id} />
