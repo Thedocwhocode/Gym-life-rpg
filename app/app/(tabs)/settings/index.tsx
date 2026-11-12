@@ -10,7 +10,6 @@ import type { PixelIconName } from '@/components/presentation/pixel-icons.genera
 import { useScreenTransition } from '@/components/smart/screen-transition';
 import type { TransitionKind } from '@/components/presentation/fx/transitions';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { isProAvailable } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
 import { selectRpgLevel, selectRpgTitle } from '@/store/rpg';
 import { RpgClass, selectRpgClass } from '@/store/choices';
@@ -269,19 +268,6 @@ export default function Settings() {
       <HeroCard />
       <Section label={t('rpg.journey.title')} rows={journeyRows} />
       <Section label={t('settings.configuration.title')} rows={configuration} />
-      {isProAvailable && (
-        <Section
-          label={t('settings.pro_features.title')}
-          rows={[
-            {
-              title: t('ai.planner.title'),
-              description: t('ai.planner.subtitle'),
-              icon: 'zap',
-              onPress: go('/(tabs)/settings/ai/planner', 'ai'),
-            },
-          ]}
-        />
-      )}
       {__DEV__ && (
         <Section
           label="Dev"

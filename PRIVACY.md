@@ -20,19 +20,16 @@ Nenhum dos itens abaixo funciona sem que você o ative.
   antes do envio. O servidor guarda só o conteúdo criptografado, um identificador aleatório
   e sua chave pública. Ele não consegue ler seus treinos. Apenas quem você aprovar consegue
   decifrá-los.
-- **Planejador com IA (pro)**: as mensagens que você escreve e o contexto de treino que você
-  escolher incluir são enviados ao nosso servidor e repassados à OpenAI para gerar a resposta.
-  Esses dados **não** têm criptografia ponta a ponta, porque precisam ser legíveis pelo modelo.
 - **Relatórios de erro**: com sua autorização (pedida na primeira abertura), falhas do app são
   enviadas ao Sentry com dados técnicos: modelo e sistema do aparelho, versão do app, horário e
   endereço IP. Esses relatórios nunca incluem o conteúdo dos treinos nem chaves de criptografia.
 - **Compras**: assinaturas são processadas pela Google Play/App Store e gerenciadas via
   RevenueCat. Não recebemos dados do seu cartão.
-- **Importar ficha em PDF (pro)**: o texto é extraído no seu aparelho; o arquivo PDF nunca sai
-  dele. Antes do primeiro envio o app pede sua confirmação. O texto vai ao nosso servidor e à
-  OpenAI para montar o plano, sem criptografia ponta a ponta. Fichas podem ter dados de saúde
-  (peso, lesões, observações médicas). Nosso servidor não grava o texto: ele fica só na memória
-  da conversa e some quando ela termina.
+- **Importar ficha em PDF (pro)**: antes do primeiro envio o app pede sua confirmação. O arquivo
+  PDF vai ao nosso servidor e à OpenAI, que lê o texto e a imagem das páginas para transcrever os
+  treinos numa tabela, sem criptografia ponta a ponta (o modelo precisa ler a ficha). Fichas podem
+  ter dados de saúde (peso, lesões, observações médicas). Nosso servidor não grava o arquivo nem
+  o resultado e pede à OpenAI para não guardar a resposta; o conteúdo nunca vai para os logs.
 - **Backup remoto**: envia o arquivo de backup só para o servidor que **você** configurar.
 - **Clima do reino**: o Painel consulta o [Open-Meteo](https://open-meteo.com/) para mostrar o
   clima. Sem a sua permissão, a consulta usa São Paulo. Se você tocar na faixa de clima e permitir,
@@ -79,8 +76,8 @@ GymLife RPG is an open source app (AGPL-3.0), provided free of charge and as is.
   device**. We have no access to them.
 - **Social feed (opt-in)**: published workouts are end-to-end encrypted on your device. The
   server stores only ciphertext, a random user ID and your public key.
-- **AI planner (pro, opt-in)**: the messages you send and the workout context you choose are
-  sent to our server and forwarded to OpenAI. This data is not end-to-end encrypted.
+- **PDF sheet import (pro, opt-in)**: the PDF file is sent to our server and forwarded to OpenAI,
+  which transcribes the workouts. It is not end-to-end encrypted, and our server does not store it.
 - **Crash reports (opt-in)**: technical diagnostics (device, OS, app version, time, IP) are sent
   to Sentry. Workout content and keys are never included.
 - **Purchases**: handled by Google Play / App Store via RevenueCat. We never see your card data.

@@ -57,7 +57,6 @@ export function pick(obj: Record<string, unknown> | undefined): Choices {
   const o = obj ?? {};
   const out: Choices = {};
   if (isClass(o['rpgClass'])) out.rpgClass = o['rpgClass'];
-  if (o['aiDataNoticeAccepted'] === true) out.aiDataNoticeAccepted = true;
   const lists = {
     classHistory: datedList(o['classHistory'], isClass),
     trainingDays: datedList(o['trainingDays'], isDays),

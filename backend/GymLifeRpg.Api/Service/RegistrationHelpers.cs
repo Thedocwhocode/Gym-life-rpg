@@ -10,7 +10,7 @@ using RevenueCat.Client;
 
 public static class RegistrationHelpers
 {
-    public static IServiceCollection AddGptAiWorkoutPlanner(this IServiceCollection source)
+    public static IServiceCollection AddGptSheetReader(this IServiceCollection source)
     {
         source.AddSingleton(services =>
         {
@@ -20,7 +20,7 @@ public static class RegistrationHelpers
                 ?? throw new Exception("OpenAiApiKey configuration is not set.");
             return new OpenAI.Chat.ChatClient("gpt-4.1", apiKey);
         });
-        source.AddSingleton<IGptChatWorkoutPlanner, GptChatWorkoutPlanner>();
+        source.AddSingleton<ISheetReader, GptSheetReader>();
         return source;
     }
 

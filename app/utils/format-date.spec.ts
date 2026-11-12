@@ -173,6 +173,12 @@ describe('format-date utilities', () => {
       expect(result.equals(expected)).toBe(true);
     });
 
+    it('parses the API shape with no milliseconds (bare trailing colon)', () => {
+      expect(parseDuration('0.00:01:30:').equals(Duration.ofSeconds(90))).toBe(
+        true,
+      );
+    });
+
     it('should parse zero values', () => {
       const input = '0.00:00:00:000';
       const result = parseDuration(input);

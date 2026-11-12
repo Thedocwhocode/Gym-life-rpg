@@ -1,4 +1,3 @@
-import { AiChatService } from '@/services/ai-chat-service';
 import { EncryptionService } from '@/services/encryption-service';
 import { FeedApiService } from '@/services/feed-api';
 import { FeedFollowService } from '@/services/feed-follow-service';
@@ -6,7 +5,6 @@ import { FeedIdentityService } from '@/services/feed-identity-service';
 import { FeedInboxDecryptionService } from '@/services/feed-inbox-decryption-service';
 import { FileExportService } from '@/services/file-export-service';
 import { FilePickerService } from '@/services/file-picker-service';
-import { HubConnectionFactory } from '@/services/hub-connection-factory';
 import { KeyValueStore } from '@/services/key-value-store';
 import { Logger } from '@/services/logger';
 import { NotificationService } from '@/services/notification-service';
@@ -52,10 +50,6 @@ function resolveServicesInternal(store: Store<RootState>) {
   const fileExportService = new FileExportService();
   const filePickerService = new FilePickerService();
   const preferenceService = new PreferenceService(keyValueStore);
-  const aiChatService = new AiChatService(
-    new HubConnectionFactory(),
-    store.getState,
-  );
 
   return {
     logger,
@@ -72,7 +66,6 @@ function resolveServicesInternal(store: Store<RootState>) {
     fileExportService,
     filePickerService,
     preferenceService,
-    aiChatService,
     tolgee: getTolgee(preferenceService),
   };
 }

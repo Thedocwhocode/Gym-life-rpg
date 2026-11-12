@@ -56,6 +56,7 @@ uma proposta padrão; a fase que depende dela não começa sem a resposta.
 | D7 | Inventário: de onde vêm os itens e o que fazem | Drops de monstro derrotado e de conquistas; item equipado (escolha datada) dá o bônus do design-spec §D pelo D3 (DR11) | F6 |
 | D8 | Clima: modificador real no XP ou só visual? | **Fechado na revisão eng:** só visual (banner + efeito). O clima não é gravado na sessão, então não entra na projeção | — |
 | D9 | Importar PDF: parser local ou servidor? Aceita imagem (OCR)? | Usar o mesmo backend do Planejador IA (LLM lê o texto extraído do PDF); só PDF com texto, sem OCR na v1 | F8 |
+| D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. **Assumida (a) em 2026-11-12, sem resposta do usuário; reversível** (o app só fala com `POST /ai/sheet`) | F10 |
 | D10 | Textos dentro dos efeitos pixelfx (fonte sem acento): inglês ou português sem acento? | **Fechado na revisão de design (DR14):** o texto vem de `t()` e passa por `toFxText` (NFD, sem diacríticos, caixa alta) | F4 |
 
 ## 3. Decisões técnicas
@@ -357,6 +358,51 @@ testes e verificação no web (desktop + 375 px) e num Android. Nenhum push sem 
   pt.json sem chave caindo no inglês, Toast de histórico recalculado, estados vazios de Bestiário
   e Stats. Fica de fora com motivo: T7 (simulador iOS não roda no Windows). A animação das
   transições só foi conferida pelo DOM; TalkBack/VoiceOver e fonte a 200% não foram testados.
+
+### F10 — Planejador só lê fichas (≈2–3 dias) · depende de D11
+Pedido de 2026-11-12: o Planejador passa a fazer só o OCR da ficha em PDF, reconhecer e tabular o
+treino. Ele não cria plano nem é aberto pelo usuário.
+- **D11 (decisão do usuário, bloqueia):** OCR de PDF escaneado obriga o arquivo (ou imagens dele)
+  a sair do aparelho, o que reverte a D9 ("só o texto sai, nunca o arquivo"). Opções:
+  (a) **recomendada:** o app envia o PDF a um endpoint HTTP novo do backend, e o backend o passa à
+  OpenAI como arquivo (`ChatMessageContentPart.CreateFilePart`, já no pacote `OpenAI` 2.8.0;
+  o `gpt-4.1` lê o texto e a imagem de cada página, então ficha escaneada também funciona). Um
+  caminho só; `pdfjs-dist` e `services/pdf-text.ts` saem do app;
+  (b) híbrido: o texto continua sendo extraído no aparelho e só o PDF sem texto sobe;
+  (c) OCR no aparelho (tesseract.js na web, ML Kit no nativo): pesado e com dois motores. Descartada.
+- **Backend:** `POST /ai/sheet` com a mesma autenticação pro do hub, limite de 10 MB, checagem de
+  `%PDF-` no servidor, rate limit, timeout e nenhum log do conteúdo. O prompt de sistema vira só
+  transcrição ("não invente, não complete, não sugira") e o schema aceita só o plano, sem mensagem
+  de chat. O arquivo não é gravado.
+- **App:** sai o chat (`settings/ai/planner.tsx`, a entrada em Ajustes, `store/ai-planner`, o hub
+  `/ai-chat` e o que ficar órfão depois de um grep em Cypress, i18n e specs). Ficam as entradas de
+  importar ficha em Treinar e em Planos. A tabela (treino × exercício × séries × reps × carga)
+  se preenche sozinha com o resultado; o usuário confirma (e pode renomear) antes de salvar em Planos.
+  O aviso de LGPD passa a dizer que o arquivo vai ao servidor e à OpenAI e não é guardado.
+- **Aceite:** `escaneado-sintetico.pdf` deixa de dar `no_text` (teste com a OpenAI simulada); os
+  dois fixtures viram plano nos testes do backend e do app. De ponta a ponta continua dependendo de
+  pro token, API no ar e chave da OpenAI; não forjar token.
+- **Status (2026-11-12, branch `feat/planejador-ocr`):** feito com a D11 (a). Backend: `AiSheetController`
+  + `GptSheetReader` (schema `AiSheetPlan.json`, `StoredOutputEnabled = false`), hub SignalR e
+  `PartialJsonParser` removidos; 20/20 testes da API (leitura com teto de 90 s no servidor, falha da OpenAI vira 502, faixa 8-12 vira 8 com a faixa nas notas, séries/reps ausentes viram 1). App: chat, `store/ai-planner`, `pdf-text`,
+  `@microsoft/signalr` e `pdfjs-dist` removidos; paywall em `services/pro-paywall.ts`; entradas
+  escondidas sem backend/Pro (`isProAvailable`); a tela mostra exercício × séries×reps × carga.
+  `parseDuration` aceita o "0.00:01:30:" que a API escreve. O app não cancela a espera (o teto é só o do servidor). Pendente: ponta a ponta com a OpenAI real.
+
+### F11 — Biblioteca de exercícios do openGym + vídeos com nossos sprites (última fase)
+- **Texto, sim; mídia, não.** O catálogo de [openGym](https://github.com/DuarteSantos8/openGym)
+  (6.554 exercícios, 4,4 MB em inglês + 1,2 MB em `i18n/pt-BR.json`) é AGPL-3.0 como o nosso; as
+  1.324 entradas `textSource: "exercisedb"` vêm do ExerciseDB sob MIT. Copiar com atribuição no
+  nosso `NOTICE.md`. As imagens e clipes (`catalogue/media/`) são da Gym visual e o aviso deles
+  proíbe copiar, fazer hotlink ou usá-los como base ou entrada de IA para gerar vídeo: não entram e
+  não servem de referência.
+- **Integração:** ver como `manage-exercises` guarda exercícios hoje; o id do openGym (permanente)
+  vira a chave do catálogo. Medir o impacto no bundle antes de decidir entre embutir tudo (≈ 5,6 MB)
+  ou embutir um índice e carregar o detalhe sob demanda. 922 entradas são variantes femininas.
+- **Vídeos:** skill `brag` (Hyperframes) com os sprites do projeto. A skill nasceu para vídeo de
+  lançamento, então primeiro um piloto com 5 exercícios comuns; só depois escolher quantos (vídeo
+  para 6.554 não é realista).
+- O Planejador da F10 passa a casar o nome lido na ficha com um id do catálogo.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

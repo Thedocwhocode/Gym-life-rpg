@@ -13,8 +13,6 @@ export type RpgClass = 'warrior' | 'scout' | 'paladin';
 export interface Choices {
   /** Classe atual (espelho do último item de `classHistory`). */
   rpgClass?: RpgClass;
-  /** Aviso LGPD do Planejador IA / PDF aceito (aparece só antes do 1º envio). */
-  aiDataNoticeAccepted?: boolean;
   classHistory?: Dated<RpgClass>[];
   /** Dias da semana ISO (1 = seg … 7 = dom) em que o herói planeja treinar (D4). */
   trainingDays?: Dated<number[]>[];
@@ -130,9 +128,6 @@ const choicesSlice = createSlice({
     markJourneyIntroSeen(state) {
       state.journeyIntroSeen = true;
     },
-    acceptAiDataNotice(state) {
-      state.aiDataNoticeAccepted = true;
-    },
     initializeChoicesStateSlice() {},
   },
 });
@@ -149,7 +144,6 @@ export const {
   markHeartsSeen,
   markChronicleSeen,
   markJourneyIntroSeen,
-  acceptAiDataNotice,
   initializeChoicesStateSlice,
 } = choicesSlice.actions;
 
@@ -165,15 +159,12 @@ export const PERSISTED_CHOICE_ACTIONS = [
   markHeartsSeen,
   markChronicleSeen,
   markJourneyIntroSeen,
-  acceptAiDataNotice,
 ] as const;
 
 export const choicesReducer = choicesSlice.reducer;
 
 export const selectChoices = (state: RootState) => state.choices;
 export const selectRpgClass = (state: RootState) => state.choices.rpgClass;
-export const selectAiDataNoticeAccepted = (state: RootState) =>
-  !!state.choices.aiDataNoticeAccepted;
 
 const parseDay = (s: string | undefined) =>
   s ? LocalDate.parse(s) : undefined;

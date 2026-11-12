@@ -1,14 +1,12 @@
 using System.Net;
-using GymLifeRpg.Api.Models;
+using System.Text;
 using GymLifeRpg.Api.Service;
-using Microsoft.AspNetCore.Hosting;
+using GymLifeRpg.Lib.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Memory;
 
 namespace GymLifeRpg.Tests.Api.Integration;
 
+/// <summary>F10: POST /ai/sheet behind the pro purchase token (the sheet reader is mocked).</summary>
 [ClassDataSource<Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program>>(
     Shared = SharedType.PerClass
 )]
@@ -17,6 +15,35 @@ public class AuthenticationIntegrationTests
     private readonly WebApplicationFactory<Program> _factory;
     private const string TestWebAuthKey = "test-web-auth-key-12345";
     private const string TestRevenueCatUserId = "test-user-with-pro";
+    private const string EmptySheetMarker = "EMPTY-SHEET";
+    private const string FailingSheetMarker = "FAILING-SHEET";
+
+    private static readonly AiWorkoutPlan Plan = new(
+        "Ficha hipertrofia",
+        "",
+        [
+            new SessionBlueprint(
+                "Treino A",
+                [
+                    new ExerciseBlueprint(
+                        "Supino reto",
+                        4,
+                        10,
+                        0,
+                        new Rest(
+                            TimeSpan.FromSeconds(90),
+                            TimeSpan.FromSeconds(120),
+                            TimeSpan.FromSeconds(180)
+                        ),
+                        false,
+                        Notes: "20 kg",
+                        Link: ""
+                    ),
+                ],
+                Notes: ""
+            ),
+        ]
+    );
 
     public AuthenticationIntegrationTests(WebApplicationFactory<Program> factory)
     {
@@ -24,23 +51,20 @@ public class AuthenticationIntegrationTests
             factory,
             services =>
             {
-                var mockChatPlanner = Substitute.For<IGptChatWorkoutPlanner>();
-                mockChatPlanner
-                    .Introduce(
-                        Arg.Any<string>(),
-                        Arg.Any<string>(),
-                        Arg.Any<Func<AiChatResponse, Task>>()
-                    )
-                    .Returns(async callInfo =>
+                var sheetReader = Substitute.For<ISheetReader>();
+                sheetReader
+                    .ReadAsync(Arg.Any<BinaryData>(), Arg.Any<CancellationToken>())
+                    .Returns(call =>
                     {
-                        var callback = callInfo.ArgAt<Func<AiChatResponse, Task>>(2);
-                        await callback(
-                            new AiChatMessageResponse("Hello! I'm your AI workout planner.")
-                        );
+                        var body = call.ArgAt<BinaryData>(0).ToString();
+                        if (body.Contains(FailingSheetMarker))
+                        {
+                            throw new InvalidOperationException("upstream error with sheet text");
+                        }
+                        return body.Contains(EmptySheetMarker) ? null : Plan;
                     });
-                services.AddSingleton(mockChatPlanner);
+                services.AddSingleton(sheetReader);
 
-                // Mock RevenueCat service
                 var mockRevenueCatService =
                     Substitute.For<IRevenueCatPurchaseVerificationService>();
                 mockRevenueCatService
@@ -51,238 +75,96 @@ public class AuthenticationIntegrationTests
                     .Returns(Task.FromResult(false));
                 services.AddSingleton(mockRevenueCatService);
 
-                // Override the WebAuthPurchaseVerificationService with our test key
                 services.AddScoped(_ => new WebAuthPurchaseVerificationService(TestWebAuthKey));
             }
         );
     }
 
-    [Test]
-    public async Task AiChatHub_WithValidWebAuth_ShouldConnect()
+    private static ByteArrayContent Pdf(string body = "1.4 sheet") =>
+        new(Encoding.ASCII.GetBytes("%PDF-" + body));
+
+    private async Task<HttpResponseMessage> PostSheet(string? auth, HttpContent content)
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", $"Web {TestWebAuthKey}");
-                }
-            )
-            .Build();
-
-        var receivedMessages = new List<AiChatResponse>();
-        hubConnection.On<AiChatResponse>(
-            "ReceiveMessage",
-            message =>
-            {
-                receivedMessages.Add(message);
-            }
-        );
-
-        // Act
-        await hubConnection.StartAsync();
-
-        // Assert
-        await Assert.That(hubConnection.State).IsEqualTo(HubConnectionState.Connected);
-
-        // Cleanup
-        await hubConnection.StopAsync();
-        await hubConnection.DisposeAsync();
+        var client = _factory.CreateClient();
+        var request = new HttpRequestMessage(HttpMethod.Post, "/ai/sheet") { Content = content };
+        if (auth is not null)
+        {
+            request.Headers.TryAddWithoutValidation("Authorization", auth);
+        }
+        return await client.SendAsync(request);
     }
 
     [Test]
-    public async Task AiChatHub_WithValidRevenueCatAuth_ShouldConnect()
+    public async Task Sheet_WithValidWebAuth_ReturnsThePlan()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", $"RevenueCat {TestRevenueCatUserId}");
-                }
-            )
-            .Build();
+        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf());
 
-        // Act
-        await hubConnection.StartAsync();
-
-        // Assert
-        await Assert.That(hubConnection.State).IsEqualTo(HubConnectionState.Connected);
-
-        // Cleanup
-        await hubConnection.StopAsync();
-        await hubConnection.DisposeAsync();
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        var body = await response.Content.ReadAsStringAsync();
+        await Assert.That(body).Contains("Treino A");
+        await Assert.That(body).Contains("20 kg");
+        // The app's parseDuration reads this exact shape (TimeSpanJsonConverter).
+        await Assert.That(body).Contains("\"minRest\":\"0.00:01:30:\"");
     }
 
     [Test]
-    public async Task AiChatHub_WithoutAuth_ShouldFailToConnect()
+    public async Task Sheet_WithBearerPrefix_ReturnsThePlan()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    // No authorization header
-                }
-            )
-            .Build();
+        var response = await PostSheet($"Bearer RevenueCat {TestRevenueCatUserId}", Pdf());
 
-        // Act & Assert
-        var exception = await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await hubConnection.StartAsync()
-        );
-        await Assert.That(exception.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     [Test]
-    public async Task AiChatHub_WithInvalidWebAuthToken_ShouldFailToConnect()
+    [Arguments(null)]
+    [Arguments("Web invalid-token")]
+    [Arguments("RevenueCat invalid-user-id")]
+    [Arguments("InvalidStore test-web-auth-key-12345")]
+    [Arguments("MalformedHeader")]
+    public async Task Sheet_WithoutValidAuth_IsUnauthorized(string? auth)
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", "Web invalid-token");
-                }
-            )
-            .Build();
+        var response = await PostSheet(auth, Pdf());
 
-        // Act & Assert
-        var exception = await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await hubConnection.StartAsync()
-        );
-        await Assert.That(exception.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
     }
 
     [Test]
-    public async Task AiChatHub_WithInvalidRevenueCatUserId_ShouldFailToConnect()
+    public async Task Sheet_ThatIsNotAPdf_IsRejected()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", "RevenueCat invalid-user-id");
-                }
-            )
-            .Build();
-
-        // Act & Assert
-        var exception = await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await hubConnection.StartAsync()
+        var response = await PostSheet(
+            $"Web {TestWebAuthKey}",
+            new ByteArrayContent(Encoding.ASCII.GetBytes("<html>not a pdf</html>"))
         );
-        await Assert.That(exception.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
+
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.UnsupportedMediaType);
     }
 
     [Test]
-    public async Task AiChatHub_WithInvalidAppStore_ShouldFailToConnect()
+    public async Task Sheet_OverTheLimit_IsRejected()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", $"InvalidStore {TestWebAuthKey}");
-                }
-            )
-            .Build();
+        var bytes = new byte[AiSheetLimit + 1];
+        "%PDF-"u8.CopyTo(bytes);
 
-        // Act & Assert
-        var exception = await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await hubConnection.StartAsync()
-        );
-        await Assert.That(exception.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
+        var response = await PostSheet($"Web {TestWebAuthKey}", new ByteArrayContent(bytes));
+
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.RequestEntityTooLarge);
     }
 
     [Test]
-    public async Task AiChatHub_WithMalformedAuthHeader_ShouldFailToConnect()
+    public async Task Sheet_WithoutWorkouts_IsUnprocessable()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", "MalformedHeader");
-                }
-            )
-            .Build();
+        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(EmptySheetMarker));
 
-        // Act & Assert
-        var exception = await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await hubConnection.StartAsync()
-        );
-        await Assert.That(exception.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.UnprocessableEntity);
     }
 
-    [Test, Skip("Does not pass right now")]
-    public async Task AiChatHub_CanSendAndReceiveMessages_WithValidAuth()
+    [Test]
+    public async Task Sheet_WhenTheReaderFails_IsBadGateway()
     {
-        // Arrange
-        var server = _factory.Server;
-        var hubConnection = new HubConnectionBuilder()
-            .WithUrl(
-                $"{server.BaseAddress}ai-chat",
-                options =>
-                {
-                    options.HttpMessageHandlerFactory = _ => server.CreateHandler();
-                    options.Headers.Add("Authorization", $"Web {TestWebAuthKey}");
-                }
-            )
-            .Build();
+        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(FailingSheetMarker));
 
-        var receivedMessages = new List<AiChatResponse>();
-        var messageReceived = new TaskCompletionSource<bool>();
-
-        hubConnection.On<AiChatResponse>(
-            "ReceiveMessage",
-            message =>
-            {
-                receivedMessages.Add(message);
-                if (message is AiChatMessageResponse)
-                {
-                    messageReceived.TrySetResult(true);
-                }
-            }
-        );
-
-        await hubConnection.StartAsync();
-
-        // Act
-        await hubConnection.InvokeAsync("Introduce", "en-US");
-
-        // Wait for response (with timeout)
-        var receivedInTime =
-            await Task.WhenAny(messageReceived.Task, Task.Delay(TimeSpan.FromSeconds(30)))
-            == messageReceived.Task;
-
-        // Assert
-        await Assert.That(receivedInTime).IsTrue();
-        await Assert.That(receivedMessages).IsNotEmpty();
-        await Assert.That(receivedMessages.Any(m => m is AiChatMessageResponse)).IsTrue();
-
-        // Cleanup
-        await hubConnection.StopAsync();
-        await hubConnection.DisposeAsync();
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadGateway);
     }
+
+    private const int AiSheetLimit = GymLifeRpg.Api.Controllers.AiSheetController.MaxBytes;
 }
