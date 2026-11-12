@@ -1,3 +1,4 @@
+import { choicesToJson } from '@/store/choices/migrate';
 import { google, GymLifeRpg } from '@/gen/proto';
 import {
   toFeedStateDao,
@@ -35,6 +36,9 @@ export function addExportBackupEffects() {
         }),
         feedState: feedStateDao,
         savedPrograms: savedProgramsDao,
+        choicesJson: new google.protobuf.StringValue({
+          value: choicesToJson(getState().choices),
+        }),
       });
       const daoBytes =
         GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(

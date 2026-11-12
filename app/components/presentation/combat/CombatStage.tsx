@@ -1,4 +1,5 @@
 import FxStage from '@/components/presentation/fx/FxStage';
+import type { FxId } from '@/components/presentation/fx/registry';
 import PixelBar from '@/components/presentation/pixel/PixelBar';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import type { Enemy } from '@/store/journey/rules/combat';
@@ -11,6 +12,8 @@ const DEATH_FX = 'spawn/coin-drop' as const;
 
 interface CombatStageProps {
   enemy: Enemy;
+  /** Golpe da skill equipada (F6); sem ela, o ataque do próprio monstro. */
+  attackFx?: FxId | undefined;
   /** Sobe a cada golpe; 0 = herói em guarda. */
   strikeKey: number;
   collapsed: boolean;
@@ -26,6 +29,7 @@ interface CombatStageProps {
  */
 export default function CombatStage({
   enemy,
+  attackFx,
   strikeKey,
   collapsed,
   onToggle,
@@ -60,7 +64,7 @@ export default function CombatStage({
     >
       {collapsed ? null : (
         <FxStage
-          fx={enemy.monster.attack}
+          fx={attackFx ?? enemy.monster.attack}
           target={false}
           companions={[{ fx: dead ? DEATH_FX : enemy.monster.fx, x: 'target' }]}
           size={[200, 104]}

@@ -1,12 +1,13 @@
 import { addEffect } from '@/store/store';
-import { sessionRewarded } from './index';
-import { deriveProgress, diffProjection, sessionFacts } from './derive';
+import { projectProgress, sessionRewarded } from './index';
+import { diffProjection } from './derive';
+import { selectJourneyContext } from '@/store/choices';
 import { addStoredSession, selectSessions } from '@/store/stored-sessions';
 import { LocalDate } from '@js-joda/core';
 import type { RootState } from '@/store/store';
 
 const project = (state: RootState, today: LocalDate) =>
-  deriveProgress(selectSessions(state).map(sessionFacts), today);
+  projectProgress(selectSessions(state), selectJourneyContext(state), today);
 
 /**
  * Nada do RPG é gravado: a projeção sai das sessões. Aqui só se compara antes/depois de

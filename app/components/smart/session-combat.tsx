@@ -5,7 +5,9 @@ import type { FxId } from '@/components/presentation/fx/registry';
 import { useHaptic } from '@/hooks/useHaptic';
 import { NormalizedName } from '@/models/blueprint-models';
 import { RecordedWeightedExercise, Session } from '@/models/session-models';
-import { RootState, useAppSelectorWithArg } from '@/store';
+import { RootState, useAppSelector, useAppSelectorWithArg } from '@/store';
+import { selectJourney } from '@/store/journey';
+import { SKILLS } from '@/store/journey/rules/skills';
 import { showSnackbar } from '@/store/app';
 import {
   notifySetTimer,
@@ -52,6 +54,8 @@ export function useSessionCombat(
   const dispatch = useDispatch();
   const store = useStore<RootState>();
   const best = useAppSelectorWithArg(selectBestWeights, session?.id ?? '');
+  const { equipped } = useAppSelector(selectJourney);
+  const attackFx = SKILLS.find((s) => s.id === equipped)?.fx;
   const [strikeKey, setStrikeKey] = useState(0);
   const [focus, setFocus] = useState<number>();
   const [collapsed, setCollapsed] = useState(
@@ -169,6 +173,7 @@ export function useSessionCombat(
     <CombatStage
       key={shown.index}
       enemy={shown}
+      attackFx={attackFx}
       strikeKey={strikeKey}
       collapsed={collapsed}
       onToggle={() => {

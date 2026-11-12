@@ -1,8 +1,12 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LocalDate } from '@js-joda/core';
 import { selectSessions } from '@/store/stored-sessions';
+import { selectJourneyContext } from '@/store/choices';
+import type { Session } from '@/models/session-models';
+import type { RootState } from '@/store/store';
 import {
   deriveProgress,
+  JourneyContext,
   ProjectionDiff,
   sessionFacts,
   titleForLevel,
@@ -131,10 +135,20 @@ export const { sessionRewarded, clearLevelUp, clearSessionReward } =
 
 export const rpgReducer = rpgSlice.reducer;
 
-// ponytail: LocalDate.now() no seletor só recalcula quando as sessões mudam; virar a meia-noite
-// com o app aberto mantém a projeção de ontem até a próxima mudança (igual a useHeroAttributes).
-export const selectProgress = createSelector([selectSessions], (sessions) =>
-  deriveProgress(sessions.map(sessionFacts), LocalDate.now()),
+/** A projeção única: o seletor e o effect da recompensa (effects.ts) chamam esta mesma função. */
+export const projectProgress = (
+  sessions: readonly Session[],
+  ctx: JourneyContext,
+  today: LocalDate,
+) => deriveProgress(sessions.map(sessionFacts), today, ctx);
+
+// ponytail: o dia vem de state.app.today (atualizado ao voltar ao primeiro plano); virar a
+// meia-noite com o app aberto na tela mantém o dia anterior até sair e voltar.
+const selectToday = (s: RootState) => s.app.today;
+export const selectProgress = createSelector(
+  [selectSessions, selectJourneyContext, selectToday],
+  (sessions, ctx, today) =>
+    projectProgress(sessions, ctx, LocalDate.parse(today)),
 );
 export const selectRpgLevel = createSelector([selectProgress], (p) => p.level);
 export const selectRpgTitle = createSelector([selectRpgLevel], titleForLevel);

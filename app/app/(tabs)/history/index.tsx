@@ -8,6 +8,7 @@ import Button from '@/components/presentation/pixel/Button';
 import IconButton from '@/components/presentation/pixel/IconButton';
 import SessionCard from '@/components/presentation/rpg/SessionCard';
 import { sessionXp } from '@/store/rpg/derive';
+import { selectProgress } from '@/store/rpg';
 import { Session } from '@/models/session-models';
 import { useAppSelector, useAppSelectorWithArg } from '@/store';
 import {
@@ -40,6 +41,7 @@ export default function History() {
       .unwrapOr(undefined),
   );
   const sessions = useAppSelector(selectSessions);
+  const { xpBySession } = useAppSelector(selectProgress);
   const sessionsInMonth = useAppSelectorWithArg(
     selectSessionsInMonth,
     currentYearMonth,
@@ -141,7 +143,7 @@ export default function History() {
                 session.isComplete
                   ? t('rpg.history.complete')
                   : t('rpg.history.partial')
-              } · +${sessionXp(session)} XP`}
+              } · +${xpBySession[session.id] ?? sessionXp(session)} XP`}
               eyebrowTone={session.isComplete ? 'success' : 'accent'}
               actions={
                 <>

@@ -4,6 +4,7 @@ import AchievementsRow from '@/components/presentation/rpg/AchievementsRow';
 import AttributeStat from '@/components/presentation/rpg/AttributeStat';
 import CharacterSheet from '@/components/presentation/rpg/CharacterSheet';
 import QuestPanel from '@/components/presentation/rpg/QuestPanel';
+import JourneyPanel from '@/components/smart/journey-panel';
 import NextQuestCard from '@/components/smart/next-quest-card';
 import { useFormatDate } from '@/hooks/useFormatDate';
 import { useHeroAttributes } from '@/hooks/useHeroAttributes';
@@ -41,6 +42,7 @@ export default function DashboardPage() {
         }}
       >
         <CharacterSheet />
+        <JourneyPanel />
         <NextQuestCard />
         <QuestPanel />
         <View style={{ gap: 10 }}>

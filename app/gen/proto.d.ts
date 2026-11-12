@@ -2160,6 +2160,9 @@ export namespace GymLifeRpg {
 
                     /** ExportedDataDaoV2 feedState */
                     feedState?: (GymLifeRpg.Ui.Models.IFeedStateDaoV1|null);
+
+                    /** ExportedDataDaoV2 choicesJson */
+                    choicesJson?: (google.protobuf.IStringValue|null);
                 }
 
                 /** Represents an ExportedDataDaoV2. */
@@ -2185,6 +2188,9 @@ export namespace GymLifeRpg {
 
                     /** ExportedDataDaoV2 feedState. */
                     public feedState?: (GymLifeRpg.Ui.Models.IFeedStateDaoV1|null);
+
+                    /** ExportedDataDaoV2 choicesJson. */
+                    public choicesJson?: (google.protobuf.IStringValue|null);
 
                     /**
                      * Creates a new ExportedDataDaoV2 instance using the specified properties.

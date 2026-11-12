@@ -165,14 +165,25 @@ export function nextStrike(session: Session): NextStrike | undefined {
   };
 }
 
-export type RewardPage = 'mission' | 'levelup' | 'loot';
+export type RewardPage = 'mission' | 'levelup' | 'loot' | 'dungeon';
 
-/** Fila do RewardDialog (DR3): Missão → Level up → Espólio, no máximo 3 páginas. */
-export function rewardPages(levelUp: boolean, lootCount: number): RewardPage[] {
+/**
+ * Fila do RewardDialog (DR3): Missão → Level up → Espólio, no máximo 3 páginas.
+ * Masmorra limpa (DR22) ocupa o lugar do Espólio e lista as conquistas dentro dela.
+ */
+export function rewardPages(
+  levelUp: boolean,
+  lootCount: number,
+  dungeon = false,
+): RewardPage[] {
   return [
     'mission',
     ...(levelUp ? (['levelup'] as const) : []),
-    ...(lootCount > 0 ? (['loot'] as const) : []),
+    ...(dungeon
+      ? (['dungeon'] as const)
+      : lootCount > 0
+        ? (['loot'] as const)
+        : []),
   ];
 }
 
