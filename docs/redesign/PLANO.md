@@ -384,10 +384,10 @@ treino. Ele não cria plano nem é aberto pelo usuário.
   pro token, API no ar e chave da OpenAI; não forjar token.
 - **Status (2026-11-12, branch `feat/planejador-ocr`):** feito com a D11 (a). Backend: `AiSheetController`
   + `GptSheetReader` (schema `AiSheetPlan.json`, `StoredOutputEnabled = false`), hub SignalR e
-  `PartialJsonParser` removidos; 14/14 testes da API. App: chat, `store/ai-planner`, `pdf-text`,
+  `PartialJsonParser` removidos; 20/20 testes da API (leitura com teto de 90 s no servidor, falha da OpenAI vira 502, faixa 8-12 vira 8 com a faixa nas notas, séries/reps ausentes viram 1). App: chat, `store/ai-planner`, `pdf-text`,
   `@microsoft/signalr` e `pdfjs-dist` removidos; paywall em `services/pro-paywall.ts`; entradas
   escondidas sem backend/Pro (`isProAvailable`); a tela mostra exercício × séries×reps × carga.
-  `parseDuration` aceita o "0.00:01:30:" que a API escreve. Pendente: ponta a ponta com a OpenAI real.
+  `parseDuration` aceita o "0.00:01:30:" que a API escreve. O app não cancela a espera (o teto é só o do servidor). Pendente: ponta a ponta com a OpenAI real.
 
 ### F11 — Biblioteca de exercícios do openGym + vídeos com nossos sprites (última fase)
 - **Texto, sim; mídia, não.** O catálogo de [openGym](https://github.com/DuarteSantos8/openGym)

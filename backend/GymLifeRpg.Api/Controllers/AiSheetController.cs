@@ -11,8 +11,11 @@ namespace GymLifeRpg.Api.Controllers;
 /// </summary>
 [ApiController]
 [Authorize(AuthenticationSchemes = PurchaseTokenAuthenticationSchemeOptions.SchemeName)]
-public class AiSheetController(ISheetReader sheetReader, RateLimitService rateLimitService)
-    : ControllerBase
+public class AiSheetController(
+    ISheetReader sheetReader,
+    RateLimitService rateLimitService,
+    ILogger<AiSheetController> logger
+) : ControllerBase
 {
     public const int MaxBytes = 10 * 1024 * 1024;
 
@@ -46,7 +49,16 @@ public class AiSheetController(ISheetReader sheetReader, RateLimitService rateLi
             return StatusCode(StatusCodes.Status429TooManyRequests);
         }
 
-        var plan = await sheetReader.ReadAsync(new BinaryData(bytes), cancellationToken);
-        return plan is null ? UnprocessableEntity() : Ok(plan);
+        try
+        {
+            var plan = await sheetReader.ReadAsync(new BinaryData(bytes), cancellationToken);
+            return plan is null ? UnprocessableEntity() : Ok(plan);
+        }
+        catch (Exception e) when (!cancellationToken.IsCancellationRequested)
+        {
+            // Type only: the message may echo the sheet's content.
+            logger.LogWarning("Sheet read failed: {ErrorType}", e.GetType().Name);
+            return StatusCode(StatusCodes.Status502BadGateway);
+        }
     }
 }

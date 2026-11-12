@@ -16,6 +16,7 @@ public class AuthenticationIntegrationTests
     private const string TestWebAuthKey = "test-web-auth-key-12345";
     private const string TestRevenueCatUserId = "test-user-with-pro";
     private const string EmptySheetMarker = "EMPTY-SHEET";
+    private const string FailingSheetMarker = "FAILING-SHEET";
 
     private static readonly AiWorkoutPlan Plan = new(
         "Ficha hipertrofia",
@@ -54,10 +55,14 @@ public class AuthenticationIntegrationTests
                 sheetReader
                     .ReadAsync(Arg.Any<BinaryData>(), Arg.Any<CancellationToken>())
                     .Returns(call =>
-                        call.ArgAt<BinaryData>(0).ToString().Contains(EmptySheetMarker)
-                            ? null
-                            : Plan
-                    );
+                    {
+                        var body = call.ArgAt<BinaryData>(0).ToString();
+                        if (body.Contains(FailingSheetMarker))
+                        {
+                            throw new InvalidOperationException("upstream error with sheet text");
+                        }
+                        return body.Contains(EmptySheetMarker) ? null : Plan;
+                    });
                 services.AddSingleton(sheetReader);
 
                 var mockRevenueCatService =
@@ -151,6 +156,14 @@ public class AuthenticationIntegrationTests
         var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(EmptySheetMarker));
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.UnprocessableEntity);
+    }
+
+    [Test]
+    public async Task Sheet_WhenTheReaderFails_IsBadGateway()
+    {
+        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(FailingSheetMarker));
+
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadGateway);
     }
 
     private const int AiSheetLimit = GymLifeRpg.Api.Controllers.AiSheetController.MaxBytes;
