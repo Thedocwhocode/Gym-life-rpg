@@ -35,10 +35,7 @@ public class GptSheetReader(ChatClient _openAiClient) : ISheetReader
 
     private static readonly TimeSpan Timeout = TimeSpan.FromSeconds(90);
 
-    public async Task<AiWorkoutPlan?> ReadAsync(
-        BinaryData pdf,
-        CancellationToken cancellationToken
-    )
+    public async Task<AiWorkoutPlan?> ReadAsync(BinaryData pdf, CancellationToken cancellationToken)
     {
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         timeout.CancelAfter(Timeout);

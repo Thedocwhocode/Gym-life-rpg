@@ -67,7 +67,9 @@ public class GptSheetReaderTests
     [Test]
     [Arguments(null)]
     [Arguments("")]
-    [Arguments("""{"Name":"x","Description":"","Sessions":[{"Name":"A","Description":"","Exercises":[]}]}""")]
+    [Arguments(
+        """{"Name":"x","Description":"","Sessions":[{"Name":"A","Description":"","Exercises":[]}]}"""
+    )]
     public async Task Parse_WithoutExercises_IsNull(string? json)
     {
         await Assert.That(GptSheetReader.Parse(json)).IsNull();
