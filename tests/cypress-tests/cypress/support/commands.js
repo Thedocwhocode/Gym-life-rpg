@@ -27,7 +27,7 @@
 /// <reference types="./index.d.ts" />
 
 Cypress.Commands.add('getByTestId', (testId) => {
-    return cy.get('[data-testid=' + testId + ']')
+    return cy.get(`[data-testid="${testId}"]`)
 })
 
 Cypress.Commands.add('findByTestId', { prevSubject: 'element' }, (subject, testId) => {
@@ -42,9 +42,20 @@ Cypress.Commands.add('dialog', () => {
     return cy.get('[data-testid=fullscreen-dialog]:visible, [data-testid=modal-surface]:visible')
 });
 Cypress.Commands.add('completeWelcomeWizard', () => {
-    // One click per page (welcome-wizard.tsx totalPages = 4); re-query because the button re-renders.
-    for (let page = 0; page < 4; page++) cy.getByTestId('welcome-wizard-next').click()
+    // Click until the wizard closes: two clicks landing before a re-render advance only one page,
+    // so a fixed count (totalPages = 4) flakes. Capped so a stuck wizard still fails.
+    cy.getByTestId('welcome-wizard-next').should('exist')
+    cy.recursionLoop((times) => {
+        if (times > 10 || !Cypress.$('[data-testid=welcome-wizard-next]').length) return false
+        cy.getByTestId('welcome-wizard-next').click()
+    })
     return cy.getByTestId('welcome-wizard-next').should('not.exist')
+});
+
+// A new completed session opens the reward screen over every tab until CONTINUAR is pressed.
+Cypress.Commands.add('dismissSessionReward', () => {
+    cy.getByTestId('session-reward-continue').click()
+    return cy.getByTestId('session-reward-continue').should('not.exist')
 });
 
 // Screenshots the element with this test id and diffs it against cypress/snapshots/<testId>.png.

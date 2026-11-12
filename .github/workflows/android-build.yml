@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN_REACT}}
+      # The fork has no Sentry token: skip the source map upload instead of failing the build.
+      SENTRY_DISABLE_AUTO_UPLOAD: "true"
 
     steps:
       - uses: actions/checkout@v6
@@ -46,7 +48,8 @@ jobs:
           job-id: android
           # Specifies arguments for Gradle execution
           # If arguments is missing or empty, then Gradle is not executed
-          arguments: build
+          # `build` also runs Android lint over node_modules libraries, which fails on their code.
+          arguments: assembleDebug
           build-root-directory: ./app/android
 
           gradle-version: wrapper

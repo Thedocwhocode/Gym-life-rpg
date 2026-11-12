@@ -25,6 +25,36 @@ export const typeSize = {
 } as const;
 
 export const type = {
+  title: {
+    fontFamily: fontFamily.displayBold,
+    fontSize: typeSize.title,
+    lineHeight: 24,
+  },
+  titleSm: {
+    fontFamily: fontFamily.display,
+    fontSize: typeSize.titleSm,
+    lineHeight: 20,
+  },
+  bodyLg: {
+    fontFamily: fontFamily.mono,
+    fontSize: typeSize.bodyLg,
+    lineHeight: 22,
+  },
+  body: {
+    fontFamily: fontFamily.mono,
+    fontSize: typeSize.body,
+    lineHeight: 20,
+  },
+  small: {
+    fontFamily: fontFamily.mono,
+    fontSize: typeSize.small,
+    lineHeight: 16,
+  },
+  micro: {
+    fontFamily: fontFamily.mono,
+    fontSize: typeSize.micro,
+    lineHeight: 14,
+  },
   stat: {
     fontFamily: fontFamily.monoBold,
     fontSize: 22,

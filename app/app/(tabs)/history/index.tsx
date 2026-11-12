@@ -1,16 +1,13 @@
-import CardActions from '@/components/presentation/card-actionts';
-import CardList from '@/components/presentation/card-list';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import EmptyInfo from '@/components/presentation/empty-info';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
-import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import HistoryCalendarCard from '@/components/presentation/history-calendar-card';
 import LimitedHtml from '@/components/presentation/limited-html';
-import QuestLogItem from '@/components/presentation/rpg/QuestLogItem';
-import SessionSummary from '@/components/presentation/session-summary';
-import SessionSummaryTitle from '@/components/presentation/session-summary-title';
-import SplitCardControl from '@/components/presentation/split-card-control';
-import { spacing } from '@/hooks/useAppTheme';
+import { headerOptions } from '@/components/presentation/pixel/AppHeader';
+import Button from '@/components/presentation/pixel/Button';
+import IconButton from '@/components/presentation/pixel/IconButton';
+import SessionCard from '@/components/presentation/rpg/SessionCard';
+import { sessionXp } from '@/store/rpg/derive';
 import { Session } from '@/models/session-models';
 import { useAppSelector, useAppSelectorWithArg } from '@/store';
 import {
@@ -25,11 +22,10 @@ import {
 } from '@/store/stored-sessions';
 import { uuid } from '@/utils/uuid';
 import { LocalDate, YearMonth } from '@js-joda/core';
-import { T, useTranslate } from '@tolgee/react';
+import { useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Card, Tooltip } from 'react-native-paper';
-import Button from '@/components/presentation/gesture-wrappers/button';
+import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
 
@@ -104,14 +100,14 @@ export default function History() {
   return (
     <>
       <Stack.Screen
-        options={{
-          title: 'Quest Log',
-        }}
+        options={headerOptions(t('rpg.tab.history'), t('rpg.history.eyebrow'))}
       />
       <FullHeightScrollView
         contentContainerStyle={{
-          gap: spacing[4],
-          paddingHorizontal: spacing.pageHorizontalMargin,
+          gap: 16,
+          paddingHorizontal: 16,
+          paddingTop: 16,
+          paddingBottom: 32,
         }}
       >
         <HistoryCalendarCard
@@ -124,52 +120,9 @@ export default function History() {
           }}
           onSessionSelect={onSelectSession}
         />
-        <CardList
-          testID="history-list"
-          items={sessionsInMonth}
-          cardType="contained"
-          renderItemContent={(session) => (
-            <Card.Content>
-              <QuestLogItem session={session}>
-                <SplitCardControl
-                  titleContent={
-                    <SessionSummaryTitle isFilled session={session} />
-                  }
-                  mainContent={
-                    <SessionSummary isFilled showWeight session={session} />
-                  }
-                />
-              </QuestLogItem>
-            </Card.Content>
-          )}
-          renderItemActions={(session) => (
-            <CardActions style={{ marginTop: spacing[2] }}>
-              <Tooltip title={t('workout.start_this.button')}>
-                <IconButton
-                  mode="contained"
-                  icon={'playCircle'}
-                  onPress={() => startWorkout(session)}
-                />
-              </Tooltip>
-              <Tooltip title={t('generic.delete.button')}>
-                <IconButton
-                  mode="contained"
-                  icon={'delete'}
-                  onPress={() => deleteWorkout(session)}
-                />
-              </Tooltip>
-              <Button
-                onPress={() => onSelectSession(session)}
-                icon="edit"
-                mode="contained"
-                testID="history-edit-workout"
-              >
-                <T keyName="workout.edit.button" />
-              </Button>
-            </CardActions>
-          )}
-          emptyTemplate={
-            <EmptyInfo>
+        <View testID="history-list" style={{ gap: 12 }}>
+          {sessionsInMonth.length === 0 && (
+            <EmptyInfo icon="calendar">
               <LimitedHtml
                 value={t('workout.no_sessions_in_month.message', {
                   month: formatDate(currentYearMonth.atDay(1), {
@@ -178,8 +131,44 @@ export default function History() {
                 })}
               />
             </EmptyInfo>
-          }
-        />
+          )}
+          {sessionsInMonth.map((session) => (
+            <SessionCard
+              key={session.id}
+              filled
+              session={session}
+              eyebrow={`${
+                session.isComplete
+                  ? t('rpg.history.complete')
+                  : t('rpg.history.partial')
+              } · +${sessionXp(session)} XP`}
+              eyebrowTone={session.isComplete ? 'success' : 'accent'}
+              actions={
+                <>
+                  <IconButton
+                    icon="play"
+                    variant="secondary"
+                    label={t('workout.start_this.button')}
+                    onPress={() => startWorkout(session)}
+                  />
+                  <IconButton
+                    icon="trash"
+                    variant="secondary"
+                    label={t('generic.delete.button')}
+                    onPress={() => deleteWorkout(session)}
+                  />
+                  <Button
+                    icon="edit"
+                    testID="history-edit-workout"
+                    onPress={() => onSelectSession(session)}
+                  >
+                    {t('workout.edit.button')}
+                  </Button>
+                </>
+              }
+            />
+          ))}
+        </View>
       </FullHeightScrollView>
       <ConfirmationDialog
         headline={t('workout.replace_current.confirm.title')}
@@ -207,6 +196,7 @@ export default function History() {
           />
         }
         open={deleteSelectedWorkoutConfirmOpen}
+        danger
         okText={t('generic.delete.button')}
         onOk={() => selectedWorkout && deleteWorkout(selectedWorkout, true)}
         onCancel={() => {

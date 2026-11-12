@@ -17,7 +17,7 @@ import {
   setUseImperialUnits,
   setWelcomeWizardCompleted,
 } from '@/store/settings';
-import { RpgClass, setRpgClass } from '@/store/rpg';
+import { RpgClass, selectRpgClass, setRpgClass } from '@/store/choices';
 import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
@@ -114,7 +114,7 @@ export function WelcomeWizard() {
   );
 
   const totalPages = 4;
-  const rpgClass = useAppSelector((s) => s.rpg.rpgClass);
+  const rpgClass = useAppSelector(selectRpgClass);
 
   const handleNext = () => {
     if (currentPage < totalPages - 1) {

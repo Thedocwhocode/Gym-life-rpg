@@ -25,18 +25,20 @@ interface ExerciseSummaryProps {
   isFilled: boolean;
 }
 
+/** Valor de série em caixa sunken quadrada (sem raio: visual pixel). */
 function Chip(props: { children: ReactNode }) {
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
   return (
     <View
       style={{
         flexDirection: 'row',
         alignItems: 'center',
         gap: spacing[0.5],
-        backgroundColor: colors.surfaceContainer,
-        borderRadius: spacing[2],
-        paddingVertical: spacing[1],
-        paddingHorizontal: spacing[2],
+        backgroundColor: palette.bgSunken,
+        borderWidth: 1,
+        borderColor: palette.line1,
+        paddingVertical: 2,
+        paddingHorizontal: 6,
       }}
     >
       {props.children}

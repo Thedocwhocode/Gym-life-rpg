@@ -1,5 +1,6 @@
 import { Text, TextStyle } from 'react-native';
 import { useAppTheme, font } from '@/hooks/useAppTheme';
+import { fontFamily } from '@/theme/tokens';
 
 interface ItemTitleProps {
   title: string;
@@ -15,7 +16,7 @@ export default function ItemTitle({ title, style, testID }: ItemTitleProps) {
       style={[
         {
           ...font['text-xl'],
-          fontWeight: 'bold',
+          fontFamily: fontFamily.displayBold,
           flexShrink: 1,
           minWidth: 0,
           textAlign: 'left',

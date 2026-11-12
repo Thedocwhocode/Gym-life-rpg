@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import { GesturePressableProps } from '@/components/presentation/gesture-wrappers/pressable-props';
-import { isNotNullOrUndefined } from '@/utils/null';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { usePressGesture } from '@/components/presentation/gesture-wrappers/use-press-gesture';
+import { GestureDetector } from 'react-native-gesture-handler';
 import { Button as NativeButton, ButtonProps } from 'react-native-paper';
 
 export default function Button({
@@ -10,17 +10,7 @@ export default function Button({
   disabled,
   ...rest
 }: GesturePressableProps<ButtonProps>) {
-  const tap = Gesture.Tap()
-    .runOnJS(true)
-    .onStart(() => !disabled && onPress?.());
-  const longPress = onLongPress
-    ? Gesture.LongPress()
-        .runOnJS(true)
-        .onStart(() => !disabled && onLongPress())
-    : undefined;
-  const gesture = Gesture.Race(
-    ...[tap, longPress].filter(isNotNullOrUndefined),
-  );
+  const gesture = usePressGesture(onPress, onLongPress, disabled);
   return (
     <GestureDetector gesture={gesture}>
       <NativeButton

@@ -50,7 +50,7 @@ export default function ProgramList() {
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
       <Stack.Screen options={{ title: t('plan.plans.title') }} />
-      <List.Section>
+      <List.Section testID="program-list">
         {ps.map(({ id }) => (
           <ProgramListItem key={id} id={id} isFocused={focusprogramId === id} />
         ))}

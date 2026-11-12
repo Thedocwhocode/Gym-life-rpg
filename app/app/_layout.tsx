@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { AppThemeProvider, useAppTheme } from '@/hooks/useAppTheme';
 import Scanlines from '@/components/presentation/pixel/Scanlines';
-import { I18nManager, LogBox, Platform } from 'react-native';
+import { I18nManager, LogBox, Platform, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
@@ -40,24 +40,49 @@ if (Platform.OS === 'android') {
   I18nManager.swapLeftAndRightInRTL(true);
 }
 
+/** DR20: na web o app vira uma coluna de 560 px centralizada (header e abas inclusos). */
+const WEB_COLUMN = 560;
+
 function RootStack() {
-  const { colorScheme } = useAppTheme();
+  const { colorScheme, palette } = useAppTheme();
   return (
-    <>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          statusBarStyle:
-            Platform.OS === 'android'
-              ? colorScheme === 'dark'
-                ? 'light'
-                : 'dark'
-              : undefined,
-          gestureEnabled: false,
-        }}
-      />
+    <View
+      style={
+        Platform.OS === 'web'
+          ? { flex: 1, backgroundColor: palette.bgSunken }
+          : { flex: 1 }
+      }
+    >
+      <View
+        style={
+          Platform.OS === 'web'
+            ? {
+                flex: 1,
+                width: '100%',
+                maxWidth: WEB_COLUMN,
+                alignSelf: 'center',
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderColor: palette.line1,
+              }
+            : { flex: 1 }
+        }
+      >
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            statusBarStyle:
+              Platform.OS === 'android'
+                ? colorScheme === 'dark'
+                  ? 'light'
+                  : 'dark'
+                : undefined,
+            gestureEnabled: false,
+          }}
+        />
+      </View>
       <Scanlines />
-    </>
+    </View>
   );
 }
 

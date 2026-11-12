@@ -119,11 +119,13 @@ export default function PixelBox({
   const behind = bg ?? colors.background;
   const lift = shadow ? motion.hardShadow : 0;
 
+  // flexGrow: o box acompanha a altura quando o pai o estica (linhas da grade).
   const face = (
-    <View>
+    <View style={{ flexGrow: 1 }}>
       <View
         style={[
           {
+            flexGrow: 1,
             borderWidth: px,
             borderColor: borderColor ?? toned.border,
             backgroundColor: fillColor ?? toned.fill,
@@ -153,7 +155,12 @@ export default function PixelBox({
           }}
         />
       ) : null}
-      <View style={{ transform: [{ translateY: pressed ? lift : 0 }] }}>
+      <View
+        style={{
+          flexGrow: 1,
+          transform: [{ translateY: pressed ? lift : 0 }],
+        }}
+      >
         {glow ? (
           <View
             style={{
