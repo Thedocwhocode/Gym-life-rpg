@@ -1,3 +1,4 @@
+import type { SessionBlueprintPOJO } from '@/models/blueprint-models';
 import type { ExerciseDescriptor } from '@/store/stored-sessions';
 
 /** Linha de assets/opengym-catalog.json, na ordem de `fields` (gerado por scripts/import-opengym.mjs). */
@@ -160,7 +161,109 @@ export function search(catalog: CatalogExercise[], query: string, limit = 20) {
     .map((x) => x.e);
 }
 
-/** O exercício do catálogo para um nome lido numa ficha, ou undefined. Nunca troca o nome da ficha. */
+// Nomes de ficha brasileira que a busca erra ou acerta pela metade (medidos em 22 nomes comuns, F11).
+// Chave = words(nome).join(' '). "Agachamento livre" na ficha é com barra; "prancha" é a frontal.
+const ALIAS: Record<string, string> = {
+  'agachamento livre': '0043',
+  prancha: '0463',
+  'elevacao lateral': '0334',
+  'abdominal supra': '0274',
+  'desenvolvimento halter': '0405',
+};
+
+/** O exercício do catálogo para um nome lido numa ficha, ou undefined. Só sugere: quem troca é o usuário. */
 export function match(catalog: CatalogExercise[], name: string) {
-  return search(catalog, name, 1)[0];
+  const id = ALIAS[words(name).join(' ')];
+  return (
+    (id && catalog.find((e) => e.id === id)) || search(catalog, name, 1)[0]
+  );
 }
+
+// Músculo-alvo e equipamento do catálogo (os valores distintos de assets/opengym-catalog.json).
+const PT: Record<string, string> = {
+  abs: 'abdômen',
+  obliques: 'oblíquos',
+  biceps: 'bíceps',
+  lats: 'dorsais',
+  pectorals: 'peitorais',
+  hamstrings: 'posteriores da coxa',
+  triceps: 'tríceps',
+  quads: 'quadríceps',
+  'upper back': 'costas (alto)',
+  glutes: 'glúteos',
+  delts: 'deltoides',
+  'serratus anterior': 'serrátil anterior',
+  forearms: 'antebraços',
+  calves: 'panturrilhas',
+  traps: 'trapézio',
+  adductors: 'adutores',
+  'levator scapulae': 'levantador da escápula',
+  'cardiovascular system': 'cardio',
+  spine: 'coluna',
+  'hip flexors': 'flexores do quadril',
+  abductors: 'abdutores',
+  shins: 'canelas',
+  'body weight': 'peso do corpo',
+  band: 'elástico',
+  cable: 'cabo',
+  'leverage machine': 'máquina',
+  assisted: 'assistido',
+  'medicine ball': 'bola medicinal',
+  'stability ball': 'bola suíça',
+  barbell: 'barra',
+  rope: 'corda',
+  dumbbell: 'halter',
+  'ez barbell': 'barra W',
+  kettlebell: 'kettlebell',
+  'olympic barbell': 'barra olímpica',
+  weighted: 'com carga',
+  'bosu ball': 'bosu',
+  'sled machine': 'trenó',
+  'smith machine': 'máquina Smith',
+  'wheel roller': 'roda abdominal',
+  'trap bar': 'barra hexagonal',
+  'resistance band': 'faixa elástica',
+  landmine: 'landmine',
+  'weight plate': 'anilha',
+  sandbag: 'saco de areia',
+  macebell: 'maça',
+  'suspension trainer': 'fita de suspensão',
+  roller: 'rolo',
+  hammer: 'marreta',
+  'stationary bike': 'bicicleta ergométrica',
+  'upper body ergometer': 'ergômetro de braço',
+  'elliptical machine': 'elíptico',
+  'skierg machine': 'SkiErg',
+  'stepmill machine': 'escada ergométrica',
+  tire: 'pneu',
+  'massage ball': 'bola de massagem',
+};
+
+/**
+ * Aplica ao plano lido da ficha os casamentos que o usuário confirmou (chave = nome lido): o exercício passa a
+ * ter o nome do catálogo, e cada um confirmado vira um item para a lista do usuário com a chave og:<id>.
+ */
+export function applyCatalog(
+  sessions: SessionBlueprintPOJO[],
+  accepted: Record<string, CatalogExercise>,
+  lang: string,
+) {
+  return {
+    sessions: sessions.map((s) => ({
+      ...s,
+      exercises: s.exercises.map((e) =>
+        accepted[e.name]
+          ? { ...e, name: displayName(accepted[e.name], lang) }
+          : e,
+      ),
+    })),
+    saved: Object.values(accepted).map((e) => ({
+      id: catalogKey(e.id),
+      exercise: toDescriptor(e, lang),
+    })),
+  };
+}
+
+/** Músculo ou equipamento do catálogo no idioma do app (o dado salvo continua em inglês). */
+export const label = (value: string, lang: string) =>
+  lang.startsWith('pt') ? (PT[value] ?? value) : value;

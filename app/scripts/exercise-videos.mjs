@@ -117,6 +117,32 @@ const EX = [
     D: { ...FEET, fx: 2, fy: -16, bx: 5, by: -16 },
   },
   {
+    id: '0032',
+    gear: 'barFront',
+    P: 2.8, // levantamento terra com barra
+    keys: (U, D) => [
+      [0, U],
+      [1.0, D, 'in'],
+      [1.3, D],
+      [2.8, U, 'out'],
+    ],
+    U: { ...FEET, fx: 1, fy: -16, bx: 4, by: -16 },
+    D: { ...FEET, crouch: 8, lean: 14, fx: 5, fy: -8, bx: 8, by: -8 },
+  },
+  {
+    id: '0027',
+    gear: 'barFront',
+    P: 2.2, // remada curvada com barra
+    keys: (U, D) => [
+      [0, D],
+      [0.8, U, 'out'],
+      [1.1, U],
+      [2.2, D],
+    ],
+    U: { ...FEET, crouch: 3, lean: 18, fx: 2, fy: -17, bx: 5, by: -17 },
+    D: { ...FEET, crouch: 3, lean: 18, fx: 7, fy: -10, bx: 10, by: -10 },
+  },
+  {
     id: '3224',
     gear: null,
     P: 0.9, // polichinelo com salto
@@ -167,6 +193,14 @@ const wrap = (s, n) =>
       return ls;
     }, [])
     .join('\n');
+
+// O rodapé do quadro cabe 3 linhas de legenda; o resto vira "…".
+const upTo3 = (text) => {
+  const ls = text.split('\n');
+  return ls.length <= 3
+    ? text
+    : [...ls.slice(0, 2), ls[2].slice(0, 43) + '…'].join('\n');
+};
 
 // ---- desenho
 function backdrop() {
@@ -333,7 +367,7 @@ function filters(ex, r) {
       `drawtext=fontfile=mono-bold.ttf:textfile=${txt(`n${i}`, `${i + 1}/${steps.length}`)}:expansion=none:fontsize=28:fontcolor=#c98a35:x=64:y=870:enable='between(t,${a},${b})':${fade(a, b)}`,
     );
     files.push(
-      `drawtext=fontfile=mono.ttf:textfile=${txt(`s${i}`, wrap(s, 44))}:expansion=none:fontsize=32:line_spacing=10:fontcolor=#efe9db:x=64:y=912:enable='between(t,${a},${b})':${fade(a, b)}`,
+      `drawtext=fontfile=mono.ttf:textfile=${txt(`s${i}`, upTo3(wrap(s, 44)))}:expansion=none:fontsize=32:line_spacing=10:fontcolor=#efe9db:x=64:y=912:enable='between(t,${a},${b})':${fade(a, b)}`,
     );
   });
   files.push(
