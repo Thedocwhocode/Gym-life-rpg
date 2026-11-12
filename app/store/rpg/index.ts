@@ -37,15 +37,60 @@ export interface Achievement {
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
-  { id: 'first_quest', name: 'Primeira Missão', description: 'Complete seu primeiro treino', icon: 'star' },
-  { id: 'consistency', name: 'Consistência', description: '3 treinos em uma semana', icon: 'localFireDepartment' },
-  { id: 'five_streak', name: 'Semana Perfeita', description: 'Treine 5 dias seguidos', icon: 'bolt' },
-  { id: 'ten_workouts', name: 'Veterano', description: 'Complete 10 treinos', icon: 'militaryTech' },
-  { id: 'fifty_workouts', name: 'Guerreiro', description: 'Complete 50 treinos', icon: 'shield' },
-  { id: 'hundred_workouts', name: 'Centurião', description: '100 treinos completos', icon: 'workspacePremium' },
-  { id: 'heavy_lift', name: 'Força Bruta', description: 'Levante 100 em uma série', icon: 'fitnessCenter' },
-  { id: 'level_5', name: 'Em Ascensão', description: 'Alcance o nível 5', icon: 'trendingUp' },
-  { id: 'level_10', name: 'Veterano de Ferro', description: 'Alcance o nível 10', icon: 'diamond' },
+  {
+    id: 'first_quest',
+    name: 'Primeira Missão',
+    description: 'Complete seu primeiro treino',
+    icon: 'star',
+  },
+  {
+    id: 'consistency',
+    name: 'Consistência',
+    description: '3 treinos em uma semana',
+    icon: 'localFireDepartment',
+  },
+  {
+    id: 'five_streak',
+    name: 'Semana Perfeita',
+    description: 'Treine 5 dias seguidos',
+    icon: 'bolt',
+  },
+  {
+    id: 'ten_workouts',
+    name: 'Veterano',
+    description: 'Complete 10 treinos',
+    icon: 'militaryTech',
+  },
+  {
+    id: 'fifty_workouts',
+    name: 'Guerreiro',
+    description: 'Complete 50 treinos',
+    icon: 'shield',
+  },
+  {
+    id: 'hundred_workouts',
+    name: 'Centurião',
+    description: '100 treinos completos',
+    icon: 'workspacePremium',
+  },
+  {
+    id: 'heavy_lift',
+    name: 'Força Bruta',
+    description: 'Levante 100 em uma série',
+    icon: 'fitnessCenter',
+  },
+  {
+    id: 'level_5',
+    name: 'Em Ascensão',
+    description: 'Alcance o nível 5',
+    icon: 'trendingUp',
+  },
+  {
+    id: 'level_10',
+    name: 'Veterano de Ferro',
+    description: 'Alcance o nível 10',
+    icon: 'diamond',
+  },
 ];
 
 export interface Quest {
@@ -80,20 +125,20 @@ const initialState: RpgState = {
   xp: 0,
   totalWorkouts: 0,
   streakDays: 0,
-  lastWorkoutDate: undefined,
   achievements: {},
   pendingLevelUp: false,
-  levelUpNewLevel: undefined,
   weeklyQuests: [],
   isHydrated: false,
-  lastSessionReward: undefined,
 };
 
 const rpgSlice = createSlice({
   name: 'rpg',
   initialState,
   reducers: {
-    hydrateRpgState(_, action: PayloadAction<Partial<Omit<RpgState, 'isHydrated'>>>) {
+    hydrateRpgState(
+      _,
+      action: PayloadAction<Partial<Omit<RpgState, 'isHydrated'>>>,
+    ) {
       return { ...initialState, ...action.payload, isHydrated: true };
     },
     awardXp(state, action: PayloadAction<number>) {
@@ -107,11 +152,15 @@ const rpgSlice = createSlice({
     },
     clearLevelUp(state) {
       state.pendingLevelUp = false;
-      state.levelUpNewLevel = undefined;
+      delete state.levelUpNewLevel;
     },
     recordWorkout(
       state,
-      action: PayloadAction<{ date: string; xpGained: number; newAchievementIds: string[] }>,
+      action: PayloadAction<{
+        date: string;
+        xpGained: number;
+        newAchievementIds: string[];
+      }>,
     ) {
       state.totalWorkouts += 1;
       state.lastSessionReward = {
@@ -134,7 +183,10 @@ const rpgSlice = createSlice({
       }
       state.lastWorkoutDate = action.payload.date;
     },
-    unlockAchievement(state, action: PayloadAction<{ id: string; date: string }>) {
+    unlockAchievement(
+      state,
+      action: PayloadAction<{ id: string; date: string }>,
+    ) {
       if (!state.achievements[action.payload.id]) {
         state.achievements[action.payload.id] = action.payload.date;
       }
@@ -144,9 +196,15 @@ const rpgSlice = createSlice({
     },
     updateQuestProgress(
       state,
-      action: PayloadAction<{ questId: string; progress: number; completedAt?: string }>,
+      action: PayloadAction<{
+        questId: string;
+        progress: number;
+        completedAt?: string | undefined;
+      }>,
     ) {
-      const quest = state.weeklyQuests.find((q) => q.id === action.payload.questId);
+      const quest = state.weeklyQuests.find(
+        (q) => q.id === action.payload.questId,
+      );
       if (quest) {
         quest.progress = Math.min(action.payload.progress, quest.target);
         if (action.payload.completedAt && !quest.completedAt) {
@@ -155,7 +213,7 @@ const rpgSlice = createSlice({
       }
     },
     clearSessionReward(state) {
-      state.lastSessionReward = undefined;
+      delete state.lastSessionReward;
     },
     setRpgClass(state, action: PayloadAction<RpgClass>) {
       state.rpgClass = action.payload;

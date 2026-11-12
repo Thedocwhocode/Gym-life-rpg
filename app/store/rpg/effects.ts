@@ -160,9 +160,7 @@ export function applyRpgEffects() {
         extra: { keyValueStore },
       },
     ) => {
-      const prevIds = new Set(
-        selectSessions(originalState).map((s) => s.id),
-      );
+      const prevIds = new Set(selectSessions(originalState).map((s) => s.id));
       const newSession = selectSessions(stateAfterReduce).find(
         (s) => !prevIds.has(s.id),
       );
@@ -206,8 +204,7 @@ export function applyRpgEffects() {
           (ex) =>
             ex instanceof RecordedWeightedExercise &&
             ex.potentialSets.some(
-              (ps) =>
-                ps.set !== undefined && ps.weight.value.toNumber() >= 100,
+              (ps) => ps.set !== undefined && ps.weight.value.toNumber() >= 100,
             ),
         ),
       );
@@ -241,9 +238,7 @@ export function applyRpgEffects() {
           progress = getState().rpg.streakDays;
         }
         const completedAt =
-          progress >= quest.target && !quest.completedAt
-            ? dateIso
-            : undefined;
+          progress >= quest.target && !quest.completedAt ? dateIso : undefined;
         dispatch(
           updateQuestProgress({ questId: quest.id, progress, completedAt }),
         );
@@ -257,7 +252,14 @@ export function applyRpgEffects() {
   );
 
   addDebouncedEffect(
-    [awardXp, recordWorkout, unlockAchievement, setWeeklyQuests, updateQuestProgress, setRpgClass],
+    [
+      awardXp,
+      recordWorkout,
+      unlockAchievement,
+      setWeeklyQuests,
+      updateQuestProgress,
+      setRpgClass,
+    ],
     async (_, { getState, extra: { keyValueStore } }) => {
       if (!getState().rpg.isHydrated) return;
       await keyValueStore.setItem(

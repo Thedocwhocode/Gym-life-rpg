@@ -78,7 +78,9 @@ export function fromUuidDao(
 const nanoFactor = BigNumber('1000000000');
 
 // Converts a DecimalValue DAO to a BigNumber
-export function fromDecimalDao(dao: GymLifeRpg.Ui.Models.IDecimalValue): BigNumber;
+export function fromDecimalDao(
+  dao: GymLifeRpg.Ui.Models.IDecimalValue,
+): BigNumber;
 export function fromDecimalDao(
   dao: GymLifeRpg.Ui.Models.IDecimalValue | null | undefined,
 ): BigNumber | undefined;
@@ -197,7 +199,9 @@ function fromRecordedExerciseDao(
   if (!dao) {
     throw new Error('Recorded exercise DAO cannot be null');
   }
-  if (dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
+  if (
+    dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO
+  ) {
     return RecordedCardioExercise.fromPOJO({
       notes: dao.notes?.value ?? undefined,
       blueprint: fromExerciseBlueprintDao(
@@ -265,7 +269,10 @@ function fromWeight(
       GymLifeRpg.Ui.Models.WeightUnit.KILOGRAMS satisfies 1 as 1,
       () => 'kilograms',
     )
-    .with(GymLifeRpg.Ui.Models.WeightUnit.POUNDS satisfies 2 as 2, () => 'pounds')
+    .with(
+      GymLifeRpg.Ui.Models.WeightUnit.POUNDS satisfies 2 as 2,
+      () => 'pounds',
+    )
     .exhaustive();
 
   return new Weight(value, unit);
@@ -304,7 +311,9 @@ export function fromExerciseBlueprintDao(
   if (!dao) {
     throw new Error('ExerciseBlueprint dao should not be null');
   }
-  if (dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
+  if (
+    dao.type === GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO
+  ) {
     return new CardioExerciseBlueprint(
       dao.name!,
       fromCardioTargetDao(dao.cardioTarget!),

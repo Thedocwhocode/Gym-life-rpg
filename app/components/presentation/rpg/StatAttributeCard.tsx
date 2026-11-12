@@ -36,7 +36,9 @@ export default function StatAttributeCard({
         minHeight: 100,
       }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[1] }}>
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[1] }}
+      >
         <Icon source={icon} size={16} color={color} />
         <Text variant="labelSmall" style={{ color, letterSpacing: 1 }}>
           {abbr}

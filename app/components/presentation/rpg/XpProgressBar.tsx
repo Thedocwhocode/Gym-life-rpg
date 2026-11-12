@@ -42,7 +42,9 @@ export default function XpProgressBar({
         },
       ]}
     >
-      <Animated.View style={[styles.fill, { borderRadius: height / 2 }, animatedStyle]}>
+      <Animated.View
+        style={[styles.fill, { borderRadius: height / 2 }, animatedStyle]}
+      >
         <LinearGradient
           colors={[colors.amber, colors.yellow]}
           start={{ x: 0, y: 0 }}

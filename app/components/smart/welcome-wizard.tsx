@@ -153,13 +153,21 @@ export function WelcomeWizard() {
                 selected && { borderColor: colors.primary, borderWidth: 2 },
               ]}
             >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[3] }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: spacing[3],
+                }}
+              >
                 <View
                   style={{
                     width: 44,
                     height: 44,
                     borderRadius: 4,
-                    backgroundColor: selected ? colors.primaryContainer : colors.surfaceVariant,
+                    backgroundColor: selected
+                      ? colors.primaryContainer
+                      : colors.surfaceVariant,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -173,11 +181,16 @@ export function WelcomeWizard() {
                 <View style={{ flex: 1 }}>
                   <Text
                     variant="titleSmall"
-                    style={{ color: selected ? colors.primary : colors.onSurface }}
+                    style={{
+                      color: selected ? colors.primary : colors.onSurface,
+                    }}
                   >
                     {cls.name}
                   </Text>
-                  <Text variant="bodySmall" style={{ color: colors.onSurfaceVariant }}>
+                  <Text
+                    variant="bodySmall"
+                    style={{ color: colors.onSurfaceVariant }}
+                  >
                     {cls.description}
                   </Text>
                   <Text
@@ -214,7 +227,9 @@ export function WelcomeWizard() {
           {t('onboarding.open_source.body')}
         </Text>
         <Button
-          onPress={() => openUrl('https://github.com/Thedocwhocode/Gym-life-rpg')}
+          onPress={() =>
+            openUrl('https://github.com/Thedocwhocode/Gym-life-rpg')
+          }
         >
           {t('onboarding.open_source.button')}
         </Button>
@@ -230,7 +245,13 @@ export function WelcomeWizard() {
           value={settings.crashReportsEnabled}
           onValueChange={(value) => dispatch(setCrashReportsEnabled(value))}
         />
-        <Button onPress={() => openUrl('https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/PRIVACY.md')}>
+        <Button
+          onPress={() =>
+            openUrl(
+              'https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/PRIVACY.md',
+            )
+          }
+        >
           {t('onboarding.privacy_policy.button')}
         </Button>
       </View>

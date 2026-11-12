@@ -43,9 +43,11 @@ jobs:
         run: npm ci
         working-directory: ./tests/cypress-tests
       - name: Test
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         env:
           ELECTRON_ENABLE_LOGGING: 1
+          # E3: animations hold their first frame so gallery screenshots are deterministic.
+          EXPO_PUBLIC_FREEZE_MOTION: 1
         with:
           start: npm run server-ci, npm run local-api
           wait-on: "http://localhost:8081, http://localhost:5264/health"
@@ -56,3 +58,12 @@ jobs:
         with:
           name: cypress-screenshots
           path: ./tests/cypress-tests/cypress/screenshots
+      - name: Upload visual snapshots (new references and diffs)
+        uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: visual-snapshots
+          path: |
+            ./tests/cypress-tests/cypress/snapshots/new
+            ./tests/cypress-tests/cypress/snapshots/diff
+          if-no-files-found: ignore

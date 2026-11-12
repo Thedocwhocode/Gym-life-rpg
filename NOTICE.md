@@ -57,3 +57,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+### Pixelarticons
+
+Os caminhos de ícone em `app/components/presentation/pixel-icons.generated.ts` vêm do
+Pixelarticons (https://github.com/halfmage/pixelarticons), sob a licença MIT.
+
+- Copyright (c) Gerrit Halfmann
+
+### Fontes
+
+- Pixelify Sans — Copyright 2021 The Pixelify Sans Project Authors
+  (https://github.com/eifetx/Pixelify-Sans), SIL Open Font License 1.1.
+- Space Mono — Copyright 2016 The Space Mono Project Authors
+  (https://github.com/googlefonts/spacemono), SIL Open Font License 1.1.
+
+As duas são distribuídas pelos pacotes `@expo-google-fonts/*`, que trazem o texto da licença.

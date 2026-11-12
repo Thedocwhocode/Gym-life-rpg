@@ -16,6 +16,7 @@ import {
 } from 'react-native-reanimated';
 import type { PixelFxAsset } from './pixel-fx-assets';
 import { frameAt, frameRect, isFinished } from './pixel-fx-frames';
+import { FREEZE_MOTION } from '@/utils/motion';
 
 interface PixelFxProps {
   fx: PixelFxAsset;
@@ -33,7 +34,7 @@ export default function PixelFx({ fx, scale = 2, style }: PixelFxProps) {
 
   useFrameCallback((info) => {
     elapsed.value = info.timeSinceFirstFrame;
-  }, !reduceMotion);
+  }, !reduceMotion && !FREEZE_MOTION);
 
   const [w, h] = sheet.frameSize;
   const rows = Math.ceil(sheet.frames / sheet.columns);

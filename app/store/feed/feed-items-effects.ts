@@ -440,7 +440,8 @@ async function toFeedItemAsync(
         user.publicKey,
       );
 
-    const payload = GymLifeRpg.Ui.Models.UserEventPayload.decode(decryptedPayload);
+    const payload =
+      GymLifeRpg.Ui.Models.UserEventPayload.decode(decryptedPayload);
 
     const timestamp = OffsetDateTime.parse(userEvent.timestamp).toInstant();
     const expiry = OffsetDateTime.parse(userEvent.expiry).toInstant();

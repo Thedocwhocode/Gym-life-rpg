@@ -18,5 +18,10 @@ declare namespace Cypress {
     ): Chainable<JQuery<E>>;
 
     completeWelcomeWizard<E>(): Chainable<JQuery<E>>;
+
+    /**
+     * Screenshot the element with this test id and diff it against cypress/snapshots/<testId>.png
+     */
+    matchSnapshot(testId: string): Chainable<void>;
   }
 }

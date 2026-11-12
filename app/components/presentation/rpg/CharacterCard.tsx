@@ -2,7 +2,12 @@ import XpProgressBar from '@/components/presentation/rpg/XpProgressBar';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { useRpgFontSize } from '@/hooks/useRpgFontSize';
 import { useAppSelector } from '@/store';
-import { selectAllAchievements, selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
+import {
+  selectAllAchievements,
+  selectRpgLevel,
+  selectRpgTitle,
+  selectXpProgress,
+} from '@/store/rpg';
 import { View } from 'react-native';
 import { Icon, Text } from 'react-native-paper';
 
@@ -29,7 +34,9 @@ export default function CharacterCard() {
         gap: spacing[3],
       }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[3] }}>
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', gap: spacing[3] }}
+      >
         <View
           style={{
             width: 56,
@@ -53,7 +60,11 @@ export default function CharacterCard() {
           </Text>
           <Text
             variant="displaySmall"
-            style={{ color: colors.onSurface, fontSize: levelFontSize, lineHeight: levelFontSize + 4 }}
+            style={{
+              color: colors.onSurface,
+              fontSize: levelFontSize,
+              lineHeight: levelFontSize + 4,
+            }}
           >
             NÍVEL {level}
           </Text>
@@ -81,9 +92,21 @@ export default function CharacterCard() {
           borderTopColor: colors.outlineVariant,
         }}
       >
-        <StatPill label="TREINOS" value={String(totalWorkouts)} color={colors.primary} />
-        <StatPill label="STREAK" value={`${streakDays}d`} color={colors.amber} />
-        <StatPill label="CONQUISTAS" value={String(unlockedCount)} color={colors.green} />
+        <StatPill
+          label="TREINOS"
+          value={String(totalWorkouts)}
+          color={colors.primary}
+        />
+        <StatPill
+          label="STREAK"
+          value={`${streakDays}d`}
+          color={colors.amber}
+        />
+        <StatPill
+          label="CONQUISTAS"
+          value={String(unlockedCount)}
+          color={colors.green}
+        />
       </View>
     </View>
   );
