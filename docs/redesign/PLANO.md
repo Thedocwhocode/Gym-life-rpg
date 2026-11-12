@@ -449,6 +449,22 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     exercícios comuns de ficha (supino, puxada, leg press, cadeira extensora, prancha) pedem o corpo
     deitado ou uma máquina. O rig do pixelfx prende os pés no chão e só inclina o tronco (`tilt = atan2(lean, 13)` em `rig.js`), então não deita o boneco; o script também não desenha máquinas.
     Por isso eles esperam a decisão sobre o sprite próprio.
+  - **Decisão do dono (2026-11-12):** visual aprovado com o herói neutro do pixelfx. Os 7 clipes
+    ficam como estão, e os exercícios deitados ou de máquina esperam um sprite próprio. F10 e F11
+    (#13, #14 e #15) foram mergeadas em `feat/rebrand-gymlife-rpg`.
+
+### Fechamento do plano: o que ainda não dá para verificar daqui (2026-11-12)
+
+Todos os itens de código do plano estão feitos. Os que sobram precisam de aparelho, de dados reais
+ou de segredos que esta máquina (Windows, sem Android SDK) não tem:
+
+| Item | Por que não rodou | O que destrava |
+|---|---|---|
+| T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | um Mac com Xcode |
+| Eval com 3 fichas reais (F8/F10) | não há fichas reais no repo, e fabricar não vale | 3 fichas reais anonimizadas |
+| Teste ponta a ponta do leitor (OpenAI real) | precisa do pro token e da chave da OpenAI no backend | token e chave no ambiente de teste |
+| TalkBack/VoiceOver e fonte em 200% | sem Android SDK nem emulador aqui | instalar SDK e emulador, ou um aparelho |
+| Hermes nativo (bundle medido, não executado) | idem | idem |
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
