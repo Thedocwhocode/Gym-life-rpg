@@ -82,11 +82,13 @@ export default function ActiveQuestPanel() {
                 gap: spacing[2],
               }}
             >
-              <ProgressBar
-                progress={Math.min(ratio, 1)}
-                color={isDone ? colors.green : colors.primary}
-                style={{ flex: 1, height: 4, borderRadius: 2 }}
-              />
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <ProgressBar
+                  progress={Math.min(ratio, 1)}
+                  color={isDone ? colors.green : colors.primary}
+                  style={{ height: 4, borderRadius: 2 }}
+                />
+              </View>
               <Text
                 variant="labelSmall"
                 style={{ color: colors.onSurfaceVariant }}

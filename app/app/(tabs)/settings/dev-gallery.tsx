@@ -3,7 +3,12 @@ import {
   pixelIcons,
   type PixelIconName,
 } from '@/components/presentation/pixel-icons.generated';
+import PaletteChooser from '@/components/presentation/palette-chooser';
+import PixelGallery from '@/components/presentation/pixel/PixelGallery';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { useAppSelector } from '@/store';
+import { setPalette } from '@/store/settings';
+import { useDispatch } from 'react-redux';
 import { Redirect, Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
@@ -23,6 +28,8 @@ const FONTS = [
 
 export default function DevGallery() {
   const { colors } = useAppTheme();
+  const palette = useAppSelector((state) => state.settings.palette);
+  const dispatch = useDispatch();
   if (!__DEV__) return <Redirect href="/(tabs)/settings" />;
 
   return (
@@ -66,9 +73,12 @@ export default function DevGallery() {
           ))}
         </View>
 
-        <Text style={{ color: colors.onSurfaceVariant }}>
-          Primitivos e telas entram a partir da F1.
-        </Text>
+        <Text variant="titleMedium">Primitivos</Text>
+        <PaletteChooser
+          value={palette}
+          onChange={(next) => dispatch(setPalette(next))}
+        />
+        <PixelGallery />
       </View>
     </FullHeightScrollView>
   );

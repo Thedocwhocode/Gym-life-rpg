@@ -3,12 +3,12 @@ import ListSwitch from '@/components/presentation/list-switch';
 import SelectButton, {
   SelectButtonOption,
 } from '@/components/presentation/select-button';
-import ThemeChooser from '@/components/presentation/theme-chooser';
+import PaletteChooser from '@/components/presentation/palette-chooser';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { supportedLanguages } from '@/services/tolgee';
 import { useAppSelector } from '@/store';
 import {
-  setColorSchemeSeed,
+  setPalette,
   setCrashReportsEnabled,
   setFirstDayOfWeek,
   setPreferredLanguage,
@@ -298,9 +298,9 @@ export function WelcomeWizard() {
             />
           )}
         />
-        <ThemeChooser
-          seed={settings.colorSchemeSeed}
-          onUpdateTheme={(x) => dispatch(setColorSchemeSeed(x))}
+        <PaletteChooser
+          value={settings.palette}
+          onChange={(palette) => dispatch(setPalette(palette))}
         />
       </View>
     </View>

@@ -4,7 +4,10 @@ import { WeightUnit } from '@/models/weight';
 import { DayOfWeek, Instant } from '@js-joda/core';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ColorSchemeSeed = 'default' | `#${string}`;
+import { DEFAULT_PALETTE, PaletteId } from '@/theme/palettes';
+
+/** Efeitos visuais: completo, reduzido (sem movimento contínuo) ou desligado (DR20). */
+export type EffectsMode = 'complete' | 'reduced' | 'off';
 
 export type LastBackup = {
   lastSuccessfulRemoteBackupHash: string;
@@ -27,11 +30,12 @@ interface SettingsState {
   remoteBackupSettings: RemoteBackupSettings;
   lastBackup: RemoteData<LastBackup, string>;
   backupReminder: boolean;
-  colorSchemeSeed: ColorSchemeSeed;
+  palette: PaletteId;
   preferredLanguage: string | undefined;
   notesExpandedByDefault: boolean;
   keepScreenAwakeDuringWorkout: boolean;
-  forceDarkMode: boolean;
+  /** `undefined` = seguir a preferência de movimento reduzido do sistema. */
+  effectsMode: EffectsMode | undefined;
 }
 
 interface RemoteBackupSettings {
@@ -59,11 +63,11 @@ const initialState: SettingsState = {
   },
   lastBackup: RemoteData.notAsked(),
   backupReminder: true,
-  colorSchemeSeed: 'default',
+  palette: DEFAULT_PALETTE,
   preferredLanguage: undefined,
   notesExpandedByDefault: false,
   keepScreenAwakeDuringWorkout: false,
-  forceDarkMode: true,
+  effectsMode: undefined,
 };
 
 const settingsSlice = createSlice({
@@ -103,8 +107,8 @@ const settingsSlice = createSlice({
     setKeepScreenAwakeDuringWorkout(state, action: PayloadAction<boolean>) {
       state.keepScreenAwakeDuringWorkout = action.payload;
     },
-    setForceDarkMode(state, action: PayloadAction<boolean>) {
-      state.forceDarkMode = action.payload;
+    setEffectsMode(state, action: PayloadAction<EffectsMode>) {
+      state.effectsMode = action.payload;
     },
     setRemoteBackupSettings(
       state,
@@ -124,8 +128,8 @@ const settingsSlice = createSlice({
     setBackupReminder(state, action: PayloadAction<boolean>) {
       state.backupReminder = action.payload;
     },
-    setColorSchemeSeed(state, action: PayloadAction<ColorSchemeSeed>) {
-      state.colorSchemeSeed = action.payload;
+    setPalette(state, action: PayloadAction<PaletteId>) {
+      state.palette = action.payload;
     },
     setFirstDayOfWeek(state, action: PayloadAction<DayOfWeek>) {
       state.firstDayOfWeek = action.payload;
@@ -176,13 +180,13 @@ export const {
   setRemoteBackupSettings,
   setLastBackup,
   setBackupReminder,
-  setColorSchemeSeed,
+  setPalette,
   setFirstDayOfWeek,
   setProToken,
   setPreferredLanguage,
   setNotesExpandedByDefault,
   setKeepScreenAwakeDuringWorkout,
-  setForceDarkMode,
+  setEffectsMode,
 } = settingsSlice.actions;
 
 export const { selectPreferredWeightUnit } = settingsSlice.selectors;

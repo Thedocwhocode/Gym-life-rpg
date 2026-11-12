@@ -1,14 +1,16 @@
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import ListSwitch from '@/components/presentation/list-switch';
-import ThemeChooser from '@/components/presentation/theme-chooser';
+import PaletteChooser from '@/components/presentation/palette-chooser';
+import EffectsChooser from '@/components/presentation/effects-chooser';
+import { useEffectsMode } from '@/hooks/useEffectsMode';
 import { RootState, useAppSelector } from '@/store';
 import {
-  setColorSchemeSeed,
   setCrashReportsEnabled,
-  setForceDarkMode,
+  setEffectsMode,
   setKeepScreenAwakeDuringWorkout,
   setNotesExpandedByDefault,
+  setPalette,
   setShowBodyweight,
   setShowFeed,
   setShowTips,
@@ -25,6 +27,7 @@ export default function AppConfiguration() {
   const { t } = useTranslate();
   const settings = useAppSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
+  const effectsMode = useEffectsMode();
 
   return (
     <FullHeightScrollView>
@@ -32,11 +35,13 @@ export default function AppConfiguration() {
         options={{ title: t('settings.app_configuration.title') }}
       />
       <List.Section>
-        <ListSwitch
-          headline="Modo Escuro RPG"
-          supportingText="Força o tema escuro para a experiência visual RPG"
-          value={settings.forceDarkMode}
-          onValueChange={(value) => dispatch(setForceDarkMode(value))}
+        <PaletteChooser
+          value={settings.palette}
+          onChange={(palette) => dispatch(setPalette(palette))}
+        />
+        <EffectsChooser
+          value={effectsMode}
+          onChange={(mode) => dispatch(setEffectsMode(mode))}
         />
         <ListSwitch
           testID="setShowBodyweight"
@@ -83,10 +88,6 @@ export default function AppConfiguration() {
           onValueChange={(value) => dispatch(setCrashReportsEnabled(value))}
         />
 
-        <ThemeChooser
-          seed={settings.colorSchemeSeed}
-          onUpdateTheme={(x) => dispatch(setColorSchemeSeed(x))}
-        />
         <Button
           onPress={() => dispatch(setWelcomeWizardCompleted(false))}
           mode="outlined"
