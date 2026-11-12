@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
-import { AppThemeProvider } from '@/hooks/useAppTheme';
-import { I18nManager, LogBox, Platform, useColorScheme } from 'react-native';
+import { AppThemeProvider, useAppTheme } from '@/hooks/useAppTheme';
+import Scanlines from '@/components/presentation/pixel/Scanlines';
+import { I18nManager, LogBox, Platform, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
@@ -12,10 +13,18 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import * as Sentry from '@sentry/react-native';
 import ServicesProvider from '@/components/smart/services-provider';
 import { useFonts } from 'expo-font';
-import { PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
-import { VT323_400Regular } from '@expo-google-fonts/vt323';
+import {
+  PixelifySans_500Medium,
+  PixelifySans_600SemiBold,
+} from '@expo-google-fonts/pixelify-sans';
+import {
+  SpaceMono_400Regular,
+  SpaceMono_700Bold,
+} from '@expo-google-fonts/space-mono';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import RewardDialog from '@/components/smart/reward-dialog';
+import OpeningOverlay from '@/components/smart/opening-overlay';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -31,11 +40,59 @@ if (Platform.OS === 'android') {
   I18nManager.swapLeftAndRightInRTL(true);
 }
 
+/** DR20: na web o app vira uma coluna de 560 px centralizada (header e abas inclusos). */
+const WEB_COLUMN = 560;
+
+function RootStack() {
+  const { colorScheme, palette } = useAppTheme();
+  return (
+    <View
+      style={
+        Platform.OS === 'web'
+          ? { flex: 1, backgroundColor: palette.bgSunken }
+          : { flex: 1 }
+      }
+    >
+      <View
+        style={
+          Platform.OS === 'web'
+            ? {
+                flex: 1,
+                width: '100%',
+                maxWidth: WEB_COLUMN,
+                alignSelf: 'center',
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderColor: palette.line1,
+              }
+            : { flex: 1 }
+        }
+      >
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            statusBarStyle:
+              Platform.OS === 'android'
+                ? colorScheme === 'dark'
+                  ? 'light'
+                  : 'dark'
+                : undefined,
+            gestureEnabled: false,
+          }}
+        />
+      </View>
+      <Scanlines />
+    </View>
+  );
+}
+
 export default Sentry.wrap(function RootLayout() {
-  const colorScheme = useColorScheme();
   const [fontsLoaded] = useFonts({
-    PressStart2P_400Regular,
-    VT323_400Regular,
+    // Redesign fonts (theme/tokens.ts fontFamily).
+    PixelifySans_500Medium,
+    PixelifySans_600SemiBold,
+    SpaceMono_400Regular,
+    SpaceMono_700Bold,
   });
 
   useEffect(() => {
@@ -57,18 +114,9 @@ export default Sentry.wrap(function RootLayout() {
               <AppThemeProvider>
                 <AppStateProvider>
                   <SnackbarProvider>
-                    <Stack
-                      screenOptions={{
-                        headerShown: false,
-                        statusBarStyle:
-                          Platform.OS === 'android'
-                            ? colorScheme === 'dark'
-                              ? 'light'
-                              : 'dark'
-                            : undefined,
-                        gestureEnabled: false,
-                      }}
-                    />
+                    <RewardDialog />
+                    <OpeningOverlay />
+                    <RootStack />
                   </SnackbarProvider>
                 </AppStateProvider>
               </AppThemeProvider>

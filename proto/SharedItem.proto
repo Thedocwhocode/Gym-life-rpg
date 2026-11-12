@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package LiftLog.Ui.Models;
+package GymLifeRpg.Ui.Models;
 
 import "proto/ProgramBlueprintDao/ProgramBlueprintDaoV1.proto";
 
@@ -13,5 +13,5 @@ message SharedItemPayload {
 }
 
 message SharedProgramBlueprintPayload {
-  LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1 program_blueprint = 1;
+  GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1 program_blueprint = 1;
 }

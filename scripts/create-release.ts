@@ -98,7 +98,7 @@ if (!version) {
 }
 
 // Write notes to a temp file
-const tmpFile = join(tmpdir(), `liftlog-release-notes-${version}.md`);
+const tmpFile = join(tmpdir(), `gymliferpg-release-notes-${version}.md`);
 writeFileSync(tmpFile, notes.stdout);
 
 console.log("Created temp file " + tmpFile + ". Opening..");
@@ -115,7 +115,7 @@ console.log("Generating app store release notes...");
 const generatedStoreNotes = await generateStoreNotes(rawNotes);
 
 // Write store notes to a temp file for editing
-const storeNotesFile = join(tmpdir(), `liftlog-store-notes-${version}.txt`);
+const storeNotesFile = join(tmpdir(), `gymliferpg-store-notes-${version}.txt`);
 writeFileSync(storeNotesFile, generatedStoreNotes);
 
 console.log("Opening store notes for editing...");
@@ -160,7 +160,7 @@ for (const workflow of workflows) {
   }
 }
 
-const releaseUrl = `https://github.com/LiamMorrow/LiftLog/releases/tag/${version}`;
+const releaseUrl = `https://github.com/Thedocwhocode/Gym-life-rpg/releases/tag/${version}`;
 
 console.log(
   `Release v${version} created.${prereleaseFlag ? " (prerelease)" : ""}`

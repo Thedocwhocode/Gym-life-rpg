@@ -1,6 +1,6 @@
-import { useAppTheme } from '@/hooks/useAppTheme';
+import ListItem from '@/components/presentation/pixel/ListItem';
+import Switch from '@/components/presentation/pixel/Switch';
 import { ReactNode } from 'react';
-import { List, Switch } from 'react-native-paper';
 
 interface ListSwitchProps {
   headline: ReactNode;
@@ -12,25 +12,26 @@ interface ListSwitchProps {
   disabled?: boolean;
 }
 
+/** Linha de configuração com Switch pixel (a linha toda alterna). */
 export default function ListSwitch(props: ListSwitchProps) {
-  const { colors } = useAppTheme();
   return (
-    <List.Item
-      testID={props.testID!}
+    <ListItem
+      testID={props.testID}
       title={props.headline}
-      style={{
-        backgroundColor: props.focus ? colors.tertiary + '33' : undefined!,
-      }}
       description={props.supportingText}
+      focus={props.focus}
+      disabled={props.disabled}
       onPress={() => props.onValueChange(!props.value)}
-      disabled={props.disabled!}
-      right={() => (
+      trailing={
         <Switch
           value={props.value}
-          disabled={props.disabled!}
+          disabled={props.disabled}
           onValueChange={props.onValueChange}
+          label={
+            typeof props.headline === 'string' ? props.headline : undefined
+          }
         />
-      )}
+      }
     />
   );
 }

@@ -1,4 +1,4 @@
-import { useAppTheme, spacing } from '@/hooks/useAppTheme';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import { ReactNode, useEffect } from 'react';
 import { View, ViewProps } from 'react-native';
 import Animated, {
@@ -45,7 +45,7 @@ export default function FocusRing({
       bottom: pos,
       left: pos,
       right: pos,
-      borderRadius: radius ?? spacing[14],
+      borderRadius: radius ?? 0,
       borderWidth: isSelected
         ? interpolate(growAnim.value, [0, 0.25, 1], [0, 8, 3])
         : 0,

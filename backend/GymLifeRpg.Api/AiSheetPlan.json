@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "The workout plan transcribed from the sheet, exactly as written.",
+  "required": [
+    "Description",
+    "Sessions",
+    "Name"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "Name": {
+      "type": "string",
+      "description": "A short name for the plan"
+    },
+    "Description": {
+      "type": "string",
+      "description": "What the sheet says about the plan as a whole, or an empty string."
+    },
+    "Sessions": {
+      "type": "array",
+      "description": "An array of sessions to perform.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "A session to perform.",
+        "required": [
+          "Name",
+          "Exercises",
+          "Description"
+        ],
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "The name of the session. This might relate to the day of the week, or the type of session (e.g. 'Legs')."
+          },
+          "Description": {
+            "type": "string",
+            "description": "A description of the session. (e.g. 'A session to work the legs')."
+          },
+          "Exercises": {
+            "type": "array",
+            "description": "An array of exercises to perform.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "An exercise to perform.",
+              "required": [
+                "Name",
+                "Sets",
+                "RepsPerSet",
+                "WeightIncreaseOnSuccess",
+                "Notes",
+                "RestBetweenSets"
+              ],
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "The name of the exercise."
+                },
+                "Sets": {
+                  "type": "integer",
+                  "description": "The number of sets to perform."
+                },
+                "RepsPerSet": {
+                  "type": "integer",
+                  "description": "The number of reps to perform.  If the exercise is timed, this is the number of seconds to perform the exercise for."
+                },
+                "WeightIncreaseOnSuccess": {
+                  "type": "number",
+                  "description": "The weight increase the sheet states for completing all reps, or 0 when it states none."
+                },
+                "Notes": {
+                  "type": "string",
+                  "description": "The load and any other notes the sheet gives for this exercise (e.g. 20 kg, tempo 3-1-1), or an empty string."
+                },
+                "RestBetweenSets": {
+                  "type": "object",
+                  "description": "The rest time to use for the exercise.",
+                  "additionalProperties": false,
+                  "required": [
+                    "MinRestSeconds",
+                    "MaxRestSeconds",
+                    "FailureRestSeconds"
+                  ],
+                  "properties": {
+                    "MinRestSeconds": {
+                      "type": "integer",
+                      "description": "The minimum rest time to use for the exercise on successful completion of all reps"
+                    },
+                    "MaxRestSeconds": {
+                      "type": "integer",
+                      "description": "The maximum rest time to use for the exercise on successful completion of all reps.  It MUST be greater than MinRest"
+                    },
+                    "FailureRestSeconds": {
+                      "type": "integer",
+                      "description": "The rest time to use for the exercise on failure to complete all reps in the set. It MUST be greater than MaxRest"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

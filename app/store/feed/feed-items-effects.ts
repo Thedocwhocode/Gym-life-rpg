@@ -9,7 +9,7 @@ import {
   setIsFetching,
 } from '@/store/feed';
 import { addEffect } from '@/store/store';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import {
   FeedIdentity,
   FeedUser,
@@ -276,7 +276,7 @@ async function publishSessionAsync(
   encryptionService: EncryptionService,
   feedApiService: FeedApiService,
 ) {
-  const sessionPayload = LiftLog.Ui.Models.UserEventPayload.create({
+  const sessionPayload = GymLifeRpg.Ui.Models.UserEventPayload.create({
     sessionPayload: {
       session: toSessionDao(
         identity.publishBodyweight
@@ -287,7 +287,7 @@ async function publishSessionAsync(
   });
 
   const payloadBytes =
-    LiftLog.Ui.Models.UserEventPayload.encode(sessionPayload).finish();
+    GymLifeRpg.Ui.Models.UserEventPayload.encode(sessionPayload).finish();
 
   const encryptedData =
     await encryptionService.signRsa256PssAndEncryptAesCbcAsync(
@@ -314,14 +314,14 @@ async function removePublishedSessionAsync(
   encryptionService: EncryptionService,
   feedApiService: FeedApiService,
 ) {
-  const sessionPayload = LiftLog.Ui.Models.UserEventPayload.create({
+  const sessionPayload = GymLifeRpg.Ui.Models.UserEventPayload.create({
     removedSessionPayload: {
       sessionId: toUuidDao(sessionId),
     },
   });
 
   const payloadBytes =
-    LiftLog.Ui.Models.UserEventPayload.encode(sessionPayload).finish();
+    GymLifeRpg.Ui.Models.UserEventPayload.encode(sessionPayload).finish();
 
   const encryptedData =
     await encryptionService.signRsa256PssAndEncryptAesCbcAsync(
@@ -382,7 +382,7 @@ async function getDecryptedUserAsync(
         );
 
       const currentPlanDao =
-        LiftLog.Ui.Models.CurrentPlanDaoV1.decode(decryptedPlanBytes);
+        GymLifeRpg.Ui.Models.CurrentPlanDaoV1.decode(decryptedPlanBytes);
       currentPlan = currentPlanDao.sessions.map(fromSessionBlueprintDao);
     }
 
@@ -440,7 +440,8 @@ async function toFeedItemAsync(
         user.publicKey,
       );
 
-    const payload = LiftLog.Ui.Models.UserEventPayload.decode(decryptedPayload);
+    const payload =
+      GymLifeRpg.Ui.Models.UserEventPayload.decode(decryptedPayload);
 
     const timestamp = OffsetDateTime.parse(userEvent.timestamp).toInstant();
     const expiry = OffsetDateTime.parse(userEvent.expiry).toInstant();

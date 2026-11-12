@@ -1,4 +1,5 @@
-import { google, LiftLog } from '@/gen/proto';
+import { choicesToJson } from '@/store/choices/migrate';
+import { google, GymLifeRpg } from '@/gen/proto';
 import {
   toFeedStateDao,
   toProgramBlueprintDao,
@@ -108,13 +109,16 @@ export function addRemoteBackupEffects() {
           : null;
 
         throwIfCancelled();
-        const dao = new LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
+        const dao = new GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
           sessions: processedSessions,
           activeProgramId: new google.protobuf.StringValue({
             value: activeProgramId,
           }),
           feedState: feedStateDao,
           savedPrograms: savedProgramsDao,
+          choicesJson: new google.protobuf.StringValue({
+            value: choicesToJson(getState().choices),
+          }),
         });
 
         // Yield before expensive serialization
@@ -123,7 +127,7 @@ export function addRemoteBackupEffects() {
 
         // Serialize and compress data
         const daoBytes =
-          LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
+          GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
             dao,
           ).finish();
 
@@ -243,7 +247,7 @@ export function addRemoteBackupEffects() {
           errorMessage += ' [unknown]';
         }
 
-        dispatch(showSnackbar({ text: errorMessage }));
+        dispatch(showSnackbar({ text: errorMessage, tone: 'error' }));
 
         // Update state to indicate failure
         dispatch(setLastBackup(RemoteData.error(errorMessage)));

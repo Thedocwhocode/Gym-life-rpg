@@ -18,5 +18,15 @@ declare namespace Cypress {
     ): Chainable<JQuery<E>>;
 
     completeWelcomeWizard<E>(): Chainable<JQuery<E>>;
+
+    /**
+     * Close the reward screen that opens after a new session is completed
+     */
+    dismissSessionReward<E>(): Chainable<JQuery<E>>;
+
+    /**
+     * Screenshot the element with this test id and diff it against cypress/snapshots/<testId>.png
+     */
+    matchSnapshot(testId: string): Chainable<void>;
   }
 }

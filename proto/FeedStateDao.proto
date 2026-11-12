@@ -1,5 +1,5 @@
 syntax = "proto3";
-package LiftLog.Ui.Models;
+package GymLifeRpg.Ui.Models;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
@@ -9,7 +9,7 @@ import "proto/UserEvent.proto";
 import "proto/Utils.proto";
 
 message FeedIdentityDaoV1 {
-  LiftLog.Ui.Models.UuidDao            id                 = 1;
+  GymLifeRpg.Ui.Models.UuidDao            id                 = 1;
   google.protobuf.StringValue          lookup             = 12;
   bytes                                aes_key            = 2;
   bytes                                public_key         = 9;
@@ -23,7 +23,7 @@ message FeedIdentityDaoV1 {
 }
 
 message FeedUserDaoV1 {
-  LiftLog.Ui.Models.UuidDao   id         = 1;
+  GymLifeRpg.Ui.Models.UuidDao   id         = 1;
   google.protobuf.StringValue lookup     = 9;
   bytes                       public_key = 8;
 
@@ -38,26 +38,26 @@ message FeedUserDaoV1 {
 }
 
 message CurrentPlanDaoV1 {
-  repeated LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2 sessions = 1;
+  repeated GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2 sessions = 1;
 }
 
 message FeedItemDaoV1 {
-  LiftLog.Ui.Models.UuidDao user_id   = 1;
-  LiftLog.Ui.Models.UuidDao event_id  = 2;
+  GymLifeRpg.Ui.Models.UuidDao user_id   = 1;
+  GymLifeRpg.Ui.Models.UuidDao event_id  = 2;
   google.protobuf.Timestamp timestamp = 3;
   google.protobuf.Timestamp expiry    = 4;
   oneof payload {
-    LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2 session = 5;
+    GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2 session = 5;
   }
 }
 
 message FeedStateDaoV1 {
-  repeated LiftLog.Ui.Models.FeedItemDaoV1     feed_items              = 1;
-  repeated LiftLog.Ui.Models.FeedUserDaoV1     followed_users          = 2;
-  optional LiftLog.Ui.Models.FeedIdentityDaoV1 identity                = 3;
-  repeated LiftLog.Ui.Models.InboxMessageDao   follow_requests         = 4;
-  repeated LiftLog.Ui.Models.FeedUserDaoV1     followers               = 5;
-  repeated LiftLog.Ui.Models.UuidDao           unpublished_session_ids = 6;
+  repeated GymLifeRpg.Ui.Models.FeedItemDaoV1     feed_items              = 1;
+  repeated GymLifeRpg.Ui.Models.FeedUserDaoV1     followed_users          = 2;
+  optional GymLifeRpg.Ui.Models.FeedIdentityDaoV1 identity                = 3;
+  repeated GymLifeRpg.Ui.Models.InboxMessageDao   follow_requests         = 4;
+  repeated GymLifeRpg.Ui.Models.FeedUserDaoV1     followers               = 5;
+  repeated GymLifeRpg.Ui.Models.UuidDao           unpublished_session_ids = 6;
   reserved 7; // published rsa key
   repeated string revoked_follow_secrets = 8;
 }

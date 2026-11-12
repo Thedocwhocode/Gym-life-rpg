@@ -1,133 +1,78 @@
-# LiftLog
+# GymLife RPG
 
-<p align="center">
-  <img src="./assets/play_store_feature_graphic.png" alt="LiftLog Play Store Graphic"><br/>
-  <img width="250" src="./assets/AppScreens-LiftLog-1719652395579 2/android/Android Phones - 169/01.png" alt="App Screenshot 1">
-  <img width="250" src="./assets/AppScreens-LiftLog-1719652395579 2/android/Android Phones - 169/02.png" alt="App Screenshot 2">
-  <img width="250" src="./assets/AppScreens-LiftLog-1719652395579 2/android/Android Phones - 169/03.png" alt="App Screenshot 3">
-</p>
+Cada treino é uma missão. O **GymLife RPG** é um app de registro de treinos de academia com
+progressão de RPG: você registra séries e cargas, ganha XP, sobe de nível, cumpre missões
+semanais e desbloqueia conquistas. Roda em Android, iOS e web (React Native + Expo).
 
-<p align="center">
-  <a href='https://play.google.com/store/apps/details?id=com.limajuice.liftlog&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' style="height: 50px;" src='./assets/google-play-badge.png'/></a>
-  <a href="https://apps.apple.com/au/app/liftlog/id6467372581?itsct=apps_box_badge&amp;itscg=30200"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1696550400" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 50px"></a>
-  <a href='https://app.liftlog.online'><img alt='Try demo in your browser' style="height: 50px;" src='./assets/web-badge.png'/></a>
-</p>
+### Principais recursos
 
----
-
-## 🚀 Overview
-
-**LiftLog** is an intuitive, cross-platform gym weight tracking app built with React Native and Expo. It features Material Design 3, AI-powered workout planning, and secure, end-to-end encrypted social feeds. Available on Android, iOS, and the web.
-
-### Key Features
-
-- 📱 Runs on Android, iOS, and web
-- 🧠 AI planner tailors gym plans to your goals and body
-- 🔒 End-to-end encrypted social feeds (opt-in, privacy-first)
-- 🎨 Material Design 3 via React Native Paper
-- 🌐 Internationalization with Tolgee/Weblate (10+ languages)
-- 🏋️‍♂️ Publish workouts, follow other users, and control your feed privacy
-- ⚡ Fast, modern UI with Expo Router and Redux Toolkit
-
-📍 **[View the Roadmap](./ROADMAP.md)** to see what's planned!
+- Registro de treinos (séries, repetições, carga, cardio) e progressão automática de carga
+- XP, níveis, títulos, missões semanais e conquistas
+- Jornada: classe, skills, itens, corações dos dias de treino, mapa de masmorras com chefes e
+  combate por série (cada série golpeia o monstro)
+- Visual pixel art em 4 paletas (Brasa, Ferro, Fósforo, Pergaminho), efeitos e transições de
+  tela com pixelfx; ajuste "Efeitos: Completo / Reduzido / Desligado" e vibração separada
+- Importar ficha em PDF: o leitor de fichas transcreve o PDF (com texto ou escaneado) numa tabela
+  para conferir antes de salvar; não cria treinos (recurso pro)
+- Backup local/remoto e exportação em CSV/JSON
+- Opcionais, só com backend próprio configurado: feed social com criptografia ponta a ponta
+  e leitor de fichas em PDF
+- 14 idiomas via Tolgee
 
 ---
 
-## 🌍 Translations
+## Início rápido
 
-LiftLog uses [Weblate](https://translate.liftlog.online/) for internationalization and translation management. Anyone can create an account and start translating!
-
-[![Translation status](https://translate.liftlog.online/widget/liftlog/multi-auto.svg)](https://translate.liftlog.online/engage/liftlog/)
-
-Want to help translate? [Open an issue or PR](https://github.com/LiamMorrow/LiftLog/issues).
-
----
-
-## ⚡ Quickstart
-
-### Prerequisites
-
-1. **Node.js** (v18+): [Download here](https://nodejs.org/)
-2. **Expo CLI**: `npm install -g expo-cli` ([Guide](https://docs.expo.dev/get-started/set-up-your-environment/))
-3. **Android Studio** (for Android) ([Setup](https://reactnative.dev/docs/environment-setup))
-4. **Xcode** (for iOS, macOS only) ([Setup](https://reactnative.dev/docs/environment-setup?os=macos&platform=ios))
-
-### Run the App
+Pré-requisitos: Node.js 20+, Android Studio (Android) e Xcode (iOS, só no macOS).
 
 ```bash
 cd app
 npm install
-npm run android   # For Android
-npm run ios       # For iOS (macOS only)
-npm run web       # For web
+npm run android   # Android
+npm run ios       # iOS (macOS)
+npm run web       # Web
+npm test          # testes (vitest)
+npm run typecheck
 ```
 
-### Run the Backend API
+### Variáveis de ambiente do app (todas opcionais)
 
-See [`backend/README.md`](./backend/README.md) for more information on running the backend.
+| Variável | Efeito quando ausente |
+|---|---|
+| `EXPO_PUBLIC_API_URL` | Feed e importação de ficha ficam escondidos no build de release |
+| `EXPO_PUBLIC_WEB_URL` | Links de compartilhamento do feed ficam relativos |
+| `EXPO_PUBLIC_SENTRY_DSN` | Relatórios de erro desligados |
+| `EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY` / `EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY` | Recursos "pro" indisponíveis no nativo |
 
----
+### Backend
 
-## 🗂️ Project Structure
-
-LiftLog is organized into several projects:
-
-### Frontend ([app/](./app/))
-
-- **Main React Native app** (Expo)
-- **Components**: `components/` (layout, presentation, smart)
-- **State**: `store/` (Redux Toolkit)
-- **Services**: `services/` (API, business logic)
-- **Hooks**: `hooks/` (custom React hooks)
-- **Translations**: `i18n/` (Tolgee)
-- **Navigation**: Expo Router
-
-### Backend ([LiftLog.Api/](./backend/))
-
-For documentation on running the backend for local development, see [the README](./backend/README.md)
-
-- **Dotnet WebAPI** for feeds, AI plans, and secure data
-- **End-to-end encrypted feeds** (AES)
-- **OpenAI integration** for workout plans
-
-### RevenueCat ([RevenueCat/](./backend/RevenueCat/))
-
-- **Client library** for in-app purchases/subscriptions
-
-### Website ([site/](./site))
-
-- **Source for liftlog.online** and privacy policy
+API .NET 10 com PostgreSQL, usada pelo feed e pelo leitor de fichas em PDF. Veja
+[`backend/README.md`](./backend/README.md).
 
 ---
 
-## 📊 Stats
+## Estrutura
 
-<a href="https://www.star-history.com/#LiamMorrow/LiftLog&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=LiamMorrow/LiftLog&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=LiamMorrow/LiftLog&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=LiamMorrow/LiftLog&type=Date" />
- </picture>
-</a>
+| Pasta | Conteúdo |
+|---|---|
+| [`app/`](./app/) | App React Native (Expo Router, Redux Toolkit, React Native Paper) |
+| [`backend/GymLifeRpg.Api`](./backend/GymLifeRpg.Api) | WebAPI .NET: feeds criptografados, IA, compras |
+| [`backend/RevenueCat`](./backend/RevenueCat) | Cliente gerado da API do RevenueCat |
+| [`proto/`](./proto/) | Schemas protobuf (armazenamento local, backups, feed) |
+| [`tests/`](./tests/) | Testes de integração da API e testes Cypress da web |
+| [`docs/`](./docs/) | [Feed](./docs/FeedProcess.md) · [Backup remoto](./docs/RemoteBackup.md) · [Exportação em texto](./docs/PlaintextExport.md) |
 
----
+## Contribuindo
 
-## 🤝 Contributing
+Veja [CONTRIBUTING.md](./CONTRIBUTING.md). Bugs e sugestões:
+[issues](https://github.com/Thedocwhocode/Gym-life-rpg/issues).
 
-Contributions, issues, and feature requests are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) (or open an issue/PR).
+## Privacidade
 
-## 📚 Documentation
+[PRIVACY.md](./PRIVACY.md)
 
-- [Feed Process](./docs/FeedProcess.md)
-- [Remote Backup](./docs/RemoteBackup.md)
-- [Plaintext Export](./docs/PlaintextExport.md)
+## Licença e créditos
 
-## 💬 Support & Community
-
-- [Discord](https://discord.gg/YHhKEnEnFa)
-- [App Website](https://liftlog.online)
-- [Try Demo](https://app.liftlog.online)
-
----
-
-> **Note:** LiftLog was rewritten from the ground up in React Native. The previous .NET MAUI Blazor implementation is in the `dotnet` branch.
+AGPL-3.0 ([LICENSE](./LICENSE)). O GymLife RPG é um fork independente do
+[LiftLog](https://github.com/LiamMorrow/LiftLog), de Liam Morrow e colaboradores. Os créditos
+completos de terceiros estão em [NOTICE.md](./NOTICE.md).

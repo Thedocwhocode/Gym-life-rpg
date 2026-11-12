@@ -1,3 +1,6 @@
+import { TITLE_MAX_SCALE } from '@/theme/tokens';
+import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
+import ListItem from '@/components/presentation/pixel/ListItem';
 import { SurfaceText } from '@/components/presentation/surface-text';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import {
@@ -11,7 +14,8 @@ import {
 import { useTranslate } from '@tolgee/react';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { Checkbox, List, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import Check from '@/components/presentation/pixel/Check';
 import { match } from 'ts-pattern';
 
 interface SessionDiffViewProps {
@@ -156,7 +160,9 @@ function DiffSection({ title, children }: DiffSectionProps) {
           paddingVertical: spacing[2],
         }}
       >
-        <Text variant="titleSmall">{title}</Text>
+        <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} variant="titleSmall">
+          {title}
+        </Text>
       </View>
       {children}
     </View>
@@ -190,18 +196,13 @@ function DiffChangeRow({
     .otherwise(() => undefined);
 
   return (
-    <List.Item
-      disabled={disabled!}
+    <ListItem
+      disabled={disabled}
       onPress={onToggle}
       title={t(label.key, label.params)}
-      titleStyle={variantColor ? { color: variantColor } : undefined}
+      titleColor={variantColor}
       description={t(description.key, description.params)}
-      left={() => (
-        <Checkbox
-          disabled={disabled!}
-          status={selected ? 'checked' : 'unchecked'}
-        />
-      )}
+      leading={<Check kind="checkbox" disabled={disabled} checked={selected} />}
     />
   );
 }
@@ -218,10 +219,8 @@ function ExerciseModificationGroup({
   onToggleChange,
 }: ExerciseModificationGroupProps) {
   return (
-    <List.Section>
-      <List.Subheader style={{ paddingInlineStart: spacing[2] }}>
-        {modification.exerciseName}
-      </List.Subheader>
+    <View>
+      <AsciiDivider label={modification.exerciseName} />
       {modification.changes.map((change) => (
         <DiffChangeRow
           key={change.id}
@@ -230,6 +229,6 @@ function ExerciseModificationGroup({
           onToggle={() => onToggleChange(change.id)}
         />
       ))}
-    </List.Section>
+    </View>
   );
 }

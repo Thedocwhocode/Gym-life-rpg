@@ -8,7 +8,7 @@ import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Linking, View } from 'react-native';
-import { Card } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { Dropdown } from 'react-native-paper-dropdown';
 import { useDispatch } from 'react-redux';
@@ -39,7 +39,7 @@ export default function PlainTextExportPage() {
           <Button
             onPress={() =>
               openUrl(
-                'https://github.com/LiamMorrow/LiftLog/blob/main/docs/PlaintextExport.md',
+                'https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/docs/PlaintextExport.md',
               )
             }
           >

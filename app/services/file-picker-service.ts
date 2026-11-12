@@ -4,8 +4,10 @@ export type PickedFile = {
   name: string;
 };
 export class FilePickerService {
-  async pickFile(): Promise<PickedFile | undefined> {
+  /** `type`: MIME aceito (padrão: qualquer arquivo). */
+  async pickFile(type?: string): Promise<PickedFile | undefined> {
     const picked = await DocumentPicker.getDocumentAsync({
+      ...(type ? { type } : {}),
       copyToCacheDirectory: true,
       multiple: false,
     });

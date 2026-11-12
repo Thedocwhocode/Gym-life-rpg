@@ -5,7 +5,7 @@ import { useAppTheme, spacing } from '@/hooks/useAppTheme';
 import { RecordedCardioExercise } from '@/models/session-models';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { useState, useCallback, useEffect } from 'react';
-import { useAnimatedValue, Animated, View } from 'react-native';
+import { View } from 'react-native';
 import { match, P } from 'ts-pattern';
 
 export function CardioTimer({
@@ -17,7 +17,6 @@ export function CardioTimer({
 }) {
   const playPauseButtonSize = 24;
   const { colors } = useAppTheme();
-  const animatedRadius = useAnimatedValue(40);
   const [currentBlockStartTime, setCurrentBlockStartTime] = useState<
     OffsetDateTime | undefined
   >();
@@ -78,18 +77,11 @@ export function CardioTimer({
   };
 
   const handlePlayPause = () => {
-    const toValue = currentBlockStartTime ? playPauseButtonSize : 10;
     if (currentBlockStartTime) {
       handlePause();
     } else {
       handlePlay();
     }
-
-    Animated.timing(animatedRadius, {
-      toValue,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
   };
 
   // Update timer
@@ -139,9 +131,6 @@ export function CardioTimer({
           onPress={handlePlayPause}
           containerColor={currentBlockStartTime ? colors.amber : colors.green}
           iconColor={currentBlockStartTime ? colors.onAmber : colors.onGreen}
-          style={{
-            borderRadius: animatedRadius,
-          }}
           mode="contained-tonal"
         />
       </View>

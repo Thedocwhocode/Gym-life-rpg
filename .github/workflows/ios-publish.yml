@@ -101,8 +101,8 @@ jobs:
         run: |
           mkdir -p ios/build
           xcodebuild archive \
-            -workspace ios/LiftLog.xcworkspace \
-            -scheme LiftLog \
+            -workspace ios/GymLifeRPG.xcworkspace \
+            -scheme GymLifeRPG \
             -sdk iphoneos \
             -configuration Release \
             -archivePath "${PWD}/ios/build/App.xcarchive" \
@@ -130,7 +130,7 @@ jobs:
         run: |
           xcrun altool \
             --upload-app \
-            -f app/ios/build/export/LiftLog.ipa \
+            -f app/ios/build/export/GymLifeRPG.ipa \
             -t ios \
             -u ${{ secrets.APPLE_UPLOAD_USER }} \
             -p '${{ secrets.APPLE_UPLOAD_PASS }}'

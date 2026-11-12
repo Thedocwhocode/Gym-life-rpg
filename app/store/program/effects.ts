@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { BuiltInPrograms } from '@/models/built-in-programs';
 import { RemoteData } from '@/models/remote';
 import { ProgramBlueprint } from '@/models/blueprint-models';
@@ -55,7 +55,7 @@ export function applyProgramEffects() {
       }
       if (programBytes) {
         const decoded =
-          LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.decode(
+          GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.decode(
             programBytes,
           );
         const converted = Object.fromEntries(
@@ -203,21 +203,23 @@ async function persistPrograms(
 ) {
   try {
     const currentSessionStateDao =
-      new LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1({
-        activeProgramId: toStringValue(
-          stateAfterReduce.program.activeProgramId,
-        ),
-        programBlueprints: Object.fromEntries(
-          Object.entries(stateAfterReduce.program.savedPrograms).map(
-            ([key, program]) => [
-              key,
-              toProgramBlueprintDao(ProgramBlueprint.fromPOJO(program)),
-            ],
+      new GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1(
+        {
+          activeProgramId: toStringValue(
+            stateAfterReduce.program.activeProgramId,
           ),
-        ),
-      });
+          programBlueprints: Object.fromEntries(
+            Object.entries(stateAfterReduce.program.savedPrograms).map(
+              ([key, program]) => [
+                key,
+                toProgramBlueprintDao(ProgramBlueprint.fromPOJO(program)),
+              ],
+            ),
+          ),
+        },
+      );
     const bytes =
-      LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.encode(
+      GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.encode(
         currentSessionStateDao,
       ).finish();
     await keyValueStore.setItem(`${storageKey}-Version`, '1');

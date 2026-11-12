@@ -1,4 +1,5 @@
-import { google, LiftLog } from '@/gen/proto';
+import { choicesToJson } from '@/store/choices/migrate';
+import { google, GymLifeRpg } from '@/gen/proto';
 import {
   toFeedStateDao,
   toProgramBlueprintDao,
@@ -28,16 +29,19 @@ export function addExportBackupEffects() {
       const activeProgramId = getState().program.activeProgramId;
       const feedStateDao = includeFeed ? toFeedStateDao(getState().feed) : null;
 
-      const dao = new LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
+      const dao = new GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2({
         sessions: sessions.map(toSessionDao),
         activeProgramId: new google.protobuf.StringValue({
           value: activeProgramId,
         }),
         feedState: feedStateDao,
         savedPrograms: savedProgramsDao,
+        choicesJson: new google.protobuf.StringValue({
+          value: choicesToJson(getState().choices),
+        }),
       });
       const daoBytes =
-        LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
+        GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.encode(
           dao,
         ).finish();
       const stream = new CompressionStream('gzip');
@@ -51,7 +55,7 @@ export function addExportBackupEffects() {
       await writer.close();
 
       await fileExportService.exportBytes(
-        'export.liftlogbackup.gz',
+        'export.gymliferpg.gz',
         await gzippedPromise,
         'application/octet-stream',
       );

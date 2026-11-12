@@ -1,4 +1,4 @@
-# LiftLog React
+# GymLife RPG — app (Expo)
 
 ## 🚀 How to use
 

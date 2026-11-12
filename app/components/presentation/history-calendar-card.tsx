@@ -1,13 +1,15 @@
 import { SurfaceText } from '@/components/presentation/surface-text';
-import { spacing, useAppTheme } from '@/hooks/useAppTheme';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import { Session } from '@/models/session-models';
 import { useAppSelector } from '@/store';
 import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek, LocalDate, Year, YearMonth } from '@js-joda/core';
 import Enumerable from 'linq';
 import { I18nManager, View } from 'react-native';
-import { Card } from 'react-native-paper';
-import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
+import IconButton from '@/components/presentation/pixel/IconButton';
+import PixelBox from '@/components/presentation/pixel/PixelBox';
+import { size, steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
+import { useTranslate } from '@tolgee/react';
 import TouchableRipple from '@/components/presentation/gesture-wrappers/touchable-ripple';
 import Animated, { ZoomIn } from 'react-native-reanimated';
 import { ReactNode } from 'react';
@@ -37,6 +39,8 @@ export default function HistoryCalendarCard({
     1,
   );
   const formatDate = useFormatDate();
+  const { t } = useTranslate();
+  const { palette } = useAppTheme();
   const dayOfFirstDayOfTheMonth = firstDayOfMonth.dayOfWeek().value();
   const firstDayOfWeek = useAppSelector((x) => x.settings.firstDayOfWeek);
   const numberOfDaysToShowFromPreviousMonth =
@@ -77,22 +81,22 @@ export default function HistoryCalendarCard({
 
   const navButtons = (
     <ForceLTRRow>
-      <View style={{ flex: 1, marginVertical: spacing[2] }}>
-        <IconButton
-          testID="calendar-nav-previous-month"
-          icon={'chevronLeft'}
-          onPress={previousMonth}
-        />
-      </View>
-      <View
-        style={{
-          flex: 5,
-          marginVertical: spacing[2],
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <SurfaceText testID="calendar-month">
+      <IconButton
+        testID="calendar-nav-previous-month"
+        icon="chevron-left"
+        label={t('rpg.calendar.previous')}
+        onPress={previousMonth}
+      />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <SurfaceText
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          testID="calendar-month"
+          style={{
+            ...type.titleSm,
+            color: palette.text1,
+            textTransform: 'uppercase',
+          }}
+        >
           {formatDate(firstDayOfMonth, {
             month: 'long',
             year:
@@ -102,15 +106,13 @@ export default function HistoryCalendarCard({
           })}
         </SurfaceText>
       </View>
-
-      <View style={{ flex: 1, marginVertical: spacing[2] }}>
-        <IconButton
-          testID="calendar-nav-next-month"
-          icon={'chevronRight'}
-          onPress={nextMonth}
-          disabled={disableNextMonth}
-        />
-      </View>
+      <IconButton
+        testID="calendar-nav-next-month"
+        icon="chevron-right"
+        label={t('rpg.calendar.next')}
+        onPress={nextMonth}
+        disabled={disableNextMonth}
+      />
     </ForceLTRRow>
   );
 
@@ -128,12 +130,14 @@ export default function HistoryCalendarCard({
             <SurfaceText
               key={dayOfWeek}
               style={{
-                marginBottom: spacing[2],
+                ...type.label,
+                color: palette.text3,
+                marginVertical: 8,
                 textAlign: 'center',
               }}
             >
               {formatDate(getDateOnDay(DayOfWeek.of(dayOfWeek + 1)), {
-                weekday: 'short',
+                weekday: 'narrow',
               })}
             </SurfaceText>
           </View>
@@ -211,23 +215,13 @@ export default function HistoryCalendarCard({
     );
 
   return (
-    <Card mode="contained">
-      <Card.Content>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'stretch',
-            flex: 3,
-          }}
-        >
-          {navButtons}
-          {dayHeaders}
-          {daysInSections.map((days, i) => (
-            <ForceLTRRow key={i}>{days}</ForceLTRRow>
-          ))}
-        </View>
-      </Card.Content>
-    </Card>
+    <PixelBox padding={12} innerStyle={{ gap: 2 }}>
+      {navButtons}
+      {dayHeaders}
+      {daysInSections.map((days, i) => (
+        <ForceLTRRow key={i}>{days}</ForceLTRRow>
+      ))}
+    </PixelBox>
   );
 }
 
@@ -242,49 +236,60 @@ function HistoryCalendarDay(props: {
   const hasSessions = props.sessions.any();
   const isTodayWithNoSessions =
     props.day.equals(LocalDate.now()) && !hasSessions;
-  const { colors } = useAppTheme();
+  const isToday = props.day.equals(LocalDate.now());
+  const { palette } = useAppTheme();
   const formatDate = useFormatDate();
   return (
     <Animated.View
       entering={ZoomIn.delay(props.delayEntranceAnimMs)}
-      style={{
-        flex: 1,
-        borderRadius: 1000,
-        overflow: 'hidden',
-        alignItems: 'center',
-      }}
+      style={{ flex: 1, alignItems: 'center', paddingVertical: 2 }}
     >
+      {/* DR19: célula visual de 34 px, alvo de toque de 44 px. */}
       <TouchableRipple
         onPress={props.onPress}
         onLongPress={props.onLongPress}
         disabled={isFuture}
-        style={{
-          padding: spacing[1],
-          borderRadius: 1000,
-          overflow: 'hidden',
-        }}
+        style={{ padding: (size.hitMin - 34) / 2 }}
       >
-        <View
-          style={{
+        <PixelBox
+          steps={steps.control}
+          padding={0}
+          borderColor={
+            hasSessions
+              ? palette.accentStrong
+              : isToday
+                ? palette.accent
+                : 'transparent'
+          }
+          fillColor={
+            hasSessions
+              ? palette.accent
+              : isToday
+                ? palette.surface3
+                : 'transparent'
+          }
+          innerStyle={{
+            width: 34,
+            height: 34,
             alignItems: 'center',
             justifyContent: 'center',
-            aspectRatio: '1/1',
-            width: spacing[10],
-            borderRadius: 1000,
-            borderColor: isTodayWithNoSessions ? colors.primary : 'transparent',
-            borderWidth: 1,
-            backgroundColor: props.sessions.any()
-              ? colors.primary
-              : 'transparent',
           }}
         >
           <SurfaceText
-            style={{ textAlign: 'center' }}
-            color={hasSessions ? 'onPrimary' : 'onSurface'}
+            style={{
+              ...type.body,
+              textAlign: 'center',
+              color: hasSessions
+                ? palette.textOnAccent
+                : isFuture
+                  ? palette.textDisabled
+                  : palette.text1,
+            }}
+            weight={hasSessions || isTodayWithNoSessions ? 'bold' : undefined}
           >
             {formatDate(props.day, { day: 'numeric' })}
           </SurfaceText>
-        </View>
+        </PixelBox>
       </TouchableRipple>
     </Animated.View>
   );

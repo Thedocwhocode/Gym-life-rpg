@@ -1,35 +1,49 @@
+import { View } from 'react-native';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import ListSwitch from '@/components/presentation/list-switch';
-import ThemeChooser from '@/components/presentation/theme-chooser';
+import PaletteChooser from '@/components/presentation/palette-chooser';
+import EffectsChooser from '@/components/presentation/effects-chooser';
+import { useEffectsMode } from '@/hooks/useEffectsMode';
 import { RootState, useAppSelector } from '@/store';
 import {
-  setColorSchemeSeed,
   setCrashReportsEnabled,
+  setEffectsMode,
   setKeepScreenAwakeDuringWorkout,
   setNotesExpandedByDefault,
+  setPalette,
   setShowBodyweight,
+  setHaptics,
   setShowFeed,
   setShowTips,
   setWelcomeWizardCompleted,
 } from '@/store/settings';
 import { T, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
-import { List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { spacing } from '@/hooks/useAppTheme';
+import { isBackendConfigured } from '@/services/api-consts';
 
 export default function AppConfiguration() {
   const { t } = useTranslate();
   const settings = useAppSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
+  const effectsMode = useEffectsMode();
 
   return (
     <FullHeightScrollView>
       <Stack.Screen
         options={{ title: t('settings.app_configuration.title') }}
       />
-      <List.Section>
+      <View>
+        <PaletteChooser
+          value={settings.palette}
+          onChange={(palette) => dispatch(setPalette(palette))}
+        />
+        <EffectsChooser
+          value={effectsMode}
+          onChange={(mode) => dispatch(setEffectsMode(mode))}
+        />
         <ListSwitch
           testID="setShowBodyweight"
           headline={<T keyName="settings.show_bodyweight.label" />}
@@ -38,11 +52,20 @@ export default function AppConfiguration() {
           onValueChange={(value) => dispatch(setShowBodyweight(value))}
         />
         <ListSwitch
-          headline={<T keyName="feed.show_feed.label" />}
-          supportingText={<T keyName="feed.show_feed.subtitle" />}
-          value={settings.showFeed}
-          onValueChange={(value) => dispatch(setShowFeed(value))}
+          testID="setHaptics"
+          headline={<T keyName="settings.haptics.label" />}
+          supportingText={<T keyName="settings.haptics.subtitle" />}
+          value={settings.haptics}
+          onValueChange={(value) => dispatch(setHaptics(value))}
         />
+        {isBackendConfigured && (
+          <ListSwitch
+            headline={<T keyName="feed.show_feed.label" />}
+            supportingText={<T keyName="feed.show_feed.subtitle" />}
+            value={settings.showFeed}
+            onValueChange={(value) => dispatch(setShowFeed(value))}
+          />
+        )}
 
         <ListSwitch
           headline={<T keyName="workout.notes_expanded_by_default.label" />}
@@ -73,10 +96,6 @@ export default function AppConfiguration() {
           onValueChange={(value) => dispatch(setCrashReportsEnabled(value))}
         />
 
-        <ThemeChooser
-          seed={settings.colorSchemeSeed}
-          onUpdateTheme={(x) => dispatch(setColorSchemeSeed(x))}
-        />
         <Button
           onPress={() => dispatch(setWelcomeWizardCompleted(false))}
           mode="outlined"
@@ -84,7 +103,7 @@ export default function AppConfiguration() {
         >
           {t('onboarding.start_setup_wizard.button')}
         </Button>
-      </List.Section>
+      </View>
     </FullHeightScrollView>
   );
 }

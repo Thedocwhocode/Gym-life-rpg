@@ -16,6 +16,7 @@ import { FeedIdentity, FeedItem, SessionFeedItem } from '@/models/feed-models';
 import { useAppSelector } from '@/store';
 import { shareString } from '@/store/app';
 import {
+  createFeedIdentity,
   fetchFeedItems,
   fetchInboxItems,
   resetFeedAccount,
@@ -27,16 +28,27 @@ import {
 import { T, useTranslate } from '@tolgee/react';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Card, Icon, List, TextInput } from 'react-native-paper';
+import { Icon, TextInput } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import { FlashList } from '@shopify/flash-list';
+import { webBaseUrl } from '@/services/api-consts';
 
 export default function Feed() {
   const feedItems = useAppSelector(selectFeedSessionItems);
   const { handleScroll } = useScroll();
   const fetchingFeedItems = useAppSelector((x) => x.feed.isFetching);
+  // DR7: com a identidade em erro, o erro ocupa o lugar do conteúdo (sem o vazio embaixo).
+  const identityFailed = useAppSelector((x) =>
+    selectFeedIdentityRemote(x).match({
+      notAsked: () => false,
+      loading: () => false,
+      success: () => false,
+      error: () => true,
+    }),
+  );
   const dispatch = useDispatch();
   return (
     <FlashList
@@ -47,9 +59,11 @@ export default function Feed() {
         dispatch(fetchFeedItems({ fromUserAction: true }));
       }}
       ListEmptyComponent={
-        <EmptyInfo style={{ marginTop: spacing[8] }}>
-          <T keyName="feed.no_following_data.message" />
-        </EmptyInfo>
+        identityFailed ? null : (
+          <EmptyInfo style={{ marginTop: spacing[8] }}>
+            <T keyName="feed.no_following_data.message" />
+          </EmptyInfo>
+        )
       }
       refreshing={fetchingFeedItems}
       onScroll={handleScroll}
@@ -68,10 +82,23 @@ export default function Feed() {
 
 function FeedProfileHeader() {
   const identityRemote = useAppSelector(selectFeedIdentityRemote);
+  const dispatch = useDispatch();
+  // Offline na 1ª abertura a identidade não nasce: "Tentar" refaz com os padrões do init (DR7).
+  const retry = () =>
+    dispatch(
+      createFeedIdentity({
+        name: undefined,
+        publishBodyweight: false,
+        publishPlan: false,
+        publishWorkouts: false,
+        fromUserAction: true,
+      }),
+    );
 
   return (
     <Remote
       value={identityRemote}
+      retry={retry}
       success={(identity) => <FeedProfile identity={identity} />}
     />
   );
@@ -81,7 +108,7 @@ function FeedProfile({ identity }: { identity: FeedIdentity }) {
   const dispatch = useDispatch();
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [focusPublish, setFocusPublish] = useState(false);
-  const shareUrl = `https://app.liftlog.online/feed/share?id=${identity.lookup}${
+  const shareUrl = `${webBaseUrl}/feed/share?id=${identity.lookup}${
     identity.name ? `&name=${encodeURIComponent(identity.name)}` : ''
   }`;
   const { t } = useTranslate();
@@ -213,7 +240,7 @@ function FeedProfileEditor({
             />
           </LabelledFormRow>
         </LabelledForm>
-        <List.Section>
+        <View>
           <ListSwitch
             testID="feed-publish-workouts-switch"
             focus={focusPublish}
@@ -238,7 +265,7 @@ function FeedProfileEditor({
             value={identity.publishPlan}
             onValueChange={(publishPlan) => updateProfile({ publishPlan })}
           />
-        </List.Section>
+        </View>
         <Button onPress={() => setResetAccountDialogOpen(true)}>
           {t('feed.reset_account.button')}
         </Button>

@@ -1,7 +1,8 @@
 import { KeyValueStore } from '@/services/key-value-store';
-import { ColorSchemeSeed } from '@/store/settings';
+import { EffectsMode } from '@/store/settings';
+import { DEFAULT_PALETTE, isPaletteId, PaletteId } from '@/theme/palettes';
 import { DayOfWeek, Instant } from '@js-joda/core';
-import { match, P } from 'ts-pattern';
+import { match } from 'ts-pattern';
 
 export enum AppRatingResult {
   NotRated = 'NotRated',
@@ -101,6 +102,15 @@ export class PreferenceService {
 
   async getShowBodyweight(): Promise<boolean> {
     const value = await this.keyValueStore.getItem('showBodyweight');
+    return fromBooleanString(value, true);
+  }
+
+  async setHaptics(haptics: boolean): Promise<void> {
+    await this.keyValueStore.setItem('haptics', toBooleanString(haptics));
+  }
+
+  async getHaptics(): Promise<boolean> {
+    const value = await this.keyValueStore.getItem('haptics');
     return fromBooleanString(value, true);
   }
 
@@ -267,16 +277,19 @@ export class PreferenceService {
     );
   }
 
-  async setColorSchemeSeed(payload: ColorSchemeSeed): Promise<void> {
-    await this.keyValueStore.setItem('colorSchemeSeed', payload);
+  async setPalette(payload: PaletteId): Promise<void> {
+    await this.keyValueStore.setItem('palette', payload);
   }
 
-  async getColorSchemeSeed(): Promise<ColorSchemeSeed> {
-    const value = await this.keyValueStore.getItem('colorSchemeSeed');
-    return match(value)
-      .returnType<ColorSchemeSeed>()
-      .with(P.string.regex(/^#[0-9a-fA-F]{6}$/), (v) => v as ColorSchemeSeed)
-      .otherwise(() => 'default');
+  /**
+   * Sem paleta salva, migra o antigo "modo escuro": quem tinha desligado
+   * (`forceDarkMode=false`) fica com Pergaminho, os demais com Brasa.
+   */
+  async getPalette(): Promise<PaletteId> {
+    const value = await this.keyValueStore.getItem('palette');
+    if (isPaletteId(value)) return value;
+    const forceDark = await this.keyValueStore.getItem('forceDarkMode');
+    return fromBooleanString(forceDark, true) ? DEFAULT_PALETTE : 'pergaminho';
   }
 
   async setFirstDayOfWeek(firstDayOfWeek: DayOfWeek): Promise<void> {
@@ -303,5 +316,16 @@ export class PreferenceService {
     return lang
       ? this.keyValueStore.setItem('preferredLanguage', lang)
       : this.keyValueStore.removeItem('preferredLanguage');
+  }
+
+  async getEffectsMode(): Promise<EffectsMode | undefined> {
+    const value = await this.keyValueStore.getItem('effectsMode');
+    return value === 'complete' || value === 'reduced' || value === 'off'
+      ? value
+      : undefined;
+  }
+
+  async setEffectsMode(value: EffectsMode): Promise<void> {
+    await this.keyValueStore.setItem('effectsMode', value);
   }
 }

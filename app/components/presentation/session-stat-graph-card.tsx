@@ -1,15 +1,15 @@
 import { OptionalStatisticOverTime } from '@/store/stats';
 import { usePreferredWeightUnit } from '@/hooks/usePreferredWeightUnit';
 import { LineChart, lineDataItem } from 'react-native-gifted-charts';
-import { View } from 'react-native';
-import { spacing, useAppTheme } from '@/hooks/useAppTheme';
+import { Text, View } from 'react-native';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import { useState } from 'react';
-import { SurfaceText } from '@/components/presentation/surface-text';
 import { useTranslate } from '@tolgee/react';
 import { lineGraphProps } from '@/components/presentation/line-graph-props';
-import { Text } from 'react-native-paper';
 import { Weight } from '@/models/weight';
 import { useFormatDate } from '@/hooks/useFormatDate';
+import PixelBox from '@/components/presentation/pixel/PixelBox';
+import { type } from '@/theme/tokens';
 
 export default function SessionStatGraphCard(props: {
   sessionStats: OptionalStatisticOverTime<Weight>[];
@@ -17,19 +17,16 @@ export default function SessionStatGraphCard(props: {
   const formatDate = useFormatDate();
   const weightUnit = usePreferredWeightUnit();
   const { t } = useTranslate();
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
   const pointColors = [
-    colors.green,
-    colors.red,
-    colors.orange,
-    colors.blue,
-    colors.purple,
-    colors.pink,
-    colors.teal,
-    colors.cyan,
-    colors.brown,
-    colors.indigo,
-    colors.amber,
+    palette.accent,
+    palette.success,
+    palette.attrStr,
+    palette.attrDex,
+    palette.attrCon,
+    palette.attrSta,
+    palette.reward,
+    palette.steel,
   ];
   const points: lineDataItem[][] = props.sessionStats.map((x) =>
     x.statistics.map(
@@ -54,60 +51,42 @@ export default function SessionStatGraphCard(props: {
     return undefined;
   }
   return (
-    <View
-      onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-      style={{ gap: spacing[2] }}
-      testID="session-stat-card"
-    >
-      <SurfaceText font="text-2xl" style={{ textAlign: 'center' }}>
+    <PixelBox padding={12} innerStyle={{ gap: 8 }} testID="session-stat-card">
+      <Text style={{ ...type.label, color: palette.text2 }}>
         {t('workout.sessions.title')}
-      </SurfaceText>
-      <LineChart
-        dataSet={points.map((x, i) => ({
-          data: x,
-          color: pointColors[i % pointColors.length],
-          dataPointsColor: pointColors[i % pointColors.length],
-        }))}
-        {...lineGraphProps(
-          colors,
-          width,
-          Math.max(...points.map((x) => x.length)),
-        )}
-      />
+      </Text>
+      <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>
+        <LineChart
+          dataSet={points.map((x, i) => ({
+            data: x,
+            color: pointColors[i % pointColors.length],
+            dataPointsColor: pointColors[i % pointColors.length],
+          }))}
+          {...lineGraphProps(
+            palette,
+            width,
+            Math.max(...points.map((x) => x.length)),
+          )}
+        />
+      </View>
       <View
         testID="stats-legend"
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: spacing[2],
-          marginTop: spacing[2],
-        }}
+        style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}
       >
-        {legendItems.map((item, idx) => (
+        {legendItems.map((item) => (
           <View
             key={item.key}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginRight: spacing[2],
-              marginBottom: spacing[1],
-            }}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
           >
             <View
-              style={{
-                width: 14,
-                height: 14,
-                borderRadius: 7,
-                backgroundColor: item.color,
-                borderColor: colors.outline,
-                marginRight: 6,
-              }}
+              style={{ width: 10, height: 10, backgroundColor: item.color }}
             />
-            <Text style={{ color: colors.onSurface }}>{item.key}</Text>
+            <Text style={{ ...type.small, color: palette.text2 }}>
+              {item.key}
+            </Text>
           </View>
         ))}
       </View>
-    </View>
+    </PixelBox>
   );
 }

@@ -1,10 +1,5 @@
 import { useAppSelector } from '@/store';
-import {
-  Material3Scheme,
-  useMaterial3Theme,
-} from '@pchmn/expo-material3-theme';
-import React, { createContext, ReactNode, useContext, useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 import {
   MD3DarkTheme,
   MD3LightTheme,
@@ -18,16 +13,16 @@ import {
   Theme,
 } from '@react-navigation/native';
 import { MsIconSrc } from '@/components/presentation/ms-icon-source';
-import {
-  argbFromHex,
-  Blend,
-  Hct,
-  hexFromArgb,
-} from '@material/material-color-utilities';
+import { fixedColors, Palette, palettes } from '@/theme/palettes';
+import { AppThemeColors, buildScheme } from '@/theme/scheme';
+import { fontFamily } from '@/theme/tokens';
 
+export type { AppThemeColors } from '@/theme/scheme';
+
+// Redesign: cantos retos em todo o app (roundness 0).
 export const rounding = {
-  roundedRectangleRadius: 10,
-  roundedRectangleFocusRingRadius: 15,
+  roundedRectangleRadius: 0,
+  roundedRectangleFocusRingRadius: 0,
 };
 
 export const spacing = {
@@ -102,111 +97,108 @@ export const font = {
   },
 } as const;
 
+// Display/headline/title em Pixelify Sans; body/label em Space Mono (design-spec §A.3).
 const fontConfig = {
   displayLarge: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.display,
     fontSize: 57,
     lineHeight: 64,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
   displayMedium: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.display,
     fontSize: 45,
     lineHeight: 52,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
   displaySmall: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.display,
     fontSize: 36,
     lineHeight: 44,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
-
   headlineLarge: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.displayBold,
     fontSize: 32,
     lineHeight: 40,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
   headlineMedium: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.displayBold,
     fontSize: 28,
     lineHeight: 36,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
   headlineSmall: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.displayBold,
     fontSize: 24,
     lineHeight: 32,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
-
   titleLarge: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.displayBold,
     fontSize: 22,
     lineHeight: 28,
     letterSpacing: 0,
     fontWeight: '400' as const,
   },
   titleMedium: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.display,
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.15,
     fontWeight: '400' as const,
   },
   titleSmall: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: fontFamily.display,
     fontSize: 14,
     lineHeight: 20,
     letterSpacing: 0.1,
     fontWeight: '400' as const,
   },
-
   labelLarge: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.monoBold,
     fontSize: 14,
     lineHeight: 20,
     letterSpacing: 0.1,
     fontWeight: '400' as const,
   },
   labelMedium: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.monoBold,
     fontSize: 12,
     lineHeight: 16,
     letterSpacing: 0.5,
     fontWeight: '400' as const,
   },
   labelSmall: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.monoBold,
     fontSize: 11,
     lineHeight: 16,
     letterSpacing: 0.5,
     fontWeight: '400' as const,
   },
-
   bodyLarge: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.mono,
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.15,
     fontWeight: '400' as const,
   },
   bodyMedium: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.mono,
     fontSize: 14,
     lineHeight: 20,
     letterSpacing: 0.25,
     fontWeight: '400' as const,
   },
   bodySmall: {
-    fontFamily: 'VT323_400Regular',
+    fontFamily: fontFamily.mono,
     fontSize: 12,
     lineHeight: 16,
     letterSpacing: 0.4,
@@ -215,37 +207,6 @@ const fontConfig = {
 };
 
 export type FontChoice = keyof typeof font;
-
-type ColorPair<T extends string> = { [k in T | `on${Capitalize<T>}`]: string };
-
-export type AppThemeColors = Material3Scheme & {
-  orange: string;
-  onOrange: string;
-  red: string;
-  onRed: string;
-  green: string;
-  onGreen: string;
-  blue: string;
-  onBlue: string;
-  yellow: string;
-  onYellow: string;
-  purple: string;
-  onPurple: string;
-  pink: string;
-  onPink: string;
-  teal: string;
-  onTeal: string;
-  cyan: string;
-  onCyan: string;
-  brown: string;
-  onBrown: string;
-  indigo: string;
-  onIndigo: string;
-  lime: string;
-  onLime: string;
-  amber: string;
-  onAmber: string;
-};
 
 export type ColorChoice = keyof {
   [K in keyof AppThemeColors as AppThemeColors[K] extends string
@@ -256,6 +217,10 @@ export type ColorChoice = keyof {
 export interface AppTheme {
   colors: AppThemeColors;
   colorScheme: 'light' | 'dark';
+  /** Paleta ativa: acesso direto aos aliases semânticos (`surface1`, `line2`…). */
+  palette: Palette;
+  /** Cores que não mudam com a paleta (palco de FX, brilhos âmbar). */
+  fixed: typeof fixedColors;
 }
 
 const AppThemeContext = createContext<AppTheme | undefined>(undefined);
@@ -275,65 +240,44 @@ interface AppThemeProviderProps {
 export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
   children,
 }) => {
-  const colorSchemeSeed = useAppSelector(
-    (state) => state.settings.colorSchemeSeed,
+  const paletteId = useAppSelector((state) => state.settings.palette);
+  const palette = palettes[paletteId];
+  const isDark = palette.isDark;
+
+  const appTheme = useMemo<AppTheme>(
+    () => ({
+      colors: buildScheme(palette),
+      colorScheme: isDark ? 'dark' : 'light',
+      palette,
+      fixed: fixedColors,
+    }),
+    [palette, isDark],
   );
 
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  // If the device is not compatible, it will return a theme based on the fallback source color (optional, default to #6750A4)
-  const { theme, updateTheme, resetTheme } = useMaterial3Theme({
-    fallbackSourceColor: '0x005500',
-    sourceColor: colorSchemeSeed === 'default' ? undefined! : colorSchemeSeed,
-  });
-  useEffect(() => {
-    if (colorSchemeSeed === 'default') {
-      resetTheme();
-    } else {
-      updateTheme(colorSchemeSeed);
-    }
-    // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [colorSchemeSeed]);
-  const schemedTheme = colorScheme === 'dark' ? theme.dark : theme.light;
+  const paperTheme = useMemo(() => {
+    const base = isDark ? MD3DarkTheme : MD3LightTheme;
+    return {
+      ...base,
+      roundness: 0,
+      colors: appTheme.colors,
+      fonts: configureFonts({ config: fontConfig }),
+    };
+  }, [appTheme, isDark]);
 
-  const fonts = configureFonts({ config: fontConfig });
-
-  const paperTheme = isDark
-    ? { ...MD3DarkTheme, colors: theme.dark, fonts }
-    : { ...MD3LightTheme, colors: theme.light, fonts };
-  const appTheme = {
-    colors: {
-      ...schemedTheme,
-      ...colorPair('orange', 'ffffa500', schemedTheme.primary, isDark),
-      ...colorPair('red', 'ffff0000', schemedTheme.primary, isDark),
-      ...colorPair('yellow', 'ffffff00', schemedTheme.primary, isDark),
-      ...colorPair('blue', 'ff0000aa', schemedTheme.primary, isDark),
-      ...colorPair('green', 'ff00aa00', schemedTheme.primary, isDark),
-      ...colorPair('purple', 'ff800080', schemedTheme.primary, isDark),
-      ...colorPair('pink', 'ffff69b4', schemedTheme.primary, isDark),
-      ...colorPair('teal', 'ff008080', schemedTheme.primary, isDark),
-      ...colorPair('cyan', 'ff00ffff', schemedTheme.primary, isDark),
-      ...colorPair('brown', 'ff8b4513', schemedTheme.primary, isDark),
-      ...colorPair('indigo', 'ff4b0082', schemedTheme.primary, isDark),
-      ...colorPair('lime', 'ffcddc39', schemedTheme.primary, isDark),
-      ...colorPair('amber', 'ffffc107', schemedTheme.primary, isDark),
-    } satisfies AppThemeColors,
-    colorScheme: colorScheme ?? 'light',
-  };
-
-  const baseNavigationThem = isDark ? DarkTheme : DefaultTheme;
-  const navigationTheme: Theme = {
-    ...baseNavigationThem,
-    colors: {
-      background: paperTheme.colors.background,
-      border: paperTheme.colors.outline,
-      card: paperTheme.colors.surfaceContainer,
-      notification: paperTheme.colors.surface,
-      primary: paperTheme.colors.primary,
-      text: paperTheme.colors.onSurface,
-    },
-  };
+  const navigationTheme = useMemo<Theme>(() => {
+    const base = isDark ? DarkTheme : DefaultTheme;
+    return {
+      ...base,
+      colors: {
+        background: appTheme.colors.background,
+        border: appTheme.colors.outline,
+        card: appTheme.colors.surfaceContainer,
+        notification: appTheme.colors.surface,
+        primary: appTheme.colors.primary,
+        text: appTheme.colors.onSurface,
+      },
+    };
+  }, [appTheme, isDark]);
 
   return (
     <AppThemeContext.Provider value={appTheme}>
@@ -362,30 +306,4 @@ export function argbToHexRGBA(argb: number): string {
   const g = (argb >> 8) & 0xff;
   const b = argb & 0xff;
   return `rgba(${r},${g},${b},${(a / 255).toFixed(3)})`;
-}
-
-function colorPair<T extends string>(
-  name: T,
-  hex: string,
-  primary: string,
-  isDark: boolean,
-): ColorPair<T> {
-  // Step 1: Harmonize the input with the seed
-  const harmonized = Blend.harmonize(argbFromHex(hex), argbFromHex(primary));
-  const baseHct = Hct.fromInt(harmonized);
-
-  // Step 2: Adjust tone based on theme context
-  baseHct.tone = isDark ? 80 : 40; // Material-like defaults
-
-  // Step 3: Derive on-color from tone inversion
-  const onTone = baseHct.tone > 60 ? 10 : 100;
-  const onColor = Hct.from(baseHct.hue, baseHct.chroma, onTone);
-
-  // Step 4: Material-style return shape
-  const onName = `on${name.charAt(0).toUpperCase()}${name.slice(1)}` as const;
-
-  return {
-    [name]: hexFromArgb(baseHct.toInt()),
-    [onName]: hexFromArgb(onColor.toInt()),
-  } as ColorPair<T>;
 }

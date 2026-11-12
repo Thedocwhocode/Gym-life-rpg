@@ -1,8 +1,9 @@
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { useTranslate } from '@tolgee/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { NativeScrollEvent, NativeSyntheticEvent, View } from 'react-native';
-import { AnimatedFAB, Icon, List, TextInput } from 'react-native-paper';
+import { Icon, List, TextInput } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
 import TouchableRipple from '@/components/presentation/gesture-wrappers/touchable-ripple';
 import { AccordionItem } from '@/components/presentation/accordion-item';
 import { useScroll } from '@/hooks/useScrollListener';
@@ -177,14 +178,8 @@ export default function ExerciseManager() {
     [filteredExerciseIds],
   );
   const { handleScroll } = useScroll();
-  const [fabExtended, setFabExtended] = useState(true);
-  const [lastScrollPosition, setLastScrollPosition] = useState(0);
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     handleScroll(e);
-    setFabExtended(
-      e.nativeEvent.contentOffset.y <= Math.max(lastScrollPosition, 0),
-    );
-    setLastScrollPosition(e.nativeEvent.contentOffset.y);
   };
   return (
     <View style={{ flex: 1 }}>
@@ -211,16 +206,15 @@ export default function ExerciseManager() {
           );
         }}
       />
-      <AnimatedFAB
+      <Fab
         style={{
+          position: 'absolute',
           bottom: spacing.pageHorizontalMargin,
           right: spacing.pageHorizontalMargin,
         }}
-        extended={fabExtended}
-        variant="secondary"
         label={t('exercise.add.button')}
         onPress={addExercise}
-        icon={'add'}
+        icon="plus"
         testID="exercise-add-fab"
       />
     </View>

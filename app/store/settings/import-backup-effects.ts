@@ -1,4 +1,6 @@
-import { LiftLog } from '@/gen/proto';
+import { restoreChoices } from '@/store/choices';
+import { choicesFromJson } from '@/store/choices/migrate';
+import { GymLifeRpg } from '@/gen/proto';
 import {
   fromProgramBlueprintDao,
   fromSessionBlueprintDao,
@@ -93,6 +95,15 @@ export function addImportBackupEffects() {
         }),
       );
       dispatch(checkIfWeightMigrationRequired());
+      // Backup antigo (LiftLog ou pré-F6) não tem escolhas: ficam as locais e a projeção
+      // recalcula XP, nível e quests a partir das sessões restauradas.
+      if (dao.choicesJson?.value) {
+        dispatch(
+          restoreChoices(
+            choicesFromJson(dao.choicesJson.value, LocalDate.now().toString()),
+          ),
+        );
+      }
       if (dao.feedState) {
         dispatch(beginFeedImport(dao.feedState));
       }
@@ -103,9 +114,9 @@ export function addImportBackupEffects() {
 function tryParseProto(
   bytes: Uint8Array,
   logger: Logger,
-): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2 | undefined {
+): GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2 | undefined {
   try {
-    return LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.decode(bytes);
+    return GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2.decode(bytes);
   } catch (e) {
     logger.warn('Could not parse bytes as proto', e);
     return undefined;

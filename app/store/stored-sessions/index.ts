@@ -1,8 +1,10 @@
 import {
   RecordedExercise,
+  RecordedWeightedExercise,
   Session,
   SessionPOJO,
 } from '@/models/session-models';
+import { bestWeights } from '@/store/journey/rules/combat';
 import {
   NormalizedName,
   NormalizedNameKey,
@@ -224,6 +226,28 @@ export const selectRecentlyCompletedExercises = createSelector(
       recentlyCompletedExercises[
         NormalizedName.fromExerciseBlueprint(blueprint).toString()
       ] ?? [],
+);
+
+/** Melhor peso de cada exercício nas sessões salvas, menos a sessão `exceptId` (a do combate, F5). */
+export const selectBestWeights = createSelector(
+  [
+    storedSessionsSlice.selectors.selectSessions,
+    (_, exceptId: string) => exceptId,
+  ],
+  (sessions, exceptId) =>
+    bestWeights(
+      sessions
+        .filter((s) => s.id !== exceptId)
+        .flatMap((s) => s.recordedExercises)
+        .filter((e) => e instanceof RecordedWeightedExercise)
+        .map((e) => ({
+          key: NormalizedName.fromExerciseBlueprint(e.blueprint).toString(),
+          sets: e.potentialSets.map((p) => ({
+            reps: p.set?.repsCompleted,
+            weight: p.weight,
+          })),
+        })),
+    ),
 );
 
 export const selectSessionsInMonth = createSelector(

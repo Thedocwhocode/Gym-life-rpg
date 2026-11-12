@@ -32,8 +32,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build image
         run: dotnet publish --os linux --arch x64 /t:PublishContainer -c Release
-        working-directory: backend/LiftLog.Api
+        working-directory: backend/GymLifeRpg.Api
       - name: Tag image
-        run: docker tag liftlog-api:latest ghcr.io/liammorrow/liftlog:api
+        run: docker tag gym-life-rpg-api:latest ghcr.io/thedocwhocode/gym-life-rpg:api
       - name: Push image
-        run: docker push ghcr.io/liammorrow/liftlog:api
+        run: docker push ghcr.io/thedocwhocode/gym-life-rpg:api

@@ -22,7 +22,7 @@ import {
   selectFeedIdentityRemote,
   removeRevokableFollowSecret,
 } from '@/store/feed';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { FeedIdentity, FeedUser } from '@/models/feed-models';
 import { RemoteData } from '@/models/remote';
 import { RsaPublicKey } from '@/models/encryption-models';
@@ -159,7 +159,7 @@ export function addFollowingEffects() {
         return;
       }
 
-      const inboxMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+      const inboxMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
         fromUserId: toUuidDao(identity.id),
         unfollowNotification: {
           followSecret: feedUser.followSecret,
@@ -177,7 +177,7 @@ export function addFollowingEffects() {
       inboxMessage.signature = signature;
 
       const messageBytes =
-        LiftLog.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
+        GymLifeRpg.Ui.Models.InboxMessageDao.encode(inboxMessage).finish();
       const encryptedInboxMessage =
         await encryptionService.encryptRsaOaepSha256Async(
           messageBytes,

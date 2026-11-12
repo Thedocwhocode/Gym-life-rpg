@@ -44,8 +44,9 @@ export function formatDuration(
  * Days and milliseconds are optional (e.g., "02:30:45" or "1.02:30:45:123")
  */
 export function parseDuration(val: string): Duration {
-  // Regex with optional days and milliseconds
-  const regex = /^(?:(\d+)\.)?(\d{2}):(\d{2}):(\d{2})(?::(\d{3}))?$/;
+  // Optional days and milliseconds. The API writes d.hh:mm:ss:FFF, which leaves a bare
+  // trailing colon when there are no milliseconds ("0.00:01:30:").
+  const regex = /^(?:(\d+)\.)?(\d{2}):(\d{2}):(\d{2})(?::(\d{3})?)?$/;
   const matchResult = val.match(regex);
 
   if (!matchResult) {

@@ -4,7 +4,8 @@ import { useAppTheme, font } from '@/hooks/useAppTheme';
 import { T } from '@tolgee/react';
 import { ReactNode, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Portal, Dialog, Text } from 'react-native-paper';
+import { Portal, Text } from 'react-native-paper';
+import Dialog from '@/components/presentation/pixel/Dialog';
 
 export function CardioValueSelector(props: {
   children: ReactNode;

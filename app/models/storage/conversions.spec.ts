@@ -41,13 +41,13 @@ import {
   SessionFeedItemGenerator,
   SessionGenerator,
 } from '@/models/storage/generators';
-import { google, LiftLog } from '@/gen/proto';
+import { google, GymLifeRpg } from '@/gen/proto';
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { gunzipSync } from 'zlib';
 import { Weight } from '@/models/weight';
 
-const Models = LiftLog.Ui.Models;
+const Models = GymLifeRpg.Ui.Models;
 
 describe('conversions', () => {
   it.each`

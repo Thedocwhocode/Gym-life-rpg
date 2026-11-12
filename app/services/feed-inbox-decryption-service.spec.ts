@@ -7,7 +7,7 @@ import {
   GetInboxMessageResponse,
   GetUserResponse,
 } from '@/models/feed-api-models';
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { toUuidDao, toStringValue } from '@/models/storage/conversions.to-dao';
 import { RsaPrivateKey } from '@/models/encryption-models';
 import { ApiResult } from '@/services/api-error';
@@ -56,9 +56,9 @@ describe('FeedInboxDecryptionService', () => {
     it('should not allow a malicious user to send a follow request to a victim user to try follow the third party user', async () => {
       // Create a malicious message - the fromUserId claims to be from thirdPartyUser
       // but the signature is created by maliciousUser
-      const maliciousMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+      const maliciousMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
         fromUserId: toUuidDao(thirdPartyUser.user.id),
-        followRequest: LiftLog.Ui.Models.FollowRequestDao.create({
+        followRequest: GymLifeRpg.Ui.Models.FollowRequestDao.create({
           name: toStringValue(maliciousUser.user.name || 'Malicious User'),
         }),
       });
@@ -76,7 +76,7 @@ describe('FeedInboxDecryptionService', () => {
 
       // Encrypt for victim user
       const messageBytes =
-        LiftLog.Ui.Models.InboxMessageDao.encode(maliciousMessage).finish();
+        GymLifeRpg.Ui.Models.InboxMessageDao.encode(maliciousMessage).finish();
       const encryptedMaliciousMessage =
         await encryptionService.encryptRsaOaepSha256Async(
           messageBytes,
@@ -99,9 +99,9 @@ describe('FeedInboxDecryptionService', () => {
 
     it('should allow a valid message to be decrypted', async () => {
       // Create a valid message where fromUserId and signature match
-      const validMessage = LiftLog.Ui.Models.InboxMessageDao.create({
+      const validMessage = GymLifeRpg.Ui.Models.InboxMessageDao.create({
         fromUserId: toUuidDao(thirdPartyUser.user.id),
-        followRequest: LiftLog.Ui.Models.FollowRequestDao.create({
+        followRequest: GymLifeRpg.Ui.Models.FollowRequestDao.create({
           name: toStringValue(thirdPartyUser.user.name || 'Third Party User'),
         }),
       });
@@ -119,7 +119,7 @@ describe('FeedInboxDecryptionService', () => {
 
       // Encrypt for victim user
       const messageBytes =
-        LiftLog.Ui.Models.InboxMessageDao.encode(validMessage).finish();
+        GymLifeRpg.Ui.Models.InboxMessageDao.encode(validMessage).finish();
       const encryptedValidMessage =
         await encryptionService.encryptRsaOaepSha256Async(
           messageBytes,

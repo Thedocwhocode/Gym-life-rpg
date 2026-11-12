@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import { View } from 'react-native';
 import { Icon } from 'react-native-paper';
 import Button from '@/components/presentation/gesture-wrappers/button';
+import { useTranslate } from '@tolgee/react';
 
 interface RemoteProps<T> {
   value: RemoteData<T>;
@@ -17,6 +18,7 @@ interface RemoteProps<T> {
 }
 export function Remote<T>(props: RemoteProps<T>) {
   const { success, retry } = props;
+  const { t } = useTranslate();
   let { error, loading, notAsked } = props;
   loading ??= () => <Loader />;
   notAsked ??= loading;
@@ -25,9 +27,11 @@ export function Remote<T>(props: RemoteProps<T>) {
       <Icon source={'error'} size={30} />
       <View style={{ justifyContent: 'center' }}>
         <SurfaceText style={{ textAlign: 'center' }}>
-          {typeof value === 'string' ? value : 'Unknown error'}
+          {typeof value === 'string' ? value : t('generic.unknown_error.body')}
         </SurfaceText>
-        {retry ? <Button onPress={retry}>Retry</Button> : undefined}
+        {retry ? (
+          <Button onPress={retry}>{t('generic.retry.button')}</Button>
+        ) : undefined}
       </View>
     </View>
   );

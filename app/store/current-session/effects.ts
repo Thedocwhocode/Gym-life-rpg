@@ -1,9 +1,5 @@
-import { LiftLog } from '@/gen/proto';
-import {
-  EmptySession,
-  RecordedWeightedExercise,
-  Session,
-} from '@/models/session-models';
+import { GymLifeRpg } from '@/gen/proto';
+import { RecordedWeightedExercise, Session } from '@/models/session-models';
 import { fromCurrentSessionDao } from '@/models/storage/conversions.from-dao';
 import { toCurrentSessionDao } from '@/models/storage/conversions.to-dao';
 import {
@@ -25,7 +21,12 @@ import { fetchUpcomingSessions, selectActiveProgram } from '@/store/program';
 import { addStoredSession } from '@/store/stored-sessions';
 import { OffsetDateTime } from '@js-joda/core';
 import { selectPreferredWeightUnit } from '@/store/settings';
-import { diffSessionBlueprints } from '@/models/blueprint-diff';
+import {
+  levelDropAfterPersist,
+  planDiffAfterPersist,
+} from '@/store/current-session/helpers';
+import { selectRpgLevel } from '@/store/rpg';
+import { showSnackbar } from '@/store/app';
 
 const storageKey = 'CurrentSessionStateV1';
 export function applyCurrentSessionEffects() {
@@ -41,7 +42,7 @@ export function applyCurrentSessionEffects() {
           (await keyValueStore.getItem(`${storageKey}-Version`)) ?? '2';
 
         let currentSessionStateDao:
-          | LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
+          | GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2
           | undefined;
         switch (currentSessionVersion) {
           case '2':
@@ -49,7 +50,7 @@ export function applyCurrentSessionEffects() {
               (await keyValueStore.getItemBytes(storageKey)) ??
               Uint8Array.from([]);
             currentSessionStateDao =
-              LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.decode(
+              GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.decode(
                 bytes,
               );
             break;
@@ -123,7 +124,7 @@ export function applyCurrentSessionEffects() {
               stateAfterReduce.currentSession.latestSetTimerNotificationId,
           });
           const bytes =
-            LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.encode(
+            GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.encode(
               currentSessionStateDao,
             ).finish();
           await keyValueStore.setItem(`${storageKey}-Version`, '2');
@@ -135,46 +136,33 @@ export function applyCurrentSessionEffects() {
     },
   );
 
-  addEffect(persistCurrentSession, async (a, { dispatch, getState }) => {
-    dispatch(clearSetTimerNotification());
-    const session = selectCurrentSession(getState(), a.payload);
-    const program = selectActiveProgram(getState());
-    if (session) {
-      dispatch(addStoredSession(session));
-      const sessionInPlan = program.sessions.some((x) =>
-        x.equals(session.blueprint),
-      );
-      if (!sessionInPlan) {
-        const sessionWithSameNameInPlan = program.sessions.find(
-          (x) => x.name === session.blueprint.name,
+  addEffect(
+    persistCurrentSession,
+    async (a, { dispatch, getState, extra: { tolgee } }) => {
+      dispatch(clearSetTimerNotification());
+      const session = selectCurrentSession(getState(), a.payload);
+      const program = selectActiveProgram(getState());
+      if (session) {
+        const levelBefore = selectRpgLevel(getState());
+        dispatch(addStoredSession(session));
+        const dropped = levelDropAfterPersist(
+          a.payload,
+          levelBefore,
+          selectRpgLevel(getState()),
         );
-        dispatch(
-          setCurrentPlanDiff(
-            sessionWithSameNameInPlan
-              ? {
-                  type: 'diff',
-                  diff: diffSessionBlueprints(
-                    sessionWithSameNameInPlan,
-                    session.blueprint,
-                  ),
-                  sessionIndex: program.sessions.indexOf(
-                    sessionWithSameNameInPlan,
-                  ),
-                }
-              : {
-                  type: 'add',
-                  diff: diffSessionBlueprints(
-                    EmptySession.blueprint,
-                    session.blueprint,
-                  ),
-                },
-          ),
-        );
+        if (dropped !== undefined)
+          dispatch(
+            showSnackbar({
+              text: tolgee.t('rpg.recalc.toast', { level: dropped }),
+            }),
+          );
+        const diff = planDiffAfterPersist(a.payload, session, program);
+        if (diff) dispatch(setCurrentPlanDiff(diff));
       }
-    }
-    dispatch(setCurrentSession({ target: a.payload, session: undefined }));
-    dispatch(fetchUpcomingSessions());
-  });
+      dispatch(setCurrentSession({ target: a.payload, session: undefined }));
+      dispatch(fetchUpcomingSessions());
+    },
+  );
 
   addEffect(
     clearSetTimerNotification,

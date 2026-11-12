@@ -17,7 +17,9 @@ import {
   updateResistanceForCardioExercise,
   updateWeightForSet,
 } from '@/store/current-session';
-import { Card, FAB, Icon, Text } from 'react-native-paper';
+import { Icon, Text } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
+import Card from '@/components/presentation/pixel/Card';
 import { useDispatch, useStore } from 'react-redux';
 import { Linking, View } from 'react-native';
 import EmptyInfo from '@/components/presentation/empty-info';
@@ -48,6 +50,8 @@ import WeightFormat from '@/components/presentation/weight-format';
 import { formatDuration } from '@/utils/format-date';
 import { match, P } from 'ts-pattern';
 import { CardioExercise } from '@/components/presentation/cardio/CardioExercise';
+import Button from '@/components/presentation/pixel/Button';
+import { useSessionCombat } from '@/components/smart/session-combat';
 
 export default function SessionComponent(props: {
   target: SessionTarget;
@@ -77,6 +81,8 @@ export default function SessionComponent(props: {
   };
 
   const isReadonly = props.target === 'feedSession';
+  // Combate só no treino em andamento (F5); histórico e feed ficam como estavam.
+  const combat = useSessionCombat(session, props.target === 'workoutSession');
 
   const [exerciseToEditIndex, setExerciseToEditIndex] = useState<
     number | undefined
@@ -109,7 +115,7 @@ export default function SessionComponent(props: {
   };
 
   if (!session) {
-    return <Text>Loading</Text>;
+    return <Text>{t('generic.loading.label')}</Text>;
   }
 
   const notesComponent = session.blueprint.notes ? (
@@ -188,6 +194,7 @@ export default function SessionComponent(props: {
           recordedExercise={item}
           toStartNext={session.nextExercise === item}
           updateRepCountForSet={(setIndex, reps) => {
+            const before = item.potentialSets[setIndex]?.set?.repsCompleted;
             dispatch(setExerciseReps, {
               exerciseIndex: index,
               reps,
@@ -203,8 +210,10 @@ export default function SessionComponent(props: {
             });
             if (props.target === 'workoutSession')
               storeDispatch(notifySetTimer());
+            combat.onSetChanged(index, setIndex, before);
           }}
           cycleRepCountForSet={(setIndex) => {
+            const before = item.potentialSets[setIndex]?.set?.repsCompleted;
             dispatch(cycleExerciseReps, {
               exerciseIndex: index,
               setIndex,
@@ -219,6 +228,7 @@ export default function SessionComponent(props: {
             });
             if (props.target === 'workoutSession')
               storeDispatch(notifySetTimer());
+            combat.onSetChanged(index, setIndex, before);
           }}
           updateWeightForSet={(setIndex, weight, applyTo) =>
             dispatch(updateWeightForSet, {
@@ -377,33 +387,46 @@ export default function SessionComponent(props: {
   ) : undefined;
   const saveButton = props.saveAndClose && (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-      <FAB
+      <Fab
         onPress={props.saveAndClose}
-        variant="surface"
-        icon={'inventory'}
+        icon="save"
         testID="save-session-button"
         label={
           props.target === 'workoutSession'
             ? t('generic.finish.button')
             : t('generic.save.button')
         }
-      ></FAB>
+      />
     </View>
   );
 
+  // Rodapé ≤ 120 px (DR2): descanso + concluir numa linha, "Golpear" embaixo.
   const floatingBottomContainer = isReadonly ? null : (
     <FloatingBottomContainer
       additionalContent={
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          {/* Centre the timer */}
-          <View style={{ flex: 1 }}></View>
-          {restTimer}
-          {saveButton}
+        <View testID="session-footer" style={{ gap: spacing[2] }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            {/* Centre the timer */}
+            <View style={{ flex: 1 }}></View>
+            {restTimer}
+            {saveButton}
+          </View>
+          {combat.strike ? (
+            <Button
+              variant="danger"
+              icon="zap"
+              block
+              testID="strike-button"
+              onPress={combat.strike}
+            >
+              {combat.strikeLabel}
+            </Button>
+          ) : null}
         </View>
       }
     />
@@ -453,6 +476,16 @@ export default function SessionComponent(props: {
 
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
+      {combat.stage ? (
+        <View
+          style={{
+            marginHorizontal: spacing.pageHorizontalMargin,
+            marginTop: spacing[2],
+          }}
+        >
+          {combat.stage}
+        </View>
+      ) : null}
       {notesComponent}
       {emptyInfo}
       <ItemList items={session.recordedExercises} renderItem={renderItem} />

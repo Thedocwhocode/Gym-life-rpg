@@ -4,7 +4,8 @@ import { RecordedExercise } from '@/models/session-models';
 import { useAppSelector } from '@/store';
 import { useCallback, useState } from 'react';
 import { View } from 'react-native';
-import { Card, Divider, Text } from 'react-native-paper';
+import { Divider, Text } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 
 interface ExerciseNotesDisplayProps {

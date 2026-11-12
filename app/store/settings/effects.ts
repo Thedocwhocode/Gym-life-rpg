@@ -3,18 +3,20 @@ import { addEffect } from '@/store/store';
 import {
   initializeSettingsStateSlice,
   setBackupReminder,
-  setColorSchemeSeed,
   setCrashReportsEnabled,
+  setEffectsMode,
   setFirstDayOfWeek,
   setIsHydrated,
   setKeepScreenAwakeDuringWorkout,
   setLastBackup,
   setNotesExpandedByDefault,
+  setPalette,
   setPreferredLanguage,
   setProToken,
   setRemoteBackupSettings,
   setRestNotifications,
   setShowBodyweight,
+  setHaptics,
   setShowFeed,
   setShowTips,
   setTipToShow,
@@ -26,7 +28,8 @@ import { addExportPlaintextEffects } from '@/store/settings/export-plaintext-eff
 import { addImportBackupEffects } from '@/store/settings/import-backup-effects';
 import { addRemoteBackupEffects } from '@/store/settings/remote-backup-effects';
 import Purchases from 'react-native-purchases';
-import { I18nManager, Platform } from 'react-native';
+import { I18nManager } from 'react-native';
+import { revenueCatApiKey, sentryDsn } from '@/services/api-consts';
 import { captureException } from '@sentry/react-native';
 import { detectLanguageFromDateLocale } from '@/utils/language-detector';
 import { supportedLanguages } from '@/services/tolgee';
@@ -58,10 +61,12 @@ export function applySettingsEffects() {
         lastBackupTime,
         backupReminder,
         firstDayOfWeek,
-        colorSchemeSeed,
+        palette,
         proToken,
         notesExpandedByDefault,
         keepScreenAwakeDuringWorkout,
+        effectsMode,
+        haptics,
       ] = await Promise.all([
         preferenceService.getUseImperialUnits(),
         preferenceService.getShowBodyweight(),
@@ -76,14 +81,17 @@ export function applySettingsEffects() {
         preferenceService.getLastBackupTime(),
         preferenceService.getBackupReminder(),
         preferenceService.getFirstDayOfWeek(),
-        preferenceService.getColorSchemeSeed(),
+        preferenceService.getPalette(),
         preferenceService.getProToken(),
         preferenceService.getNotesExpandedByDefault(),
         preferenceService.getKeepScreenAwakeDuringWorkout(),
+        preferenceService.getEffectsMode(),
+        preferenceService.getHaptics(),
       ]);
-      dispatch(setColorSchemeSeed(colorSchemeSeed));
+      dispatch(setPalette(palette));
       dispatch(setUseImperialUnits(useImperialUnits));
       dispatch(setShowBodyweight(showBodyweight));
+      dispatch(setHaptics(haptics));
       dispatch(setShowTips(showTips));
       dispatch(setTipToShow(tipToShow));
       dispatch(setShowFeed(showFeed));
@@ -107,18 +115,26 @@ export function applySettingsEffects() {
       dispatch(setProToken(proToken));
       dispatch(setNotesExpandedByDefault(notesExpandedByDefault));
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
+      if (effectsMode) dispatch(setEffectsMode(effectsMode));
 
-      if (Platform.OS === 'ios') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY!,
-        });
-      } else if (Platform.OS === 'android') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY!,
-        });
+      // Without a key, configure() throws and the app would never hydrate.
+      let purchasesConfigured = false;
+      if (revenueCatApiKey) {
+        try {
+          Purchases.configure({ apiKey: revenueCatApiKey });
+          purchasesConfigured = true;
+        } catch (err) {
+          captureException(
+            new Error('Failed to configure purchases', { cause: err }),
+          );
+        }
       }
       // migrate pro token to a revenuecat
-      if (proToken && !proToken.startsWith('$RCAnonymousID')) {
+      if (
+        purchasesConfigured &&
+        proToken &&
+        !proToken.startsWith('$RCAnonymousID')
+      ) {
         try {
           const customerInfo = await Purchases.getCustomerInfo();
           await Purchases.syncPurchases();
@@ -153,6 +169,14 @@ export function applySettingsEffects() {
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setShowBodyweight(action.payload);
+      }
+    },
+  );
+  addEffect(
+    setHaptics,
+    async (action, { stateAfterReduce, extra: { preferenceService } }) => {
+      if (stateAfterReduce.settings.isHydrated) {
+        await preferenceService.setHaptics(action.payload);
       }
     },
   );
@@ -215,9 +239,9 @@ export function applySettingsEffects() {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setCrashReportsEnabled(action.payload);
       }
-      if (action.payload) {
+      if (action.payload && sentryDsn) {
         Sentry.init({
-          dsn: 'https://86576716425e1558b5e8622ba65d4544@o4505937515249664.ingest.us.sentry.io/4509717493383168',
+          dsn: sentryDsn,
 
           // Adds more context data to events (IP address, cookies, user, etc.)
           // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
@@ -287,10 +311,10 @@ export function applySettingsEffects() {
   );
 
   addEffect(
-    setColorSchemeSeed,
+    setPalette,
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
-        await preferenceService.setColorSchemeSeed(action.payload);
+        await preferenceService.setPalette(action.payload);
       }
     },
   );
@@ -309,6 +333,15 @@ export function applySettingsEffects() {
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setKeepScreenAwakeDuringWorkout(action.payload);
+      }
+    },
+  );
+
+  addEffect(
+    setEffectsMode,
+    async (action, { stateAfterReduce, extra: { preferenceService } }) => {
+      if (stateAfterReduce.settings.isHydrated) {
+        await preferenceService.setEffectsMode(action.payload);
       }
     },
   );

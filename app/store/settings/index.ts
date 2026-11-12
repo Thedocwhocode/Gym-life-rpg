@@ -1,10 +1,13 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { RemoteData } from '@/models/remote';
 import { WeightUnit } from '@/models/weight';
 import { DayOfWeek, Instant } from '@js-joda/core';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ColorSchemeSeed = 'default' | `#${string}`;
+import { DEFAULT_PALETTE, PaletteId } from '@/theme/palettes';
+
+/** Efeitos visuais: completo, reduzido (sem movimento contínuo) ou desligado (DR20). */
+export type EffectsMode = 'complete' | 'reduced' | 'off';
 
 export type LastBackup = {
   lastSuccessfulRemoteBackupHash: string;
@@ -18,6 +21,8 @@ interface SettingsState {
   proToken: string | undefined;
   useImperialUnits: boolean;
   showBodyweight: boolean;
+  /** Vibração nos momentos do combate (E1). */
+  haptics: boolean;
   showTips: boolean;
   tipToShow: number;
   showFeed: boolean;
@@ -27,10 +32,12 @@ interface SettingsState {
   remoteBackupSettings: RemoteBackupSettings;
   lastBackup: RemoteData<LastBackup, string>;
   backupReminder: boolean;
-  colorSchemeSeed: ColorSchemeSeed;
+  palette: PaletteId;
   preferredLanguage: string | undefined;
   notesExpandedByDefault: boolean;
   keepScreenAwakeDuringWorkout: boolean;
+  /** `undefined` = seguir a preferência de movimento reduzido do sistema. */
+  effectsMode: EffectsMode | undefined;
 }
 
 interface RemoteBackupSettings {
@@ -44,6 +51,7 @@ const initialState: SettingsState = {
   firstDayOfWeek: DayOfWeek.SUNDAY,
   useImperialUnits: false,
   showBodyweight: true,
+  haptics: true,
   showTips: true,
   tipToShow: 1,
   showFeed: true,
@@ -58,10 +66,11 @@ const initialState: SettingsState = {
   },
   lastBackup: RemoteData.notAsked(),
   backupReminder: true,
-  colorSchemeSeed: 'default',
+  palette: DEFAULT_PALETTE,
   preferredLanguage: undefined,
   notesExpandedByDefault: false,
   keepScreenAwakeDuringWorkout: false,
+  effectsMode: undefined,
 };
 
 const settingsSlice = createSlice({
@@ -76,6 +85,9 @@ const settingsSlice = createSlice({
     },
     setShowBodyweight(state, action: PayloadAction<boolean>) {
       state.showBodyweight = action.payload;
+    },
+    setHaptics(state, action: PayloadAction<boolean>) {
+      state.haptics = action.payload;
     },
     setShowTips(state, action: PayloadAction<boolean>) {
       state.showTips = action.payload;
@@ -101,6 +113,9 @@ const settingsSlice = createSlice({
     setKeepScreenAwakeDuringWorkout(state, action: PayloadAction<boolean>) {
       state.keepScreenAwakeDuringWorkout = action.payload;
     },
+    setEffectsMode(state, action: PayloadAction<EffectsMode>) {
+      state.effectsMode = action.payload;
+    },
     setRemoteBackupSettings(
       state,
       action: PayloadAction<RemoteBackupSettings>,
@@ -119,8 +134,8 @@ const settingsSlice = createSlice({
     setBackupReminder(state, action: PayloadAction<boolean>) {
       state.backupReminder = action.payload;
     },
-    setColorSchemeSeed(state, action: PayloadAction<ColorSchemeSeed>) {
-      state.colorSchemeSeed = action.payload;
+    setPalette(state, action: PayloadAction<PaletteId>) {
+      state.palette = action.payload;
     },
     setFirstDayOfWeek(state, action: PayloadAction<DayOfWeek>) {
       state.firstDayOfWeek = action.payload;
@@ -141,10 +156,10 @@ export type PlaintextExportFormat = 'CSV' | 'JSON';
 
 export const importData = createAction('importData');
 export const importDataDao = createAction<{
-  dao: LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+  dao: GymLifeRpg.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
 }>('importDataDao');
 export const beginFeedImport =
-  createAction<LiftLog.Ui.Models.IFeedStateDaoV1>('beginFeedImport');
+  createAction<GymLifeRpg.Ui.Models.IFeedStateDaoV1>('beginFeedImport');
 export const exportData = createAction<{ includeFeed: boolean }>('exportData');
 
 export const exportPlainText = createAction<{ format: PlaintextExportFormat }>(
@@ -162,6 +177,7 @@ export const {
   setIsHydrated,
   setUseImperialUnits,
   setShowBodyweight,
+  setHaptics,
   setShowTips,
   setTipToShow,
   setShowFeed,
@@ -171,12 +187,13 @@ export const {
   setRemoteBackupSettings,
   setLastBackup,
   setBackupReminder,
-  setColorSchemeSeed,
+  setPalette,
   setFirstDayOfWeek,
   setProToken,
   setPreferredLanguage,
   setNotesExpandedByDefault,
   setKeepScreenAwakeDuringWorkout,
+  setEffectsMode,
 } = settingsSlice.actions;
 
 export const { selectPreferredWeightUnit } = settingsSlice.selectors;

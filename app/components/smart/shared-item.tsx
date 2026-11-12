@@ -1,3 +1,4 @@
+import { TITLE_MAX_SCALE } from '@/theme/tokens';
 import CardList from '@/components/presentation/card-list';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import SessionSummary from '@/components/presentation/session-summary';
@@ -10,7 +11,8 @@ import { savePlan } from '@/store/program';
 import { showSnackbar } from '@/store/app';
 import { T } from '@tolgee/react';
 import { View } from 'react-native';
-import { Card, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import Card from '@/components/presentation/pixel/Card';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import { useDispatch } from 'react-redux';
 import { uuid } from '@/utils/uuid';
@@ -72,7 +74,9 @@ function SharedProgramBlueprintContent({
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text variant="titleLarge">{program.name}</Text>
+            <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} variant="titleLarge">
+              {program.name}
+            </Text>
             <Text variant="bodyMedium" style={{ opacity: 0.7 }}>
               {program.sessions.length}{' '}
               {program.sessions.length === 1 ? 'workout' : 'workouts'}
@@ -90,7 +94,7 @@ function SharedProgramBlueprintContent({
       </View>
 
       <View style={{ flex: 1, gap: spacing[2] }}>
-        <Text variant="titleMedium">
+        <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} variant="titleMedium">
           <T keyName="workout.all.title" />
         </Text>
         <CardList

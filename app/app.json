@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "LiftLog",
-    "slug": "liftlog",
+    "name": "GymLife RPG",
+    "slug": "gym-life-rpg",
     "version": "1.0.0",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -10,13 +10,13 @@
       "output": "single"
     },
     "splash": {
-      "backgroundColor": "#fcfdf6",
+      "backgroundColor": "#0b0c0d",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
-    "backgroundColor": "#fcfdf6",
-    "primaryColor": "#046F03",
+    "backgroundColor": "#0b0c0d",
+    "primaryColor": "#e6a94f",
     "plugins": [
       "expo-router",
       [
@@ -25,15 +25,17 @@
           "launchMode": "most-recent"
         }
       ],
+      "@sentry/react-native/expo",
+      "expo-localization",
       [
-        "@sentry/react-native/expo",
+        "expo-location",
         {
-          "url": "https://sentry.io/",
-          "project": "app",
-          "organization": "liftlog"
+          "locationWhenInUsePermission": "O GymLife RPG usa sua localização aproximada só para mostrar o clima do reino no Painel.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
         }
       ],
-      "expo-localization",
       [
         "react-native-edge-to-edge",
         {
@@ -42,38 +44,25 @@
             "enforceNavigationBarContrast": false
           }
         }
-      ]
+      ],
+      "./plugins/with-release-signing"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
-    "scheme": "liftlog",
+    "scheme": "gymliferpg",
     "android": {
-      "package": "com.limajuice.liftlog",
+      "package": "com.thedocwhocode.gymliferpg",
       "permissions": ["android.permission.SCHEDULE_EXACT_ALARM"],
-      "intentFilters": [
-        {
-          "action": "VIEW",
-          "autoVerify": true,
-          "data": [
-            {
-              "scheme": "https",
-              "host": "app.liftlog.online"
-            }
-          ],
-          "category": ["BROWSABLE", "DEFAULT"]
-        }
-      ],
       "adaptiveIcon": {
-        "backgroundColor": "#dfedda",
+        "backgroundColor": "#0b0c0d",
         "foregroundImage": "./assets/icon_foreground.png",
         "monochromeImage": "./assets/icon_monochrome.png"
       }
     },
     "ios": {
-      "bundleIdentifier": "com.limajuice.liftlog",
-      "associatedDomains": ["applinks:app.liftlog.online"],
+      "bundleIdentifier": "com.thedocwhocode.gymliferpg",
       "supportsTablet": true,
       "infoPlist": {
         "UIViewControllerBasedStatusBarAppearance": true,
@@ -101,7 +90,6 @@
     "notification": {
       "icon": "./assets/notification.png"
     },
-
     "jsEngine": "hermes"
   }
 }

@@ -1,96 +1,69 @@
 import { MaterialBottomTabs as Tabs } from '@/components/presentation/material-bottom-tabs';
+import { ScreenTransitionProvider } from '@/components/smart/screen-transition';
+import { isBackendConfigured } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
 import { selectFollowRequestCount } from '@/store/feed';
 import { useTranslate } from '@tolgee/react';
-import { Icon } from 'react-native-paper';
 
 export default function Layout() {
   const { t } = useTranslate();
   const followRequestCount = useAppSelector(selectFollowRequestCount);
-  const showFeed = useAppSelector((x) => x.settings.showFeed);
+  const showFeed = useAppSelector(
+    (x) => x.settings.showFeed && isBackendConfigured,
+  );
   return (
-    <Tabs>
-      <Tabs.Screen
-        name="(session)"
-        options={{
-          tabBarLabel: t('workout.workout.label'),
-          tabBarButtonTestID: 'nav__workout',
-          tabBarIcon: ({ color, size, focused }) => {
-            return (
-              <Icon
-                source={focused ? `fitnessCenterFill` : 'fitnessCenter'}
-                size={size}
-                color={color}
-              />
-            );
-          },
-        }}
-      />
+    <ScreenTransitionProvider>
+      <Tabs>
+        <Tabs.Screen
+          name="dashboard"
+          options={{
+            tabBarLabel: t('rpg.tab.dashboard'),
+            tabBarButtonTestID: 'nav__dashboard',
+          }}
+        />
 
-      <Tabs.Screen
-        name="feed"
-        redirect={!showFeed}
-        options={{
-          tabBarLabel: t('feed.feed.title'),
+        <Tabs.Screen
+          name="(session)"
+          options={{
+            tabBarLabel: t('rpg.tab.train'),
+            tabBarButtonTestID: 'nav__workout',
+          }}
+        />
 
-          tabBarButtonTestID: 'nav__feed',
-          tabBarBadge: followRequestCount || undefined!,
-          tabBarIcon: ({ color, size, focused }) => {
-            return (
-              <Icon
-                source={focused ? `forumFill` : 'forum'}
-                size={size}
-                color={color}
-              />
-            );
-          },
-        }}
-      />
+        <Tabs.Screen
+          name="history"
+          options={{
+            tabBarLabel: t('rpg.tab.history'),
+            tabBarButtonTestID: 'nav__history',
+          }}
+        />
 
-      <Tabs.Screen
-        name="stats"
-        options={{
-          tabBarLabel: t('stats.stats.title'),
-          tabBarButtonTestID: 'nav__stats',
-          tabBarIcon: ({ color, size, focused }) => {
-            return (
-              <Icon
-                source={focused ? `analyticsFill` : 'analytics'}
-                size={size}
-                color={color}
-              />
-            );
-          },
-        }}
-      />
+        <Tabs.Screen
+          name="feed"
+          redirect={!showFeed}
+          options={{
+            tabBarLabel: t('rpg.tab.feed'),
+            tabBarButtonTestID: 'nav__feed',
+            tabBarBadge: followRequestCount || undefined!,
+          }}
+        />
 
-      <Tabs.Screen
-        name="history"
-        options={{
-          tabBarLabel: t('generic.history.title'),
-          tabBarButtonTestID: 'nav__history',
-          tabBarIcon: ({ color, size }) => {
-            return <Icon source={'history'} size={size} color={color} />;
-          },
-        }}
-      />
+        <Tabs.Screen
+          name="stats"
+          options={{
+            tabBarLabel: t('rpg.tab.stats'),
+            tabBarButtonTestID: 'nav__stats',
+          }}
+        />
 
-      <Tabs.Screen
-        name="settings"
-        options={{
-          tabBarLabel: t('settings.settings.title'),
-          tabBarButtonTestID: 'nav__settings',
-          tabBarIcon: ({ color, size, focused }) => {
-            return (
-              <Icon
-                source={focused ? `settingsFill` : 'settings'}
-                size={size}
-                color={color}
-              />
-            );
-          },
-        }}
-      />
-    </Tabs>
+        <Tabs.Screen
+          name="settings"
+          options={{
+            tabBarLabel: t('rpg.tab.settings'),
+            tabBarButtonTestID: 'nav__settings',
+          }}
+        />
+      </Tabs>
+    </ScreenTransitionProvider>
   );
 }

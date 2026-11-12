@@ -1,3 +1,4 @@
+import TextField from '@/components/presentation/pixel/TextField';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import EmptyInfo from '@/components/presentation/empty-info';
 import ExerciseBlueprintSummary from '@/components/presentation/exercise-blueprint-summary';
@@ -34,7 +35,8 @@ import { T, useTranslate } from '@tolgee/react';
 import BigNumber from 'bignumber.js';
 import { Redirect, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Card, FAB, TextInput } from 'react-native-paper';
+import Fab from '@/components/presentation/pixel/Fab';
+import Card from '@/components/presentation/pixel/Card';
 import { useDispatch } from 'react-redux';
 
 export default function ManageWorkouts() {
@@ -132,10 +134,8 @@ function SessionEditor({
   const floatingBottomContainer = (
     <FloatingBottomContainer
       fab={
-        <FAB
-          variant="surface"
-          size="small"
-          icon={'add'}
+        <Fab
+          icon="plus"
           label={t('exercise.add.title')}
           onPress={beginAddExercise}
         />
@@ -150,19 +150,19 @@ function SessionEditor({
           label={t('workout.name.label')}
           icon={'assignmentFill'}
         >
-          <TextInput
-            mode="flat"
+          <TextField
             value={session.name}
             onChangeText={setName}
             selectTextOnFocus
+            accessibilityLabel={t('workout.name.label')}
           />
         </LabelledFormRow>
         <LabelledFormRow label={t('workout.notes.label')} icon={'notesFill'}>
-          <TextInput
-            mode="flat"
+          <TextField
             value={session.notes}
             onChangeText={setNotes}
             multiline
+            accessibilityLabel={t('workout.notes.label')}
           />
         </LabelledFormRow>
         <LabelledFormRow

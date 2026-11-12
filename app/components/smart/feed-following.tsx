@@ -1,3 +1,4 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import EmptyInfo from '@/components/presentation/empty-info';
 import { spacing } from '@/hooks/useAppTheme';
 import { useScroll } from '@/hooks/useScrollListener';
@@ -10,7 +11,7 @@ import {
 } from '@/store/feed';
 import { T, useTranslate } from '@tolgee/react';
 import React, { useState } from 'react';
-import { List, Menu } from 'react-native-paper';
+import { Menu } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import { FlashList } from '@shopify/flash-list';
@@ -50,12 +51,12 @@ function FeedFollowingItem(props: { user: FeedUser; userId: string }) {
   const { t } = useTranslate();
   const [menuVisible, setMenuVisible] = useState(false);
   return (
-    <List.Item
+    <ListItem
       title={props.user.name || 'Anonymous user'}
       description={
         props.user.aesKey ? undefined : t('generic.awaiting_response.label')
       }
-      right={() => (
+      trailing={
         <Menu
           visible={menuVisible}
           onDismiss={() => setMenuVisible(false)}
@@ -76,7 +77,7 @@ function FeedFollowingItem(props: { user: FeedUser; userId: string }) {
             title={t('feed.unfollow.button')}
           />
         </Menu>
-      )}
+      }
     />
   );
 }

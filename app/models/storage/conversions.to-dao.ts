@@ -1,4 +1,4 @@
-import { google, LiftLog } from '@/gen/proto';
+import { google, GymLifeRpg } from '@/gen/proto';
 import {
   Duration,
   Instant,
@@ -39,7 +39,7 @@ import { uuidParse } from '@/utils/uuid';
 import { WeightUnit } from '@/models/weight';
 import { match } from 'ts-pattern';
 
-export function toUuidDao(uuid: string): LiftLog.Ui.Models.IUuidDao {
+export function toUuidDao(uuid: string): GymLifeRpg.Ui.Models.IUuidDao {
   const parsed = uuidParse(uuid);
   // Reorder bytes to match the Guid.ToByteArray behavior in C#. See fromUuidDao
   // prettier-ignore
@@ -65,13 +65,13 @@ const nanoFactor = BigNumber('1000000000');
 // Converts a BigNumber to a DecimalValue DAO
 export function toDecimalDao(
   number: BigNumber,
-): LiftLog.Ui.Models.DecimalValue {
+): GymLifeRpg.Ui.Models.DecimalValue {
   const units = number.integerValue(BigNumber.ROUND_FLOOR);
   const nanos = number
     .minus(BigNumber(units))
     .multipliedBy(nanoFactor)
     .integerValue();
-  return new LiftLog.Ui.Models.DecimalValue({
+  return new GymLifeRpg.Ui.Models.DecimalValue({
     units: Long.fromString(units.toString()),
     nanos: nanos.toNumber(),
   });
@@ -84,17 +84,21 @@ export function toTimestampDao(instant: Instant): google.protobuf.Timestamp {
   });
 }
 
-export function toDateOnlyDao(date: LocalDate): LiftLog.Ui.Models.DateOnlyDao {
-  return new LiftLog.Ui.Models.DateOnlyDao({
+export function toDateOnlyDao(
+  date: LocalDate,
+): GymLifeRpg.Ui.Models.DateOnlyDao {
+  return new GymLifeRpg.Ui.Models.DateOnlyDao({
     year: date.year(),
     month: date.monthValue(),
     day: date.dayOfMonth(),
   });
 }
 
-export function toTimeOnlyDao(time: LocalTime): LiftLog.Ui.Models.TimeOnlyDao {
+export function toTimeOnlyDao(
+  time: LocalTime,
+): GymLifeRpg.Ui.Models.TimeOnlyDao {
   const nano = time.nano();
-  return new LiftLog.Ui.Models.TimeOnlyDao({
+  return new GymLifeRpg.Ui.Models.TimeOnlyDao({
     hour: time.hour(),
     minute: time.minute(),
     second: time.second(),
@@ -106,8 +110,8 @@ export function toTimeOnlyDao(time: LocalTime): LiftLog.Ui.Models.TimeOnlyDao {
 // Converts a SessionBlueprint to a SessionBlueprint DAO
 export function toSessionBlueprintDao(
   model: SessionBlueprint,
-): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2 {
-  return new LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2({
+): GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2({
     name: model.name,
     exerciseBlueprints: model.exercises.map(toExerciseBlueprintDao),
     notes: model.notes,
@@ -117,14 +121,14 @@ export function toSessionBlueprintDao(
 // Converts an ExerciseBlueprint to an ExerciseBlueprint DAO
 export function toExerciseBlueprintDao(
   model: ExerciseBlueprint,
-): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2 {
-  return new LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2({
+): GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2({
     name: model.name,
     notes: model.notes,
     link: model.link,
     ...(model instanceof WeightedExerciseBlueprint
       ? {
-          type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.WEIGHTED,
+          type: GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.WEIGHTED,
           sets: model.sets,
           repsPerSet: model.repsPerSet,
           weightIncreaseOnSuccess: toDecimalDao(model.weightIncreaseOnSuccess),
@@ -132,7 +136,7 @@ export function toExerciseBlueprintDao(
           supersetWithNext: model.supersetWithNext,
         }
       : {
-          type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO,
+          type: GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO,
           cardioTarget: toCardioTargetDao(model.target),
           trackDuration: model.trackDuration,
           trackDistance: model.trackDistance,
@@ -144,8 +148,8 @@ export function toExerciseBlueprintDao(
 
 function toCardioTargetDao(
   target: CardioTarget,
-): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget {
-  return new LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget({
+): GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget {
+  return new GymLifeRpg.Ui.Models.SessionBlueprintDao.CardioTarget({
     type: target.type,
     distanceValue:
       target.type === 'distance' ? toDecimalDao(target.value.value) : null,
@@ -157,8 +161,8 @@ function toCardioTargetDao(
 // Converts a Rest model to a Rest DAO
 export function toRestDao(
   model: Rest,
-): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2 {
-  return new LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2({
+): GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionBlueprintDao.RestDaoV2({
     minRest: toDurationDao(model.minRest),
     maxRest: toDurationDao(model.maxRest),
     failureRest: toDurationDao(model.failureRest),
@@ -180,8 +184,8 @@ export function toDurationDao(
 // Converts a ProgramBlueprint to a ProgramBlueprint DAO
 export function toProgramBlueprintDao(
   model: ProgramBlueprint,
-): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1 {
-  return new LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1({
+): GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1 {
+  return new GymLifeRpg.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1({
     name: model.name,
     sessions: model.sessions.map(toSessionBlueprintDao),
     lastEdited: toDateOnlyDao(model.lastEdited),
@@ -191,8 +195,8 @@ export function toProgramBlueprintDao(
 // Converts a FeedIdentity to a FeedIdentity DAO
 export function toFeedIdentityDao(
   model: FeedIdentity,
-): LiftLog.Ui.Models.FeedIdentityDaoV1 {
-  return new LiftLog.Ui.Models.FeedIdentityDaoV1({
+): GymLifeRpg.Ui.Models.FeedIdentityDaoV1 {
+  return new GymLifeRpg.Ui.Models.FeedIdentityDaoV1({
     id: toUuidDao(model.id),
     lookup: { value: model.lookup },
     aesKey: model.aesKey.value,
@@ -210,8 +214,8 @@ export function toFeedIdentityDao(
 // Converts a FeedUser to a FeedUser DAO
 export function toFeedUserDao(
   model: FeedUser,
-): LiftLog.Ui.Models.FeedUserDaoV1 {
-  return new LiftLog.Ui.Models.FeedUserDaoV1({
+): GymLifeRpg.Ui.Models.FeedUserDaoV1 {
+  return new GymLifeRpg.Ui.Models.FeedUserDaoV1({
     id: toUuidDao(model.id),
     name: toStringValue(model.name),
     nickname: toStringValue(model.nickname),
@@ -226,16 +230,16 @@ export function toFeedUserDao(
 // Converts a CurrentPlan to a CurrentPlan DAO
 export function toCurrentPlanDao(
   sessions: SessionBlueprint[],
-): LiftLog.Ui.Models.CurrentPlanDaoV1 {
-  return new LiftLog.Ui.Models.CurrentPlanDaoV1({
+): GymLifeRpg.Ui.Models.CurrentPlanDaoV1 {
+  return new GymLifeRpg.Ui.Models.CurrentPlanDaoV1({
     sessions: sessions.map(toSessionBlueprintDao),
   });
 }
 
 export function toSessionHistoryDao(
   model: Record<string, SessionPOJO>,
-): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2 {
-  return new LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2({
+): GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2({
     completedSessions: Enumerable.from(model)
       .select((x) => Session.fromPOJO(x.value))
       .select(toSessionDao)
@@ -246,8 +250,8 @@ export function toSessionHistoryDao(
 // Converts a Session to a Session DAO
 export function toSessionDao(
   model: Session,
-): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2 {
-  return new LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2({
+): GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionHistoryDao.SessionDaoV2({
     id: toUuidDao(model.id),
     sessionName: model.blueprint.name,
     blueprintNotes: model.blueprint.notes,
@@ -258,34 +262,34 @@ export function toSessionDao(
       : null,
     bodyweightUnit: model.bodyweight
       ? toWeightUnitDao(model.bodyweight.unit)
-      : LiftLog.Ui.Models.WeightUnit.NIL,
+      : GymLifeRpg.Ui.Models.WeightUnit.NIL,
   });
 }
 
 export function toWeightUnitDao(
   weightUnit: WeightUnit,
-): LiftLog.Ui.Models.WeightUnit {
+): GymLifeRpg.Ui.Models.WeightUnit {
   return match(weightUnit)
-    .with('kilograms', () => LiftLog.Ui.Models.WeightUnit.KILOGRAMS)
-    .with('pounds', () => LiftLog.Ui.Models.WeightUnit.POUNDS)
-    .with('nil', () => LiftLog.Ui.Models.WeightUnit.NIL)
+    .with('kilograms', () => GymLifeRpg.Ui.Models.WeightUnit.KILOGRAMS)
+    .with('pounds', () => GymLifeRpg.Ui.Models.WeightUnit.POUNDS)
+    .with('nil', () => GymLifeRpg.Ui.Models.WeightUnit.NIL)
     .exhaustive();
 }
 
 // Converts a RecordedExercise to a RecordedExercise DAO
 export function toRecordedExerciseDao(
   model: RecordedExercise,
-): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2 {
-  return new LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2({
+): GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2({
     exerciseBlueprint: toExerciseBlueprintDao(model.blueprint),
     notes: toStringValue(model.notes),
     ...(model instanceof RecordedWeightedExercise
       ? {
-          type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.WEIGHTED,
+          type: GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.WEIGHTED,
           potentialSets: model.potentialSets.map(toPotentialSetDao),
         }
       : {
-          type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO,
+          type: GymLifeRpg.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO,
           completionDateTime: toDateTimeDao(model.completionDateTime),
           duration: toDurationDao(model.duration),
           distanceValue: model.distance
@@ -300,11 +304,11 @@ export function toRecordedExerciseDao(
 
 function toDateTimeDao(
   model: OffsetDateTime | undefined,
-): LiftLog.Ui.Models.DateTimeDao | null {
+): GymLifeRpg.Ui.Models.DateTimeDao | null {
   if (!model) {
     return null;
   }
-  return new LiftLog.Ui.Models.DateTimeDao({
+  return new GymLifeRpg.Ui.Models.DateTimeDao({
     date: toDateOnlyDao(model.toLocalDate()),
     time: toTimeOnlyDao(model.toLocalTime()),
     offset: { totalSeconds: model.offset().totalSeconds() },
@@ -313,8 +317,8 @@ function toDateTimeDao(
 
 export function toPotentialSetDao(
   model: PotentialSet,
-): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2 {
-  return new LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2({
+): GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionHistoryDao.PotentialSetDaoV2({
     recordedSet: model.set ? toRecordedSetDao(model.set) : null,
     weightValue: toDecimalDao(model.weight.value),
     weightUnit: toWeightUnitDao(model.weight.unit),
@@ -324,8 +328,8 @@ export function toPotentialSetDao(
 // Converts a RecordedSet to a RecordedSet DAO
 export function toRecordedSetDao(
   model: RecordedSet,
-): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2 {
-  return new LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2({
+): GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2 {
+  return new GymLifeRpg.Ui.Models.SessionHistoryDao.RecordedSetDaoV2({
     repsCompleted: model.repsCompleted,
     completionDate: toDateOnlyDao(model.completionDateTime.toLocalDate()),
     completionTime: toTimeOnlyDao(model.completionDateTime.toLocalTime()),
@@ -339,21 +343,25 @@ export function toCurrentSessionDao(model: {
   workoutSession: Session | undefined;
   historySession: Session | undefined;
   latestSetTimerNotificationId: string | undefined;
-}): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2 {
-  return new LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2({
-    historySession:
-      (model.historySession && toSessionDao(model.historySession)) ?? null,
-    workoutSession:
-      (model.workoutSession && toSessionDao(model.workoutSession)) ?? null,
-    latestSetTimerNotificationId:
-      (model.latestSetTimerNotificationId &&
-        toUuidDao(model.latestSetTimerNotificationId)) ||
-      null,
-  });
+}): GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2 {
+  return new GymLifeRpg.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2(
+    {
+      historySession:
+        (model.historySession && toSessionDao(model.historySession)) ?? null,
+      workoutSession:
+        (model.workoutSession && toSessionDao(model.workoutSession)) ?? null,
+      latestSetTimerNotificationId:
+        (model.latestSetTimerNotificationId &&
+          toUuidDao(model.latestSetTimerNotificationId)) ||
+        null,
+    },
+  );
 }
 
-export function toFeedItemDao(item: FeedItem): LiftLog.Ui.Models.FeedItemDaoV1 {
-  return new LiftLog.Ui.Models.FeedItemDaoV1({
+export function toFeedItemDao(
+  item: FeedItem,
+): GymLifeRpg.Ui.Models.FeedItemDaoV1 {
+  return new GymLifeRpg.Ui.Models.FeedItemDaoV1({
     eventId: toUuidDao(item.eventId),
     expiry: toTimestampDao(item.expiry),
     timestamp: toTimestampDao(item.timestamp),
@@ -365,8 +373,8 @@ export function toFeedItemDao(item: FeedItem): LiftLog.Ui.Models.FeedItemDaoV1 {
 
 export function toFeedStateDao(
   state: FeedState,
-): LiftLog.Ui.Models.FeedStateDaoV1 {
-  return new LiftLog.Ui.Models.FeedStateDaoV1({
+): GymLifeRpg.Ui.Models.FeedStateDaoV1 {
+  return new GymLifeRpg.Ui.Models.FeedStateDaoV1({
     feedItems: state.feed.map((x) => toFeedItemDao(FeedItem.fromPOJO(x))),
     followedUsers: Object.values(state.followedUsers).map((x) =>
       toFeedUserDao(FeedUser.fromPOJO(x)),
@@ -388,22 +396,22 @@ export function toFeedStateDao(
 
 export function toSharedItemDao(
   item: SharedItem,
-): LiftLog.Ui.Models.SharedItemPayload {
+): GymLifeRpg.Ui.Models.SharedItemPayload {
   const sharedProgramBlueprint =
     item instanceof SharedProgramBlueprint
-      ? new LiftLog.Ui.Models.SharedProgramBlueprintPayload({
+      ? new GymLifeRpg.Ui.Models.SharedProgramBlueprintPayload({
           programBlueprint: toProgramBlueprintDao(item.programBlueprint),
         })
       : null;
-  return new LiftLog.Ui.Models.SharedItemPayload({
+  return new GymLifeRpg.Ui.Models.SharedItemPayload({
     sharedProgramBlueprint,
   });
 }
 
 function toFollowRequestDao(
   request: FollowRequest,
-): LiftLog.Ui.Models.InboxMessageDao {
-  return new LiftLog.Ui.Models.InboxMessageDao({
+): GymLifeRpg.Ui.Models.InboxMessageDao {
+  return new GymLifeRpg.Ui.Models.InboxMessageDao({
     fromUserId: toUuidDao(request.userId),
     followRequest: {
       name: toStringValue(request.name),

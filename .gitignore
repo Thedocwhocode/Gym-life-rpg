@@ -368,7 +368,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 **/app.min.css
-/LiftLog.Ui/wwwroot/bundle.js
 
 
 ios-install-local.sh
@@ -382,7 +381,5 @@ my.secrets
 purchaseToken.txt
 
 appsettings.development.json
-backend/LiftLog.Api/appsettings.Development.json
+backend/GymLifeRpg.Api/appsettings.Development.json
 
-LiftLog.Web/wwwroot/crypto-utils.js
-LiftLog.Ui/wwwroot/app-utils.js

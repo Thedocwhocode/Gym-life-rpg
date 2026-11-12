@@ -4,17 +4,21 @@ import {
   PayloadAction,
   UnknownAction,
 } from '@reduxjs/toolkit';
+import { LocalDate } from '@js-joda/core';
 
 const initialState: AppState = {
   isHydrated: false,
   canScheduleExactNotifications: false,
   currentSnackbar: undefined,
+  today: LocalDate.now().toString(),
 };
 
 export type AppState = {
   isHydrated: boolean;
   canScheduleExactNotifications: boolean;
   currentSnackbar: SnackbarDescriptor | undefined;
+  /** Dia local (YYYY-MM-DD) da projeção; atualizado quando o app volta ao primeiro plano. */
+  today: string;
 };
 
 const appSlice = createSlice({
@@ -27,6 +31,10 @@ const appSlice = createSlice({
 
     setCanScheduleExactNotifications(state, action: PayloadAction<boolean>) {
       state.canScheduleExactNotifications = action.payload;
+    },
+
+    setToday(state, action: PayloadAction<string>) {
+      state.today = action.payload;
     },
 
     setCurrentSnackbar(
@@ -52,7 +60,10 @@ export const shareString = createAction<{ title: string; value: string }>(
   'shareString',
 );
 
-export type SnackbarDescriptor =
+export type SnackbarDescriptor = {
+  /** Tom do toast: erro usa danger-wash; o padrão é neutro/sucesso. */
+  tone?: 'success' | 'error';
+} & (
   | {
       text: string;
       action?: undefined;
@@ -62,7 +73,8 @@ export type SnackbarDescriptor =
       text: string;
       action: string;
       dispatchAction: UnknownAction | UnknownAction[];
-    };
+    }
+);
 export const showSnackbar = createAction<
   SnackbarDescriptor & { duration?: number }
 >('snackBarWithAction');
@@ -71,6 +83,7 @@ export const {
   setIsHydrated,
   setCanScheduleExactNotifications,
   setCurrentSnackbar,
+  setToday,
 } = appSlice.actions;
 
 export default appSlice.reducer;

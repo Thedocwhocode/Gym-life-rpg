@@ -1,14 +1,15 @@
+import ListItem from '@/components/presentation/pixel/ListItem';
 import Button from '@/components/presentation/gesture-wrappers/button';
 import ListSwitch from '@/components/presentation/list-switch';
 import SelectButton, {
   SelectButtonOption,
 } from '@/components/presentation/select-button';
-import ThemeChooser from '@/components/presentation/theme-chooser';
+import PaletteChooser from '@/components/presentation/palette-chooser';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { supportedLanguages } from '@/services/tolgee';
 import { useAppSelector } from '@/store';
 import {
-  setColorSchemeSeed,
+  setPalette,
   setCrashReportsEnabled,
   setFirstDayOfWeek,
   setPreferredLanguage,
@@ -17,15 +18,30 @@ import {
   setUseImperialUnits,
   setWelcomeWizardCompleted,
 } from '@/store/settings';
+import { RpgClass, selectRpgClass, setRpgClass } from '@/store/choices';
 import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
 import { useMemo, useState } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
-import { List, Portal, Text } from 'react-native-paper';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Portal } from 'react-native-paper';
+import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
+import PixelBar from '@/components/presentation/pixel/PixelBar';
+import PixelBox from '@/components/presentation/pixel/PixelBox';
+import Portrait from '@/components/presentation/pixel/Portrait';
+import Tag, { type TagTone } from '@/components/presentation/pixel/Tag';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
+import { isBackendConfigured } from '@/services/api-consts';
+
+// ponytail: o bônus descrito só vira número na F6 (multiplicadores DR11).
+const RPG_CLASSES: { id: RpgClass; attr: string; tone: TagTone }[] = [
+  { id: 'warrior', attr: 'STR', tone: 'str' },
+  { id: 'scout', attr: 'DEX', tone: 'dex' },
+  { id: 'paladin', attr: 'CON', tone: 'con' },
+];
 
 export function WelcomeWizard() {
   const formatDate = useFormatDate();
@@ -64,7 +80,12 @@ export function WelcomeWizard() {
   const dispatch = useDispatch();
   const settings = useAppSelector((state) => state.settings);
   const welcomeWizardCompleted = settings.welcomeWizardCompleted;
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
+  const tx = {
+    title: [type.title, { color: palette.text1 }],
+    sub: [type.body, { color: palette.text2 }],
+    section: [type.label, { color: palette.text2 }],
+  };
   const [currentPage, setCurrentPage] = useState(0);
   const openUrl = (url: string) => {
     void Linking.canOpenURL(url).then(() => Linking.openURL(url));
@@ -81,7 +102,8 @@ export function WelcomeWizard() {
     [t],
   );
 
-  const totalPages = 3;
+  const totalPages = 4;
+  const rpgClass = useAppSelector(selectRpgClass);
 
   const handleNext = () => {
     if (currentPage < totalPages - 1) {
@@ -97,33 +119,114 @@ export function WelcomeWizard() {
     }
   };
 
+  const renderClassSelectionPage = () => (
+    <View style={styles.pageContent}>
+      <View style={styles.headerSection}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
+          {t('onboarding.class.title')}
+        </Text>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
+          {t('onboarding.class.subtitle')}
+        </Text>
+      </View>
+
+      <View style={[styles.settingsSection, { gap: 12 }]}>
+        {RPG_CLASSES.map((cls) => {
+          const selected = rpgClass === cls.id;
+          return (
+            <Pressable
+              key={cls.id}
+              testID={`class-${cls.id}`}
+              accessibilityRole="radio"
+              accessibilityState={{ checked: selected }}
+              onPress={() => dispatch(setRpgClass(cls.id))}
+              style={styles.classCard}
+            >
+              <PixelBox
+                tone={selected ? 'accent' : 'default'}
+                padding={12}
+                innerStyle={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 14,
+                }}
+              >
+                <Portrait
+                  width={64}
+                  height={80}
+                  label={t('rpg.sheet.portrait')}
+                />
+                <View style={{ flex: 1, gap: 6, alignItems: 'flex-start' }}>
+                  <Text
+                    maxFontSizeMultiplier={TITLE_MAX_SCALE}
+                    style={[
+                      type.title,
+                      { color: selected ? palette.accent : palette.text1 },
+                    ]}
+                  >
+                    {t(`rpg.class.${cls.id}`)}
+                  </Text>
+                  <Tag tone={cls.tone} size="sm">
+                    {cls.attr}
+                  </Tag>
+                  <Text style={[type.small, { color: palette.text2 }]}>
+                    {t(`onboarding.class.${cls.id}.bonus`)}
+                  </Text>
+                </View>
+                <Text
+                  aria-hidden
+                  style={[
+                    type.bodyLg,
+                    { color: selected ? palette.accent : palette.line2 },
+                  ]}
+                >
+                  {selected ? '◆' : '◇'}
+                </Text>
+              </PixelBox>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+
   const renderCrashReportsPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('onboarding.welcome.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('onboarding.welcome.subtitle')}
         </Text>
       </View>
 
       <View style={styles.settingsSection}>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('onboarding.open_source.title')}
         </Text>
-        <Text variant="bodyMedium" style={styles.sectionDescription}>
+        <Text style={[styles.sectionDescription, tx.sub]}>
           {t('onboarding.open_source.body')}
         </Text>
         <Button
-          onPress={() => openUrl('https://github.com/LiamMorrow/LiftLog')}
+          onPress={() =>
+            openUrl('https://github.com/Thedocwhocode/Gym-life-rpg')
+          }
         >
           {t('onboarding.open_source.button')}
         </Button>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('onboarding.crash_reports.title')}
         </Text>
-        <Text variant="bodyMedium" style={styles.sectionDescription}>
+        <Text style={[styles.sectionDescription, tx.sub]}>
           {t('onboarding.crash_reports.explanation')}
         </Text>
         <ListSwitch
@@ -132,7 +235,13 @@ export function WelcomeWizard() {
           value={settings.crashReportsEnabled}
           onValueChange={(value) => dispatch(setCrashReportsEnabled(value))}
         />
-        <Button onPress={() => openUrl('https://liftlog.online/privacy.html')}>
+        <Button
+          onPress={() =>
+            openUrl(
+              'https://github.com/Thedocwhocode/Gym-life-rpg/blob/main/PRIVACY.md',
+            )
+          }
+        >
           {t('onboarding.privacy_policy.button')}
         </Button>
       </View>
@@ -142,10 +251,14 @@ export function WelcomeWizard() {
   const renderLocalizationPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('settings.localisation.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('settings.localisation.subtitle')}
         </Text>
       </View>
@@ -157,31 +270,31 @@ export function WelcomeWizard() {
           value={settings.useImperialUnits}
           onValueChange={(value) => dispatch(setUseImperialUnits(value))}
         />
-        <List.Item
+        <ListItem
           title={t('settings.first_day_of_week.label')}
           description={t('settings.first_day_of_week.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               value={settings.firstDayOfWeek}
               options={daysOfWeekOptions}
               onChange={(value) => dispatch(setFirstDayOfWeek(value))}
             />
-          )}
+          }
         />
-        <List.Item
+        <ListItem
           title={t('settings.set_language.button')}
           description={t('settings.set_language.subtitle')}
-          right={() => (
+          trailing={
             <SelectButton
               value={settings.preferredLanguage}
               options={languageOptions}
               onChange={(value) => dispatch(setPreferredLanguage(value))}
             />
-          )}
+          }
         />
-        <ThemeChooser
-          seed={settings.colorSchemeSeed}
-          onUpdateTheme={(x) => dispatch(setColorSchemeSeed(x))}
+        <PaletteChooser
+          value={settings.palette}
+          onChange={(palette) => dispatch(setPalette(palette))}
         />
       </View>
     </View>
@@ -190,16 +303,20 @@ export function WelcomeWizard() {
   const renderNotificationsAndFeedPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text variant="headlineMedium" style={styles.pageTitle}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('onboarding.notifications_and_feed.title')}
         </Text>
-        <Text variant="bodyLarge" style={styles.pageSubtitle}>
+        <Text style={[styles.pageSubtitle, tx.sub]}>
           {t('onboarding.notifications_and_feed.subtitle')}
         </Text>
       </View>
 
       <View style={styles.settingsSection}>
-        <Text variant="titleMedium" style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, tx.section]}>
           {t('settings.notifications.title')}
         </Text>
         <ListSwitch
@@ -209,18 +326,19 @@ export function WelcomeWizard() {
           onValueChange={(value) => dispatch(setRestNotifications(value))}
         />
 
-        <Text
-          variant="titleMedium"
-          style={[styles.sectionTitle, styles.topSpacing]}
-        >
-          {t('feed.feed.title')}
-        </Text>
-        <ListSwitch
-          headline={t('feed.show_feed.label')}
-          supportingText={t('feed.show_feed.subtitle')}
-          value={settings.showFeed}
-          onValueChange={(value) => dispatch(setShowFeed(value))}
-        />
+        {isBackendConfigured && (
+          <>
+            <Text style={[styles.sectionTitle, styles.topSpacing, tx.section]}>
+              {t('feed.feed.title')}
+            </Text>
+            <ListSwitch
+              headline={t('feed.show_feed.label')}
+              supportingText={t('feed.show_feed.subtitle')}
+              value={settings.showFeed}
+              onValueChange={(value) => dispatch(setShowFeed(value))}
+            />
+          </>
+        )}
       </View>
     </View>
   );
@@ -228,10 +346,12 @@ export function WelcomeWizard() {
   const renderPage = () => {
     switch (currentPage) {
       case 0:
-        return renderCrashReportsPage();
+        return renderClassSelectionPage();
       case 1:
-        return renderLocalizationPage();
+        return renderCrashReportsPage();
       case 2:
+        return renderLocalizationPage();
+      case 3:
         return renderNotificationsAndFeedPage();
       default:
         return null;
@@ -240,22 +360,26 @@ export function WelcomeWizard() {
   return (
     !welcomeWizardCompleted && (
       <Portal>
-        <SafeAreaView style={{ flex: 1, backgroundColor: colors.surface }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: palette.bgApp }}>
           <View style={[styles.container]}>
+            <View style={styles.stepHeader}>
+              <Text style={[type.label, { color: palette.text3 }]}>
+                {t('onboarding.step.label', {
+                  current: currentPage + 1,
+                  total: totalPages,
+                })}
+              </Text>
+              <PixelBar
+                value={(currentPage + 1) / totalPages}
+                segments={totalPages}
+                height={6}
+                gap={4}
+              />
+            </View>
             {renderPage()}
 
             <View style={styles.footer}>
-              <View style={styles.pageIndicator}>
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <View
-                    key={index}
-                    style={[
-                      styles.dot,
-                      currentPage === index && styles.activeDot,
-                    ]}
-                  />
-                ))}
-              </View>
+              <AsciiDivider />
 
               <View style={styles.buttonRow}>
                 <Button
@@ -291,19 +415,19 @@ const styles = StyleSheet.create({
   },
   pageContent: {
     flex: 1,
-    marginTop: spacing.pageHorizontalMargin,
+    marginTop: 20,
   },
   headerSection: {
-    marginBottom: spacing[8],
-    alignItems: 'center',
+    marginBottom: 20,
+    marginHorizontal: spacing.pageHorizontalMargin,
+    gap: 6,
   },
-  pageTitle: {
-    textAlign: 'center',
-    marginBottom: spacing[2],
-  },
-  pageSubtitle: {
-    textAlign: 'center',
-    opacity: 0.7,
+  pageTitle: {},
+  pageSubtitle: {},
+  stepHeader: {
+    gap: 8,
+    paddingHorizontal: spacing.pageHorizontalMargin,
+    paddingTop: 24,
   },
   settingsSection: {
     flex: 1,
@@ -314,7 +438,6 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.pageHorizontalMargin,
   },
   sectionDescription: {
-    opacity: 0.7,
     marginBottom: spacing[4],
     marginHorizontal: spacing.pageHorizontalMargin,
   },
@@ -325,22 +448,7 @@ const styles = StyleSheet.create({
     padding: spacing.pageHorizontalMargin,
     paddingBottom: spacing[8],
     marginTop: 'auto',
-  },
-  pageIndicator: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: spacing[4],
-    gap: spacing[2],
-  },
-  dot: {
-    width: spacing[2],
-    height: spacing[2],
-    borderRadius: spacing[1],
-    backgroundColor: 'rgba(128, 128, 128, 0.3)',
-  },
-  activeDot: {
-    backgroundColor: 'rgba(128, 128, 128, 0.8)',
-    width: spacing[6],
+    gap: 16,
   },
   buttonRow: {
     flexDirection: 'row',
@@ -349,5 +457,8 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+  },
+  classCard: {
+    marginHorizontal: spacing.pageHorizontalMargin,
   },
 });

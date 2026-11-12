@@ -1,4 +1,4 @@
-import { LiftLog } from '@/gen/proto';
+import { GymLifeRpg } from '@/gen/proto';
 import { AesKey } from '@/models/encryption-models';
 import { RemoteData } from '@/models/remote';
 import { fromSharedItemDao } from '@/models/storage/conversions.from-dao';
@@ -12,6 +12,7 @@ import {
 } from '@/store/feed';
 import { addEffect } from '@/store/store';
 import { toUrlSafeHexString } from '@/utils/to-url-safe-hex-string';
+import { webBaseUrl } from '@/services/api-consts';
 
 export function addSharedItemEffects() {
   addEffect(
@@ -49,7 +50,7 @@ export function addSharedItemEffects() {
       const aesKey = await encryptionService.generateAesKey();
       const payload = toSharedItemDao(action.payload);
       const payloadBytes =
-        LiftLog.Ui.Models.SharedItemPayload.encode(payload).finish();
+        GymLifeRpg.Ui.Models.SharedItemPayload.encode(payload).finish();
 
       const encrypted =
         await encryptionService.signRsa256PssAndEncryptAesCbcAsync(
@@ -105,14 +106,14 @@ export function addSharedItemEffects() {
           rsaPublicKey,
         );
       const sharedItemDao =
-        LiftLog.Ui.Models.SharedItemPayload.decode(decryptedBytes);
+        GymLifeRpg.Ui.Models.SharedItemPayload.decode(decryptedBytes);
       const sharedItem = fromSharedItemDao(sharedItemDao);
 
       if (!sharedItem) {
         dispatch(
           setSharedItem(
             RemoteData.error(
-              'Could not read shared item. Please update LiftLog.',
+              'Could not read shared item. Please update GymLife RPG.',
             ),
           ),
         );
@@ -125,5 +126,5 @@ export function addSharedItemEffects() {
 }
 
 function getShareUrl(sharedItemId: string, aesKey: AesKey) {
-  return `https://app.liftlog.online/feed/shared-item/${sharedItemId}?k=${toUrlSafeHexString(aesKey.value)}`;
+  return `${webBaseUrl}/feed/shared-item/${sharedItemId}?k=${toUrlSafeHexString(aesKey.value)}`;
 }

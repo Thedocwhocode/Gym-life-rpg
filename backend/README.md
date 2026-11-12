@@ -1,6 +1,6 @@
-## LiftLog Backend
+## GymLife RPG Backend
 
-The LiftLog backend is written in C# on the latest .NET. The backend is responsible for storing and serving user feeds (which are end-to-end encrypted) and serving the AI planner. It requires a PostgreSQL database.
+The GymLife RPG backend is written in C# on the latest .NET. The backend is responsible for storing and serving user feeds (which are end-to-end encrypted) and serving the AI planner. It requires a PostgreSQL database.
 
 ### Prerequisites
 
@@ -22,7 +22,7 @@ Download and install from [dotnet.microsoft.com/download](https://dotnet.microso
 ```bash
 wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod +x ./dotnet-install.sh
-./dotnet-install.sh --channel 9.0
+./dotnet-install.sh --channel 10.0
 ```
 
 For other Linux distributions, see the [official installation guide](https://learn.microsoft.com/en-us/dotnet/core/install/linux).
@@ -33,15 +33,15 @@ Optionally, to run a local PostgreSQL instance, use the provided Docker Compose 
 
 ### Configuration
 
-Before running the backend, you need to create a configuration file at [LiftLog.Api/appsettings.Development.json](LiftLog.Api/appsettings.Development.json).
+Before running the backend, you need to create a configuration file at [GymLifeRpg.Api/appsettings.Development.json](GymLifeRpg.Api/appsettings.Development.json).
 
 Here is an example configuration that works with the Docker Compose setup:
 
 ```json
 {
   "ConnectionStrings": {
-    "UserDataContext": "Host=localhost;Port=5400;Database=liftlog;Username=postgres;Password=password",
-    "RateLimitContext": "Host=localhost;Port=5400;Database=liftlog;Username=postgres;Password=password"
+    "UserDataContext": "Host=localhost;Port=5400;Database=gymliferpg;Username=postgres;Password=password",
+    "RateLimitContext": "Host=localhost;Port=5400;Database=gymliferpg;Username=postgres;Password=password"
   },
   "OpenAiApiKey": "sk-test-key",
   "WebAuthApiKey": "test-web-auth-key-12345",
@@ -60,7 +60,7 @@ Here is an example configuration that works with the Docker Compose setup:
 Start the PostgreSQL database and run the backend:
 
 ```bash
-cd ./backend/LiftLog.Api
+cd ./backend/GymLifeRpg.Api
 docker compose up -d
 dotnet run
 ```
