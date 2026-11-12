@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { AiWorkoutPlan } from '@/models/ai-models';
-import { SessionBlueprint } from '@/models/blueprint-models';
-import { Duration } from '@js-joda/core';
+import { ProgramBlueprint, SessionBlueprint } from '@/models/blueprint-models';
+import { Duration, LocalDate } from '@js-joda/core';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   importPdf,
@@ -178,6 +178,13 @@ describe('readSheet', () => {
       'restBetweenSets' in ex &&
         ex.restBetweenSets.minRest.equals(Duration.ofSeconds(90)),
     ).toBe(true);
+    // O mesmo caminho do "Salvar plano" da tela (pdf-import.tsx).
+    const saved = ProgramBlueprint.fromPOJO({
+      lastEdited: LocalDate.now(),
+      name: out.name,
+      sessions: out.sessions.map((x) => x.toPOJO()),
+    });
+    expect(saved.sessions[0].exercises[0].name).toBe('Supino reto');
   });
 });
 
