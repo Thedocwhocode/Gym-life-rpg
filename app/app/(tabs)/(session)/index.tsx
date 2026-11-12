@@ -30,9 +30,11 @@ import { useDebouncedCallback } from 'use-debounce';
 import { MigrateToWeightUnitsWizard } from '@/components/smart/migrate-to-weight-units';
 import { WelcomeWizard } from '@/components/smart/welcome-wizard';
 import { SessionDiffSaveDialog } from '@/components/smart/session-diff-save-dialog';
+import { useScreenTransition } from '@/components/smart/screen-transition';
 
 function PlanManager() {
   const { push } = useRouter();
+  const run = useScreenTransition();
   const { t } = useTranslate();
   const activeProgramId = useAppSelector(
     (s: RootState) => s.program.activeProgramId,
@@ -66,7 +68,7 @@ function PlanManager() {
         variant="ghost"
         icon="upload"
         testID="pdf-import-entry"
-        onPress={() => push('/settings/pdf-import')}
+        onPress={() => run('ai', () => push('/settings/pdf-import'))}
       >
         {t('pdf.entry.button')}
       </Button>
@@ -212,6 +214,7 @@ export default function Index() {
   const dispatch = useDispatch();
   const { t } = useTranslate();
   const { push } = useRouter();
+  const run = useScreenTransition();
   const currentSession = useAppSelectorWithArg(
     selectCurrentSession,
     'workoutSession',
@@ -267,7 +270,7 @@ export default function Index() {
           session,
         }),
       );
-      push('/session');
+      run('combat', () => push('/session'));
     },
     500,
     { leading: true, trailing: false },

@@ -34,7 +34,7 @@ export default function TabBar({
       accessibilityRole="tablist"
       style={{
         flexDirection: 'row',
-        height: size.tabbar + bottomInset,
+        minHeight: size.tabbar + bottomInset,
         paddingBottom: bottomInset,
         backgroundColor: palette.surface1,
         borderTopWidth: 1,

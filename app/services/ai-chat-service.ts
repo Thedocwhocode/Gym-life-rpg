@@ -97,13 +97,8 @@ export class AiChatService {
       });
     }
     if (!this.connection) {
-      subject.pushValue({
-        type: 'messageResponse',
-        message:
-          'Failed to connect to server. Please refresh and try again with a strong internet connection',
-      });
-      subject.end();
-      return subject;
+      // Sem conexão (offline): o balão mostra erro inline + "Tentar" (DR7), não um texto fixo.
+      throw new Error('AI planner: could not connect to server');
     }
     this.connection.on(
       'ReceiveMessage',

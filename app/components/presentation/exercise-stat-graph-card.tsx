@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { lineGraphProps } from '@/components/presentation/line-graph-props';
 import { useFormatDate } from '@/hooks/useFormatDate';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 
 export default function ExerciseStatGraphCard(props: {
   exerciseStats: ExerciseStatistics;
@@ -47,7 +47,10 @@ export default function ExerciseStatGraphCard(props: {
   const [width, setWidth] = useState(0);
   return (
     <PixelBox padding={12} innerStyle={{ gap: 8 }}>
-      <Text style={{ ...type.titleSm, color: palette.text1 }}>
+      <Text
+        maxFontSizeMultiplier={TITLE_MAX_SCALE}
+        style={{ ...type.titleSm, color: palette.text1 }}
+      >
         {props.title}
       </Text>
       <View onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>

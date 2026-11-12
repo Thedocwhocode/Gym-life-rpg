@@ -7,6 +7,8 @@ import PixelBox from '@/components/presentation/pixel/PixelBox';
 import Portrait from '@/components/presentation/pixel/Portrait';
 import Tag, { TagTone } from '@/components/presentation/pixel/Tag';
 import type { PixelIconName } from '@/components/presentation/pixel-icons.generated';
+import { useScreenTransition } from '@/components/smart/screen-transition';
+import type { TransitionKind } from '@/components/presentation/fx/transitions';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { isProAvailable } from '@/services/api-consts';
 import { useAppSelector } from '@/store';
@@ -16,7 +18,7 @@ import { selectJourney } from '@/store/journey';
 import { BESTIARY } from '@/store/journey/rules/bestiary';
 import { SKILLS, STARTER } from '@/store/journey/rules/skills';
 import { accentText } from '@/theme/palettes';
-import { steps, type } from '@/theme/tokens';
+import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import * as Application from 'expo-application';
 import { Href, Stack, useRouter } from 'expo-router';
@@ -79,7 +81,10 @@ function HeroCard() {
     >
       <Portrait label="sprite" width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
-        <Text style={{ ...type.titleSm, color: palette.text1 }}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          style={{ ...type.titleSm, color: palette.text1 }}
+        >
           {t(title)}
         </Text>
         <Text style={{ ...type.small, color: palette.text2 }}>
@@ -109,7 +114,12 @@ export default function Settings() {
   const openUrl = (url: string) => {
     void Linking.canOpenURL(url).then(() => Linking.openURL(url));
   };
-  const go = (href: Href) => () => push(href);
+  const run = useScreenTransition();
+  // D.7: blinds nas subpáginas da Taverna, diamond-wipe no Grimório/Bestiário/Inventário, glitch na IA.
+  const go =
+    (href: Href, kind: TransitionKind = 'subpage') =>
+    () =>
+      run(kind, () => push(href));
   const journey = useAppSelector(selectJourney);
   const known =
     journey.learned.size +
@@ -125,7 +135,7 @@ export default function Settings() {
       description: t('rpg.journey.inventory.desc'),
       icon: 'briefcase',
       meta: `${journey.drops.length}/${BESTIARY.length}`,
-      onPress: go('/(tabs)/settings/inventory'),
+      onPress: go('/(tabs)/settings/inventory', 'grimoire'),
       testID: 'journey-inventory',
     },
     {
@@ -133,7 +143,7 @@ export default function Settings() {
       description: t('rpg.journey.grimoire.desc'),
       icon: 'book-open',
       meta: `${known}/${SKILLS.length}`,
-      onPress: go('/(tabs)/settings/grimoire'),
+      onPress: go('/(tabs)/settings/grimoire', 'grimoire'),
       testID: 'journey-grimoire',
     },
     {
@@ -141,7 +151,7 @@ export default function Settings() {
       description: t('rpg.journey.bestiary.desc'),
       icon: 'book',
       meta: `${defeated}/${BESTIARY.length}`,
-      onPress: go('/(tabs)/settings/bestiary'),
+      onPress: go('/(tabs)/settings/bestiary', 'grimoire'),
       testID: 'journey-bestiary',
     },
     {
@@ -267,7 +277,7 @@ export default function Settings() {
               title: t('ai.planner.title'),
               description: t('ai.planner.subtitle'),
               icon: 'zap',
-              onPress: go('/(tabs)/settings/ai/planner'),
+              onPress: go('/(tabs)/settings/ai/planner', 'ai'),
             },
           ]}
         />
@@ -305,7 +315,10 @@ export default function Settings() {
             padding={20}
             innerStyle={{ gap: 12 }}
           >
-            <Text style={{ ...type.titleSm, color: palette.text1 }}>
+            <Text
+              maxFontSizeMultiplier={TITLE_MAX_SCALE}
+              style={{ ...type.titleSm, color: palette.text1 }}
+            >
               {t('settings.app_info.title')}
             </Text>
             <Text style={{ ...type.body, color: palette.text2 }}>

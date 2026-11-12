@@ -1,6 +1,6 @@
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { steps, type } from '@/theme/tokens';
+import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { ReactNode } from 'react';
 import {
   ScrollView,
@@ -62,6 +62,7 @@ function Title({
   const { palette } = useAppTheme();
   return (
     <Text
+      maxFontSizeMultiplier={TITLE_MAX_SCALE}
       accessibilityRole="header"
       style={[{ ...type.title, color: palette.text1 }, style]}
     >

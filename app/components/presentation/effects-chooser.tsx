@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import Segmented from '@/components/presentation/pixel/Segmented';
 import { spacing } from '@/hooks/useAppTheme';
+import { useTranslate } from '@tolgee/react';
 
 interface EffectsChooserProps {
   value: EffectsMode;
@@ -13,6 +14,7 @@ export default function EffectsChooser({
   value,
   onChange,
 }: EffectsChooserProps) {
+  const { t } = useTranslate();
   return (
     <View
       style={{
@@ -21,14 +23,26 @@ export default function EffectsChooser({
         gap: spacing[2],
       }}
     >
-      <Text variant="labelLarge">Efeitos</Text>
+      <Text variant="labelLarge">{t('settings.effects.label')}</Text>
       <Segmented
         value={value}
         onChange={(v) => onChange(v)}
         options={[
-          { value: 'complete', label: 'Completo', testID: 'effects-complete' },
-          { value: 'reduced', label: 'Reduzido', testID: 'effects-reduced' },
-          { value: 'off', label: 'Desligado', testID: 'effects-off' },
+          {
+            value: 'complete',
+            label: t('settings.effects.complete'),
+            testID: 'effects-complete',
+          },
+          {
+            value: 'reduced',
+            label: t('settings.effects.reduced'),
+            testID: 'effects-reduced',
+          },
+          {
+            value: 'off',
+            label: t('settings.effects.off'),
+            testID: 'effects-off',
+          },
         ]}
       />
     </View>

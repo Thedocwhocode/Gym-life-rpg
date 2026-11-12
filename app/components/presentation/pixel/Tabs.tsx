@@ -27,7 +27,7 @@ export default function Tabs<T extends string>({
       accessibilityRole="tablist"
       style={{
         flexDirection: 'row',
-        height: 44,
+        minHeight: 44,
         borderBottomWidth: 1,
         borderBottomColor: palette.line1,
       }}

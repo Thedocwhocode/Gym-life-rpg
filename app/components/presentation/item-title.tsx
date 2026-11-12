@@ -1,6 +1,6 @@
 import { Text, TextStyle } from 'react-native';
 import { useAppTheme, font } from '@/hooks/useAppTheme';
-import { fontFamily } from '@/theme/tokens';
+import { fontFamily, TITLE_MAX_SCALE } from '@/theme/tokens';
 
 interface ItemTitleProps {
   title: string;
@@ -13,6 +13,7 @@ export default function ItemTitle({ title, style, testID }: ItemTitleProps) {
 
   return (
     <Text
+      maxFontSizeMultiplier={TITLE_MAX_SCALE}
       style={[
         {
           ...font['text-xl'],

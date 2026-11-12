@@ -20,7 +20,7 @@ import {
 } from '@/services/pdf-import';
 import { extractPdfText } from '@/services/pdf-text';
 import { savePlan } from '@/store/program';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
 import { TranslationKey, useTranslate } from '@tolgee/react';
@@ -195,6 +195,7 @@ export default function PdfImport() {
             />
           </View>
           <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
             style={{
               ...type.title,
               color: palette.reward,

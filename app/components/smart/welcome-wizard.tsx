@@ -30,7 +30,7 @@ import PixelBar from '@/components/presentation/pixel/PixelBar';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import Portrait from '@/components/presentation/pixel/Portrait';
 import Tag, { type TagTone } from '@/components/presentation/pixel/Tag';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { useFormatDate } from '@/hooks/useFormatDate';
@@ -122,7 +122,11 @@ export function WelcomeWizard() {
   const renderClassSelectionPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('onboarding.class.title')}
         </Text>
         <Text style={[styles.pageSubtitle, tx.sub]}>
@@ -158,6 +162,7 @@ export function WelcomeWizard() {
                 />
                 <View style={{ flex: 1, gap: 6, alignItems: 'flex-start' }}>
                   <Text
+                    maxFontSizeMultiplier={TITLE_MAX_SCALE}
                     style={[
                       type.title,
                       { color: selected ? palette.accent : palette.text1 },
@@ -192,7 +197,11 @@ export function WelcomeWizard() {
   const renderCrashReportsPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('onboarding.welcome.title')}
         </Text>
         <Text style={[styles.pageSubtitle, tx.sub]}>
@@ -242,7 +251,11 @@ export function WelcomeWizard() {
   const renderLocalizationPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('settings.localisation.title')}
         </Text>
         <Text style={[styles.pageSubtitle, tx.sub]}>
@@ -290,7 +303,11 @@ export function WelcomeWizard() {
   const renderNotificationsAndFeedPage = () => (
     <View style={styles.pageContent}>
       <View style={styles.headerSection}>
-        <Text accessibilityRole="header" style={[styles.pageTitle, tx.title]}>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          accessibilityRole="header"
+          style={[styles.pageTitle, tx.title]}
+        >
           {t('onboarding.notifications_and_feed.title')}
         </Text>
         <Text style={[styles.pageSubtitle, tx.sub]}>

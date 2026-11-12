@@ -9,7 +9,7 @@ import { selectJourney } from '@/store/journey';
 import { ENERGY } from '@/store/journey/rules/energy';
 import { selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
 import type { AttrKey } from '@/store/rpg/derive';
-import { fontFamily, type } from '@/theme/tokens';
+import { fontFamily, TITLE_MAX_SCALE, type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import { Text, View } from 'react-native';
 
@@ -32,6 +32,7 @@ export default function CharacterSheet() {
         <Portrait label={t('rpg.sheet.portrait')} width={92} height={116} />
         <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
           <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
             style={{
               fontFamily: fontFamily.display,
               fontSize: 17,
@@ -43,6 +44,7 @@ export default function CharacterSheet() {
             {t('rpg.sheet.level', { level })}
           </Text>
           <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
             style={{
               fontFamily: fontFamily.display,
               fontSize: 15,

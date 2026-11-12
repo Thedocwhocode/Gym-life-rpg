@@ -26,7 +26,7 @@ export function MaterialBottomTabs({ children }: PropsWithChildren) {
     <Tabs
       screenOptions={{
         headerShown: false,
-        // DR20: troca de aba sem transição.
+        // DR20: troca de aba sem transição (prevalece sobre o pixel-dissolve do D.7).
         animation: 'none',
       }}
       tabBar={({ navigation, state, descriptors, insets }) => {

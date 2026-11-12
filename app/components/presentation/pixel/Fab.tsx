@@ -2,7 +2,7 @@ import Icon from '@/components/presentation/pixel/Icon';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import type { PixelIconName } from '@/components/presentation/pixel-icons.generated';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { fontFamily, size } from '@/theme/tokens';
+import { fontFamily, size, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { useState } from 'react';
 import { Pressable, StyleProp, Text, ViewStyle } from 'react-native';
 
@@ -42,7 +42,7 @@ export default function Fab({
         borderColor={palette.accent}
         fillColor={palette.surface2}
         innerStyle={{
-          height: size.hitMin,
+          minHeight: size.hitMin,
           flexDirection: 'row',
           alignItems: 'center',
           gap: 8,
@@ -51,6 +51,7 @@ export default function Fab({
       >
         <Icon name={icon} size={24} color={palette.accent} />
         <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           style={{
             fontFamily: fontFamily.display,
             fontSize: 15,

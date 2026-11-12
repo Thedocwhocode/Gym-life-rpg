@@ -22,7 +22,7 @@ completo das mudanças está no git deste repositório.
 
 ### pixelfx
 
-As sprite sheets em `app/assets/fx/` foram renderizadas com o pixelfx
+Os efeitos, as transições de tela e o combate rodam com o pixelfx
 (https://github.com/patch-gg/pixelfx), sob a licença MIT. `app/vendor/pixelfx/` é uma cópia do
 código do pixelfx (o core e só os efeitos que o app toca), com o `LICENSE` e o `NOTICE.md` originais.
 
@@ -74,3 +74,15 @@ Pixelarticons (https://github.com/halfmage/pixelarticons), sob a licença MIT.
   (https://github.com/googlefonts/spacemono), SIL Open Font License 1.1.
 
 As duas são distribuídas pelos pacotes `@expo-google-fonts/*`, que trazem o texto da licença.
+
+### PDF.js
+
+A importação de ficha em PDF lê o texto no aparelho com o `pdfjs-dist`
+(https://github.com/mozilla/pdf.js), sob a Apache License 2.0. O texto da licença vem no pacote.
+
+- Copyright Mozilla Foundation e colaboradores
+
+### Open-Meteo
+
+A faixa de clima do Painel usa a API do Open-Meteo (https://open-meteo.com), cujos dados são
+distribuídos sob CC BY 4.0: "Weather data by Open-Meteo.com".

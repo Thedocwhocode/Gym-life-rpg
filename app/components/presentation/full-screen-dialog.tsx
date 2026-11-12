@@ -1,3 +1,4 @@
+import { TITLE_MAX_SCALE } from '@/theme/tokens';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import { useAppTheme, spacing } from '@/hooks/useAppTheme';
 import { usePreventNavigate } from '@/hooks/usePreventNavigate';
@@ -130,6 +131,7 @@ function Header({
             marginRight: 'auto',
             flexShrink: 1, //
           }}
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           variant="headlineSmall"
           numberOfLines={1}
           ellipsizeMode="tail"

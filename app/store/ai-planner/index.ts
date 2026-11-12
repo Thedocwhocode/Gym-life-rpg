@@ -10,6 +10,10 @@ export type ChatMessage = AiChatResponse & {
   id: string;
   from: 'User' | 'Agent';
   isLoading?: boolean;
+  /** O stream falhou (offline, 5xx): o balão mostra erro inline + "Tentar". */
+  failed?: boolean;
+  /** Texto do usuário a reenviar no "Tentar"; vazio = refazer a apresentação. */
+  retryText?: string | undefined;
 };
 
 export type AppState = {
@@ -72,3 +76,9 @@ export const stopAiGenerator = createAction('stopAiGenerator');
 export const initChat = createAction('initChat');
 
 export const aiPlannerReducer = aiPlannerSlice.reducer;
+
+/** "Tentar" num balão que falhou: refaz a resposta no mesmo balão. */
+export const retryAgentReply = createAction<{
+  id: string;
+  retryText?: string | undefined;
+}>('retryAgentReply');

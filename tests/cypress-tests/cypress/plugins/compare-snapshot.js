@@ -15,6 +15,11 @@ const MAX_DIFF_RATIO = 0.001;
 
 function compareSnapshot({ name, screenshotPath }) {
   const reference = path.join(SNAPSHOTS, `${name}.png`);
+  const actual = PNG.sync.read(fs.readFileSync(screenshotPath));
+  // An element below an inner scroll container screenshots as a 1px strip: never a reference.
+  if (actual.height < 2) {
+    return { status: 'failed', reason: `screenshot clipped to ${actual.width}×${actual.height}` };
+  }
   if (!fs.existsSync(reference)) {
     fs.mkdirSync(path.join(SNAPSHOTS, 'new'), { recursive: true });
     fs.copyFileSync(screenshotPath, path.join(SNAPSHOTS, 'new', `${name}.png`));
@@ -22,7 +27,6 @@ function compareSnapshot({ name, screenshotPath }) {
   }
 
   const expected = PNG.sync.read(fs.readFileSync(reference));
-  const actual = PNG.sync.read(fs.readFileSync(screenshotPath));
   if (expected.width !== actual.width || expected.height !== actual.height) {
     return {
       status: 'failed',

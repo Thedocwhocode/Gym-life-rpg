@@ -8,7 +8,7 @@ import Enumerable from 'linq';
 import { I18nManager, View } from 'react-native';
 import IconButton from '@/components/presentation/pixel/IconButton';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
-import { steps, type } from '@/theme/tokens';
+import { size, steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import TouchableRipple from '@/components/presentation/gesture-wrappers/touchable-ripple';
 import Animated, { ZoomIn } from 'react-native-reanimated';
@@ -89,6 +89,7 @@ export default function HistoryCalendarCard({
       />
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <SurfaceText
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
           testID="calendar-month"
           style={{
             ...type.titleSm,
@@ -243,10 +244,12 @@ function HistoryCalendarDay(props: {
       entering={ZoomIn.delay(props.delayEntranceAnimMs)}
       style={{ flex: 1, alignItems: 'center', paddingVertical: 2 }}
     >
+      {/* DR19: célula visual de 34 px, alvo de toque de 44 px. */}
       <TouchableRipple
         onPress={props.onPress}
         onLongPress={props.onLongPress}
         disabled={isFuture}
+        style={{ padding: (size.hitMin - 34) / 2 }}
       >
         <PixelBox
           steps={steps.control}

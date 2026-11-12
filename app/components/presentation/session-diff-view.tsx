@@ -1,3 +1,4 @@
+import { TITLE_MAX_SCALE } from '@/theme/tokens';
 import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
 import ListItem from '@/components/presentation/pixel/ListItem';
 import { SurfaceText } from '@/components/presentation/surface-text';
@@ -159,7 +160,9 @@ function DiffSection({ title, children }: DiffSectionProps) {
           paddingVertical: spacing[2],
         }}
       >
-        <Text variant="titleSmall">{title}</Text>
+        <Text maxFontSizeMultiplier={TITLE_MAX_SCALE} variant="titleSmall">
+          {title}
+        </Text>
       </View>
       {children}
     </View>

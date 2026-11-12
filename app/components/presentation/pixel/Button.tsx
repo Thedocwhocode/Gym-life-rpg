@@ -63,7 +63,7 @@ export default function Button({
   const content = (
     <View
       style={{
-        height: height - 2 * 2,
+        minHeight: height - 2 * 2,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',

@@ -1,6 +1,6 @@
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { ReactNode, useState } from 'react';
 import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
 
@@ -80,7 +80,12 @@ function Title({
     >
       {left?.({ size: 24 })}
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={{ ...type.titleSm, color: palette.text1 }}>{title}</Text>
+        <Text
+          maxFontSizeMultiplier={TITLE_MAX_SCALE}
+          style={{ ...type.titleSm, color: palette.text1 }}
+        >
+          {title}
+        </Text>
         {subtitle ? (
           <Text style={{ ...type.small, color: palette.text3 }}>
             {subtitle}

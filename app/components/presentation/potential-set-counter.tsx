@@ -83,6 +83,11 @@ export default function PotentialSetCounter(props: PotentialSetCounterProps) {
                   ...font['text-xl'],
                 }}
               >
+                {/* DR19: série falhada também leva o × (não só a cor). */}
+                {repCountValue !== undefined &&
+                repCountValue < props.maxReps ? (
+                  <Text testID="repcount-failed">× </Text>
+                ) : null}
                 <Text style={{ fontWeight: 'bold' }}>
                   {repCountValue ?? '-'}
                 </Text>

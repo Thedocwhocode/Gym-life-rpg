@@ -1,7 +1,7 @@
 import Button from '@/components/presentation/pixel/Button';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { steps, type } from '@/theme/tokens';
+import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
@@ -77,6 +77,7 @@ export default function ConfirmationDialog(props: ConfirmationDialogProps) {
           innerStyle={{ gap: 12 }}
         >
           <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
             accessibilityRole="header"
             style={{
               ...type.title,

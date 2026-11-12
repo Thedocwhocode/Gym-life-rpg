@@ -93,6 +93,9 @@ export const size = {
   appbar: 56,
 } as const;
 
+/** Teto da escala de fonte do sistema nos títulos pixel (DR18): o corpo escala livre. */
+export const TITLE_MAX_SCALE = 1.3;
+
 /** Largura do degrau dos cantos: 1 em controles ≤ 48 px, 2 em cards/botões, 3 em diálogos. */
 export const pixelStep = 2;
 export const steps = { control: 1, card: 2, dialog: 3 } as const;

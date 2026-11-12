@@ -12,6 +12,7 @@ import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import PixelIconButton from '@/components/presentation/pixel/IconButton';
 import TextField from '@/components/presentation/pixel/TextField';
 import { ActivityIndicator } from 'react-native-paper';
+import AsciiSkeleton from '@/components/presentation/pixel/AsciiSkeleton';
 import {
   acceptAiDataNotice,
   selectAiDataNoticeAccepted,
@@ -23,6 +24,7 @@ import {
   ChatMessage,
   initChat,
   restartChat,
+  retryAgentReply,
   selectIsLoadingAiPlannerMessage,
   stopAiGenerator,
 } from '@/store/ai-planner';
@@ -233,16 +235,59 @@ function ChatBubble(props: {
           maxWidth: '90%',
         }}
       >
-        {match(message)
-          .with({ type: 'messageResponse' }, (message) => (
-            <GeneralMessage isUser={isUser} message={message} />
-          ))
-          .with({ type: 'chatPlan' }, (message) => (
-            <PlanMessage isUser={isUser} message={message} />
-          ))
-          .with({ type: 'purchasePro' }, () => <ProPrompt />)
-          .exhaustive()}
+        {message.failed ? (
+          <FailedReply message={message} />
+        ) : message.isLoading &&
+          message.type === 'messageResponse' &&
+          !message.message ? (
+          <AiThinking />
+        ) : (
+          match(message)
+            .with({ type: 'messageResponse' }, (message) => (
+              <GeneralMessage isUser={isUser} message={message} />
+            ))
+            .with({ type: 'chatPlan' }, (message) => (
+              <PlanMessage isUser={isUser} message={message} />
+            ))
+            .with({ type: 'purchasePro' }, () => <ProPrompt />)
+            .exhaustive()
+        )}
       </Animated.View>
+    </View>
+  );
+}
+
+/** Carregando: spinner ASCII, só depois de 300 ms (DR5). */
+function AiThinking() {
+  const { t } = useTranslate();
+  return (
+    <View testID="ai-thinking">
+      <AsciiSkeleton variant="spinner" label={t('generic.loading.label')} />
+    </View>
+  );
+}
+
+/** Stream falhou (offline, 5xx): erro inline + "Tentar" no mesmo balão (DR7). */
+function FailedReply({ message }: { message: ChatMessage }) {
+  const { t } = useTranslate();
+  const dispatch = useDispatch();
+  return (
+    <View style={{ gap: spacing[2] }} testID="ai-failed">
+      <SurfaceText color="onSurface">
+        {t('generic.unknown_error.body')}
+      </SurfaceText>
+      <Button
+        mode="contained"
+        icon="reload"
+        style={{ alignSelf: 'flex-start' }}
+        onPress={() =>
+          dispatch(
+            retryAgentReply({ id: message.id, retryText: message.retryText }),
+          )
+        }
+      >
+        {t('generic.retry.button')}
+      </Button>
     </View>
   );
 }

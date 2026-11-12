@@ -350,6 +350,13 @@ testes e verificação no web (desktop + 375 px) e num Android. Nenhum push sem 
   rótulos), 375 px, textos em `en`.
 - Atualizar `README.md`, `CLAUDE.md` (fontes, paletas, novas rotas) e `NOTICE.md`
   (Pixelarticons MIT, pixelfx MIT, fontes OFL).
+- **Status (F9):** transições por timer (a navegação acontece com a tela coberta; teto de
+  1,6 s) nas subpáginas de Ajustes, na entrada do combate e na importação de PDF. Troca de aba segue sem
+  transição (o DR20 prevalece sobre o pixel-dissolve do D.7). PixelFx legado e sprite sheets
+  removidos. Títulos com teto de escala 1,3×, alvos de 44 px no calendário, × na série falhada,
+  pt.json sem chave caindo no inglês, Toast de histórico recalculado, estados vazios de Bestiário
+  e Stats. Fica de fora com motivo: T7 (simulador iOS não roda no Windows). A animação das
+  transições só foi conferida pelo DOM; TalkBack/VoiceOver e fonte a 200% não foram testados.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
@@ -479,22 +486,39 @@ Conflito: as lanes A e D tocam `app/(tabs)/settings/`, então a F3 entra antes d
   - Origem: regressão crítica
   - Arquivos: `app/store/choices`, `app/store/settings`
   - Verificar: teste com snapshot real
-- [ ] **T3 (P1, human ~2h / CC ~10min)**: `derive`: XP de quest na projeção
+- [x] **T3 (P1, human ~2h / CC ~10min)**: `derive`: XP de quest na projeção
   - Origem: R3 (`ActiveQuestPanel.tsx:70`)
   - Verificar: unit
 - [x] **T4 (P1, human ~3h / CC ~10min)**: `derive`: `today: LocalDate` + lint `no-restricted-syntax`
   - Origem: R2 + voz externa 4
   - Arquivos: `app/store/rpg/derive.ts`, `eslint.config.*`
   - Verificar: `npm run lint`, unit na virada de semana
-- [ ] **T5 (P2, human ~2h / CC ~10min)**: `diff`: overlays só em `persistCurrentSession('workoutSession')`
+- [x] **T5 (P2, human ~2h / CC ~10min)**: `diff`: overlays só em `persistCurrentSession('workoutSession')`
   - Origem: voz externa 2
   - Arquivos: `app/store/current-session/effects.ts`
   - Verificar: unit + e2e
-- [ ] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
+- [x] **T6 (P2, human ~2h / CC ~10min)**: E3: `EXPO_PUBLIC_FREEZE_MOTION` + referência por peça
+  - Status (F9): `FREEZE_MOTION` ligado no `ui-test.yml`. `visual.cy.js` compara 11 peças da
+    galeria (fontes, ícones, paleta, pixelbox, ascii, barras, tags, botões, tamanhos de ícone,
+    controles, toast); o fx fica no teste C6. O run 42958645784 mostrou que a janela de 400×800
+    não serve: abaixo da dobra a captura saía com 1 px (rolagem interna) e a largura oscilava 15 px
+    (barra de rolagem). A janela de 400×6000 também falhou (run 42960349128): o Cypress reduz a
+    tela a 10% e a captura continua com 1 px. Agora cada teste esconde as outras peças e as
+    barras de rolagem, de modo que a peça começa na tela e mede 366 px de largura (conferido
+    no preview a 400×800). O `compare-snapshot` recusa capturas com menos de 2 px de altura, e
+    isso pegou as 9 capturas cortadas no run 42960349128. O run 42961880722 passou e gerou as 11:
+    9 conferidas (366 px de largura, altura igual à do preview) e commitadas em `5dca4f6e`.
+    `icons` e `controls` são mais altas que a tela e saíram cobertas pela barra de abas. Agora o
+    teste esconde a barra (`nav`) e solta a altura dos ancestrais, de modo que a página rola;
+    no preview as peças curtas mantêm a mesma posição e tamanho, e o último ícone (`zap`) fica
+    inteiro na tela. O run 42963596430 passou com as 9 referências e gerou `icons` (366×932,
+    até o `zap`) e `controls` (366×719, até o estado vazio), sem a barra por cima: as 11
+    referências estão commitadas
   - Origem: voz externa 3
   - Arquivos: `tests/cypress-tests/`
   - Verificar: job `ui-test`
 - [ ] **T7 (P2, human ~1h / CC ~5min)**: verificação iOS (simulador) nas F1 e F5
+  - Status (F9): não feito — o simulador iOS exige macOS
   - Origem: voz externa 4
   - Verificar: checklist §7
 
@@ -704,7 +728,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 - Descanso configurável por exercício: o timer do DR23.
 
 #### Implementation Tasks (design)
-- [ ] **TD1 (P1, human ~3h / CC ~15min)** — `theme` — contraste ≥ 4,5, `attr-*`/glow por paleta, teste de matriz e de chaves
+- [x] **TD1 (P1, human ~3h / CC ~15min)** — `theme` — contraste ≥ 4,5, `attr-*`/glow por paleta, teste de matriz e de chaves
   - Origem: Passadas 5/6, DR16 + DR17 · Arquivos: `app/theme/*`, teste Vitest · Verificar: `npm test`
 - [x] **TD2 (P1, human ~4h / CC ~20min)** — `Painel` — nova ordem + card "Próxima missão" + faixa de clima de 48 px
   - Origem: Passada 1, DR1 · Arquivos: Painel em `app/app/(tabs)/`, `components/presentation/pixel/` · Verificar: e2e + E3
@@ -720,20 +744,22 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 1/7, DR3 + DR22 · Arquivos: overlays em `components/smart/` · Verificar: unit da fila + e2e
 - [x] **TD8 (P2, human ~3h / CC ~15min)** — `Toast` — sobre o `snackbar-provider`, sucesso/erro, live region
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
-- [ ] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
+- [x] **TD9 (P2, human ~1d / CC ~30min)** — `telas` — tabela de estados (vazio, erro, offline, skeleton > 300 ms)
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase
+  - Status (F9): Bestiário e Stats ganharam estado vazio; Masmorra, Histórico, Guilda e Inventário já tinham. Erro genérico do `remote.tsx` e "carregando" da sessão traduzidos. Erro e offline: a identidade da Guilda que não nasce offline ganhou "Tentar" (conferido no preview sem backend); o Planejador IA mostra spinner ASCII depois de 300 ms e, se o stream cair, erro inline + "Tentar" no mesmo balão, sem resposta parcial (`store/ai-planner/stream.ts`, com teste). Importar PDF e clima já tinham erro inline; as demais telas são dado local. O serviço de chat agora lança sem conexão em vez de responder um texto fixo em inglês, e stream vazio conta como falha. A Guilda em erro não mostra mais o vazio embaixo. Planejador não exercitado no app: sem token pro ele para no aviso de compra.
 - [x] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
 - [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
   - Origem: Passadas 4/6, DR14 + DR19 · Arquivos: `components/presentation/fx/` · Verificar: unit + medição no spike
-- [ ] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n (F6: card de boas-vindas da Jornada para quem já tinha histórico; wizard e Toast de recálculo ficam para a F9)
+- [x] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n (F6: card de boas-vindas da Jornada para quem já tinha histórico; wizard e Toast de recálculo ficam para a F9)
   - Origem: Passadas 3/7, DR9 + DR10 + DR25 · Arquivos: `welcome-wizard.tsx`, `store/rpg/index.ts`, i18n · Verificar: unit da migração + e2e
-- [ ] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
+- [x] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
   - Origem: Passada 6, DR19 + DR20 · Arquivos: `app/app/(tabs)/settings/`, layout raiz · Verificar: e2e web + 375 px
 - [x] **TD14 (P2, human ~2h / CC ~10min)** — `share` — cartão E2 1080×1350 na Brasa
   - Origem: Passada 7, DR24 · Arquivos: componente do cartão + `expo-sharing` · Verificar: e2e (fallback web)
-- [ ] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
+- [x] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
   - Origem: Passada 6, DR18 (adiado) · Arquivos: primitivos `pixel/` · Verificar: TalkBack/VoiceOver + fonte de 200%
+  - Status (F9): `TITLE_MAX_SCALE` (1,3×) nos títulos dos primitivos, cards, diálogos e telas de Ajustes; botões, Fab, Tabs e TabBar usam `minHeight` para crescer com a fonte. Títulos internos do Paper (Appbar, Dialog.Title) ficam sem teto. TalkBack/VoiceOver e fonte de 200% não verificados.
 
 ## Approved Mockups
 

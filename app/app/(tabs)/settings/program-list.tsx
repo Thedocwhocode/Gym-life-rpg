@@ -11,6 +11,7 @@ import { useTranslate } from '@tolgee/react';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import Fab from '@/components/presentation/pixel/Fab';
 import Button from '@/components/presentation/pixel/Button';
+import { useScreenTransition } from '@/components/smart/screen-transition';
 
 import { useDispatch } from 'react-redux';
 
@@ -22,6 +23,7 @@ export default function ProgramList() {
     focusprogramId?: string;
   }>();
   const { push } = useRouter();
+  const run = useScreenTransition();
   const addProgram = () => {
     const programId = uuid();
     dispatch(
@@ -50,7 +52,7 @@ export default function ProgramList() {
         variant="secondary"
         icon="upload"
         style={{ margin: 16, marginBottom: 0 }}
-        onPress={() => push('/settings/pdf-import')}
+        onPress={() => run('ai', () => push('/settings/pdf-import'))}
       >
         {t('pdf.entry.button')}
       </Button>

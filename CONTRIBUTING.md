@@ -20,9 +20,10 @@ Obrigado pelo interesse! Correções, recursos, documentação e ideias são bem
 
 ## Efeitos pixel art
 
-As sprite sheets de `app/assets/fx/` vêm do [pixelfx](https://github.com/patch-gg/pixelfx) e ficam
-commitadas, então o build não depende dele. Para mudar ou adicionar um efeito, edite a lista em
-`app/scripts/fx-sheets.mjs` e rode `npm run fx:sheets -- <caminho de um checkout do pixelfx>`.
+Os efeitos rodam ao vivo pelo [pixelfx](https://github.com/patch-gg/pixelfx) (MIT), vendorizado em
+`app/vendor/pixelfx/`. O player é `app/components/presentation/fx/FxStage.tsx` e a lista de efeitos fica
+em `app/components/presentation/fx/registry.ts`: para adicionar um efeito, copie o módulo para
+`app/vendor/pixelfx/src/fx/` e registre-o ali.
 Para criar efeitos novos no Claude Code existe a skill: `/plugin marketplace add patch-gg/pixelfx`.
 
 ## Checklist do PR

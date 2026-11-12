@@ -16,7 +16,7 @@ import {
   type Item,
   type Rarity,
 } from '@/store/journey/rules/items';
-import { type } from '@/theme/tokens';
+import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
@@ -162,7 +162,10 @@ export default function Inventory() {
           padding={14}
           innerStyle={{ gap: 8 }}
         >
-          <Text style={{ ...type.title, color: palette.text1 }}>
+          <Text
+            maxFontSizeMultiplier={TITLE_MAX_SCALE}
+            style={{ ...type.title, color: palette.text1 }}
+          >
             {t(`rpg.item.${item.id}` as TranslationKey)}
           </Text>
           <View style={{ flexDirection: 'row', gap: 6, flexWrap: 'wrap' }}>

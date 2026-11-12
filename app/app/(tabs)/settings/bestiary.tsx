@@ -1,3 +1,4 @@
+import EmptyInfo from '@/components/presentation/empty-info';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import MonsterCard from '@/components/presentation/journey/MonsterCard';
 import AsciiBar from '@/components/presentation/pixel/AsciiBar';
@@ -35,6 +36,7 @@ export default function Bestiary() {
   const { palette } = useAppTheme();
   const { beasts } = useAppSelector(selectJourney);
   const defeated = BESTIARY.filter((b) => beasts[b.id] === 'defeated').length;
+  const seen = BESTIARY.some((b) => (beasts[b.id] ?? 'unknown') !== 'unknown');
   return (
     <FullHeightScrollView
       contentContainerStyle={{ gap: 16, padding: 16, paddingBottom: 32 }}
@@ -43,6 +45,12 @@ export default function Bestiary() {
       <Text style={{ ...type.body, color: palette.text2 }}>
         {t('rpg.bestiary.intro')}
       </Text>
+      {/* DR5: nenhum monstro visto ainda. */}
+      {!seen && (
+        <EmptyInfo testID="bestiary-empty" icon="shield">
+          {t('rpg.bestiary.empty')}
+        </EmptyInfo>
+      )}
       <View style={{ gap: 4 }}>
         <AsciiBar
           value={defeated / BESTIARY.length}
