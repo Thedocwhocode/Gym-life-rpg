@@ -403,6 +403,41 @@ treino. Ele não cria plano nem é aberto pelo usuário.
   lançamento, então primeiro um piloto com 5 exercícios comuns; só depois escolher quantos (vídeo
   para 6.554 não é realista).
 - O Planejador da F10 passa a casar o nome lido na ficha com um id do catálogo.
+- **Status do catálogo (2026-11-12, branch `feat/biblioteca-opengym`):** feito.
+  `scripts/import-opengym.mjs` gera `assets/opengym-catalog.json` (SHA `50ab7f24`): 5.632 exercícios
+  (as 922 variantes ficaram de fora), todos com nome em pt-BR; só 1.324 têm instruções em pt-BR, as outras 4.308 só em inglês (o app mostra o inglês nesse caso); 3,3 MB, 605 KB em gzip.
+  Tela **Taverna → Catálogo de exercícios** (`settings/exercise-catalog`): busca por palavras, sem
+  acento e com jargão de ficha ("halteres", "frente", "reto"), e "Adicionar" copia **um** exercício
+  para a lista do usuário com a chave `og:<id>`. O catálogo não vai para o armazenamento local (5.632
+  entradas estourariam o teto de ~5 MB do `localStorage` na web).
+  - **Bundle** (`expo export`, antes = `898c2c52`): na web a entrada continua com 8,65 MB e o catálogo
+    vira um chunk próprio de 3,4 MB (608 KB em gzip), baixado só ao abrir a tela ou o leitor de fichas.
+    No Android o Hermes junta tudo: 15,36 → 18,93 MB (+3,57 MB, +23%). Se pesar, embutir só um índice
+    (id, nomes) e buscar o detalhe sob demanda.
+  - **Casamento com a ficha:** por ora é só uma dica. A tela do PDF mostra "≈ Supino com barra
+    (catálogo)" sob o nome lido; o nome não muda e o id **não** é gravado no plano salvo. Em 22 nomes
+    comuns de ficha brasileira, todos acham algo: ~17 certos, 3 parciais (Elevação lateral → no cabo,
+    Abdominal supra → declinado, Desenvolvimento com halteres → unilateral) e 2 errados ("Agachamento
+    livre" cai no agachamento sem peso, mas na ficha é com barra; "Prancha" cai na prancha de
+    equilíbrio). Gravar o id exige confirmação do usuário na tela e fica para depois.
+  - Músculos e equipamento aparecem em inglês na lista ("pectorals · barbell"), como já acontece
+    nos exercícios embutidos.
+- **Status do piloto de vídeos (2026-11-12):** feito, fora do app. `scripts/exercise-videos.mjs` gera
+  clipes quadrados de 15 s (1080×1080, 30 fps). Neles, o herói do pixelfx (o boneco dos golpes) faz o
+  movimento em loop no palco Brasa, com barra ou halteres desenhados no script, e os passos do catálogo
+  em pt-BR entram um por vez. O som é sintetizado: um acorde e um "tum" por repetição. Nada é baixado.
+  Piloto: agachamento completo com barra (0043), afundo com halteres (0336), desenvolvimento em pé com
+  halter (0426), rosca direta (0031) e polichinelo com salto (3224). Os vídeos não vão para o git.
+  - **Desvio da skill `brag`:** ela faz um vídeo de lançamento de ~20 s com gancho e fecho; aqui o
+    formato é de clipe de exercício. Usei o roteiro dela (plano, stills antes de renderizar, pôster no
+    quadro 0, texto de divulgação).
+  - **Limites:** cada exercício precisa de poses à mão (~5 chaves), e o boneco tem 38 px. O movimento é
+    reconhecível, mas não serve para ensinar técnica fina (joelho, coluna). Só 1.324 exercícios têm
+    passos em pt-BR (contagem conferida no `pt-BR.json` da fonte), e o clipe mostra só os 3 primeiros
+    passos (no agachamento, é só a preparação). O personagem é o herói neutro do pixelfx, porque o app
+    ainda não tem sprite próprio (o `Portrait.tsx` é o espaço reservado do DR12); quando o sprite
+    existir, troca-se o desenho em `render()`. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
+    clipe entra na tela do exercício (mp4 no bundle) ou se é desenhado ao vivo pelo FxStage.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

@@ -103,7 +103,10 @@ O que mudou em relação às seções acima:
   `components/presentation/fx/FxStage.tsx`, transições de tela em `fx/transitions.ts` +
   `components/smart/screen-transition.tsx`. Ajuste "Efeitos: Completo/Reduzido/Desligado".
 - **Rotas novas:** `(tabs)/dashboard` (Painel), `(session)/map` (mapa de masmorras),
-  `settings/{inventory,grimoire,bestiary,training-days,pdf-import,dev-gallery}`.
+  `settings/{inventory,grimoire,bestiary,training-days,pdf-import,exercise-catalog,dev-gallery}`.
+- **Catálogo de exercícios (F11):** texto do openGym em `app/assets/opengym-catalog.json`, gerado
+  por `app/scripts/import-opengym.mjs`; busca em `app/services/exercise-catalog.ts`. A mídia do
+  openGym não pode entrar no projeto (ver `NOTICE.md`).
 - **Regras da jornada:** puras em `app/store/journey/rules/`, projeção em `app/store/rpg/derive.ts`.
 
 ---

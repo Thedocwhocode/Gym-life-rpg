@@ -195,6 +195,13 @@ export default function Settings() {
       onPress: go('/(tabs)/settings/manage-exercises'),
     },
     {
+      title: t('catalog.title'),
+      description: t('catalog.subtitle'),
+      icon: 'book-open',
+      onPress: go('/(tabs)/settings/exercise-catalog'),
+      testID: 'exerciseCatalog',
+    },
+    {
       title: t('settings.app_configuration.title'),
       description: t('settings.app_configuration.subtitle'),
       icon: 'sliders',
