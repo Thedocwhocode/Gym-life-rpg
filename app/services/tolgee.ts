@@ -14,6 +14,7 @@ import ar from '../i18n/ar.json';
 import sv from '../i18n/sv.json';
 import { DevTools, FormatSimple, Tolgee } from '@tolgee/react';
 import { PreferenceService } from '@/services/preference-service';
+import { Platform } from 'react-native';
 
 export const supportedLanguages = [
   { translationJson: ar, code: 'ar', label: 'العربية', isRTL: true },
@@ -31,10 +32,10 @@ export const supportedLanguages = [
   { translationJson: pt, code: 'pt', label: 'Português' },
 ];
 
+// Só na web: o Metro resolve o build de desenvolvimento do @tolgee/web (condição "import"), e no nativo
+// o observer deixa caracteres de largura zero em todo texto traduzido, que ninguém remove.
 export const getTolgee = (preferenceService: PreferenceService) =>
-  Tolgee()
-    // DevTools will work only for web view
-    .use(DevTools())
+  (Platform.OS === 'web' ? Tolgee().use(DevTools()) : Tolgee())
     .use(FormatSimple())
     .use(DetectLanguage(preferenceService))
     .init({

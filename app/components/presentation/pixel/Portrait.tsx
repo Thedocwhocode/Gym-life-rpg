@@ -19,7 +19,12 @@ export default function Portrait({
   const { palette } = useAppTheme();
   return (
     <PixelBox tone="sunken" padding={0} style={{ width, height }}>
-      <View style={{ width: width - 4, height: height - 4 }}>
+      {/* Espaço reservado: nada para o leitor de tela ler até o sprite existir. */}
+      <View
+        importantForAccessibility="no-hide-descendants"
+        accessibilityElementsHidden
+        style={{ width: width - 4, height: height - 4 }}
+      >
         <Svg width="100%" height="100%" style={{ position: 'absolute' }}>
           <Defs>
             <Pattern

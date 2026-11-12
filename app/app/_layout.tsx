@@ -4,7 +4,7 @@ import Scanlines from '@/components/presentation/pixel/Scanlines';
 import { I18nManager, LogBox, Platform, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { store } from '@/store';
+import { store, useAppSelector } from '@/store';
 import { AppStateProvider } from '@/components/smart/app-state-provider';
 import SnackbarProvider from '@/components/smart/snackbar-provider';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -45,6 +45,8 @@ const WEB_COLUMN = 560;
 
 function RootStack() {
   const { colorScheme, palette } = useAppTheme();
+  // O assistente de boas-vindas é um Portal por cima do app: sem isto o leitor de tela navega pelas telas atrás dele.
+  const wizardOpen = useAppSelector((s) => !s.settings.welcomeWizardCompleted);
   return (
     <View
       style={
@@ -54,6 +56,8 @@ function RootStack() {
       }
     >
       <View
+        importantForAccessibility={wizardOpen ? 'no-hide-descendants' : 'auto'}
+        accessibilityElementsHidden={wizardOpen}
         style={
           Platform.OS === 'web'
             ? {

@@ -36,6 +36,8 @@ export default function AsciiBar({
     <Text
       testID={testID}
       accessibilityRole="progressbar"
+      // Sem isto o Android lê os colchetes e pontos: "[............] 0% XP".
+      accessibilityLabel={`${Math.round(clamped * 100)}%${label ? ` ${label}` : ''}`}
       accessibilityValue={{ min: 0, max: 100, now: Math.round(clamped * 100) }}
       style={base}
     >

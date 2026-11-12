@@ -302,6 +302,7 @@ export default function RewardDialog() {
 
 function LootList({ loot }: { loot: readonly { id: string; name: string }[] }) {
   const { palette } = useAppTheme();
+  const { t } = useTranslate();
   return (
     <View style={{ alignSelf: 'stretch', gap: 8 }}>
       {loot.map((a) => (
@@ -311,7 +312,7 @@ function LootList({ loot }: { loot: readonly { id: string; name: string }[] }) {
         >
           <Icon name="trophy" size={16} color={palette.accent} />
           <Text style={{ ...type.body, color: palette.text1, flex: 1 }}>
-            {a.name}
+            {t(`rpg.achievement.${a.id}.name` as TranslationKey, a.name)}
           </Text>
         </View>
       ))}

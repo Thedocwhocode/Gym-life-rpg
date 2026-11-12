@@ -24,6 +24,7 @@ import { addFollowingEffects } from '@/store/feed/following-effects';
 import { selectActiveProgram } from '@/store/program';
 import { ApiErrorType, ApiResult } from '@/services/api-error';
 import { Platform } from 'react-native';
+import { isBackendConfigured } from '@/services/api-consts';
 
 const StorageKey = 'FeedState';
 export function applyFeedEffects() {
@@ -61,7 +62,8 @@ export function applyFeedEffects() {
             }
           }
         }
-        if (!hasIdentity) {
+        // Sem EXPO_PUBLIC_API_URL não há feed: a URL relativa quebra no nativo (MalformedURLException).
+        if (!hasIdentity && isBackendConfigured) {
           dispatch(
             createFeedIdentity({
               name: undefined,
