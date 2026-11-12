@@ -710,5 +710,21 @@
   "rpg.intro.title": "The journey begins",
   "rpg.intro.body": "Your level was recalculated from your whole history. From today on, class, skills, items and statuses change the XP of each mission, and hearts count the training days you set. Past missions keep their XP.",
   "rpg.intro.days": "Set training days",
-  "rpg.sheet.energy": "EN"
+  "rpg.sheet.energy": "EN",
+  "rpg.weather.eyebrow": "REALM WEATHER",
+  "rpg.weather.place.region": "Your area",
+  "rpg.weather.place.default": "São Paulo (default)",
+  "rpg.weather.loading": "Reading the skies…",
+  "rpg.weather.offline": "Unknown skies",
+  "rpg.weather.locate": "Tap to use your area",
+  "rpg.weather.retry": "Tap to try again",
+  "rpg.weather.storm": "Storm",
+  "rpg.weather.snow": "Snow",
+  "rpg.weather.rain": "Rain",
+  "rpg.weather.fog": "Fog",
+  "rpg.weather.wind": "Gale",
+  "rpg.weather.clouds": "Overcast",
+  "rpg.weather.few_clouds": "Few clouds",
+  "rpg.weather.clear_day": "Clear sky",
+  "rpg.weather.clear_night": "Clear night"
 }

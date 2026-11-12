@@ -2,7 +2,7 @@
 
 > Rascunho. Revisar (e preencher o contato) antes de publicar nas lojas.
 
-Última atualização: 2026-11-02
+Última atualização: 2026-11-10
 
 O GymLife RPG é um app de código aberto (AGPL-3.0), oferecido gratuitamente e "como está".
 
@@ -29,6 +29,11 @@ Nenhum dos itens abaixo funciona sem que você o ative.
 - **Compras**: assinaturas são processadas pela Google Play/App Store e gerenciadas via
   RevenueCat. Não recebemos dados do seu cartão.
 - **Backup remoto**: envia o arquivo de backup só para o servidor que **você** configurar.
+- **Clima do reino**: o Painel consulta o [Open-Meteo](https://open-meteo.com/) para mostrar o
+  clima. Sem a sua permissão, a consulta usa São Paulo. Se você tocar na faixa de clima e permitir,
+  o app envia ao Open-Meteo a sua **localização aproximada** (arredondada para cerca de 1 km),
+  só a ele e sem nenhum identificador seu. As coordenadas não ficam gravadas: o aparelho guarda
+  por até 1 hora apenas a última leitura do clima.
 
 ## Terceiros
 
@@ -36,7 +41,8 @@ Nenhum dos itens abaixo funciona sem que você o ative.
 [Apple](https://www.apple.com/legal/privacy/) ·
 [Sentry](https://sentry.io/privacy/) ·
 [RevenueCat](https://www.revenuecat.com/privacy/) ·
-[OpenAI](https://openai.com/policies/privacy-policy/)
+[OpenAI](https://openai.com/policies/privacy-policy/) ·
+[Open-Meteo](https://open-meteo.com/en/terms)
 
 ## O que não fazemos
 

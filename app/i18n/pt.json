@@ -653,5 +653,21 @@
   "rpg.intro.title": "A jornada começa",
   "rpg.intro.body": "Seu nível foi recalculado a partir de todo o histórico. De hoje em diante, classe, skills, itens e status mudam o XP de cada missão, e os corações contam os dias de treino que você definir. Missões passadas mantêm o XP.",
   "rpg.intro.days": "Definir dias de treino",
-  "rpg.sheet.energy": "EN"
+  "rpg.sheet.energy": "EN",
+  "rpg.weather.eyebrow": "CLIMA DO REINO",
+  "rpg.weather.place.region": "Sua região",
+  "rpg.weather.place.default": "São Paulo (padrão)",
+  "rpg.weather.loading": "Consultando os céus…",
+  "rpg.weather.offline": "Céus desconhecidos",
+  "rpg.weather.locate": "Toque para usar a sua região",
+  "rpg.weather.retry": "Toque para tentar de novo",
+  "rpg.weather.storm": "Tempestade",
+  "rpg.weather.snow": "Neve",
+  "rpg.weather.rain": "Chuva",
+  "rpg.weather.fog": "Neblina",
+  "rpg.weather.wind": "Ventania",
+  "rpg.weather.clouds": "Nublado",
+  "rpg.weather.few_clouds": "Poucas nuvens",
+  "rpg.weather.clear_day": "Céu limpo",
+  "rpg.weather.clear_night": "Noite limpa"
 }
