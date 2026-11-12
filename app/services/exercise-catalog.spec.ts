@@ -1,10 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import type { SessionBlueprintPOJO } from '@/models/blueprint-models';
 import { describe, expect, it } from 'vitest';
 import {
+  applyCatalog,
   catalogKey,
   displayName,
   fromRows,
+  label,
   match,
   search,
   toDescriptor,
@@ -34,8 +37,25 @@ describe('exercise-catalog', () => {
     ['Rosca direta', '0031'],
     ['Levantamento terra', '0032'],
     ['barbell bench press', '0025'],
+    // apelidos de ficha (antes erravam ou casavam pela metade)
+    ['Agachamento livre', '0043'],
+    ['Prancha', '0463'],
+    ['Elevação lateral', '0334'],
+    ['Abdominal supra', '0274'],
+    ['Desenvolvimento com halteres', '0405'],
   ])('casa "%s" com %s', (name, id) => {
     expect(match(catalog, name)?.id).toBe(id);
+  });
+
+  it('traduz músculo e equipamento só em pt, e todo valor do catálogo tem tradução', () => {
+    expect(label('pectorals', 'pt-BR')).toBe('peitorais');
+    expect(label('pectorals', 'en')).toBe('pectorals');
+    const values = new Set(catalog.flatMap((e) => [e.target, e.equipment]));
+    expect(
+      [...values].filter(
+        (v) => label(v, 'pt') === v && v !== 'kettlebell' && v !== 'landmine',
+      ),
+    ).toEqual([]);
   });
 
   it('sem casamento quando falta uma palavra', () => {
@@ -52,5 +72,29 @@ describe('exercise-catalog', () => {
     expect(pt.name).toBe('Supino com barra');
     expect(pt.muscles[0]).toBe('pectorals');
     expect(pt.instructions).toContain('\n');
+  });
+  it('aplica só os casamentos confirmados e devolve os itens og:<id>', () => {
+    const squat = match(catalog, 'Agachamento livre');
+    const session = {
+      type: 'SessionBlueprint',
+      name: 'A',
+      notes: '',
+      exercises: [
+        { name: 'Agachamento livre', sets: 4 },
+        { name: 'Prancha', sets: 3 },
+      ],
+    } as unknown as SessionBlueprintPOJO;
+    const out = applyCatalog(
+      [session],
+      { 'Agachamento livre': squat },
+      'pt-BR',
+    );
+    expect(out.sessions[0].exercises.map((e) => e.name)).toEqual([
+      'Agachamento completo com barra',
+      'Prancha',
+    ]);
+    expect(out.sessions[0].exercises[0]).toMatchObject({ sets: 4 });
+    expect(session.exercises[0].name).toBe('Agachamento livre');
+    expect(out.saved.map((x) => x.id)).toEqual(['og:0043']);
   });
 });

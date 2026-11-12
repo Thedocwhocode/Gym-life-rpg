@@ -12,6 +12,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import type { AiWorkoutPlan } from '@/models/ai-models';
 import { ProgramBlueprint } from '@/models/blueprint-models';
 import {
+  applyCatalog,
   displayName,
   loadCatalog,
   match,
@@ -29,6 +30,7 @@ import { presentPaywall } from '@/services/pro-paywall';
 import { useAppSelector } from '@/store';
 import { savePlan } from '@/store/program';
 import { setProToken } from '@/store/settings';
+import { updateExercise } from '@/store/stored-sessions';
 import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
@@ -60,16 +62,17 @@ export default function PdfImport() {
   const [phase, setPhase] = useState<Phase>({ kind: 'pick' });
   const [name, setName] = useState('');
   const lang = useTolgee(['language']).getLanguage() ?? 'en';
-  // F11: o nome lido continua o da ficha; o catálogo só mostra com o que ele casou.
+  // F11: o catálogo sugere; o nome só vira o do catálogo quando o usuário toca em "Usar" (chave = nome lido).
   const [catalog, setCatalog] = useState<CatalogExercise[]>();
+  const [accepted, setAccepted] = useState<Record<string, CatalogExercise>>({});
   useEffect(() => {
     if (phase.kind === 'done' && !catalog)
       loadCatalog().then(setCatalog, () => undefined);
   }, [phase.kind, catalog]);
-  const matched = (exercise: string) => {
-    const m = catalog && match(catalog, exercise);
-    return m ? displayName(m, lang) : undefined;
-  };
+  const toggle = (exercise: string, m: CatalogExercise) =>
+    setAccepted(({ [exercise]: was, ...rest }) =>
+      was ? rest : { ...rest, [exercise]: m },
+    );
 
   const run = async (file: PickedFile, token = proToken) => {
     const log: string[] = [];
@@ -100,6 +103,7 @@ export default function PdfImport() {
     );
     if (result.status === 'ok') {
       setName(result.plan.name);
+      setAccepted({});
       setPhase({ kind: 'done', plan: result.plan });
     } else setPhase({ kind: 'error', reason: result.reason, file });
   };
@@ -125,13 +129,19 @@ export default function PdfImport() {
 
   const save = (plan: AiWorkoutPlan) => {
     const programId = uuid();
+    const { sessions, saved } = applyCatalog(
+      plan.sessions.map((x) => x.toPOJO()),
+      accepted,
+      lang,
+    );
+    saved.forEach((x) => dispatch(updateExercise(x)));
     dispatch(
       savePlan({
         programId,
         programBlueprint: ProgramBlueprint.fromPOJO({
           lastEdited: LocalDate.now(),
           name: name.trim() || plan.name,
-          sessions: plan.sessions.map((x) => x.toPOJO()),
+          sessions,
         }),
       }),
     );
@@ -225,36 +235,67 @@ export default function PdfImport() {
               <Text style={{ ...type.label, color: palette.text1 }}>
                 {s.name}
               </Text>
-              {s.exercises.map((e, j) => (
-                <View key={j} style={{ flexDirection: 'row', gap: 8 }}>
-                  <View style={{ flex: 1 }}>
-                    <Text style={{ ...type.small, color: palette.text1 }}>
-                      {e.name}
-                    </Text>
-                    {!!matched(e.name) && (
-                      <Text style={{ ...type.micro, color: palette.text3 }}>
-                        {t('pdf.done.match', { name: matched(e.name) })}
+              {s.exercises.map((e, j) => {
+                const m = catalog && match(catalog, e.name);
+                const used = !!accepted[e.name];
+                return (
+                  <View key={j} style={{ flexDirection: 'row', gap: 8 }}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ ...type.small, color: palette.text1 }}>
+                        {used ? displayName(accepted[e.name], lang) : e.name}
+                      </Text>
+                      {!!m && (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 6,
+                            flexWrap: 'wrap',
+                          }}
+                        >
+                          <Text
+                            style={{
+                              ...type.micro,
+                              color: used ? palette.success : palette.text3,
+                            }}
+                          >
+                            {used
+                              ? t('pdf.done.match.used', { name: e.name })
+                              : t('pdf.done.match', {
+                                  name: displayName(m, lang),
+                                })}
+                          </Text>
+                          <Button
+                            variant="ghost"
+                            testID={`pdf-match-${i}-${j}`}
+                            onPress={() => toggle(e.name, m)}
+                          >
+                            {used
+                              ? t('pdf.done.match.undo')
+                              : t('pdf.done.match.use')}
+                          </Button>
+                        </View>
+                      )}
+                    </View>
+                    {'sets' in e && (
+                      <Text style={{ ...type.small, color: palette.text2 }}>
+                        {e.sets}×{e.repsPerSet}
+                      </Text>
+                    )}
+                    {!!e.notes && (
+                      <Text
+                        style={{
+                          ...type.small,
+                          color: palette.text2,
+                          maxWidth: '40%',
+                        }}
+                      >
+                        {e.notes}
                       </Text>
                     )}
                   </View>
-                  {'sets' in e && (
-                    <Text style={{ ...type.small, color: palette.text2 }}>
-                      {e.sets}×{e.repsPerSet}
-                    </Text>
-                  )}
-                  {!!e.notes && (
-                    <Text
-                      style={{
-                        ...type.small,
-                        color: palette.text2,
-                        maxWidth: '40%',
-                      }}
-                    >
-                      {e.notes}
-                    </Text>
-                  )}
-                </View>
-              ))}
+                );
+              })}
             </PixelBox>
           ))}
           <Text style={{ ...type.small, color: palette.reward }}>
@@ -292,6 +333,11 @@ export default function PdfImport() {
               {t(`pdf.error.${phase.reason}` as TranslationKey)}
             </Text>
           </View>
+          {phase.reason === 'pro' && Platform.OS === 'web' && (
+            <Text style={{ ...type.small, color: palette.text2 }}>
+              {t('pdf.error.pro.web')}
+            </Text>
+          )}
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <Button
               variant="secondary"
@@ -300,8 +346,16 @@ export default function PdfImport() {
             >
               {t('pdf.another')}
             </Button>
-            {phase.reason === 'pro'
-              ? Platform.OS !== 'web' &&
+            {phase.reason === 'pro' ? (
+              Platform.OS === 'web' ? (
+                <Button
+                  testID="pdf-manual"
+                  style={{ flex: 1 }}
+                  onPress={() => push('/(tabs)/settings/program-list')}
+                >
+                  {t('pdf.error.pro.manual')}
+                </Button>
+              ) : (
                 phase.file && (
                   <Button
                     style={{ flex: 1 }}
@@ -310,16 +364,19 @@ export default function PdfImport() {
                     {t('pdf.error.pro.button')}
                   </Button>
                 )
-              : phase.reason === 'no_plan' &&
-                phase.file && (
-                  <Button
-                    testID="pdf-retry"
-                    style={{ flex: 1 }}
-                    onPress={() => void run(phase.file!)}
-                  >
-                    {t('pdf.retry')}
-                  </Button>
-                )}
+              )
+            ) : (
+              phase.reason === 'no_plan' &&
+              phase.file && (
+                <Button
+                  testID="pdf-retry"
+                  style={{ flex: 1 }}
+                  onPress={() => void run(phase.file!)}
+                >
+                  {t('pdf.retry')}
+                </Button>
+              )
+            )}
           </View>
         </PixelBox>
       )}

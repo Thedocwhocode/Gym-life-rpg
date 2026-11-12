@@ -420,8 +420,13 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     Abdominal supra → declinado, Desenvolvimento com halteres → unilateral) e 2 errados ("Agachamento
     livre" cai no agachamento sem peso, mas na ficha é com barra; "Prancha" cai na prancha de
     equilíbrio). Gravar o id exige confirmação do usuário na tela e fica para depois.
-  - Músculos e equipamento aparecem em inglês na lista ("pectorals · barbell"), como já acontece
-    nos exercícios embutidos.
+  - **Atualização (branch `feat/catalogo-confirmacao`):** os 5 nomes acima viraram apelidos com id
+    fixo (`ALIAS` em `services/exercise-catalog.ts`). Cada sugestão ganhou o botão "Usar". Só o
+    exercício confirmado troca de nome no plano salvo e entra na lista do usuário com a chave `og:<id>`
+    (`applyCatalog`, com teste). O plano liga exercícios por nome, então não há campo novo no modelo.
+    Músculos e equipamentos do catálogo agora aparecem em pt (`label`); o dado salvo continua em inglês.
+    Na web sem Pro, a tela de erro explica que o Pro só se assina pelo app do celular e oferece
+    "Montar à mão" (lista de planos). Antes, ela só tinha "Outra ficha".
 - **Status do piloto de vídeos (2026-11-12):** feito, fora do app. `scripts/exercise-videos.mjs` gera
   clipes quadrados de 15 s (1080×1080, 30 fps). Neles, o herói do pixelfx (o boneco dos golpes) faz o
   movimento em loop no palco Brasa, com barra ou halteres desenhados no script, e os passos do catálogo
@@ -438,6 +443,12 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     ainda não tem sprite próprio (o `Portrait.tsx` é o espaço reservado do DR12); quando o sprite
     existir, troca-se o desenho em `render()`. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
     clipe entra na tela do exercício (mp4 no bundle) ou se é desenhado ao vivo pelo FxStage.
+  - **Ampliação (branch `feat/catalogo-confirmacao`):** entraram o levantamento terra (0032) e a remada
+    curvada (0027), e agora são 7 clipes. Corrigido um defeito do piloto: legendas com 4 linhas saíam
+    do quadro (1º passo do 0426 e do 0031). Agora a legenda para em 3 linhas e termina em "…". Os outros
+    exercícios comuns de ficha (supino, puxada, leg press, cadeira extensora, prancha) pedem o corpo
+    deitado ou uma máquina. O rig do pixelfx prende os pés no chão e só inclina o tronco (`tilt = atan2(lean, 13)` em `rig.js`), então não deita o boneco; o script também não desenha máquinas.
+    Por isso eles esperam a decisão sobre o sprite próprio.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

@@ -8,6 +8,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import {
   catalogKey,
   displayName,
+  label,
   loadCatalog,
   search,
   toDescriptor,
@@ -75,7 +76,7 @@ export default function ExerciseCatalog() {
                 key={e.id}
                 testID={`catalog-item-${e.id}`}
                 title={displayName(e, lang)}
-                description={`${e.target} · ${e.equipment}`}
+                description={`${label(e.target, lang)} · ${label(e.equipment, lang)}`}
                 trailing={
                   key in saved ? (
                     <Text style={{ ...type.small, color: palette.success }}>
