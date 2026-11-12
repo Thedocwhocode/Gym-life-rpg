@@ -21,6 +21,8 @@ interface SettingsState {
   proToken: string | undefined;
   useImperialUnits: boolean;
   showBodyweight: boolean;
+  /** Vibração nos momentos do combate (E1). */
+  haptics: boolean;
   showTips: boolean;
   tipToShow: number;
   showFeed: boolean;
@@ -49,6 +51,7 @@ const initialState: SettingsState = {
   firstDayOfWeek: DayOfWeek.SUNDAY,
   useImperialUnits: false,
   showBodyweight: true,
+  haptics: true,
   showTips: true,
   tipToShow: 1,
   showFeed: true,
@@ -82,6 +85,9 @@ const settingsSlice = createSlice({
     },
     setShowBodyweight(state, action: PayloadAction<boolean>) {
       state.showBodyweight = action.payload;
+    },
+    setHaptics(state, action: PayloadAction<boolean>) {
+      state.haptics = action.payload;
     },
     setShowTips(state, action: PayloadAction<boolean>) {
       state.showTips = action.payload;
@@ -171,6 +177,7 @@ export const {
   setIsHydrated,
   setUseImperialUnits,
   setShowBodyweight,
+  setHaptics,
   setShowTips,
   setTipToShow,
   setShowFeed,

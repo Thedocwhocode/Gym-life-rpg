@@ -75,7 +75,9 @@ function HeroCard() {
     >
       <Portrait label="sprite" width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
-        <Text style={{ ...type.titleSm, color: palette.text1 }}>{title}</Text>
+        <Text style={{ ...type.titleSm, color: palette.text1 }}>
+          {t(title)}
+        </Text>
         <Text style={{ ...type.small, color: palette.text2 }}>
           {t('rpg.hero.class_level', {
             class: rpgClass ? t(`rpg.class.${rpgClass}`) : t('rpg.class.none'),

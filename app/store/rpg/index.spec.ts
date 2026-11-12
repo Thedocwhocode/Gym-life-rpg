@@ -71,35 +71,35 @@ describe('levelFromXp', () => {
 
 describe('titleForLevel', () => {
   it('level 1 is Iniciante', () => {
-    expect(titleForLevel(1)).toBe('Iniciante');
+    expect(titleForLevel(1)).toBe('rpg.title.beginner');
   });
 
   it('level 2 is Iniciante', () => {
-    expect(titleForLevel(2)).toBe('Iniciante');
+    expect(titleForLevel(2)).toBe('rpg.title.beginner');
   });
 
   it('level 3 is Guerreiro Novato', () => {
-    expect(titleForLevel(3)).toBe('Guerreiro Novato');
+    expect(titleForLevel(3)).toBe('rpg.title.novice');
   });
 
   it('level 6 is Espadachim da Academia', () => {
-    expect(titleForLevel(6)).toBe('Espadachim da Academia');
+    expect(titleForLevel(6)).toBe('rpg.title.swordsman');
   });
 
   it('level 10 is Cavaleiro do Ferro', () => {
-    expect(titleForLevel(10)).toBe('Cavaleiro do Ferro');
+    expect(titleForLevel(10)).toBe('rpg.title.knight');
   });
 
   it('level 15 is Mestre das Placas', () => {
-    expect(titleForLevel(15)).toBe('Mestre das Placas');
+    expect(titleForLevel(15)).toBe('rpg.title.master');
   });
 
   it('level 20 is Lenda da Academia', () => {
-    expect(titleForLevel(20)).toBe('Lenda da Academia');
+    expect(titleForLevel(20)).toBe('rpg.title.legend');
   });
 
   it('level 25 is Lenda da Academia', () => {
-    expect(titleForLevel(25)).toBe('Lenda da Academia');
+    expect(titleForLevel(25)).toBe('rpg.title.legend');
   });
 });
 

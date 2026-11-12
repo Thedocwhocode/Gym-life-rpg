@@ -23,12 +23,13 @@ export function applyRpgEffects() {
       );
       if (!isNew) return;
       dispatch(
-        sessionRewarded(
-          diffProjection(
+        sessionRewarded({
+          ...diffProjection(
             project(originalState, today),
             project(stateAfterReduce, today),
           ),
-        ),
+          sessionId: action.payload.id,
+        }),
       );
     },
   );

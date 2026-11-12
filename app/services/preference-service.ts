@@ -105,6 +105,15 @@ export class PreferenceService {
     return fromBooleanString(value, true);
   }
 
+  async setHaptics(haptics: boolean): Promise<void> {
+    await this.keyValueStore.setItem('haptics', toBooleanString(haptics));
+  }
+
+  async getHaptics(): Promise<boolean> {
+    const value = await this.keyValueStore.getItem('haptics');
+    return fromBooleanString(value, true);
+  }
+
   async setShowTips(showTips: boolean): Promise<void> {
     await this.keyValueStore.setItem('showTips', toBooleanString(showTips));
   }

@@ -710,9 +710,9 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passada 4, DR11 · Arquivos: `app/store/journey/rules/multipliers.ts`, `derive.ts`, `store/choices` · Verificar: unit (soma, teto, piso, antes/depois da data, troca de classe)
 - [ ] **TD5 (P1, human ~4h / CC ~20min)** — `journey/rules` — `coracoesDesde` + último estado visto + aviso "Faltou na…"
   - Origem: Passada 3, DR8 · Arquivos: `app/store/journey/rules/hearts.ts`, `store/choices` · Verificar: unit
-- [ ] **TD6 (P1, human ~1d / CC ~30min)** — `sessão` — regras de combate puras + layout compacto + "Golpear · 5 × 100 kg" + Desfazer + descanso configurado
+- [x] **TD6 (P1, human ~1d / CC ~30min)** — `sessão` — regras de combate puras + layout compacto + "Golpear · 5 × 100 kg" + Desfazer + descanso configurado
   - Origem: Passadas 1/7, DR2 + DR21 + DR23 · Arquivos: `app/app/(tabs)/(session)/`, `store/journey/rules/combat.ts` · Verificar: unit + e2e a 375×667
-- [ ] **TD7 (P1, human ~4h / CC ~20min)** — `RewardDialog` — no máximo 3 páginas, "Pular", "Compartilhar", masmorra limpa, crônica adiada
+- [x] **TD7 (P1, human ~4h / CC ~20min)** — `RewardDialog` — no máximo 3 páginas, "Pular", "Compartilhar", masmorra limpa, crônica adiada (F5: fila, Pular e Compartilhar; a página "Masmorra limpa" e a crônica entram com TD10 e E4 na F6)
   - Origem: Passadas 1/7, DR3 + DR22 · Arquivos: overlays em `components/smart/` · Verificar: unit da fila + e2e
 - [x] **TD8 (P2, human ~3h / CC ~15min)** — `Toast` — sobre o `snackbar-provider`, sucesso/erro, live region
   - Origem: Passada 5, DR15 (mockup aprovado) · Arquivos: `components/smart/snackbar-provider.tsx` · Verificar: galeria F1 + E3
@@ -726,7 +726,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passadas 3/7, DR9 + DR10 + DR25 · Arquivos: `welcome-wizard.tsx`, `store/rpg/index.ts`, i18n · Verificar: unit da migração + e2e
 - [ ] **TD13 (P2, human ~3h / CC ~15min)** — `config/web` — "Efeitos: Completo/Reduzido/Desligado", vibração separada, coluna de 560 px, alvos de 44 px, ícone ×
   - Origem: Passada 6, DR19 + DR20 · Arquivos: `app/app/(tabs)/settings/`, layout raiz · Verificar: e2e web + 375 px
-- [ ] **TD14 (P2, human ~2h / CC ~10min)** — `share` — cartão E2 1080×1350 na Brasa
+- [x] **TD14 (P2, human ~2h / CC ~10min)** — `share` — cartão E2 1080×1350 na Brasa
   - Origem: Passada 7, DR24 · Arquivos: componente do cartão + `expo-sharing` · Verificar: e2e (fallback web)
 - [ ] **TD15 (P2, human ~1d / CC ~30min)** — `a11y` — pacote da F9 (progressbar, header, FX oculto, live region, escala 1,3×, TabBar ≥ 10 px)
   - Origem: Passada 6, DR18 (adiado) · Arquivos: primitivos `pixel/` · Verificar: TalkBack/VoiceOver + fonte de 200%

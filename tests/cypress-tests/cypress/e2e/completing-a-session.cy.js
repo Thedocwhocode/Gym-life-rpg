@@ -80,6 +80,35 @@ describe('Completing a session', () => {
 
 
     describe('and selects a workout', () => {
+      it('can strike until the boss falls and page through the reward', () => {
+        cy.contains('Start workout').click()
+        cy.getByTestId('combat-stage').should('be.visible')
+
+        // Undo puts the set back
+        cy.getByTestId('strike-button').click()
+        cy.getByTestId('repcount').first().should('contain.text', '5/5')
+        cy.getByTestId('toast-action').click()
+        cy.getByTestId('repcount').first().should('contain.text', '-/5')
+
+        for (let i = 0; i < 7; i++) {
+          cy.getByTestId('strike-button').click()
+        }
+        cy.getByTestId('strike-button').should('not.exist')
+        cy.getByTestId('combat-hp').should('exist')
+        cy.getByTestId('combat-stage').should('contain.text', '0/1')
+
+        cy.getByTestId('save-session-button').click()
+        cy.getByTestId('reward-page-mission').should('be.visible')
+        cy.getByTestId('reward-share').should('not.exist')
+        cy.getByTestId('reward-next').click()
+        cy.getByTestId('reward-page-levelup').should('be.visible')
+        cy.getByTestId('reward-next').click()
+        cy.getByTestId('reward-page-loot').should('be.visible')
+        cy.getByTestId('reward-share').should('be.visible')
+        cy.getByTestId('reward-next').click()
+        cy.getByTestId('session-reward-continue').should('not.exist')
+      })
+
       it('can complete a workout and update its date', () => {
         cy.contains('Start workout').click()
         updateWeight(0, 20)

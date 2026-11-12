@@ -7,9 +7,10 @@ export const UI_MOMENTS = {
     fx: 'ui/combo-counter',
     options: { count: n, label: toFxText(label) },
   }),
-  pr: (kg: number, label: string) => ({
+  /** `weight` já formatado com a unidade ("102,5kg", "225lbs"). */
+  pr: (weight: string, label: string) => ({
     fx: 'ui/crit-number',
-    options: { label: toFxText(label), text: `${kg}KG!` },
+    options: { label: toFxText(label), text: toFxText(`${weight}!`) },
   }),
   set: (reps: number) => ({
     fx: 'ui/damage-number',

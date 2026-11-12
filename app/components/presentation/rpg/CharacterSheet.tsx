@@ -49,7 +49,7 @@ export default function CharacterSheet() {
               letterSpacing: 0.3,
             }}
           >
-            {title}
+            {t(title)}
           </Text>
           <View style={{ gap: 4, marginTop: 6 }}>
             <AsciiBar value={ratio} cells={12} label="XP" fontSize={12} />
