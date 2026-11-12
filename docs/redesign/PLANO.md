@@ -120,6 +120,16 @@ animado por cima de um sheet genérico.
 e (A) fica no web e em aparelhos que mantêm ≥ 30 fps nos primeiros 2 s de efeito (medido em runtime,
 com recuo automático para B).
 
+**Decisão da F4 (2026-11-10):** (A) em todas as plataformas, via `components/presentation/fx/`
+(núcleo puro `engine.ts` + `FxSurface.web.tsx` em canvas 2D e `FxSurface.tsx` em imagem Skia).
+O spike num Android físico **não foi feito** (não havia aparelho nesta máquina). Por isso o nativo
+mede a taxa de quadros nos 2 primeiros segundos e, abaixo de 24 fps, congela o efeito num quadro
+parado (24, e não os 30 do resultado parcial acima: telas de 30 Hz oscilam em 29 e congelariam à toa). O recuo é para quadro parado, não para sheets (B): só gerar sheets se o aparelho médio
+reprovar. No web o efeito anima a 30 fps (medido: 60 quadros desenhados em 2 s em `weather/rain`); com a aba ou o painel oculto, o navegador reduz o rAF e o
+efeito só desacelera, sem congelar. Flashes (DR19): medidos pela luminância média do palco, o pior
+dos 68 efeitos dá 1 flash/s (`ui/countdown`); nenhum precisou ser desacelerado. Com movimento reduzido o palco mostra um quadro parado e o
+efeito único avisa o fim depois da sua duração, para o FxBurst aparecer e a fila de momentos não travar.
+
 Web: o `PixelFx.web.tsx` atual evita Skia (CanvasKit ~7 MB); no web o runtime (A) desenha num
 `<canvas>` 2D, que é o ambiente original do pixelfx.
 O vendor entra em `app/vendor/pixelfx/` com o `LICENSE` MIT e crédito no `NOTICE.md`; os `import()`
@@ -710,7 +720,7 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
   - Origem: Passada 2, DR5 + DR7 · Arquivos: cada tela da F2/F3/F7/F8 · Verificar: checklist de aceite por fase
 - [ ] **TD10 (P2, human ~3h / CC ~15min)** — `journey/rules` — energia de recuperação + masmorra limpa ×N
   - Origem: Passadas 4/7, DR13 + DR22 · Arquivos: `store/journey/rules/energy.ts`, `dungeon.ts` · Verificar: unit
-- [ ] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
+- [x] **TD11 (P2, human ~2h / CC ~10min)** — `fx` — `toFxText` + textos via `t()` + limite de 3 flashes/s
   - Origem: Passadas 4/6, DR14 + DR19 · Arquivos: `components/presentation/fx/` · Verificar: unit + medição no spike
 - [ ] **TD12 (P2, human ~4h / CC ~20min)** — `migração/onboarding` — card de boas-vindas, Toast de recálculo, wizard restilizado, títulos no i18n
   - Origem: Passadas 3/7, DR9 + DR10 + DR25 · Arquivos: `welcome-wizard.tsx`, `store/rpg/index.ts`, i18n · Verificar: unit da migração + e2e

@@ -37,4 +37,14 @@ describe('Dev gallery', () => {
     cy.matchSnapshot('gallery-fonts')
     cy.matchSnapshot('gallery-icons')
   })
+
+  // PLANO C6: an effect that throws disappears and the screen around it keeps working.
+  it('survives a broken pixelfx effect', () => {
+    cy.getByTestId('gallery-fx').scrollIntoView()
+    cy.getByTestId('fx-break').click()
+    cy.getByTestId('fx-stage-broken').should('not.exist')
+    cy.getByTestId('fx-stage').find('canvas').should('exist')
+    cy.getByTestId('fx-ui/confetti').click()
+    cy.getByTestId('fx-stage').should('have.attr', 'aria-label', 'ui/confetti')
+  })
 })

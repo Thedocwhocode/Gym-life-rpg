@@ -5,6 +5,7 @@ import {
 } from '@/components/presentation/pixel-icons.generated';
 import PaletteChooser from '@/components/presentation/palette-chooser';
 import PixelGallery from '@/components/presentation/pixel/PixelGallery';
+import FxGallery from '@/components/presentation/fx/FxGallery';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAppSelector } from '@/store';
 import { setPalette } from '@/store/settings';
@@ -79,6 +80,7 @@ export default function DevGallery() {
           onChange={(next) => dispatch(setPalette(next))}
         />
         <PixelGallery />
+        <FxGallery />
       </View>
     </FullHeightScrollView>
   );

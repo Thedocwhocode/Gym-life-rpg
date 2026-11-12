@@ -23,7 +23,8 @@ completo das mudanças está no git deste repositório.
 ### pixelfx
 
 As sprite sheets em `app/assets/fx/` foram renderizadas com o pixelfx
-(https://github.com/patch-gg/pixelfx), sob a licença MIT.
+(https://github.com/patch-gg/pixelfx), sob a licença MIT. `app/vendor/pixelfx/` é uma cópia do
+código do pixelfx (o core e só os efeitos que o app toca), com o `LICENSE` e o `NOTICE.md` originais.
 
 - Copyright (c) 2026 Patch
 - Copyright (c) 2026 Hugo Duprez

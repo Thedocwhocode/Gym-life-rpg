@@ -11,3 +11,4 @@ node_modules
 types/dom.slim.d.ts
 scripts
 plugins
+vendor
