@@ -1,7 +1,4 @@
 {
-  "ai.planner.title": "Tekoälysuunnittelija",
-  "ai.restart_chat.button": "Käynnistä keskustelu uudelleen",
-  "ai.upgrade_to_pro.button": "Vaihda maksulliseen versioon",
   "backup.api_key.label": "API-avain",
   "backup.automatic_remote.subtitle": "Lähetä varmuuskopiot etäpalvelimelle. Vain edistyneille käyttäjille",
   "backup.automatic_remote.title": "Automaattinen etävarmuuskopiointi",
@@ -211,7 +208,6 @@
   "settings.localisation.title": "Lokalisointi",
   "settings.notifications.subtitle": "Säädä lepoajastimen ilmoitusasetuksia",
   "settings.notifications.title": "Ilmoitukset",
-  "settings.pro_features.title": "Maksulliset ominaisuudet",
   "settings.reset_tips.button": "Nollaa vinkit",
   "settings.set_language.button": "Aseta kieli",
   "settings.set_language.subtitle": "Aseta ensisijainen kielesi",

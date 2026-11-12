@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using FluentValidation;
 using GymLifeRpg.Api.Authentication;
 using GymLifeRpg.Api.Db;
-using GymLifeRpg.Api.Hubs;
 using GymLifeRpg.Api.Service;
 using GymLifeRpg.Api.Validators;
 using GymLifeRpg.Lib.Serialization;
@@ -37,14 +36,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddSignalR(s =>
-{
-    // We need clients to be able to stop in flight chat requests
-    s.MaximumParallelInvocationsPerClient = 2;
-    s.ClientTimeoutInterval = TimeSpan.FromSeconds(120);
-    s.HandshakeTimeout = TimeSpan.FromSeconds(60);
-});
-
 // Add Authentication
 builder
     .Services.AddAuthentication(PurchaseTokenAuthenticationSchemeOptions.SchemeName)
@@ -61,7 +52,7 @@ builder.Services.AddScoped<RateLimitService>();
 builder.Services.AddHostedService<CleanupExpiredDataHostedService>();
 
 builder.Services.AddScoped<PurchaseVerificationService>();
-builder.Services.AddGptAiWorkoutPlanner();
+builder.Services.AddGptSheetReader();
 builder.Services.AddWebAuthPurchaseVerification();
 builder.Services.AddRevenueCatPurchaseVerification();
 
@@ -88,9 +79,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-// Map SignalR Hubs
-app.MapHub<AiWorkoutChatHub>("/ai-chat");
 
 app.MapMethods(
     "/health",

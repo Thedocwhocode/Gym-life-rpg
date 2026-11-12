@@ -56,7 +56,7 @@ uma proposta padrão; a fase que depende dela não começa sem a resposta.
 | D7 | Inventário: de onde vêm os itens e o que fazem | Drops de monstro derrotado e de conquistas; item equipado (escolha datada) dá o bônus do design-spec §D pelo D3 (DR11) | F6 |
 | D8 | Clima: modificador real no XP ou só visual? | **Fechado na revisão eng:** só visual (banner + efeito). O clima não é gravado na sessão, então não entra na projeção | — |
 | D9 | Importar PDF: parser local ou servidor? Aceita imagem (OCR)? | Usar o mesmo backend do Planejador IA (LLM lê o texto extraído do PDF); só PDF com texto, sem OCR na v1 | F8 |
-| D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. Recomendada (a); aguarda o usuário | F10 |
+| D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. **Assumida (a) em 2026-11-12, sem resposta do usuário; reversível** (o app só fala com `POST /ai/sheet`) | F10 |
 | D10 | Textos dentro dos efeitos pixelfx (fonte sem acento): inglês ou português sem acento? | **Fechado na revisão de design (DR14):** o texto vem de `t()` e passa por `toFxText` (NFD, sem diacríticos, caixa alta) | F4 |
 
 ## 3. Decisões técnicas
@@ -382,6 +382,12 @@ treino. Ele não cria plano nem é aberto pelo usuário.
 - **Aceite:** `escaneado-sintetico.pdf` deixa de dar `no_text` (teste com a OpenAI simulada); os
   dois fixtures viram plano nos testes do backend e do app. De ponta a ponta continua dependendo de
   pro token, API no ar e chave da OpenAI; não forjar token.
+- **Status (2026-11-12, branch `feat/planejador-ocr`):** feito com a D11 (a). Backend: `AiSheetController`
+  + `GptSheetReader` (schema `AiSheetPlan.json`, `StoredOutputEnabled = false`), hub SignalR e
+  `PartialJsonParser` removidos; 14/14 testes da API. App: chat, `store/ai-planner`, `pdf-text`,
+  `@microsoft/signalr` e `pdfjs-dist` removidos; paywall em `services/pro-paywall.ts`; entradas
+  escondidas sem backend/Pro (`isProAvailable`); a tela mostra exercício × séries×reps × carga.
+  `parseDuration` aceita o "0.00:01:30:" que a API escreve. Pendente: ponta a ponta com a OpenAI real.
 
 ### F11 — Biblioteca de exercícios do openGym + vídeos com nossos sprites (última fase)
 - **Texto, sim; mídia, não.** O catálogo de [openGym](https://github.com/DuarteSantos8/openGym)

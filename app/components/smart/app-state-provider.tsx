@@ -11,8 +11,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       getLoadMessage(s.currentSession, 'current session') ||
       getLoadMessage(s.program, 'program') ||
       getLoadMessage(s.settings, 'settings') ||
-      getLoadMessage(s.storedSessions, 'stored sessions') ||
-      getLoadMessage(s.aiPlanner, 'ai planner'),
+      getLoadMessage(s.storedSessions, 'stored sessions'),
   );
   const { colors } = useAppTheme();
 

@@ -16,7 +16,6 @@ import { storedSessionsReducer } from './stored-sessions';
 import { sessionEditorReducer } from './session-editor';
 import { statsReducer } from '@/store/stats';
 import { resolveServices, Services } from '@/services';
-import { aiPlannerReducer } from '@/store/ai-planner';
 import { rpgReducer } from '@/store/rpg';
 import { choicesReducer } from '@/store/choices';
 import * as Sentry from '@sentry/react-native';
@@ -36,7 +35,6 @@ const store = configureStore({
     }).prepend(listenerMiddleware.middleware),
   reducer: combineReducers({
     currentSession: currentSessionReducer,
-    aiPlanner: aiPlannerReducer,
     settings: settingsReducer,
     program: programReducer,
     feed: feedReducer,

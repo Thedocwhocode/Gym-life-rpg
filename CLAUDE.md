@@ -20,7 +20,7 @@
 ### Funcionalidades herdadas do LiftLog
 
 - Rastreamento de treinos (séries, repetições, peso, cardio)
-- Planejador de treinos com IA (OpenAI integration)
+- Planejador de treinos com IA (OpenAI) — no fork virou só leitor de fichas em PDF (F10)
 - Feed social com criptografia ponta-a-ponta (opt-in)
 - Histórico de sessões e estatísticas com gráficos
 - Internacionalização em 10+ idiomas via Tolgee/Weblate
@@ -145,7 +145,7 @@ Gym-life-rpg/
 | Tipografia RPG  | Pixelify Sans (títulos) + Space Mono (corpo)      |
 | Gráficos        | react-native-gifted-charts + @shopify/react-native-skia |
 | Backend         | .NET 10 WebAPI (GymLifeRpg.Api)                   |
-| IA              | OpenAI (planejador de treinos)                    |
+| IA              | OpenAI (leitor de fichas em PDF, `POST /ai/sheet`) |
 | Pagamentos      | RevenueCat                                        |
 | i18n            | Tolgee                                            |
 | Testes          | Vitest                                            |

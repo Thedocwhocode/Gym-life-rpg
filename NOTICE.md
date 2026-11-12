@@ -75,13 +75,6 @@ Pixelarticons (https://github.com/halfmage/pixelarticons), sob a licença MIT.
 
 As duas são distribuídas pelos pacotes `@expo-google-fonts/*`, que trazem o texto da licença.
 
-### PDF.js
-
-A importação de ficha em PDF lê o texto no aparelho com o `pdfjs-dist`
-(https://github.com/mozilla/pdf.js), sob a Apache License 2.0. O texto da licença vem no pacote.
-
-- Copyright Mozilla Foundation e colaboradores
-
 ### Open-Meteo
 
 A faixa de clima do Painel usa a API do Open-Meteo (https://open-meteo.com), cujos dados são

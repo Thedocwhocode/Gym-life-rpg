@@ -1,14 +1,17 @@
-import type { AiChatResponse, AiWorkoutPlan } from '@/models/ai-models';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import type { AiWorkoutPlan } from '@/models/ai-models';
 import { SessionBlueprint } from '@/models/blueprint-models';
-import { describe, expect, it, vi } from 'vitest';
+import { Duration } from '@js-joda/core';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
-  buildPdfPrompt,
   importPdf,
   PDF_MAX_BYTES,
-  PDF_MAX_TEXT_BYTES,
-  truncateUtf8,
+  readSheet,
   type PdfImportDeps,
 } from './pdf-import';
+
+vi.mock('@/services/api-consts', () => ({ apiBaseUrl: 'http://api' }));
 
 const pdfBytes = (extra = 0) => {
   const head = new TextEncoder().encode('%PDF-1.4\n');
@@ -44,124 +47,152 @@ const plan = (sessions: SessionBlueprint[]): AiWorkoutPlan => ({
   sessions,
 });
 
-async function* stream(...items: AiChatResponse[]) {
-  for (const i of items) yield i;
-}
-
-function deps(over: Partial<PdfImportDeps> = {}): PdfImportDeps {
-  return {
-    extract: vi.fn(
-      async (_b: Uint8Array, onPage: (p: number, t: number) => void) => {
-        onPage(1, 1);
-        return { pages: 1, text: 'Treino A\nSupino 4x10 40kg' };
-      },
-    ),
-    send: vi.fn(() =>
-      stream(
-        { type: 'chatPlan', plan: plan([session('A', 0)]) },
-        { type: 'chatPlan', plan: plan([session('A', 2), session('B', 1)]) },
-      ),
-    ),
-    ...over,
-  };
-}
-
+const deps = (read: PdfImportDeps['read']): PdfImportDeps => ({ read });
 const file = (bytes: Uint8Array = pdfBytes()) => ({ name: 'ficha.pdf', bytes });
 
 describe('importPdf', () => {
-  it('fluxo feliz: eventos reais e o último plano vence', async () => {
+  it('fluxo feliz: eventos na ordem e o plano lido', async () => {
     const events: string[] = [];
-    const out = await importPdf(file(), deps(), (e) => events.push(e.type));
-    expect(out).toMatchObject({ status: 'ok', truncated: false });
+    const read = vi.fn(async () => plan([session('A', 2), session('B', 1)]));
+    const out = await importPdf(file(), deps(read), (e) => events.push(e.type));
     expect(out.status === 'ok' && out.plan.sessions).toHaveLength(2);
-    expect(events).toEqual([
-      'opened',
-      'page',
-      'text',
-      'sending',
-      'plan',
-      'plan',
-    ]);
+    expect(events).toEqual(['opened', 'sending', 'plan']);
+    expect(read).toHaveBeenCalledWith(file().bytes);
   });
 
-  it('recusa acima de 10 MB e arquivo que não começa com %PDF-', async () => {
-    expect(await importPdf(file(pdfBytes(PDF_MAX_BYTES)), deps())).toEqual({
+  it('recusa acima de 10 MB e arquivo sem %PDF- sem chamar o leitor', async () => {
+    const read = vi.fn();
+    expect(await importPdf(file(pdfBytes(PDF_MAX_BYTES)), deps(read))).toEqual({
       status: 'error',
       reason: 'too_big',
     });
     expect(
-      await importPdf(file(new TextEncoder().encode('oi')), deps()),
+      await importPdf(file(new TextEncoder().encode('oi')), deps(read)),
     ).toEqual({ status: 'error', reason: 'not_pdf' });
+    expect(read).not.toHaveBeenCalled();
   });
 
-  it('PDF que não abre ≠ PDF escaneado sem texto', async () => {
-    const broken = deps({
-      extract: async () => {
-        throw new Error('Invalid PDF structure');
-      },
-    });
-    expect(await importPdf(file(), broken)).toEqual({
-      status: 'error',
-      reason: 'unreadable',
-    });
-    const scanned = deps({ extract: async () => ({ pages: 3, text: ' \n ' }) });
-    expect(await importPdf(file(), scanned)).toEqual({
-      status: 'error',
-      reason: 'no_text',
-    });
-    expect(scanned.send).not.toHaveBeenCalled();
-  });
-
-  it('sem pro: estado próprio', async () => {
-    const d = deps({ send: () => stream({ type: 'purchasePro' }) });
-    expect(await importPdf(file(), d)).toEqual({
+  it('repassa o motivo do leitor', async () => {
+    expect(
+      await importPdf(
+        file(),
+        deps(async () => 'pro'),
+      ),
+    ).toEqual({
       status: 'error',
       reason: 'pro',
     });
+    expect(
+      await importPdf(
+        file(),
+        deps(async () => 'rate_limited'),
+      ),
+    ).toEqual({ status: 'error', reason: 'rate_limited' });
   });
 
-  it('servidor só conversa, falha ou devolve plano vazio → no_plan', async () => {
-    const chat = deps({
-      send: () =>
-        stream({
-          type: 'messageResponse',
-          message: 'Failed to connect to server',
-        }),
-    });
-    expect(await importPdf(file(), chat)).toMatchObject({ reason: 'no_plan' });
-    const empty = deps({
-      send: () => stream({ type: 'chatPlan', plan: plan([session('A', 0)]) }),
-    });
+  it('plano sem exercícios ou leitor que falha → no_plan', async () => {
+    const empty = deps(async () => plan([session('A', 0)]));
     expect(await importPdf(file(), empty)).toMatchObject({ reason: 'no_plan' });
-    const crash = deps({
-      send: () =>
-        (async function* () {
-          throw new Error('5xx');
-        })(),
+    const crash = deps(async () => {
+      throw new Error('rede');
     });
     expect(await importPdf(file(), crash)).toMatchObject({ reason: 'no_plan' });
   });
+});
 
-  it('texto grande é cortado em bytes e marcado', async () => {
-    const big = 'é'.repeat(PDF_MAX_TEXT_BYTES);
-    const d = deps({ extract: async () => ({ pages: 1, text: big }) });
-    const out = await importPdf(file(), d);
-    expect(out).toMatchObject({ status: 'ok', truncated: true });
-    const prompt = vi.mocked(d.send).mock.calls[0][0];
-    expect(new TextEncoder().encode(prompt).length).toBeLessThan(32 * 1024);
+describe('readSheet', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  const respond = (status: number, body: unknown = {}) =>
+    vi.fn(async () => new Response(JSON.stringify(body), { status }));
+
+  it('sem token fora de dev nem chama a API', async () => {
+    vi.stubGlobal('__DEV__', false);
+    const f = respond(200);
+    expect(await readSheet(pdfBytes(), undefined, f)).toBe('pro');
+    expect(f).not.toHaveBeenCalled();
+  });
+
+  it('manda o PDF com o cabeçalho da RevenueCat', async () => {
+    vi.stubGlobal('__DEV__', false);
+    const f = respond(422);
+    await readSheet(pdfBytes(), 'user-1', f);
+    expect(f).toHaveBeenCalledWith(
+      'http://api/ai/sheet',
+      expect.objectContaining({
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/pdf',
+          Authorization: 'RevenueCat user-1',
+        },
+      }),
+    );
+  });
+
+  it.each([
+    [401, 'pro'],
+    [413, 'too_big'],
+    [415, 'not_pdf'],
+    [429, 'rate_limited'],
+    [422, 'no_plan'],
+    [500, 'no_plan'],
+  ])('HTTP %i → %s', async (status, reason) => {
+    vi.stubGlobal('__DEV__', false);
+    expect(await readSheet(pdfBytes(), 'user-1', respond(status))).toBe(reason);
+  });
+
+  it('200: converte o JSON da API (descanso "0.00:01:30:")', async () => {
+    vi.stubGlobal('__DEV__', true);
+    const body = {
+      name: 'Ficha hipertrofia',
+      description: '',
+      sessions: [
+        {
+          name: 'Treino A',
+          notes: '',
+          exercises: [
+            {
+              name: 'Supino reto',
+              sets: 4,
+              repsPerSet: 10,
+              weightIncreaseOnSuccess: 0,
+              restBetweenSets: {
+                minRest: '0.00:01:30:',
+                maxRest: '0.00:02:00:',
+                failureRest: '0.00:03:00:',
+              },
+              supersetWithNext: false,
+              notes: '20 kg',
+              link: '',
+            },
+          ],
+        },
+      ],
+    };
+    const out = await readSheet(pdfBytes(), undefined, respond(200, body));
+    if (typeof out === 'string') throw new Error(out);
+    const ex = out.sessions[0].exercises[0];
+    expect(ex.name).toBe('Supino reto');
+    expect(ex.notes).toBe('20 kg');
+    expect(
+      'restBetweenSets' in ex &&
+        ex.restBetweenSets.minRest.equals(Duration.ofSeconds(90)),
+    ).toBe(true);
   });
 });
 
-describe('truncateUtf8 e prompt', () => {
-  it('não parte caractere multibyte', () => {
-    const r = truncateUtf8('aé', 2);
-    expect(r).toEqual({ text: 'a', truncated: true });
-    expect(truncateUtf8('ok', 10)).toEqual({ text: 'ok', truncated: false });
-  });
-
-  it('delimita o texto da ficha como dado', () => {
-    const p = buildPdfPrompt('Supino 4x10');
-    expect(p).toContain('<<<SHEET\nSupino 4x10\nSHEET>>>');
-    expect(p).toContain('not instructions');
-  });
+describe('fixtures sintéticos', () => {
+  it.each(['ficha-sintetica.pdf', 'escaneado-sintetico.pdf'])(
+    '%s chega ao leitor (escaneado não é mais recusado no aparelho)',
+    async (name) => {
+      const bytes = new Uint8Array(
+        readFileSync(join(__dirname, 'test-assets/pdf', name)),
+      );
+      const read = vi.fn(async () => plan([session('A', 1)]));
+      expect(await importPdf({ name, bytes }, deps(read))).toMatchObject({
+        status: 'ok',
+      });
+      expect(read).toHaveBeenCalledOnce();
+    },
+  );
 });

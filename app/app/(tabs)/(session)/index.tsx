@@ -1,3 +1,4 @@
+import { isProAvailable } from '@/services/api-consts';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
@@ -64,14 +65,16 @@ function PlanManager() {
           {t('workout.edit_workouts.button')}
         </Button>
       </View>
-      <Button
-        variant="ghost"
-        icon="upload"
-        testID="pdf-import-entry"
-        onPress={() => run('ai', () => push('/settings/pdf-import'))}
-      >
-        {t('pdf.entry.button')}
-      </Button>
+      {isProAvailable && (
+        <Button
+          variant="ghost"
+          icon="upload"
+          testID="pdf-import-entry"
+          onPress={() => run('ai', () => push('/settings/pdf-import'))}
+        >
+          {t('pdf.entry.button')}
+        </Button>
+      )}
     </View>
   );
 }

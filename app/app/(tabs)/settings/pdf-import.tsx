@@ -15,18 +15,22 @@ import type { PickedFile } from '@/services/file-picker-service';
 import {
   importPdf,
   PDF_CONSENT_KEY,
+  readSheet,
   type PdfImportError,
   type PdfImportEvent,
 } from '@/services/pdf-import';
-import { extractPdfText } from '@/services/pdf-text';
+import { presentPaywall } from '@/services/pro-paywall';
+import { useAppSelector } from '@/store';
 import { savePlan } from '@/store/program';
+import { setProToken } from '@/store/settings';
 import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
 import { TranslationKey, useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
+import Purchases from 'react-native-purchases';
 import { Portal } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
@@ -34,25 +38,25 @@ type Phase =
   | { kind: 'pick' }
   | { kind: 'consent'; file: PickedFile }
   | { kind: 'scan'; log: string[]; progress: number }
-  | { kind: 'done'; plan: AiWorkoutPlan; truncated: boolean }
+  | { kind: 'done'; plan: AiWorkoutPlan }
   | { kind: 'error'; reason: PdfImportError; file?: PickedFile };
 
 const CONSENT_ITEMS = [1, 2, 3, 4] as const;
 
-/** F8: ficha em PDF → texto no aparelho → Planejador IA → plano editável. Sem OCR (D9). */
+/** F10: ficha em PDF → leitor de fichas (OCR + tabulação) → tabela para conferir → Planos. */
 export default function PdfImport() {
   const { t } = useTranslate();
   const { palette } = useAppTheme();
   const { push } = useRouter();
   const dispatch = useDispatch();
-  const { filePickerService, keyValueStore, aiChatService } = useServices();
+  const { filePickerService, keyValueStore } = useServices();
+  const proToken = useAppSelector((s) => s.settings.proToken);
   const [phase, setPhase] = useState<Phase>({ kind: 'pick' });
   const [name, setName] = useState('');
 
-  const run = async (file: PickedFile) => {
+  const run = async (file: PickedFile, token = proToken) => {
     const log: string[] = [];
     let progress = 0;
-    let workouts = -1;
     const addLine = (line: string, p = progress) => {
       log.push(line);
       progress = p;
@@ -67,42 +71,29 @@ export default function PdfImport() {
           }),
           0.05,
         );
-      if (e.type === 'page')
-        addLine(
-          t('pdf.log.page', { page: e.page, total: e.total }),
-          (0.5 * e.page) / e.total,
-        );
-      if (e.type === 'text')
-        addLine(
-          t(e.truncated ? 'pdf.log.text_cut' : 'pdf.log.text', { n: e.chars }),
-          0.55,
-        );
-      if (e.type === 'sending') addLine(t('pdf.log.sending'), 0.6);
-      if (e.type === 'plan' && e.workouts !== workouts) {
-        workouts = e.workouts;
-        addLine(t('pdf.log.plan', { n: e.workouts }), 0.85);
-      }
+      if (e.type === 'sending') addLine(t('pdf.log.sending'), 0.3);
+      if (e.type === 'plan')
+        addLine(t('pdf.log.plan', { n: e.workouts }), 0.95);
     };
     setPhase({ kind: 'scan', log, progress });
     const result = await importPdf(
       file,
-      {
-        extract: extractPdfText,
-        send: async function* (prompt) {
-          await aiChatService.restartChat(); // conversa limpa: sem histórico do chat
-          yield* aiChatService.sendMessage(prompt);
-        },
-      },
+      { read: (bytes) => readSheet(bytes, token) },
       onEvent,
     );
     if (result.status === 'ok') {
       setName(result.plan.name);
-      setPhase({
-        kind: 'done',
-        plan: result.plan,
-        truncated: result.truncated,
-      });
+      setPhase({ kind: 'done', plan: result.plan });
     } else setPhase({ kind: 'error', reason: result.reason, file });
+  };
+
+  // O paywall da RevenueCat (antes no chat do Planejador); com o Pro, tenta de novo.
+  const upgrade = async (file: PickedFile) => {
+    const owned = await presentPaywall().catch(() => false);
+    if (!owned) return;
+    const info = await Purchases.getCustomerInfo();
+    dispatch(setProToken(info.originalAppUserId));
+    void run(file, info.originalAppUserId);
   };
 
   const pick = async () => {
@@ -217,19 +208,36 @@ export default function PdfImport() {
               <Text style={{ ...type.label, color: palette.text1 }}>
                 {s.name}
               </Text>
-              <Text style={{ ...type.small, color: palette.text2 }}>
-                {s.exercises.map((e) => e.name).join(' · ')}
-              </Text>
+              {s.exercises.map((e, j) => (
+                <View key={j} style={{ flexDirection: 'row', gap: 8 }}>
+                  <Text
+                    style={{ ...type.small, color: palette.text1, flex: 1 }}
+                  >
+                    {e.name}
+                  </Text>
+                  {'sets' in e && (
+                    <Text style={{ ...type.small, color: palette.text2 }}>
+                      {e.sets}×{e.repsPerSet}
+                    </Text>
+                  )}
+                  {!!e.notes && (
+                    <Text
+                      style={{
+                        ...type.small,
+                        color: palette.text2,
+                        maxWidth: '40%',
+                      }}
+                    >
+                      {e.notes}
+                    </Text>
+                  )}
+                </View>
+              ))}
             </PixelBox>
           ))}
           <Text style={{ ...type.small, color: palette.reward }}>
             {t('pdf.done.check')}
           </Text>
-          {phase.truncated && (
-            <Text style={{ ...type.small, color: palette.reward }}>
-              {t('pdf.done.truncated')}
-            </Text>
-          )}
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <Button
               variant="secondary"
@@ -270,25 +278,26 @@ export default function PdfImport() {
             >
               {t('pdf.another')}
             </Button>
-            {phase.reason === 'pro' ? (
-              <Button
-                style={{ flex: 1 }}
-                onPress={() => push('/settings/ai/planner')}
-              >
-                {t('pdf.error.pro.button')}
-              </Button>
-            ) : (
-              phase.reason === 'no_plan' &&
-              phase.file && (
-                <Button
-                  testID="pdf-retry"
-                  style={{ flex: 1 }}
-                  onPress={() => void run(phase.file!)}
-                >
-                  {t('pdf.retry')}
-                </Button>
-              )
-            )}
+            {phase.reason === 'pro'
+              ? Platform.OS !== 'web' &&
+                phase.file && (
+                  <Button
+                    style={{ flex: 1 }}
+                    onPress={() => void upgrade(phase.file!)}
+                  >
+                    {t('pdf.error.pro.button')}
+                  </Button>
+                )
+              : phase.reason === 'no_plan' &&
+                phase.file && (
+                  <Button
+                    testID="pdf-retry"
+                    style={{ flex: 1 }}
+                    onPress={() => void run(phase.file!)}
+                  >
+                    {t('pdf.retry')}
+                  </Button>
+                )}
           </View>
         </PixelBox>
       )}

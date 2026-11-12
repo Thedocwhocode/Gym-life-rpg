@@ -1,8 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "description": "An object containing a description of the plan, with recommendations for their skill level and goals. Should give guidance related to their skill level, age weight, and potential nutrients.  Should also say whether this plan will be suitable for them, and if not, why not.",
-  "required": ["Description", "Sessions", "Name"],
+  "description": "The workout plan transcribed from the sheet, exactly as written.",
+  "required": [
+    "Description",
+    "Sessions",
+    "Name"
+  ],
+  "additionalProperties": false,
   "properties": {
     "Name": {
       "type": "string",
@@ -10,15 +15,20 @@
     },
     "Description": {
       "type": "string",
-      "description": "A description of the plan, with recommendations for their skill level and goals."
+      "description": "What the sheet says about the plan as a whole, or an empty string."
     },
     "Sessions": {
       "type": "array",
       "description": "An array of sessions to perform.",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "description": "A session to perform.",
-        "required": ["Name", "Exercises"],
+        "required": [
+          "Name",
+          "Exercises",
+          "Description"
+        ],
         "properties": {
           "Name": {
             "type": "string",
@@ -33,8 +43,16 @@
             "description": "An array of exercises to perform.",
             "items": {
               "type": "object",
+              "additionalProperties": false,
               "description": "An exercise to perform.",
-              "required": ["Name", "Sets", "RepsPerSet", "WeightIncreaseOnSuccess", "Rest"],
+              "required": [
+                "Name",
+                "Sets",
+                "RepsPerSet",
+                "WeightIncreaseOnSuccess",
+                "Notes",
+                "RestBetweenSets"
+              ],
               "properties": {
                 "Name": {
                   "type": "string",
@@ -50,16 +68,21 @@
                 },
                 "WeightIncreaseOnSuccess": {
                   "type": "number",
-                  "description": "The amount of weight to increase by on successful completion of all reps in the set.  If the exercise is timed, this is the number of seconds to increase by on successful completion of all reps in the set. The units are the same that the user specifies."
+                  "description": "The weight increase the sheet states for completing all reps, or 0 when it states none."
                 },
                 "Notes": {
                   "type": "string",
-                  "description": "An optional, very short description of how to do the exercise."
+                  "description": "The load and any other notes the sheet gives for this exercise (e.g. 20 kg, tempo 3-1-1), or an empty string."
                 },
                 "RestBetweenSets": {
                   "type": "object",
                   "description": "The rest time to use for the exercise.",
-                  "required": ["MinRest", "MaxRest", "FailureRest"],
+                  "additionalProperties": false,
+                  "required": [
+                    "MinRestSeconds",
+                    "MaxRestSeconds",
+                    "FailureRestSeconds"
+                  ],
                   "properties": {
                     "MinRestSeconds": {
                       "type": "integer",

@@ -1,3 +1,4 @@
+import { isProAvailable } from '@/services/api-consts';
 import { View } from 'react-native';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
@@ -48,14 +49,16 @@ export default function ProgramList() {
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
       <Stack.Screen options={{ title: t('plan.plans.title') }} />
-      <Button
-        variant="secondary"
-        icon="upload"
-        style={{ margin: 16, marginBottom: 0 }}
-        onPress={() => run('ai', () => push('/settings/pdf-import'))}
-      >
-        {t('pdf.entry.button')}
-      </Button>
+      {isProAvailable && (
+        <Button
+          variant="secondary"
+          icon="upload"
+          style={{ margin: 16, marginBottom: 0 }}
+          onPress={() => run('ai', () => push('/settings/pdf-import'))}
+        >
+          {t('pdf.entry.button')}
+        </Button>
+      )}
       <View testID="program-list">
         {ps.map(({ id }) => (
           <ProgramListItem key={id} id={id} isFocused={focusprogramId === id} />

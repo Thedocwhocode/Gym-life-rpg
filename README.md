@@ -12,10 +12,11 @@ semanais e desbloqueia conquistas. Roda em Android, iOS e web (React Native + Ex
   combate por série (cada série golpeia o monstro)
 - Visual pixel art em 4 paletas (Brasa, Ferro, Fósforo, Pergaminho), efeitos e transições de
   tela com pixelfx; ajuste "Efeitos: Completo / Reduzido / Desligado" e vibração separada
-- Importar ficha em PDF pelo planejador IA (o texto é lido no aparelho; recurso pro)
+- Importar ficha em PDF: o leitor de fichas transcreve o PDF (com texto ou escaneado) numa tabela
+  para conferir antes de salvar; não cria treinos (recurso pro)
 - Backup local/remoto e exportação em CSV/JSON
 - Opcionais, só com backend próprio configurado: feed social com criptografia ponta a ponta
-  e planejador de treinos com IA
+  e leitor de fichas em PDF
 - 14 idiomas via Tolgee
 
 ---
@@ -38,14 +39,14 @@ npm run typecheck
 
 | Variável | Efeito quando ausente |
 |---|---|
-| `EXPO_PUBLIC_API_URL` | Feed e planejador com IA ficam escondidos no build de release |
+| `EXPO_PUBLIC_API_URL` | Feed e importação de ficha ficam escondidos no build de release |
 | `EXPO_PUBLIC_WEB_URL` | Links de compartilhamento do feed ficam relativos |
 | `EXPO_PUBLIC_SENTRY_DSN` | Relatórios de erro desligados |
 | `EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY` / `EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY` | Recursos "pro" indisponíveis no nativo |
 
 ### Backend
 
-API .NET 10 com PostgreSQL, usada pelo feed e pelo planejador com IA. Veja
+API .NET 10 com PostgreSQL, usada pelo feed e pelo leitor de fichas em PDF. Veja
 [`backend/README.md`](./backend/README.md).
 
 ---
