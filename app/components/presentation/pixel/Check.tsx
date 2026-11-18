@@ -36,6 +36,9 @@ export default function Check({
       aria-checked={checked}
       aria-disabled={disabled}
       disabled={disabled || !onPress}
+      // Sem onPress é só indicador: quem anuncia o estado é a linha (ListItem `checked`).
+      importantForAccessibility={onPress ? 'auto' : 'no-hide-descendants'}
+      accessibilityElementsHidden={!onPress}
       onPress={onPress}
       hitSlop={10}
       style={{ opacity: disabled ? 0.4 : 1 }}

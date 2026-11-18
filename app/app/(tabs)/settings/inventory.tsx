@@ -62,6 +62,9 @@ function ItemCell({
       aria-selected={selected}
       aria-disabled={!item}
       aria-label={item ? t(`rpg.item.${item.id}` as TranslationKey) : label}
+      // Espaço vazio da mochila não tem o que anunciar.
+      importantForAccessibility={item || label ? 'auto' : 'no-hide-descendants'}
+      accessibilityElementsHidden={!item && !label}
       disabled={!item}
       onPress={onPress}
     >
@@ -69,6 +72,7 @@ function ItemCell({
         tone={equipped ? 'success' : 'sunken'}
         borderColor={selected ? palette.lineFocus : undefined}
         steps={1}
+        padding={2}
         style={{ width: size, height: size }}
         innerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
       >
@@ -77,6 +81,7 @@ function ItemCell({
         ) : (
           <Text
             numberOfLines={1}
+            adjustsFontSizeToFit
             style={{ ...type.micro, color: palette.text3 }}
           >
             {label}

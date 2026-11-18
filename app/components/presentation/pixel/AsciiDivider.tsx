@@ -43,7 +43,10 @@ export default function AsciiDivider({
       style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
     >
       {label && align === 'left' ? (
-        <Text style={labelStyle}>{`▸ ${label}`}</Text>
+        <Text
+          accessibilityLabel={label}
+          style={labelStyle}
+        >{`▸ ${label}`}</Text>
       ) : null}
       {label && align === 'center' ? line : null}
       {label && align === 'center' ? (

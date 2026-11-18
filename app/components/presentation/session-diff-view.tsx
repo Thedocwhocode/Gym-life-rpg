@@ -202,6 +202,7 @@ function DiffChangeRow({
       title={t(label.key, label.params)}
       titleColor={variantColor}
       description={t(description.key, description.params)}
+      checked={selected}
       leading={<Check kind="checkbox" disabled={disabled} checked={selected} />}
     />
   );
