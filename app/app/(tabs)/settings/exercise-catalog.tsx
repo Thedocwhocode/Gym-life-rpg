@@ -86,6 +86,7 @@ export default function ExerciseCatalog() {
                     <Button
                       variant="secondary"
                       icon="plus"
+                      accessibilityLabel={`${t('catalog.add.button')} ${displayName(e, lang)}`}
                       onPress={() =>
                         dispatch(
                           updateExercise({
