@@ -101,6 +101,9 @@ export default function Inventory() {
   const owned = ITEMS.filter((i) => drops.includes(i.id));
   const [picked, setPicked] = useState<string>();
   const item = owned.find((i) => i.id === picked);
+  const bonusText = item?.bonus
+    ? t(`rpg.bonus.${item.bonus.kind}`, { pct: item.bonus.pct })
+    : t('rpg.inventory.cosmetic');
   const isOn = (id: string) => itemsEquipped.includes(id);
   const inSlot = (s: string) => owned.find((i) => i.slot === s && isOn(i.id));
   const origin = (id: string) => BESTIARY.find((b) => b.drop === id)?.id;
@@ -187,15 +190,13 @@ export default function Inventory() {
             )}
           </View>
           <Text
+            accessibilityLabel={bonusText}
             style={{
               ...type.body,
               color: item.bonus ? palette.success : palette.text3,
             }}
           >
-            {'▸ '}
-            {item.bonus
-              ? t(`rpg.bonus.${item.bonus.kind}`, { pct: item.bonus.pct })
-              : t('rpg.inventory.cosmetic')}
+            {`▸ ${bonusText}`}
           </Text>
           <Text style={{ ...type.micro, color: palette.text3 }}>
             {t('rpg.inventory.origin', {
