@@ -157,7 +157,7 @@ export default function Settings() {
       title: t('rpg.journey.dungeon'),
       description: t('rpg.journey.dungeon.desc'),
       icon: 'map',
-      onPress: go('/(tabs)/(session)/map'),
+      onPress: go('/(tabs)/settings/map'),
       testID: 'journey-dungeon',
     },
     {
