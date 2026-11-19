@@ -25,8 +25,8 @@ export interface ListItemProps {
   focus?: boolean | undefined;
   /** Linha que marca/desmarca: anuncia como checkbox com o estado. */
   checked?: boolean | undefined;
-  /** Com `checked`: escolha única, anuncia como radio em vez de checkbox. */
-  radio?: boolean | undefined;
+  /** Com `checked`: papel anunciado (radio = escolha única; switch = liga/desliga). */
+  checkRole?: 'checkbox' | 'radio' | 'switch' | undefined;
   testID?: string | undefined;
 }
 
@@ -46,7 +46,7 @@ export default function ListItem({
   disabled = false,
   focus = false,
   checked,
-  radio = false,
+  checkRole = 'checkbox',
   testID,
 }: ListItemProps) {
   const { palette } = useAppTheme();
@@ -58,9 +58,7 @@ export default function ListItem({
       // No web, role="button" vira <button>; com controle no `trailing` daria botão aninhado.
       accessibilityRole={
         checked !== undefined
-          ? radio
-            ? 'radio'
-            : 'checkbox'
+          ? checkRole
           : onPress && !(Platform.OS === 'web' && trailing)
             ? 'button'
             : undefined
