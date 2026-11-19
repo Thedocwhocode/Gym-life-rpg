@@ -1,3 +1,4 @@
+import { useHideBehindDialog } from '@/components/presentation/pixel/dialog-backdrop-a11y';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
@@ -26,6 +27,7 @@ function Dialog({
   onDismiss?: () => void;
   dismissable?: boolean;
 }) {
+  useHideBehindDialog(visible);
   return (
     <Modal
       visible={visible}
