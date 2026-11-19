@@ -43,6 +43,7 @@ function ItemMenu({ id }: ItemProps) {
       onDismiss={() => setMenuVisible(false)}
       anchor={
         <IconButton
+          accessibilityLabel={t('generic.more_options.label')}
           testID="more-program-btn"
           onPress={() => setMenuVisible(true)}
           icon={'moreHoriz'}

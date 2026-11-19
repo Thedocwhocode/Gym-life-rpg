@@ -203,6 +203,7 @@ function AddTrackerButtonMenu(props: {
             radius={rounding.roundedRectangleFocusRingRadius}
           >
             <IconButton
+              accessibilityLabel={t('generic.add.button')}
               style={{ borderRadius: rounding.roundedRectangleRadius }}
               testID="add-tracker-button"
               icon={'plus'}

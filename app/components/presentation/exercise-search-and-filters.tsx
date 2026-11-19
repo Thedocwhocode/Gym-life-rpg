@@ -44,6 +44,7 @@ export default function ExerciseSearchAndFilters({
           subtitle={selectedFiltersSubtitle}
           right={() => (
             <IconButton
+              accessibilityLabel={t('generic.filters.title')}
               icon={filtersExpanded ? 'expandCircleUp' : 'expandCircleDown'}
               animated
               testID="expand-filters-btn"

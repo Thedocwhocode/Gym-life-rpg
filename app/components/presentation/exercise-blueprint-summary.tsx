@@ -59,14 +59,27 @@ export default function ExerciseBlueprintSummary({
         >
           <ItemTitle title={blueprint.name} />
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-            <IconButton onPress={onMoveUp} icon={'arrowUpward'} />
-            <IconButton onPress={onMoveDown} icon={'arrowDownward'} />
-            <IconButton onPress={onRemove} icon={'delete'} />
+            <IconButton
+              accessibilityLabel={t('generic.move_up.button')}
+              onPress={onMoveUp}
+              icon={'arrowUpward'}
+            />
+            <IconButton
+              accessibilityLabel={t('generic.move_down.button')}
+              onPress={onMoveDown}
+              icon={'arrowDownward'}
+            />
+            <IconButton
+              accessibilityLabel={t('generic.delete.button')}
+              onPress={onRemove}
+              icon={'delete'}
+            />
             <Menu
               visible={menuOpen}
               onDismiss={() => setMenuOpen(false)}
               anchor={
                 <IconButton
+                  accessibilityLabel={t('generic.more_options.label')}
                   onPress={() => setMenuOpen(true)}
                   icon={'moreHoriz'}
                 />

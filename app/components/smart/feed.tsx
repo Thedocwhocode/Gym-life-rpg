@@ -160,6 +160,7 @@ function FeedProfile({ identity }: { identity: FeedIdentity }) {
 
         <CardActions>
           <IconButton
+            accessibilityLabel={t('generic.edit.button')}
             mode="contained"
             icon={'edit'}
             onPress={() => {

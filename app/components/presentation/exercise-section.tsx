@@ -51,6 +51,7 @@ export default function ExerciseSection(props: ExerciseSectionProps) {
       {props.showPreviousButton ? (
         <Tooltip title={t('workout.previously_completed.label')}>
           <IconButton
+            accessibilityLabel={t('generic.history.title')}
             testID="prev-exercise-btn"
             icon={'history'}
             onPress={showPrevious}
@@ -60,6 +61,7 @@ export default function ExerciseSection(props: ExerciseSectionProps) {
       {!props.isReadonly ? (
         <Tooltip title={t('generic.notes.label')}>
           <IconButton
+            accessibilityLabel={t('generic.notes.label')}
             testID="exercise-notes-btn"
             icon={'notes'}
             onPress={() => setNotesDialogOpen(true)}
@@ -72,6 +74,7 @@ export default function ExerciseSection(props: ExerciseSectionProps) {
         onDismiss={() => setMenuVisible(false)}
         anchor={
           <IconButton
+            accessibilityLabel={t('generic.more_options.label')}
             testID="more-exercise-btn"
             onPress={() => setMenuVisible(true)}
             icon={'moreHoriz'}

@@ -1,3 +1,4 @@
+import { useTranslate } from '@tolgee/react';
 import { CardioTrackerCard } from '@/components/presentation/cardio/CardioTrackerCard';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import TimerEditor from '@/components/presentation/timer-editor';
@@ -17,6 +18,7 @@ export function CardioTimer({
 }) {
   const playPauseButtonSize = 24;
   const { colors } = useAppTheme();
+  const { t } = useTranslate();
   const [currentBlockStartTime, setCurrentBlockStartTime] = useState<
     OffsetDateTime | undefined
   >();
@@ -124,6 +126,11 @@ export function CardioTimer({
           }}
         />
         <IconButton
+          accessibilityLabel={
+            currentBlockStartTime
+              ? t('generic.pause.button')
+              : t('generic.start.button')
+          }
           icon={currentBlockStartTime ? 'pause' : 'playArrow'}
           animated
           size={playPauseButtonSize}

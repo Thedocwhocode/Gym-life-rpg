@@ -1,3 +1,4 @@
+import { useTranslate } from '@tolgee/react';
 import { AccordionItem } from '@/components/presentation/accordion-item';
 import { spacing } from '@/hooks/useAppTheme';
 import { RecordedExercise } from '@/models/session-models';
@@ -13,6 +14,7 @@ interface ExerciseNotesDisplayProps {
   previousExercise: RecordedExercise | undefined;
 }
 export default function ExerciseNotesDisplay(props: ExerciseNotesDisplayProps) {
+  const { t } = useTranslate();
   const expandByDefault = useAppSelector(
     (x) => x.settings.notesExpandedByDefault,
   );
@@ -85,6 +87,9 @@ export default function ExerciseNotesDisplay(props: ExerciseNotesDisplayProps) {
     <Card mode="contained" style={[{ marginTop: spacing[4] }]}>
       <Card.Content style={{ flexDirection: 'row' }}>
         <IconButton
+          accessibilityLabel={
+            expanded ? t('generic.collapse.button') : t('generic.expand.button')
+          }
           icon={expanded ? 'unfoldLess' : 'unfoldMore'}
           style={{
             margin: 0,

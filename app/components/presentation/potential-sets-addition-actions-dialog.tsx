@@ -1,6 +1,6 @@
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { PotentialSet } from '@/models/session-models';
-import { T } from '@tolgee/react';
+import { T, useTranslate } from '@tolgee/react';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
@@ -25,6 +25,7 @@ export default function PotentialSetAdditionalActionsDialog({
   repTarget,
 }: PotentialSetAdditionalActionsDialogProps) {
   const { colors } = useAppTheme();
+  const { t } = useTranslate();
   const originalReps = set?.set?.repsCompleted;
 
   const [repCountText, setRepCountText] = useState<string>(
@@ -80,6 +81,7 @@ export default function PotentialSetAdditionalActionsDialog({
                 />
               ))}
               <IconButton
+                accessibilityLabel={t('generic.clear.button')}
                 mode="contained"
                 iconColor={colors.error}
                 containerColor={colors.errorContainer}

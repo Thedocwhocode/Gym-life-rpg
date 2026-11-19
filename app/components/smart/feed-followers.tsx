@@ -102,6 +102,7 @@ function FeedFollowRequest(props: { request: FollowRequest }) {
       trailing={
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <IconButton
+            accessibilityLabel={t('generic.deny.button')}
             icon={'close'}
             iconColor={colors.error}
             onPress={handleDeny}
@@ -156,6 +157,7 @@ function FeedFollowersItem(props: { user: FeedUser; userId: string }) {
         }
         trailing={
           <IconButton
+            accessibilityLabel={t('feed.remove_follower.button')}
             testID="following-more-btn"
             icon={'personRemove'}
             onPress={() => {
