@@ -426,7 +426,6 @@
   "rpg.tab.settings": "Hero",
   "generic.back.button": "Back",
   "rpg.dashboard.eyebrow": "Week {week} · {month}",
-  "rpg.sheet.portrait": "Portrait",
   "rpg.sheet.level": "Level {level}",
   "rpg.sheet.xp": "{current} / {needed} XP · {left} to go",
   "rpg.quests.title": "Weekly quests",
