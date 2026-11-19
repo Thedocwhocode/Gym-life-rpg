@@ -42,6 +42,7 @@ export default function TrainingDays() {
             title={t(`rpg.day.${d}` as TranslationKey)}
             leading={<Check kind="checkbox" checked={days.includes(d)} />}
             chevron={false}
+            checked={days.includes(d)}
             onPress={() => toggle(d)}
           />
         ))}

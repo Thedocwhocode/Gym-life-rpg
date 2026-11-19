@@ -456,15 +456,51 @@ treino. Ele não cria plano nem é aberto pelo usuário.
 ### Fechamento do plano: o que ainda não dá para verificar daqui (2026-11-12)
 
 Todos os itens de código do plano estão feitos. Os que sobram precisam de aparelho, de dados reais
-ou de segredos que esta máquina (Windows, sem Android SDK) não tem:
+ou de segredos que esta máquina (Windows) não tem. O Android SDK e o emulador entraram depois, e o
+tour está na seção seguinte:
 
 | Item | Por que não rodou | O que destrava |
 |---|---|---|
 | T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | um Mac com Xcode |
 | Eval com 3 fichas reais (F8/F10) | não há fichas reais no repo, e fabricar não vale | 3 fichas reais anonimizadas |
 | Teste ponta a ponta do leitor (OpenAI real) | precisa do pro token e da chave da OpenAI no backend | token e chave no ambiente de teste |
-| TalkBack/VoiceOver e fonte em 200% | sem Android SDK nem emulador aqui | instalar SDK e emulador, ou um aparelho |
-| Hermes nativo (bundle medido, não executado) | idem | idem |
+| Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo) | aparelho com TalkBack, ou VoiceOver num iPhone |
+
+### Tour no Android nativo (2026-11-18)
+
+APK release (Hermes, newArch) no emulador `gymlife36` (Android 36, x86_64). Antes eram dois itens
+pendentes e agora estão verificados:
+
+- **Hermes nativo:** o app abre e roda no Hermes. Percorridas as 5 abas, as telas novas (Inventário,
+  Grimório, Bestiário, Masmorra, Dias de treino, Ler ficha em PDF, Catálogo), o treino e a recompensa.
+- **Árvore de acessibilidade:** auditada com `uiautomator dump --compressed`, que se aproxima do que
+  o TalkBack lê. Nas telas novas não sobrou clicável sem rótulo. A leitura falada em si não foi ouvida.
+- **Fonte em 200%:** com o app aberto do zero, as telas se ajustam. Só a aba "Quests" e o Segmented
+  do Grimório cortavam ("QUEST…", "STEE…"), e esses rótulos ganharam um teto de 1,3×. Se a escala
+  muda com o app já aberto, os textos das telas montadas ficam cortados até reabrir. Isso é medida
+  em cache do RN, não código nosso.
+
+Bugs achados e corrigidos (branch `fix/cronica-nao-fecha`):
+
+- A Crônica da semana não fechava no OK: a regra comparava com a semana atual, mas o overlay grava
+  a semana resumida.
+- `PixelBox` esticava até o fim da tela no Android. A errata legada do Yoga
+  (`StretchFlexBasis`) só some com `experimental_LayoutConformance mode="strict"`, que segue o W3C
+  como a web.
+- Leitor de tela: os colchetes do `Tag` e o "▸" do `AsciiDivider` eram lidos em voz alta. O `Check`
+  decorativo recebia foco. As linhas dos Dias de treino e do diff de sessão viraram checkbox de
+  verdade. As células vazias do inventário não recebem mais foco. O "Add" do catálogo diz o nome do
+  exercício.
+- O botão de escolher PDF ocupava a largura toda e a dica de 10 MB sumia.
+
+Achados que continuam abertos:
+
+- ~25 `IconButton` herdados do LiftLog sem rótulo (play e lixeira no card da sessão, entre outros).
+- O "▸" ainda vai dentro do texto em `SkillCard`, `StatusBanner` e no inventário, e o leitor fala.
+- Nos diálogos de cópia, um `Check` com onPress dentro de um `ListItem` com onPress recebe foco duas vezes.
+- O diálogo da Crônica não isola a tela de trás para o leitor de tela.
+- O retrato ainda é o espaço reservado "PORTRAIT" (DR12), e quebra em duas linhas com fonte em 200%.
+- Voltar da Masmorra cai na aba Train, não no Herói.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

@@ -2,7 +2,19 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import type { Palette } from '@/theme/palettes';
 import { motion, pixelStep, steps as stepScale } from '@/theme/tokens';
 import { ReactNode } from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import {
+  experimental_LayoutConformance,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
+
+// O Yoga legado (padrão do RN) estica filhos com flexGrow até todo o espaço livre quando o pai é
+// medido "até o máximo" — botão num pai centrado, célula do calendário. "strict" é o layout W3C,
+// o mesmo da web, onde as telas foram conferidas. Na web (e na arquitetura antiga) não existe.
+const Conformance = experimental_LayoutConformance as
+  | typeof experimental_LayoutConformance
+  | undefined;
 
 export type PixelTone =
   | 'default'
@@ -140,7 +152,7 @@ export default function PixelBox({
     </View>
   );
 
-  return (
+  const box = (
     <View testID={testID} style={[{ paddingBottom: lift }, style]}>
       {shadow ? (
         <View
@@ -178,4 +190,5 @@ export default function PixelBox({
       </View>
     </View>
   );
+  return Conformance ? <Conformance mode="strict">{box}</Conformance> : box;
 }
