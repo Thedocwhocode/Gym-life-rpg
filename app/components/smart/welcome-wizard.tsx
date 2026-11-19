@@ -143,6 +143,8 @@ export function WelcomeWizard() {
               testID={`class-${cls.id}`}
               accessibilityRole="radio"
               accessibilityState={{ checked: selected }}
+              // Sem isto o Android junta os filhos: "PORTRAIT, Warrior, [, STR, ], …, ◇".
+              accessibilityLabel={`${t(`rpg.class.${cls.id}`)}, ${cls.attr}, ${t(`onboarding.class.${cls.id}.bonus`)}`}
               onPress={() => dispatch(setRpgClass(cls.id))}
               style={styles.classCard}
             >

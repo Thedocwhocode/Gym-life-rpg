@@ -2,7 +2,7 @@ import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
 import AchievementBadge from '@/components/presentation/rpg/AchievementBadge';
 import { useAppSelector } from '@/store';
 import { selectAllAchievements } from '@/store/rpg';
-import { useTranslate } from '@tolgee/react';
+import { TranslationKey, useTranslate } from '@tolgee/react';
 import { FlatList, View } from 'react-native';
 
 export default function AchievementsRow() {
@@ -24,8 +24,14 @@ export default function AchievementsRow() {
         contentContainerStyle={{ gap: 2 }}
         renderItem={({ item }) => (
           <AchievementBadge
-            name={item.name}
-            description={item.description}
+            name={t(
+              `rpg.achievement.${item.id}.name` as TranslationKey,
+              item.name,
+            )}
+            description={t(
+              `rpg.achievement.${item.id}.description` as TranslationKey,
+              item.description,
+            )}
             icon={item.icon}
             unlockedAt={item.unlockedAt}
           />

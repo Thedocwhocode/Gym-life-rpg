@@ -31,6 +31,7 @@ export default function QuestPanel() {
 
 function QuestRow({ quest }: { quest: Quest }) {
   const { palette } = useAppTheme();
+  const { t } = useTranslate();
   const done = !!quest.completedAt || quest.progress >= quest.target;
   const ratio = quest.target > 0 ? quest.progress / quest.target : 0;
   return (
@@ -62,7 +63,10 @@ function QuestRow({ quest }: { quest: Quest }) {
             textDecorationLine: done ? 'line-through' : 'none',
           }}
         >
-          {quest.description}
+          {/* A descrição gravada é pt; o texto vem do tipo + alvo. */}
+          {t(`rpg.quests.${quest.type}`, quest.description, {
+            target: quest.target,
+          })}
         </Text>
         <Tag tone="reward" brackets={false} size="sm">
           +{quest.xpReward} XP

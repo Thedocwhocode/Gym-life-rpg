@@ -70,6 +70,7 @@ export default function AsciiFrame({
         <Text
           key={i}
           accessibilityElementsHidden
+          importantForAccessibility="no"
           style={[
             glyph,
             {
@@ -87,6 +88,7 @@ export default function AsciiFrame({
       ))}
       {title ? (
         <Text
+          accessibilityLabel={title}
           style={[
             glyph,
             {
