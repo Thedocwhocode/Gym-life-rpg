@@ -97,7 +97,7 @@ export default function Inventory() {
   const { t } = useTranslate();
   const { palette } = useAppTheme();
   const dispatch = useDispatch();
-  const { drops, itemsEquipped } = useAppSelector(selectJourney);
+  const { drops, itemsEquipped, rpgClass } = useAppSelector(selectJourney);
   const owned = ITEMS.filter((i) => drops.includes(i.id));
   const [picked, setPicked] = useState<string>();
   const item = owned.find((i) => i.id === picked);
@@ -114,7 +114,7 @@ export default function Inventory() {
     >
       <Stack.Screen options={{ title: t('rpg.journey.inventory') }} />
       <View style={{ flexDirection: 'row', gap: 16 }}>
-        <Portrait label={t('rpg.sheet.portrait')} width={120} height={152} />
+        <Portrait rpgClass={rpgClass} width={120} height={152} />
         <View
           style={{
             flex: 1,

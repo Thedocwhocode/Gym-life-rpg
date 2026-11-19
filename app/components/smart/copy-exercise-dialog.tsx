@@ -82,7 +82,7 @@ export default function CopyExerciseDialog({
       description={`${item.session.exercises.length} exercises`}
       leading={<Check checked={selectedSessionIndex === item.index} />}
       checked={selectedSessionIndex === item.index}
-      radio
+      checkRole="radio"
       onPress={() => setSelectedSessionIndex(item.index)}
     />
   );

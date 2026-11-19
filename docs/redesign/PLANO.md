@@ -440,7 +440,7 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     reconhecível, mas não serve para ensinar técnica fina (joelho, coluna). Só 1.324 exercícios têm
     passos em pt-BR (contagem conferida no `pt-BR.json` da fonte), e o clipe mostra só os 3 primeiros
     passos (no agachamento, é só a preparação). O personagem é o herói neutro do pixelfx, porque o app
-    ainda não tem sprite próprio (o `Portrait.tsx` é o espaço reservado do DR12); quando o sprite
+    ainda não tem sprite próprio (o `Portrait.tsx` desenha esse mesmo herói, DR12); quando o sprite
     existir, troca-se o desenho em `render()`. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
     clipe entra na tela do exercício (mp4 no bundle) ou se é desenhado ao vivo pelo FxStage.
   - **Ampliação (branch `feat/catalogo-confirmacao`):** entraram o levantamento terra (0032) e a remada
@@ -510,14 +510,14 @@ Corrigidos depois, na branch `fix/a11y-achados`, todos conferidos de novo no APK
 - Os colchetes do `Button` ghost não são mais lidos ("[, CLOSE, ]").
 - Voltar da Masmorra cai no Herói: a rota foi para `settings/map`.
 
-Achados que continuam abertos:
+- O retrato segue o DR12: herói parado do pixelfx em escala inteira, com a túnica na cor do atributo
+  da classe (sem classe, a túnica original). É decorativo, e a legenda que quebrava em 200% saiu.
+- O `Tooltip` do Paper só entra no web (`WebTooltip`): no nativo, o `Pressable` sem rótulo que ele
+  punha em volta do histórico, das notas e do ± sumiu.
+- A linha do `ListSwitch` é o único foco, anunciada como switch com o estado. O `Switch` ao lado
+  virou só desenho.
 
-- O retrato ainda é o espaço reservado "PORTRAIT" (DR12), e quebra em duas linhas com fonte em 200%.
-- Alguns `IconButton` com `Tooltip` do Paper (histórico, notas, ±) ficam dentro de um `ViewGroup`
-  clicável sem rótulo, que é o gatilho do tooltip. Se o TalkBack para duas vezes ali, só a leitura
-  falada mostra.
-- Na Configuração, o switch é um segundo foco sem rótulo ao lado da linha clicável, que tem rótulo
-  e faz a mesma coisa.
+Nenhum achado de código continua aberto. A leitura falada do TalkBack não foi ouvida, só a árvore.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

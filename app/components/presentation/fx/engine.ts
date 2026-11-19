@@ -253,3 +253,7 @@ export function flashesPerSecond(luma: readonly number[], fps = 30): number {
   }
   return worst;
 }
+
+/** Herói parado do pixelfx (12×19, um caractere por pixel, '.' = vazio) e suas cores. */
+export const HERO_SPRITE: readonly string[] = pixelfx.HERO;
+export const HERO_COLORS: Readonly<Record<string, string>> = pixelfx.HERO_PAL;

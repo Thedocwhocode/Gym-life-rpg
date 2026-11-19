@@ -70,7 +70,7 @@ export default function CopyWorkoutDialog({
       title={item.program.name}
       leading={<Check checked={selectedProgramId === item.id} />}
       checked={selectedProgramId === item.id}
-      radio
+      checkRole="radio"
       onPress={() => setSelectedProgramId(item.id)}
     />
   );

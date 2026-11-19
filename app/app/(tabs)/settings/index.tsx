@@ -78,7 +78,7 @@ function HeroCard() {
       padding={14}
       innerStyle={{ flexDirection: 'row', gap: 14, alignItems: 'center' }}
     >
-      <Portrait label="sprite" width={64} height={80} />
+      <Portrait rpgClass={rpgClass} width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
         <Text
           maxFontSizeMultiplier={TITLE_MAX_SCALE}
