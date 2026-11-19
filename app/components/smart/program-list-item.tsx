@@ -150,6 +150,7 @@ export default function ProgramListItem({
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Check
             checked={activeProgramId === id}
+            accessibilityLabel={`${t('generic.active.label')}: ${program.name}`}
             onPress={() => dispatch(setActivePlan({ programId: id }))}
           />
           <ItemMenu id={id} />
