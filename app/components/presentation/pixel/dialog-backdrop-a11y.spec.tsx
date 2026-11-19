@@ -23,12 +23,14 @@ function Fake({ visible }: { visible: boolean }) {
   return null;
 }
 
+// Os diálogos ficam fora do DialogBackdropA11y, como no Portal.Host do Paper.
 function Tree({ a, b }: { a?: boolean; b?: boolean }) {
   return (
-    <DialogBackdropA11y>
+    <>
+      <DialogBackdropA11y>{null}</DialogBackdropA11y>
       {a !== undefined && <Fake visible={a} />}
       {b !== undefined && <Fake visible={b} />}
-    </DialogBackdropA11y>
+    </>
   );
 }
 
