@@ -493,14 +493,31 @@ Bugs achados e corrigidos (branch `fix/cronica-nao-fecha`):
   exercício.
 - O botão de escolher PDF ocupava a largura toda e a dica de 10 MB sumia.
 
+Corrigidos depois, na branch `fix/a11y-achados`, todos conferidos de novo no APK com
+`uiautomator dump`:
+
+- Os `IconButton` herdados do LiftLog ganharam rótulo: lixeira do card da sessão, histórico, notas,
+  mais opções, mover, aumentar/diminuir. Três ficam sem rótulo próprio de propósito, porque o
+  conteúdo visível já é o nome (unidade, número da série, busca).
+- O "▸" do `SkillCard`, do `StatusBanner` e do inventário saiu da leitura: o `content-desc` traz só
+  o texto. No aparelho foram vistos o Grimório e o inventário; o `StatusBanner` usa o mesmo padrão,
+  mas só aparece com status ativo e não foi visto.
+- Os diálogos de cópia têm um foco por linha, anunciado como rádio com estado. O rádio "plano ativo"
+  da lista de planos diz o nome do plano.
+- Os diálogos pixel isolam a tela de trás no Android. O Modal do Paper só isolava no iOS: agora,
+  com um diálogo aberto, o resto do app fica fora da árvore e volta quando ele fecha. Visto no
+  diálogo de peso e no de copiar treino.
+- Os colchetes do `Button` ghost não são mais lidos ("[, CLOSE, ]").
+- Voltar da Masmorra cai no Herói: a rota foi para `settings/map`.
+
 Achados que continuam abertos:
 
-- ~25 `IconButton` herdados do LiftLog sem rótulo (play e lixeira no card da sessão, entre outros).
-- O "▸" ainda vai dentro do texto em `SkillCard`, `StatusBanner` e no inventário, e o leitor fala.
-- Nos diálogos de cópia, um `Check` com onPress dentro de um `ListItem` com onPress recebe foco duas vezes.
-- O diálogo da Crônica não isola a tela de trás para o leitor de tela.
 - O retrato ainda é o espaço reservado "PORTRAIT" (DR12), e quebra em duas linhas com fonte em 200%.
-- Voltar da Masmorra cai na aba Train, não no Herói.
+- Alguns `IconButton` com `Tooltip` do Paper (histórico, notas, ±) ficam dentro de um `ViewGroup`
+  clicável sem rótulo, que é o gatilho do tooltip. Se o TalkBack para duas vezes ali, só a leitura
+  falada mostra.
+- Na Configuração, o switch é um segundo foco sem rótulo ao lado da linha clicável, que tem rótulo
+  e faz a mesma coisa.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

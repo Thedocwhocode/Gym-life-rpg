@@ -164,6 +164,7 @@ export default function WeightDialog(props: WeightDialogProps) {
                 {props.allowNegative && (
                   <Tooltip title={t('exercise.toggle_negative.button')}>
                     <IconButton
+                      accessibilityLabel={t('exercise.toggle_negative.button')}
                       mode="outlined"
                       icon={'plusMinus'}
                       onPress={() => {
@@ -180,12 +181,14 @@ export default function WeightDialog(props: WeightDialogProps) {
                   </Tooltip>
                 )}
                 <IconButton
+                  accessibilityLabel={t('generic.decrease.button')}
                   icon={'minus'}
                   mode="outlined"
                   testID="decrement-weight"
                   onPress={decrementWeight}
                 />
                 <IconButton
+                  accessibilityLabel={t('generic.increase.button')}
                   icon={'plus'}
                   mode="outlined"
                   testID="increment-weight"

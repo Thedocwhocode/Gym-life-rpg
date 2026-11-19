@@ -1,3 +1,4 @@
+import { DialogBackdropA11y } from '@/components/presentation/pixel/dialog-backdrop-a11y';
 import { useAppSelector } from '@/store';
 import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 import {
@@ -293,7 +294,7 @@ export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
         }}
       >
         <NavigationThemeProvider value={navigationTheme}>
-          {children}
+          <DialogBackdropA11y>{children}</DialogBackdropA11y>
         </NavigationThemeProvider>
       </PaperProvider>
     </AppThemeContext.Provider>

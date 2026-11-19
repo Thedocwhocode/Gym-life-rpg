@@ -43,6 +43,7 @@ function ItemMenu({ id }: ItemProps) {
       onDismiss={() => setMenuVisible(false)}
       anchor={
         <IconButton
+          accessibilityLabel={t('generic.more_options.label')}
           testID="more-program-btn"
           onPress={() => setMenuVisible(true)}
           icon={'moreHoriz'}
@@ -149,6 +150,7 @@ export default function ProgramListItem({
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Check
             checked={activeProgramId === id}
+            accessibilityLabel={`${t('generic.active.label')}: ${program.name}`}
             onPress={() => dispatch(setActivePlan({ programId: id }))}
           />
           <ItemMenu id={id} />

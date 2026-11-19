@@ -62,6 +62,7 @@ function FeedFollowingItem(props: { user: FeedUser; userId: string }) {
           onDismiss={() => setMenuVisible(false)}
           anchor={
             <IconButton
+              accessibilityLabel={t('generic.more_options.label')}
               testID="following-more-btn"
               onPress={() => setMenuVisible(true)}
               icon={'moreHoriz'}

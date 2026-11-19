@@ -76,6 +76,8 @@ export default function Button({
     >
       {ghost ? (
         <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
           style={{
             fontFamily: fontFamily.mono,
             fontSize,
@@ -100,6 +102,8 @@ export default function Button({
       {iconRight ? <Icon name={iconRight} size={24} color={textColor} /> : null}
       {ghost ? (
         <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
           style={{
             fontFamily: fontFamily.mono,
             fontSize,

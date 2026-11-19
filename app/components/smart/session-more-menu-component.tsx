@@ -58,6 +58,7 @@ export default function SessionMoreMenuComponent(props: {
         onDismiss={() => setMenuOpen(false)}
         anchor={
           <Appbar.Action
+            accessibilityLabel={t('generic.more_options.label')}
             testID="session-more"
             icon="moreVert"
             onPress={() => setMenuOpen(true)}

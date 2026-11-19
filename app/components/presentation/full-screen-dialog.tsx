@@ -1,3 +1,4 @@
+import { useTranslate } from '@tolgee/react';
 import { TITLE_MAX_SCALE } from '@/theme/tokens';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import { useAppTheme, spacing } from '@/hooks/useAppTheme';
@@ -95,6 +96,7 @@ function Header({
 }: Pick<FullScreenDialogProps, 'action' | 'onAction' | 'onClose' | 'title'>) {
   const scrollAnimation = useSharedValue(0);
   const { colors } = useAppTheme();
+  const { t } = useTranslate();
   const { top } = useSafeAreaInsets();
   const backgroundStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
@@ -125,7 +127,12 @@ function Header({
           paddingRight: spacing[2],
         }}
       >
-        <IconButton testID="dialog-close" icon={'close'} onPress={onClose} />
+        <IconButton
+          accessibilityLabel={t('generic.close.button')}
+          testID="dialog-close"
+          icon={'close'}
+          onPress={onClose}
+        />
         <Text
           style={{
             marginRight: 'auto',

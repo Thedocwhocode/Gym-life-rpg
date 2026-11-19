@@ -40,6 +40,8 @@ function QuestRow({ quest }: { quest: Quest }) {
           <Icon name="check" size={16} color={palette.success} />
         ) : (
           <Text
+            importantForAccessibility="no"
+            accessibilityElementsHidden
             style={{
               ...type.small,
               width: 16,
