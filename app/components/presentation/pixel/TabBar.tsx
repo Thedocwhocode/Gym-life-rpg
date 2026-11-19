@@ -98,8 +98,11 @@ export default function TabBar({
               ) : null}
             </View>
             {/* ponytail: 10 px em vez dos 9 do export (DR18 pede rótulo ≥ 10 px). */}
+            {/* Fonte 200% cortava o rótulo ("BO"): teto de 1,3× na aba; o leitor de tela lê accessibilityLabel inteiro. */}
             <Text
               numberOfLines={1}
+              maxFontSizeMultiplier={1.3}
+              adjustsFontSizeToFit
               style={{
                 fontFamily: fontFamily.monoBold,
                 fontSize: 10,
