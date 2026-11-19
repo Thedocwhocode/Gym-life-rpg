@@ -84,7 +84,7 @@ describe('backup das escolhas (campo 6)', () => {
     expect(withRules.xp).toBe(plain.xp);
     expect(Object.keys(withRules.sources)).toHaveLength(0);
     expect(projectProgress([...sessions].reverse(), {}, today)).toEqual(plain);
-  });
+  }, 30_000); // ~1 s sozinho, ~9 s com a suíte toda em paralelo
 
   it('restore do LiftLog com "desde" local antigo: só as sessões a partir dele ganham %', () => {
     // Decisão: as escolhas locais ficam. Sessão restaurada com data ≥ "desde" conta como se
