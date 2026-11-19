@@ -87,6 +87,8 @@ describe('conversions', () => {
         ),
       );
     },
+    // FeedIdentity gera chaves: ~4 s sozinho, passa dos 5 s padrão com a suíte toda em paralelo
+    30_000,
   );
 
   it('should be able to decode a backup from original liftlog', () => {
