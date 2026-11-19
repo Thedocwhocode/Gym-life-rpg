@@ -409,8 +409,10 @@ describe('crônica (E4)', () => {
   it('sem missão na semana não aparece; vista não repete', () => {
     expect(chronicleFor({ ...input, missionsByWeek: {} })).toBeUndefined();
     const c = chronicleFor(input);
-    expect(showChronicle(c, today, undefined)).toBe(true);
-    expect(showChronicle(c, today.plusDays(3), '2026-W46')).toBe(false);
-    expect(showChronicle(undefined, today, undefined)).toBe(false);
+    expect(showChronicle(c, undefined)).toBe(true);
+    // O OK grava a semana resumida (c.week); antes a regra comparava com a semana atual e nunca fechava.
+    expect(showChronicle(c, c!.week)).toBe(false);
+    expect(showChronicle(c, '2026-W44')).toBe(true);
+    expect(showChronicle(undefined, undefined)).toBe(false);
   });
 });

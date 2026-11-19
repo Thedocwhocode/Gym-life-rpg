@@ -90,7 +90,7 @@ export const selectJourney = createSelector(
       itemsEquipped: valueAt(choices.itemsEquipped, today) ?? [],
       clears,
       chronicle:
-        chronicle && showChronicle(chronicle, today, choices.chronicleSeenWeek)
+        chronicle && showChronicle(chronicle, choices.chronicleSeenWeek)
           ? chronicle
           : undefined,
       trainingDays: choices.trainingDays?.at(-1)?.value ?? [],

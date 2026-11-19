@@ -12,4 +12,6 @@ export default defineConfig({
   // vite-tsconfig-paths misses "@/" when the checkout path has non-ASCII characters (Windows).
   resolve: { alias: { '@': fileURLToPath(new URL('.', import.meta.url)) } },
   plugins: [tsconfigPaths()],
+  // Mesmo runtime de JSX do Babel do Expo: componentes não importam React.
+  esbuild: { jsx: 'automatic' },
 });

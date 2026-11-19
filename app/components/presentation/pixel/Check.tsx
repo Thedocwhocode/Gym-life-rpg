@@ -9,12 +9,15 @@ export default function Check({
   checked,
   onPress,
   disabled = false,
+  accessibilityLabel,
   testID,
 }: {
   kind?: 'radio' | 'checkbox';
   checked: boolean;
   onPress?: (() => void) | undefined;
   disabled?: boolean | undefined;
+  /** Obrigatório na prática quando há `onPress`: o ícone sozinho não tem nome. */
+  accessibilityLabel?: string | undefined;
   testID?: string | undefined;
 }) {
   const { palette } = useAppTheme();
@@ -31,11 +34,15 @@ export default function Check({
     <Pressable
       testID={testID}
       accessibilityRole={kind}
+      accessibilityLabel={accessibilityLabel}
       accessibilityState={{ checked, disabled }}
       // react-native-web ignora accessibilityState
       aria-checked={checked}
       aria-disabled={disabled}
       disabled={disabled || !onPress}
+      // Sem onPress é só indicador: quem anuncia o estado é a linha (ListItem `checked`).
+      importantForAccessibility={onPress ? 'auto' : 'no-hide-descendants'}
+      accessibilityElementsHidden={!onPress}
       onPress={onPress}
       hitSlop={10}
       style={{ opacity: disabled ? 0.4 : 1 }}

@@ -68,12 +68,9 @@ export default function CopyWorkoutDialog({
   }) => (
     <ListItem
       title={item.program.name}
-      leading={
-        <Check
-          checked={selectedProgramId === item.id}
-          onPress={() => setSelectedProgramId(item.id)}
-        />
-      }
+      leading={<Check checked={selectedProgramId === item.id} />}
+      checked={selectedProgramId === item.id}
+      checkRole="radio"
       onPress={() => setSelectedProgramId(item.id)}
     />
   );

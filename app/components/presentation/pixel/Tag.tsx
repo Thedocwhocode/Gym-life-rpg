@@ -69,7 +69,15 @@ export default function Tag({
   } as const;
   return (
     <View testID={testID} style={{ flexDirection: 'row', gap: fontSize * 0.6 }}>
-      {brackets ? <Text style={bracket}>[</Text> : null}
+      {brackets ? (
+        <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
+          style={bracket}
+        >
+          [
+        </Text>
+      ) : null}
       <Text
         style={{
           fontFamily: fontFamily.monoBold,
@@ -81,7 +89,15 @@ export default function Tag({
       >
         {children}
       </Text>
-      {brackets ? <Text style={bracket}>]</Text> : null}
+      {brackets ? (
+        <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
+          style={bracket}
+        >
+          ]
+        </Text>
+      ) : null}
     </View>
   );
 }

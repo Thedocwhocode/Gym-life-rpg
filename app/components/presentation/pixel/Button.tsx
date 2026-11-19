@@ -21,6 +21,8 @@ export interface ButtonProps {
   block?: boolean | undefined;
   disabled?: boolean | undefined;
   style?: StyleProp<ViewStyle>;
+  /** Rótulo do leitor de tela quando o texto visível não basta (ex.: vários "Add" numa lista). */
+  accessibilityLabel?: string | undefined;
   testID?: string | undefined;
 }
 
@@ -50,6 +52,7 @@ export default function Button({
   block = false,
   disabled = false,
   style,
+  accessibilityLabel,
   testID,
 }: ButtonProps) {
   const { palette } = useAppTheme();
@@ -73,6 +76,8 @@ export default function Button({
     >
       {ghost ? (
         <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
           style={{
             fontFamily: fontFamily.mono,
             fontSize,
@@ -97,6 +102,8 @@ export default function Button({
       {iconRight ? <Icon name={iconRight} size={24} color={textColor} /> : null}
       {ghost ? (
         <Text
+          importantForAccessibility="no"
+          accessibilityElementsHidden
           style={{
             fontFamily: fontFamily.mono,
             fontSize,
@@ -114,7 +121,10 @@ export default function Button({
       testID={testID}
       accessibilityRole="button"
       accessibilityState={{ disabled }}
-      accessibilityLabel={typeof children === 'string' ? children : undefined}
+      accessibilityLabel={
+        accessibilityLabel ??
+        (typeof children === 'string' ? children : undefined)
+      }
       disabled={disabled}
       onPress={onPress}
       onPressIn={() => setPressed(true)}

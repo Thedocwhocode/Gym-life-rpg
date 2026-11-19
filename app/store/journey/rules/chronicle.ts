@@ -61,9 +61,8 @@ export function chronicleFor(i: ChronicleInput): Chronicle | undefined {
   };
 }
 
-/** Mostra uma vez por semana (a de `today`), se a anterior teve missão. */
+/** Mostra até o herói fechar; "vista" guarda a semana resumida (`c.week`), como grava o overlay. */
 export const showChronicle = (
   c: Chronicle | undefined,
-  today: LocalDate,
   seenWeek: string | undefined,
-) => !!c && seenWeek !== weekKey(today);
+) => !!c && seenWeek !== c.week;

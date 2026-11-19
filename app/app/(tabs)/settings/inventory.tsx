@@ -62,6 +62,9 @@ function ItemCell({
       aria-selected={selected}
       aria-disabled={!item}
       aria-label={item ? t(`rpg.item.${item.id}` as TranslationKey) : label}
+      // Espaço vazio da mochila não tem o que anunciar.
+      importantForAccessibility={item || label ? 'auto' : 'no-hide-descendants'}
+      accessibilityElementsHidden={!item && !label}
       disabled={!item}
       onPress={onPress}
     >
@@ -69,6 +72,7 @@ function ItemCell({
         tone={equipped ? 'success' : 'sunken'}
         borderColor={selected ? palette.lineFocus : undefined}
         steps={1}
+        padding={2}
         style={{ width: size, height: size }}
         innerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
       >
@@ -77,6 +81,7 @@ function ItemCell({
         ) : (
           <Text
             numberOfLines={1}
+            adjustsFontSizeToFit
             style={{ ...type.micro, color: palette.text3 }}
           >
             {label}
@@ -92,10 +97,13 @@ export default function Inventory() {
   const { t } = useTranslate();
   const { palette } = useAppTheme();
   const dispatch = useDispatch();
-  const { drops, itemsEquipped } = useAppSelector(selectJourney);
+  const { drops, itemsEquipped, rpgClass } = useAppSelector(selectJourney);
   const owned = ITEMS.filter((i) => drops.includes(i.id));
   const [picked, setPicked] = useState<string>();
   const item = owned.find((i) => i.id === picked);
+  const bonusText = item?.bonus
+    ? t(`rpg.bonus.${item.bonus.kind}`, { pct: item.bonus.pct })
+    : t('rpg.inventory.cosmetic');
   const isOn = (id: string) => itemsEquipped.includes(id);
   const inSlot = (s: string) => owned.find((i) => i.slot === s && isOn(i.id));
   const origin = (id: string) => BESTIARY.find((b) => b.drop === id)?.id;
@@ -106,7 +114,7 @@ export default function Inventory() {
     >
       <Stack.Screen options={{ title: t('rpg.journey.inventory') }} />
       <View style={{ flexDirection: 'row', gap: 16 }}>
-        <Portrait label={t('rpg.sheet.portrait')} width={120} height={152} />
+        <Portrait rpgClass={rpgClass} width={120} height={152} />
         <View
           style={{
             flex: 1,
@@ -182,15 +190,13 @@ export default function Inventory() {
             )}
           </View>
           <Text
+            accessibilityLabel={bonusText}
             style={{
               ...type.body,
               color: item.bonus ? palette.success : palette.text3,
             }}
           >
-            {'▸ '}
-            {item.bonus
-              ? t(`rpg.bonus.${item.bonus.kind}`, { pct: item.bonus.pct })
-              : t('rpg.inventory.cosmetic')}
+            {`▸ ${bonusText}`}
           </Text>
           <Text style={{ ...type.micro, color: palette.text3 }}>
             {t('rpg.inventory.origin', {

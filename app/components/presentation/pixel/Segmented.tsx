@@ -50,8 +50,11 @@ export default function Segmented<T extends string>({
               backgroundColor: active ? palette.accent : 'transparent',
             }}
           >
+            {/* Mesmo teto da TabBar: em 200% virava "STEE…"; o leitor de tela lê o texto inteiro. */}
             <Text
               numberOfLines={1}
+              maxFontSizeMultiplier={1.3}
+              adjustsFontSizeToFit
               style={{
                 ...type.label,
                 color: active ? palette.textOnAccent : palette.text2,

@@ -9,6 +9,8 @@ export interface SwitchProps {
   disabled?: boolean | undefined;
   label?: string | undefined;
   testID?: string | undefined;
+  /** Só desenho: a linha em volta é o controle e anuncia o estado (sem segundo foco). */
+  decorative?: boolean | undefined;
 }
 
 /** Toggle pixel 48×28 com knob quadrado de 16 px. */
@@ -18,11 +20,14 @@ export default function Switch({
   disabled = false,
   label,
   testID,
+  decorative = false,
 }: SwitchProps) {
   const { palette } = useAppTheme();
   return (
     <Pressable
       testID={testID}
+      aria-hidden={decorative}
+      focusable={!decorative}
       accessibilityRole="switch"
       accessibilityLabel={label}
       // RN web 0.21 ignora accessibilityState; aria-* vale no web e no nativo

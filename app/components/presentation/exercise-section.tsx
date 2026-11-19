@@ -3,7 +3,8 @@ import { spacing } from '@/hooks/useAppTheme';
 import { RecordedExercise } from '@/models/session-models';
 import { ReactNode, useState } from 'react';
 import { View } from 'react-native';
-import { Menu, Tooltip } from 'react-native-paper';
+import WebTooltip from '@/components/presentation/web-tooltip';
+import { Menu } from 'react-native-paper';
 import { useTranslate } from '@tolgee/react';
 import PreviousExerciseViewer from '@/components/presentation/previous-exercise-viewer';
 import ConfirmationDialog from '@/components/presentation/confirmation-dialog';
@@ -49,22 +50,24 @@ export default function ExerciseSection(props: ExerciseSectionProps) {
       }}
     >
       {props.showPreviousButton ? (
-        <Tooltip title={t('workout.previously_completed.label')}>
+        <WebTooltip title={t('workout.previously_completed.label')}>
           <IconButton
+            accessibilityLabel={t('generic.history.title')}
             testID="prev-exercise-btn"
             icon={'history'}
             onPress={showPrevious}
           />
-        </Tooltip>
+        </WebTooltip>
       ) : null}
       {!props.isReadonly ? (
-        <Tooltip title={t('generic.notes.label')}>
+        <WebTooltip title={t('generic.notes.label')}>
           <IconButton
+            accessibilityLabel={t('generic.notes.label')}
             testID="exercise-notes-btn"
             icon={'notes'}
             onPress={() => setNotesDialogOpen(true)}
           />
-        </Tooltip>
+        </WebTooltip>
       ) : null}
 
       <Menu
@@ -72,6 +75,7 @@ export default function ExerciseSection(props: ExerciseSectionProps) {
         onDismiss={() => setMenuVisible(false)}
         anchor={
           <IconButton
+            accessibilityLabel={t('generic.more_options.label')}
             testID="more-exercise-btn"
             onPress={() => setMenuVisible(true)}
             icon={'moreHoriz'}

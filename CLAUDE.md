@@ -102,7 +102,7 @@ O que mudou em relação às seções acima:
 - **Efeitos:** pixelfx vendorizado em `app/vendor/pixelfx/`, palco em
   `components/presentation/fx/FxStage.tsx`, transições de tela em `fx/transitions.ts` +
   `components/smart/screen-transition.tsx`. Ajuste "Efeitos: Completo/Reduzido/Desligado".
-- **Rotas novas:** `(tabs)/dashboard` (Painel), `(session)/map` (mapa de masmorras),
+- **Rotas novas:** `(tabs)/dashboard` (Painel), `settings/map` (mapa de masmorras),
   `settings/{inventory,grimoire,bestiary,training-days,pdf-import,exercise-catalog,dev-gallery}`.
 - **Catálogo de exercícios (F11):** texto do openGym em `app/assets/opengym-catalog.json`, gerado
   por `app/scripts/import-opengym.mjs`; busca em `app/services/exercise-catalog.ts`. A mídia do

@@ -1,3 +1,4 @@
+import { useTranslate } from '@tolgee/react';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import { useAppTheme, spacing, font } from '@/hooks/useAppTheme';
 import { Text, View } from 'react-native';
@@ -14,6 +15,7 @@ export default function FixedIncrementer<T extends { toString(): string }>(
   props: FixedIncrementerProps<T>,
 ) {
   const { colors } = useAppTheme();
+  const { t } = useTranslate();
   return (
     <View
       style={{
@@ -38,6 +40,7 @@ export default function FixedIncrementer<T extends { toString(): string }>(
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <IconButton
+            accessibilityLabel={t('generic.decrease.button')}
             icon={'remove'}
             onPress={props.decrement}
             testID="fixed-decrement"
@@ -53,6 +56,7 @@ export default function FixedIncrementer<T extends { toString(): string }>(
             {props.value?.toString()}
           </Text>
           <IconButton
+            accessibilityLabel={t('generic.increase.button')}
             icon={'add'}
             onPress={props.increment}
             testID="fixed-increment"

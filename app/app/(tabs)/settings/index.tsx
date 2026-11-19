@@ -78,7 +78,7 @@ function HeroCard() {
       padding={14}
       innerStyle={{ flexDirection: 'row', gap: 14, alignItems: 'center' }}
     >
-      <Portrait label="sprite" width={64} height={80} />
+      <Portrait rpgClass={rpgClass} width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
         <Text
           maxFontSizeMultiplier={TITLE_MAX_SCALE}
@@ -157,7 +157,7 @@ export default function Settings() {
       title: t('rpg.journey.dungeon'),
       description: t('rpg.journey.dungeon.desc'),
       icon: 'map',
-      onPress: go('/(tabs)/(session)/map'),
+      onPress: go('/(tabs)/settings/map'),
       testID: 'journey-dungeon',
     },
     {

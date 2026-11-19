@@ -1,63 +1,76 @@
+import {
+  HERO_SIZE,
+  heroPixels,
+} from '@/components/presentation/pixel/hero-sprite';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
+import { tagColor, type TagTone } from '@/components/presentation/pixel/Tag';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { type } from '@/theme/tokens';
-import { Text, View } from 'react-native';
-import Svg, { Defs, Pattern, Rect } from 'react-native-svg';
+import type { RpgClass } from '@/store/choices';
+import { useMemo } from 'react';
+import { View } from 'react-native';
+import Svg, { Rect } from 'react-native-svg';
+
+const CLASS_TONE: Record<RpgClass, TagTone> = {
+  warrior: 'str',
+  scout: 'dex',
+  paladin: 'con',
+};
 
 export interface PortraitProps {
-  label: string;
+  /** Sem classe, o herói fica com a túnica original do pixelfx. */
+  rpgClass?: RpgClass | undefined;
   width?: number | undefined;
   height?: number | undefined;
 }
 
-/** Espaço do retrato: listras + legenda até o sprite existir (DR12). */
+/**
+ * Retrato do herói: quadro parado do pixelfx na cor da classe (DR12).
+ * Decorativo: quem usa já mostra nome e classe em texto ao lado.
+ */
 export default function Portrait({
-  label,
+  rpgClass,
   width = 96,
   height = 120,
 }: PortraitProps) {
   const { palette } = useAppTheme();
+  const tunic = rpgClass ? tagColor(palette, CLASS_TONE[rpgClass]) : undefined;
+  const pixels = useMemo(() => heroPixels(tunic), [tunic]);
+  // Escala inteira, para o pixel não borrar; 16 px de folga dentro da moldura.
+  const scale = Math.max(
+    1,
+    Math.floor(
+      Math.min((width - 16) / HERO_SIZE.w, (height - 16) / HERO_SIZE.h),
+    ),
+  );
   return (
-    <PixelBox tone="sunken" padding={0} style={{ width, height }}>
-      {/* Espaço reservado: nada para o leitor de tela ler até o sprite existir. */}
-      <View
-        importantForAccessibility="no-hide-descendants"
-        accessibilityElementsHidden
-        style={{ width: width - 4, height: height - 4 }}
+    <View
+      importantForAccessibility="no-hide-descendants"
+      accessibilityElementsHidden
+    >
+      <PixelBox
+        tone="sunken"
+        padding={0}
+        style={{ width, height }}
+        innerStyle={{
+          width: width - 4,
+          height: height - 4,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
-        <Svg width="100%" height="100%" style={{ position: 'absolute' }}>
-          <Defs>
-            <Pattern
-              id="portrait-stripes"
-              width={12}
-              height={12}
-              patternUnits="userSpaceOnUse"
-              patternTransform="rotate(45)"
-            >
-              <Rect width={6} height={12} fill={palette.surface2} />
-              <Rect x={6} width={6} height={12} fill={palette.bgSunken} />
-            </Pattern>
-          </Defs>
-          <Rect width="100%" height="100%" fill="url(#portrait-stripes)" />
+        <Svg width={HERO_SIZE.w * scale} height={HERO_SIZE.h * scale}>
+          {pixels.map((p) => (
+            <Rect
+              key={`${p.x}-${p.y}`}
+              x={p.x * scale}
+              y={p.y * scale}
+              width={scale}
+              height={scale}
+              fill={p.color}
+            />
+          ))}
         </Svg>
-        <View style={{ flex: 1, justifyContent: 'flex-end', padding: 6 }}>
-          <Text
-            style={{
-              ...type.micro,
-              alignSelf: 'center',
-              textAlign: 'center',
-              color: palette.text3,
-              backgroundColor: palette.bgSunken,
-              paddingHorizontal: 4,
-              paddingVertical: 2,
-              textTransform: 'uppercase',
-              letterSpacing: 0.8,
-            }}
-          >
-            {label}
-          </Text>
-        </View>
-      </View>
-    </PixelBox>
+      </PixelBox>
+    </View>
   );
 }

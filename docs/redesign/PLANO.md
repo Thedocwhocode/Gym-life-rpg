@@ -440,7 +440,7 @@ treino. Ele não cria plano nem é aberto pelo usuário.
     reconhecível, mas não serve para ensinar técnica fina (joelho, coluna). Só 1.324 exercícios têm
     passos em pt-BR (contagem conferida no `pt-BR.json` da fonte), e o clipe mostra só os 3 primeiros
     passos (no agachamento, é só a preparação). O personagem é o herói neutro do pixelfx, porque o app
-    ainda não tem sprite próprio (o `Portrait.tsx` é o espaço reservado do DR12); quando o sprite
+    ainda não tem sprite próprio (o `Portrait.tsx` desenha esse mesmo herói, DR12); quando o sprite
     existir, troca-se o desenho em `render()`. Próximo passo, se aprovado: escolher os ~30 exercícios mais comuns e decidir se o
     clipe entra na tela do exercício (mp4 no bundle) ou se é desenhado ao vivo pelo FxStage.
   - **Ampliação (branch `feat/catalogo-confirmacao`):** entraram o levantamento terra (0032) e a remada
@@ -456,15 +456,68 @@ treino. Ele não cria plano nem é aberto pelo usuário.
 ### Fechamento do plano: o que ainda não dá para verificar daqui (2026-11-12)
 
 Todos os itens de código do plano estão feitos. Os que sobram precisam de aparelho, de dados reais
-ou de segredos que esta máquina (Windows, sem Android SDK) não tem:
+ou de segredos que esta máquina (Windows) não tem. O Android SDK e o emulador entraram depois, e o
+tour está na seção seguinte:
 
 | Item | Por que não rodou | O que destrava |
 |---|---|---|
 | T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | um Mac com Xcode |
 | Eval com 3 fichas reais (F8/F10) | não há fichas reais no repo, e fabricar não vale | 3 fichas reais anonimizadas |
 | Teste ponta a ponta do leitor (OpenAI real) | precisa do pro token e da chave da OpenAI no backend | token e chave no ambiente de teste |
-| TalkBack/VoiceOver e fonte em 200% | sem Android SDK nem emulador aqui | instalar SDK e emulador, ou um aparelho |
-| Hermes nativo (bundle medido, não executado) | idem | idem |
+| Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo) | aparelho com TalkBack, ou VoiceOver num iPhone |
+
+### Tour no Android nativo (2026-11-18)
+
+APK release (Hermes, newArch) no emulador `gymlife36` (Android 36, x86_64). Antes eram dois itens
+pendentes e agora estão verificados:
+
+- **Hermes nativo:** o app abre e roda no Hermes. Percorridas as 5 abas, as telas novas (Inventário,
+  Grimório, Bestiário, Masmorra, Dias de treino, Ler ficha em PDF, Catálogo), o treino e a recompensa.
+- **Árvore de acessibilidade:** auditada com `uiautomator dump --compressed`, que se aproxima do que
+  o TalkBack lê. Nas telas novas não sobrou clicável sem rótulo. A leitura falada em si não foi ouvida.
+- **Fonte em 200%:** com o app aberto do zero, as telas se ajustam. Só a aba "Quests" e o Segmented
+  do Grimório cortavam ("QUEST…", "STEE…"), e esses rótulos ganharam um teto de 1,3×. Se a escala
+  muda com o app já aberto, os textos das telas montadas ficam cortados até reabrir. Isso é medida
+  em cache do RN, não código nosso.
+
+Bugs achados e corrigidos (branch `fix/cronica-nao-fecha`):
+
+- A Crônica da semana não fechava no OK: a regra comparava com a semana atual, mas o overlay grava
+  a semana resumida.
+- `PixelBox` esticava até o fim da tela no Android. A errata legada do Yoga
+  (`StretchFlexBasis`) só some com `experimental_LayoutConformance mode="strict"`, que segue o W3C
+  como a web.
+- Leitor de tela: os colchetes do `Tag` e o "▸" do `AsciiDivider` eram lidos em voz alta. O `Check`
+  decorativo recebia foco. As linhas dos Dias de treino e do diff de sessão viraram checkbox de
+  verdade. As células vazias do inventário não recebem mais foco. O "Add" do catálogo diz o nome do
+  exercício.
+- O botão de escolher PDF ocupava a largura toda e a dica de 10 MB sumia.
+
+Corrigidos depois, na branch `fix/a11y-achados`, todos conferidos de novo no APK com
+`uiautomator dump`:
+
+- Os `IconButton` herdados do LiftLog ganharam rótulo: lixeira do card da sessão, histórico, notas,
+  mais opções, mover, aumentar/diminuir. Três ficam sem rótulo próprio de propósito, porque o
+  conteúdo visível já é o nome (unidade, número da série, busca).
+- O "▸" do `SkillCard`, do `StatusBanner` e do inventário saiu da leitura: o `content-desc` traz só
+  o texto. No aparelho foram vistos o Grimório e o inventário; o `StatusBanner` usa o mesmo padrão,
+  mas só aparece com status ativo e não foi visto.
+- Os diálogos de cópia têm um foco por linha, anunciado como rádio com estado. O rádio "plano ativo"
+  da lista de planos diz o nome do plano.
+- Os diálogos pixel isolam a tela de trás no Android. O Modal do Paper só isolava no iOS: agora,
+  com um diálogo aberto, o resto do app fica fora da árvore e volta quando ele fecha. Visto no
+  diálogo de peso e no de copiar treino.
+- Os colchetes do `Button` ghost não são mais lidos ("[, CLOSE, ]").
+- Voltar da Masmorra cai no Herói: a rota foi para `settings/map`.
+
+- O retrato segue o DR12: herói parado do pixelfx em escala inteira, com a túnica na cor do atributo
+  da classe (sem classe, a túnica original). É decorativo, e a legenda que quebrava em 200% saiu.
+- O `Tooltip` do Paper só entra no web (`WebTooltip`): no nativo, o `Pressable` sem rótulo que ele
+  punha em volta do histórico, das notas e do ± sumiu.
+- A linha do `ListSwitch` é o único foco, anunciada como switch com o estado. O `Switch` ao lado
+  virou só desenho.
+
+Nenhum achado de código continua aberto. A leitura falada do TalkBack não foi ouvida, só a árvore.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.

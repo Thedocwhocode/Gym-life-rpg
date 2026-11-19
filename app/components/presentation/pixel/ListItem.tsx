@@ -23,6 +23,10 @@ export interface ListItemProps {
   chevron?: boolean | undefined;
   disabled?: boolean | undefined;
   focus?: boolean | undefined;
+  /** Linha que marca/desmarca: anuncia como checkbox com o estado. */
+  checked?: boolean | undefined;
+  /** Com `checked`: papel anunciado (radio = escolha única; switch = liga/desliga). */
+  checkRole?: 'checkbox' | 'radio' | 'switch' | undefined;
   testID?: string | undefined;
 }
 
@@ -41,6 +45,8 @@ export default function ListItem({
   chevron,
   disabled = false,
   focus = false,
+  checked,
+  checkRole = 'checkbox',
   testID,
 }: ListItemProps) {
   const { palette } = useAppTheme();
@@ -51,9 +57,15 @@ export default function ListItem({
       testID={testID}
       // No web, role="button" vira <button>; com controle no `trailing` daria botão aninhado.
       accessibilityRole={
-        onPress && !(Platform.OS === 'web' && trailing) ? 'button' : undefined
+        checked !== undefined
+          ? checkRole
+          : onPress && !(Platform.OS === 'web' && trailing)
+            ? 'button'
+            : undefined
       }
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled, checked }}
+      // react-native-web ignora accessibilityState
+      aria-checked={checked}
       disabled={disabled || (!onPress && !onLongPress)}
       onPress={onPress}
       onLongPress={onLongPress}

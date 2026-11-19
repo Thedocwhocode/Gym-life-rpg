@@ -22,15 +22,10 @@ export default function ListSwitch(props: ListSwitchProps) {
       focus={props.focus}
       disabled={props.disabled}
       onPress={() => props.onValueChange(!props.value)}
+      checked={props.value}
+      checkRole="switch"
       trailing={
-        <Switch
-          value={props.value}
-          disabled={props.disabled}
-          onValueChange={props.onValueChange}
-          label={
-            typeof props.headline === 'string' ? props.headline : undefined
-          }
-        />
+        <Switch value={props.value} disabled={props.disabled} decorative />
       }
     />
   );

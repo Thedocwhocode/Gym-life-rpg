@@ -112,13 +112,25 @@ function Actions({
   };
   return (
     <>
-      <IconButton onPress={moveSessionUp} icon={'arrowUpward'} />
-      <IconButton onPress={moveSessionDown} icon={'arrowDownward'} />
+      <IconButton
+        accessibilityLabel={t('generic.move_up.button')}
+        onPress={moveSessionUp}
+        icon={'arrowUpward'}
+      />
+      <IconButton
+        accessibilityLabel={t('generic.move_down.button')}
+        onPress={moveSessionDown}
+        icon={'arrowDownward'}
+      />
       <Menu
         visible={menuOpen}
         onDismiss={() => setMenuOpen(false)}
         anchor={
-          <IconButton onPress={() => setMenuOpen(true)} icon={'moreHoriz'} />
+          <IconButton
+            accessibilityLabel={t('generic.more_options.label')}
+            onPress={() => setMenuOpen(true)}
+            icon={'moreHoriz'}
+          />
         }
       >
         <Menu.Item

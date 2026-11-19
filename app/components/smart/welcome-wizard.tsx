@@ -157,11 +157,7 @@ export function WelcomeWizard() {
                   gap: 14,
                 }}
               >
-                <Portrait
-                  width={64}
-                  height={80}
-                  label={t('rpg.sheet.portrait')}
-                />
+                <Portrait width={64} height={80} rpgClass={cls.id} />
                 <View style={{ flex: 1, gap: 6, alignItems: 'flex-start' }}>
                   <Text
                     maxFontSizeMultiplier={TITLE_MAX_SCALE}

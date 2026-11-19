@@ -167,6 +167,7 @@ export default function PdfImport() {
             <Icon name="upload" size={48} color={palette.text2} />
             <Button
               icon="upload"
+              style={{ alignSelf: 'center' }}
               testID="pdf-pick-button"
               onPress={() => void pick()}
             >

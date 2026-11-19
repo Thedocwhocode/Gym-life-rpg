@@ -63,6 +63,11 @@ export default function SkillCard({
   const locked = state === 'locked';
   const name = t(`rpg.skill.${skill.id}` as TranslationKey);
   const stateLabel = t(`rpg.skill.state.${state}` as TranslationKey);
+  const reqLine =
+    reqText(skill.req) +
+    (skill.req.kind !== 'soon' && skill.req.kind !== 'class'
+      ? ` · ${progress.value}/${progress.target}`
+      : '');
 
   if (variant === 'compact')
     return (
@@ -159,12 +164,11 @@ export default function SkillCard({
         {hasEffect(skill) ? '' : ` (${t('rpg.skill.soon')})`}
       </Text>
       <View style={{ gap: 4 }}>
-        <Text style={{ ...type.small, color: palette.text2 }}>
-          {'▸ '}
-          {reqText(skill.req)}
-          {skill.req.kind !== 'soon' && skill.req.kind !== 'class'
-            ? ` · ${progress.value}/${progress.target}`
-            : ''}
+        <Text
+          accessibilityLabel={reqLine}
+          style={{ ...type.small, color: palette.text2 }}
+        >
+          {`▸ ${reqLine}`}
         </Text>
         {skill.req.kind !== 'soon' && (
           <PixelBar value={progress.ratio} segments={10} height={6} />

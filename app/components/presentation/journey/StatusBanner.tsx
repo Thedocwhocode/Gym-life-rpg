@@ -26,6 +26,9 @@ export default function StatusBanner({
   const debuff = isDebuff(status);
   const pct = STATUS_XP[status];
   const key = `rpg.status.${status}`;
+  const cureText = t('rpg.status.cure', {
+    text: t(`${key}.cure` as TranslationKey),
+  });
   return (
     <PixelBox
       testID={`status-${status}`}
@@ -65,11 +68,11 @@ export default function StatusBanner({
         </Text>
         {debuff && (
           <>
-            <Text style={{ ...type.small, color: palette.text2 }}>
-              {'▸ '}
-              {t('rpg.status.cure', {
-                text: t(`${key}.cure` as TranslationKey),
-              })}
+            <Text
+              accessibilityLabel={cureText}
+              style={{ ...type.small, color: palette.text2 }}
+            >
+              {`▸ ${cureText}`}
             </Text>
             {cure !== undefined && (
               <PixelBar value={cure} segments={3} tone="hp" height={8} />

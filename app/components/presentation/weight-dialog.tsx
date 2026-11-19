@@ -10,7 +10,8 @@ import { View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import IconButton from '@/components/presentation/gesture-wrappers/icon-button';
 import Button from '@/components/presentation/gesture-wrappers/button';
-import { Portal, TextInput, Tooltip, useTheme } from 'react-native-paper';
+import WebTooltip from '@/components/presentation/web-tooltip';
+import { Portal, TextInput, useTheme } from 'react-native-paper';
 import Dialog from '@/components/presentation/pixel/Dialog';
 import { Weight, WeightUnit } from '@/models/weight';
 import SelectButton from '@/components/presentation/select-button';
@@ -162,8 +163,9 @@ export default function WeightDialog(props: WeightDialogProps) {
                 }}
               >
                 {props.allowNegative && (
-                  <Tooltip title={t('exercise.toggle_negative.button')}>
+                  <WebTooltip title={t('exercise.toggle_negative.button')}>
                     <IconButton
+                      accessibilityLabel={t('exercise.toggle_negative.button')}
                       mode="outlined"
                       icon={'plusMinus'}
                       onPress={() => {
@@ -177,15 +179,17 @@ export default function WeightDialog(props: WeightDialogProps) {
                         );
                       }}
                     />
-                  </Tooltip>
+                  </WebTooltip>
                 )}
                 <IconButton
+                  accessibilityLabel={t('generic.decrease.button')}
                   icon={'minus'}
                   mode="outlined"
                   testID="decrement-weight"
                   onPress={decrementWeight}
                 />
                 <IconButton
+                  accessibilityLabel={t('generic.increase.button')}
                   icon={'plus'}
                   mode="outlined"
                   testID="increment-weight"
