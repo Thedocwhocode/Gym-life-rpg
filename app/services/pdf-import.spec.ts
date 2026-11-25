@@ -188,8 +188,12 @@ describe('readSheet', () => {
   });
 });
 
-describe('fixtures sintéticos', () => {
-  it.each(['ficha-sintetica.pdf', 'escaneado-sintetico.pdf'])(
+describe('fixtures', () => {
+  it.each([
+    'ficha-sintetica.pdf',
+    'escaneado-sintetico.pdf',
+    'ficha-real-anonimizada.pdf',
+  ])(
     '%s chega ao leitor (escaneado não é mais recusado no aparelho)',
     async (name) => {
       const bytes = new Uint8Array(
