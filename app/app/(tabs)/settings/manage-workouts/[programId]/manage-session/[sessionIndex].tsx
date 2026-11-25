@@ -104,7 +104,11 @@ function SessionEditor({
     setSelectedExerciseIndex(undefined);
     setSelectedExercise(
       WeightedExerciseBlueprint.fromPOJO({
-        name: `Exercise ${session.exercises.length + 1}`,
+        name: t('exercise.default_name', {
+          number: session.exercises.length + 1,
+          // vira dado salvo: sem os caracteres invisíveis que o DevTools do Tolgee põe no web
+          noWrap: true,
+        }),
         repsPerSet: 10,
         sets: 3,
         weightIncreaseOnSuccess: BigNumber('2.5'),

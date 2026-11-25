@@ -35,7 +35,7 @@ export function addImportBackupEffects() {
       }
       dispatch(
         showSnackbar({
-          text: tolgee.t('Beginning restore'),
+          text: tolgee.t('backup.restore.beginning'),
         }),
       );
       await sleep(200);
@@ -46,7 +46,7 @@ export function addImportBackupEffects() {
         // This is also a point we could try to import a csv, it's requested fairly often
         dispatch(
           showSnackbar({
-            text: 'Could not import data: Unexpected format.',
+            text: tolgee.t('backup.restore.unexpected_format'),
           }),
         );
         return;
@@ -91,7 +91,7 @@ export function addImportBackupEffects() {
       }
       dispatch(
         showSnackbar({
-          text: tolgee.t('Restore complete!'),
+          text: tolgee.t('backup.restore.complete'),
         }),
       );
       dispatch(checkIfWeightMigrationRequired());
