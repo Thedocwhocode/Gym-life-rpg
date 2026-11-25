@@ -77,6 +77,17 @@ export function rowsOf(page: PdfPage): Row[] {
   return rows.sort((a, b) => b.y - a.y);
 }
 
+/** Texto da ficha para o leitor por IA: uma linha da tabela por linha, células separadas por " | ". */
+export const sheetText = (pages: PdfPage[]) =>
+  pages
+    .map((p) =>
+      rowsOf(p)
+        .map((r) => r.cells.map((c) => c.s.trim()).join(' | '))
+        .join('\n'),
+    )
+    .join('\n\n')
+    .trim();
+
 const text = (cells: PdfCell[]) =>
   cells
     .map((c) => c.s.trim())

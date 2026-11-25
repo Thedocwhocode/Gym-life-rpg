@@ -52,7 +52,7 @@ builder.Services.AddScoped<RateLimitService>();
 builder.Services.AddHostedService<CleanupExpiredDataHostedService>();
 
 builder.Services.AddScoped<PurchaseVerificationService>();
-builder.Services.AddGptSheetReader();
+builder.Services.AddSheetReader();
 builder.Services.AddWebAuthPurchaseVerification();
 builder.Services.AddRevenueCatPurchaseVerification();
 

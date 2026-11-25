@@ -1,3 +1,4 @@
+using System.Text;
 using GymLifeRpg.Api.Authentication;
 using GymLifeRpg.Api.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -6,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace GymLifeRpg.Api.Controllers;
 
 /// <summary>
-/// F10: the app posts the raw PDF of a workout sheet and gets the transcribed plan back.
-/// The file only lives in memory for the request; its content is never logged.
+/// Optional AI reader: the app posts the text it extracted from a workout sheet PDF (text/plain) and
+/// gets the transcribed plan back. The text only lives in memory for the request and is never logged.
 /// </summary>
 [ApiController]
 [Authorize(AuthenticationSchemes = PurchaseTokenAuthenticationSchemeOptions.SchemeName)]
@@ -17,23 +18,35 @@ public class AiSheetController(
     ILogger<AiSheetController> logger
 ) : ControllerBase
 {
-    public const int MaxBytes = 10 * 1024 * 1024;
+    /// <summary>The app's SHEET_MAX_CHARS (pdf-import.ts).</summary>
+    public const int MaxChars = 100_000;
 
     [Route("ai/sheet")]
     [HttpPost]
-    [RequestSizeLimit(MaxBytes + 1)]
+    // UTF-8 takes up to 4 bytes a character.
+    [RequestSizeLimit(MaxChars * 4)]
     public async Task<IActionResult> ReadSheet(CancellationToken cancellationToken)
     {
-        using var buffer = new MemoryStream();
-        await Request.Body.CopyToAsync(buffer, cancellationToken);
-        if (buffer.Length > MaxBytes)
+        if (!sheetReader.Enabled)
+        {
+            return StatusCode(StatusCodes.Status503ServiceUnavailable);
+        }
+        if (
+            Request.ContentType is null
+            || !Request.ContentType.StartsWith("text/plain", StringComparison.OrdinalIgnoreCase)
+        )
+        {
+            return StatusCode(StatusCodes.Status415UnsupportedMediaType);
+        }
+        using var body = new StreamReader(Request.Body, Encoding.UTF8);
+        var text = await body.ReadToEndAsync(cancellationToken);
+        if (text.Length > MaxChars)
         {
             return StatusCode(StatusCodes.Status413PayloadTooLarge);
         }
-        var bytes = buffer.ToArray();
-        if (bytes.Length < 5 || !"%PDF-"u8.SequenceEqual(bytes.AsSpan(0, 5)))
+        if (string.IsNullOrWhiteSpace(text))
         {
-            return StatusCode(StatusCodes.Status415UnsupportedMediaType);
+            return UnprocessableEntity();
         }
 
         var appStore = this.GetAppStore();
@@ -51,7 +64,7 @@ public class AiSheetController(
 
         try
         {
-            var plan = await sheetReader.ReadAsync(new BinaryData(bytes), cancellationToken);
+            var plan = await sheetReader.ReadAsync(text, cancellationToken);
             return plan is null ? UnprocessableEntity() : Ok(plan);
         }
         catch (Exception e) when (!cancellationToken.IsCancellationRequested)

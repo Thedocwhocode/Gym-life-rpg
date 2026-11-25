@@ -9,7 +9,7 @@ import { apiBaseUrl } from '@/services/api-consts';
 import type { PickedFile } from '@/services/file-picker-service';
 import { Logger } from '@/services/logger';
 import { pdfPages } from '@/services/pdf-text';
-import { parseSheet } from '@/services/sheet-parser';
+import { parseSheet, sheetText } from '@/services/sheet-parser';
 import { parseDuration } from '@/utils/format-date';
 import { Duration } from '@js-joda/core';
 import BigNumber from 'bignumber.js';
@@ -17,12 +17,14 @@ import { match } from 'ts-pattern';
 
 /**
  * Importar ficha (F10, D11; revisto em 2026-11-25): por padrão o texto do PDF é lido no próprio aparelho e
- * tabulado sem IA (`readLocal`). Só se o usuário pedir, e com o backend configurado, o arquivo vai ao leitor
- * por IA (`readSheet`). Os dois só transcrevem; não criam plano.
+ * tabulado sem IA (`readLocal`). Só se o usuário pedir, e com o backend configurado, o texto vai ao leitor
+ * por IA (`readAi`). Os dois só transcrevem; não criam plano.
  */
 export const PDF_MAX_BYTES = 10 * 1024 * 1024;
-/** Consentimento do aviso LGPD, só neste aparelho e só antes da leitura por IA. v3: IA virou opcional. */
-export const PDF_CONSENT_KEY = 'pdf-import-consent-v3';
+/** Teto do texto enviado ao leitor por IA; o mesmo de `AiSheetController.MaxChars`. */
+export const SHEET_MAX_CHARS = 100_000;
+/** Consentimento do aviso LGPD, só neste aparelho e só antes da leitura por IA. v4: só o texto vai, à Groq. */
+export const PDF_CONSENT_KEY = 'pdf-import-consent-v4';
 
 export type PdfImportEvent =
   | { type: 'opened'; name: string; bytes: number }
@@ -84,9 +86,27 @@ export async function readLocal(
   return parseSheet(read) ?? 'no_plan';
 }
 
-/** `POST /ai/sheet` com o mesmo cabeçalho de compra pro que o hub do chat usava. */
-export async function readSheet(
+/**
+ * Leitor por IA: só o texto sai do aparelho (o serviço OpenAI-compatível não lê PDF), então ficha escaneada
+ * continua sem leitura.
+ */
+export async function readAi(
   bytes: Uint8Array,
+  proToken: string | undefined,
+  pages: typeof pdfPages = pdfPages,
+  fetchImpl: typeof fetch = fetch,
+): Promise<AiWorkoutPlan | PdfImportError> {
+  const read = await pages(bytes);
+  if (!read) return 'unsupported';
+  const text = sheetText(read);
+  if (!text) return 'no_plan';
+  if (text.length > SHEET_MAX_CHARS) return 'too_big';
+  return readSheet(text, proToken, fetchImpl);
+}
+
+/** `POST /ai/sheet` com o mesmo cabeçalho de compra pro que o hub do chat usava. 503 = leitor desligado. */
+export async function readSheet(
+  text: string,
   proToken: string | undefined,
   fetchImpl: typeof fetch = fetch,
 ): Promise<AiWorkoutPlan | PdfImportError> {
@@ -94,16 +114,15 @@ export async function readSheet(
   const res = await fetchImpl(`${apiBaseUrl}/ai/sheet`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/pdf',
+      'Content-Type': 'text/plain; charset=utf-8',
       Authorization: __DEV__
         ? 'Web test-web-auth-key-12345'
         : `RevenueCat ${proToken}`,
     },
-    body: bytes as unknown as RequestInit['body'],
+    body: text,
   });
   if (res.status === 401) return 'pro';
   if (res.status === 413) return 'too_big';
-  if (res.status === 415) return 'not_pdf';
   if (res.status === 429) return 'rate_limited';
   if (!res.ok) return 'no_plan';
   return toAiWorkoutPlan((await res.json()) as JsonResponse<AiWorkoutPlan>);

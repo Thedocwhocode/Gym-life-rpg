@@ -23,8 +23,8 @@ import type { PickedFile } from '@/services/file-picker-service';
 import {
   importPdf,
   PDF_CONSENT_KEY,
+  readAi,
   readLocal,
-  readSheet,
   type PdfImportError,
   type PdfImportEvent,
 } from '@/services/pdf-import';
@@ -106,7 +106,7 @@ export default function PdfImport() {
       file,
       {
         read: (bytes) =>
-          mode === 'local' ? readLocal(bytes) : readSheet(bytes, token),
+          mode === 'local' ? readLocal(bytes) : readAi(bytes, token),
       },
       onEvent,
     );

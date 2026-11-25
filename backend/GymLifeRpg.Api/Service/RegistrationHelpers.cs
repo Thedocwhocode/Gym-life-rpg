@@ -1,5 +1,6 @@
 namespace GymLifeRpg.Api.Service;
 
+using System.ClientModel;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,17 +11,37 @@ using RevenueCat.Client;
 
 public static class RegistrationHelpers
 {
-    public static IServiceCollection AddGptSheetReader(this IServiceCollection source)
+    public const string DefaultSheetReaderBaseUrl = "https://api.groq.com/openai/v1";
+
+    // Groq lists it among the models with strict json_schema (constrained decoding).
+    public const string DefaultSheetReaderModel = "openai/gpt-oss-120b";
+
+    /// <summary>
+    /// The optional AI sheet reader: any OpenAI-compatible chat API, Groq by default. Without
+    /// SheetReaderApiKey the API still starts and POST /ai/sheet answers 503.
+    /// </summary>
+    public static IServiceCollection AddSheetReader(this IServiceCollection source)
     {
-        source.AddSingleton(services =>
+        source.AddSingleton<ISheetReader>(services =>
         {
             var configuration = services.GetRequiredService<IConfiguration>();
-            var apiKey =
-                configuration.GetValue<string?>("OpenAiApiKey")
-                ?? throw new Exception("OpenAiApiKey configuration is not set.");
-            return new OpenAI.Chat.ChatClient("gpt-4.1", apiKey);
+            var apiKey = configuration.GetValue<string?>("SheetReaderApiKey");
+            if (string.IsNullOrWhiteSpace(apiKey))
+            {
+                return new DisabledSheetReader();
+            }
+            var endpoint = new Uri(
+                configuration.GetValue<string?>("SheetReaderBaseUrl") ?? DefaultSheetReaderBaseUrl
+            );
+            var model =
+                configuration.GetValue<string?>("SheetReaderModel") ?? DefaultSheetReaderModel;
+            var client = new OpenAI.Chat.ChatClient(
+                model,
+                new ApiKeyCredential(apiKey),
+                new OpenAI.OpenAIClientOptions { Endpoint = endpoint }
+            );
+            return new GptSheetReader(client, disableStorage: endpoint.Host == "api.openai.com");
         });
-        source.AddSingleton<ISheetReader, GptSheetReader>();
         return source;
     }
 

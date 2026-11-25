@@ -7,8 +7,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   importPdf,
   PDF_MAX_BYTES,
+  readAi,
   readLocal,
   readSheet,
+  SHEET_MAX_CHARS,
   type PdfImportDeps,
 } from './pdf-import';
 
@@ -122,6 +124,39 @@ describe('readLocal', () => {
   });
 });
 
+describe('readAi', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  const cells = [
+    { s: 'Treino A', x: 50, y: 800 },
+    { s: '4x10', x: 200, y: 780 },
+    { s: 'Supino reto', x: 50, y: 781 },
+  ];
+
+  it('manda só o texto, uma linha da tabela por linha', async () => {
+    vi.stubGlobal('__DEV__', false);
+    const f = vi.fn(async () => new Response('{}', { status: 422 }));
+    expect(await readAi(pdfBytes(), 'user-1', async () => [cells], f)).toBe(
+      'no_plan',
+    );
+    expect(f).toHaveBeenCalledWith(
+      'http://api/ai/sheet',
+      expect.objectContaining({ body: 'Treino A\nSupino reto | 4x10' }),
+    );
+  });
+
+  it('não chama a API sem texto, fora da web ou acima do teto', async () => {
+    const f = vi.fn();
+    expect(await readAi(pdfBytes(), 'u', async () => [[]], f)).toBe('no_plan');
+    expect(await readAi(pdfBytes(), 'u', async () => undefined, f)).toBe(
+      'unsupported',
+    );
+    const big = [{ s: 'x'.repeat(SHEET_MAX_CHARS + 1), x: 0, y: 0 }];
+    expect(await readAi(pdfBytes(), 'u', async () => [big], f)).toBe('too_big');
+    expect(f).not.toHaveBeenCalled();
+  });
+});
+
 describe('readSheet', () => {
   afterEach(() => vi.unstubAllGlobals());
 
@@ -131,20 +166,20 @@ describe('readSheet', () => {
   it('sem token fora de dev nem chama a API', async () => {
     vi.stubGlobal('__DEV__', false);
     const f = respond(200);
-    expect(await readSheet(pdfBytes(), undefined, f)).toBe('pro');
+    expect(await readSheet('Treino A', undefined, f)).toBe('pro');
     expect(f).not.toHaveBeenCalled();
   });
 
-  it('manda o PDF com o cabeçalho da RevenueCat', async () => {
+  it('manda o texto com o cabeçalho da RevenueCat', async () => {
     vi.stubGlobal('__DEV__', false);
     const f = respond(422);
-    await readSheet(pdfBytes(), 'user-1', f);
+    await readSheet('Treino A', 'user-1', f);
     expect(f).toHaveBeenCalledWith(
       'http://api/ai/sheet',
       expect.objectContaining({
         method: 'POST',
         headers: {
-          'Content-Type': 'application/pdf',
+          'Content-Type': 'text/plain; charset=utf-8',
           Authorization: 'RevenueCat user-1',
         },
       }),
@@ -154,13 +189,13 @@ describe('readSheet', () => {
   it.each([
     [401, 'pro'],
     [413, 'too_big'],
-    [415, 'not_pdf'],
     [429, 'rate_limited'],
     [422, 'no_plan'],
     [500, 'no_plan'],
+    [503, 'no_plan'],
   ])('HTTP %i → %s', async (status, reason) => {
     vi.stubGlobal('__DEV__', false);
-    expect(await readSheet(pdfBytes(), 'user-1', respond(status))).toBe(reason);
+    expect(await readSheet('Treino A', 'user-1', respond(status))).toBe(reason);
   });
 
   it('200: converte o JSON da API (descanso "0.00:01:30:")', async () => {
@@ -191,7 +226,7 @@ describe('readSheet', () => {
         },
       ],
     };
-    const out = await readSheet(pdfBytes(), undefined, respond(200, body));
+    const out = await readSheet('Treino A', undefined, respond(200, body));
     if (typeof out === 'string') throw new Error(out);
     const ex = out.sessions[0].exercises[0];
     expect(ex.name).toBe('Supino reto');
