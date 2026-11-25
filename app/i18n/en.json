@@ -372,6 +372,8 @@
   "validation.must_be_later_than.message": "Must be later than {date}",
   "weight.all_kilograms.button": "All kilograms",
   "weight.all_pounds.button": "All pounds",
+  "weight.unit.unset": "Unset",
+  "weight.empty_exercise_name": "Empty exercise name",
   "weight.apply_to.label": "Apply weight to",
   "weight.migrate.button": "Migrate weights",
   "weight.migrate.explanation": "GymLife RPG now supports setting either pounds or kilograms on each exercise!",

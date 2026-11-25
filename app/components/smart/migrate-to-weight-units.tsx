@@ -100,7 +100,7 @@ export function MigrateToWeightUnitsWizard() {
         data={exercisesRequiringWeightMigration}
         renderItem={(d) => (
           <ListItem
-            title={d.item.name || 'Empty exercise name'}
+            title={d.item.name || t('weight.empty_exercise_name')}
             trailing={
               <SelectButton
                 options={[
@@ -113,7 +113,7 @@ export function MigrateToWeightUnitsWizard() {
                     value: 'pounds',
                   },
                   {
-                    label: 'Unset',
+                    label: t('weight.unit.unset'),
                     value: 'nil',
                     disabledAndHidden: true,
                   },

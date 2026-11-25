@@ -372,6 +372,8 @@
   "validation.must_be_later_than.message": "Deve ser depois de {date}",
   "weight.all_kilograms.button": "Todos em quilogramas",
   "weight.all_pounds.button": "Todos em libras",
+  "weight.unit.unset": "Não definido",
+  "weight.empty_exercise_name": "Exercício sem nome",
   "weight.apply_to.label": "Aplicar peso em",
   "weight.migrate.button": "Converter pesos",
   "weight.migrate.explanation": "O GymLife RPG agora permite definir libras ou quilogramas em cada exercício!",
