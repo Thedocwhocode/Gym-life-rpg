@@ -51,6 +51,13 @@ const SAME: Record<string, string> = {
   articulado: 'maquina',
   caneleira: 'peso',
   arqueira: 'arqueiro',
+  // "(H)" = halteres, "Cross" = polia, "Gêmeos" = panturrilha, "c/" = com, "Uni" = unilateral.
+  h: 'halter',
+  cross: 'cabo',
+  gemeos: 'panturrilha',
+  c: '',
+  uni: 'unilateral',
+  coice: 'kickback',
 };
 
 /** Minúsculas, sem acento nem pontuação, sem palavras vazias. */
@@ -192,6 +199,38 @@ const ALIAS: Record<string, string> = {
   'abdominal infra': '0872',
   alpinista: '0630',
   'prancha sobe desce': '2890',
+  // Medidos na ficha real nº 2 e em planilhas de exemplo (2026-11-25).
+  'cadeira abdutora': '0597',
+  soleo: '0594',
+  facepull: '11060',
+  'cabo over cabo alta': '0155',
+  'puxada frontal aberta': '2291',
+  'pulldown aberto': '2291',
+  'puxada triangulo': '1047',
+  'puxada frontal triangulo': '1047',
+  'puxada frontal supinada fechada': '0673',
+  'puxada supinada fechada': '0673',
+  'pull down corda': '0237',
+  'pulley maquina pronado': '0579',
+  'pulley frontal barra romana': '0818',
+  'crucifixo reverso': '0383',
+  'crucifixo reverso halter': '0383',
+  'crucifixo reverso maquina': '0601',
+  'remada cavalinho aparelho': '0606',
+  'remada articulada pronada': '1350',
+  'stiff sumo': '3731',
+  'militar press frontal pe': '0587',
+  'rosca direta barra w': '0447',
+  'rosca cabo dupla': '0868',
+  'triceps paralelas maquina': '1451',
+  'agachamento peso corpo': '1197',
+  'abdominal infra paralelas': '0826',
+  'abdominal infra banco declinado': '0277',
+  'abdominal banco declinado': '0277',
+  'abdominal pernas elevadas': '1163',
+  'rosca halter banco 45': '0318',
+  'cadeira extensora unilateral': '1571',
+  vaccum: '5445',
 };
 
 /**

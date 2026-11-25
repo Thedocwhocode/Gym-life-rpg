@@ -1,4 +1,4 @@
-import { isProAvailable } from '@/services/api-consts';
+import { canImportPdf } from '@/services/api-consts';
 import { View } from 'react-native';
 import FloatingBottomContainer from '@/components/presentation/floating-bottom-container';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
@@ -49,7 +49,7 @@ export default function ProgramList() {
   return (
     <FullHeightScrollView floatingChildren={floatingBottomContainer}>
       <Stack.Screen options={{ title: t('plan.plans.title') }} />
-      {isProAvailable && (
+      {canImportPdf && (
         <Button
           variant="secondary"
           icon="upload"

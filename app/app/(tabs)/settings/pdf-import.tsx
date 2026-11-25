@@ -18,10 +18,12 @@ import {
   match,
   type CatalogExercise,
 } from '@/services/exercise-catalog';
+import { isProAvailable } from '@/services/api-consts';
 import type { PickedFile } from '@/services/file-picker-service';
 import {
   importPdf,
   PDF_CONSENT_KEY,
+  readLocal,
   readSheet,
   type PdfImportError,
   type PdfImportEvent,
@@ -47,11 +49,14 @@ type Phase =
   | { kind: 'consent'; file: PickedFile }
   | { kind: 'scan'; log: string[]; progress: number }
   | { kind: 'done'; plan: AiWorkoutPlan }
-  | { kind: 'error'; reason: PdfImportError; file?: PickedFile };
+  | { kind: 'error'; reason: PdfImportError; file: PickedFile; mode: Mode };
+
+/** `local`: lido no aparelho, sem IA (padrão). `ai`: enviado ao leitor por IA, só a pedido. */
+type Mode = 'local' | 'ai';
 
 const CONSENT_ITEMS = [1, 2, 3, 4] as const;
 
-/** F10: ficha em PDF → leitor de fichas (OCR + tabulação) → tabela para conferir → Planos. */
+/** F10: ficha em PDF → leitura no aparelho (ou, a pedido, por IA) → tabela para conferir → Planos. */
 export default function PdfImport() {
   const { t } = useTranslate();
   const { palette } = useAppTheme();
@@ -74,7 +79,7 @@ export default function PdfImport() {
       was ? rest : { ...rest, [exercise]: m },
     );
 
-  const run = async (file: PickedFile, token = proToken) => {
+  const run = async (file: PickedFile, mode: Mode, token = proToken) => {
     const log: string[] = [];
     let progress = 0;
     const addLine = (line: string, p = progress) => {
@@ -91,21 +96,35 @@ export default function PdfImport() {
           }),
           0.05,
         );
-      if (e.type === 'sending') addLine(t('pdf.log.sending'), 0.3);
+      if (e.type === 'sending')
+        addLine(t(mode === 'local' ? 'pdf.log.local' : 'pdf.log.sending'), 0.3);
       if (e.type === 'plan')
         addLine(t('pdf.log.plan', { n: e.workouts }), 0.95);
     };
     setPhase({ kind: 'scan', log, progress });
     const result = await importPdf(
       file,
-      { read: (bytes) => readSheet(bytes, token) },
+      {
+        read: (bytes) =>
+          mode === 'local' ? readLocal(bytes) : readSheet(bytes, token),
+      },
       onEvent,
     );
     if (result.status === 'ok') {
-      setName(result.plan.name);
+      // O leitor local não acha nome de plano; o do arquivo serve de ponto de partida.
+      setName(result.plan.name || file.name.replace(/\.pdf$/i, ''));
       setAccepted({});
       setPhase({ kind: 'done', plan: result.plan });
-    } else setPhase({ kind: 'error', reason: result.reason, file });
+    } else setPhase({ kind: 'error', reason: result.reason, file, mode });
+  };
+
+  // O consentimento LGPD só aparece antes de o arquivo sair do aparelho.
+  const readWithAi = async (file: PickedFile) => {
+    const consent = await keyValueStore
+      .getItem(PDF_CONSENT_KEY)
+      .catch(() => undefined);
+    if (consent === 'true') void run(file, 'ai');
+    else setPhase({ kind: 'consent', file });
   };
 
   // O paywall da RevenueCat (antes no chat do Planejador); com o Pro, tenta de novo.
@@ -114,17 +133,12 @@ export default function PdfImport() {
     if (!owned) return;
     const info = await Purchases.getCustomerInfo();
     dispatch(setProToken(info.originalAppUserId));
-    void run(file, info.originalAppUserId);
+    void run(file, 'ai', info.originalAppUserId);
   };
 
   const pick = async () => {
     const file = await filePickerService.pickFile('application/pdf');
-    if (!file) return;
-    const consent = await keyValueStore
-      .getItem(PDF_CONSENT_KEY)
-      .catch(() => undefined);
-    if (consent === 'true') void run(file);
-    else setPhase({ kind: 'consent', file });
+    if (file) void run(file, 'local');
   };
 
   const save = (plan: AiWorkoutPlan) => {
@@ -149,6 +163,12 @@ export default function PdfImport() {
   };
 
   const muted = { ...type.body, color: palette.text2 };
+  // Sem IA não deu: a leitura por IA é a alternativa, quando o backend existe.
+  const offersAi =
+    phase.kind === 'error' &&
+    phase.mode === 'local' &&
+    isProAvailable &&
+    (phase.reason === 'no_plan' || phase.reason === 'unsupported');
 
   return (
     <FullHeightScrollView
@@ -357,28 +377,40 @@ export default function PdfImport() {
                   {t('pdf.error.pro.manual')}
                 </Button>
               ) : (
-                phase.file && (
-                  <Button
-                    style={{ flex: 1 }}
-                    onPress={() => void upgrade(phase.file!)}
-                  >
-                    {t('pdf.error.pro.button')}
-                  </Button>
-                )
+                <Button
+                  style={{ flex: 1 }}
+                  onPress={() => void upgrade(phase.file)}
+                >
+                  {t('pdf.error.pro.button')}
+                </Button>
+              )
+            ) : phase.mode === 'local' ? (
+              offersAi && (
+                <Button
+                  testID="pdf-ai"
+                  style={{ flex: 1 }}
+                  onPress={() => void readWithAi(phase.file)}
+                >
+                  {t('pdf.ai.button')}
+                </Button>
               )
             ) : (
-              phase.reason === 'no_plan' &&
-              phase.file && (
+              phase.reason === 'no_plan' && (
                 <Button
                   testID="pdf-retry"
                   style={{ flex: 1 }}
-                  onPress={() => void run(phase.file!)}
+                  onPress={() => void run(phase.file, 'ai')}
                 >
                   {t('pdf.retry')}
                 </Button>
               )
             )}
           </View>
+          {offersAi && (
+            <Text style={{ ...type.micro, color: palette.text3 }}>
+              {t('pdf.ai.hint')}
+            </Text>
+          )}
         </PixelBox>
       )}
 
@@ -404,7 +436,7 @@ export default function PdfImport() {
                 testID="pdf-consent-ok"
                 onPress={() => {
                   void keyValueStore.setItem(PDF_CONSENT_KEY, 'true');
-                  void run(phase.file);
+                  void run(phase.file, 'ai');
                 }}
               >
                 {t('pdf.consent.ok')}

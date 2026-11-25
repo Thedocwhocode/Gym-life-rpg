@@ -23,4 +23,7 @@ export const revenueCatApiKey =
 export const isProAvailable =
   isBackendConfigured && (Platform.OS === 'web' || !!revenueCatApiKey);
 
+// Importar ficha: na web o PDF é lido no aparelho, sem backend; no celular, só pelo leitor por IA.
+export const canImportPdf = Platform.OS === 'web' || isProAvailable;
+
 export const sentryDsn = process.env.EXPO_PUBLIC_SENTRY_DSN || undefined;
