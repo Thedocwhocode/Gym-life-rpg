@@ -89,6 +89,7 @@
   "exercise.summary.rep_other": "repetições",
   "exercise.filter.none": "Nenhum filtro aplicado",
   "exercise.default_name": "Exercício {number}",
+  "program.default_name": "Meu programa",
   "exercise.uncompleted_sets.label": "Séries incompletas",
   "feed.accept_to_follow.explanation": "Aceite para acompanhar os treinos e ver seus progressos.",
   "feed.anonymous_user.label": "Usuário Anônimo",

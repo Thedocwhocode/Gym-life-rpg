@@ -23,6 +23,7 @@ import {
 import { streamToUint8Array } from '@/utils/stream';
 import { uuid } from '@/utils/uuid';
 import { LocalDate } from '@js-joda/core';
+import { findProgramWithSessions } from '@/store/settings/same-program';
 import { sleep } from '@/utils/sleep';
 
 export function addImportBackupEffects() {
@@ -57,7 +58,7 @@ export function addImportBackupEffects() {
 
   addEffect(
     importDataDao,
-    async ({ payload: { dao } }, { dispatch, extra: { tolgee } }) => {
+    async ({ payload: { dao } }, { dispatch, getState, extra: { tolgee } }) => {
       const sessions = dao.sessions.map(fromSessionDao);
       dispatch(upsertStoredSessions(sessions));
       const programs = Object.fromEntries(
@@ -69,21 +70,26 @@ export function addImportBackupEffects() {
       // Will be null when an old export which did not have an active program is imported
       // In this case, it will have an unnamed program, which will be set as the active program
       if (!dao.activeProgramId?.value) {
-        const newId = uuid();
-        dispatch(
-          createSavedPlan({
-            name: 'My Program',
-            programId: newId,
-            time: LocalDate.now(),
-          }),
+        const sessionBlueprints = dao.program.map(fromSessionBlueprintDao);
+        const sameId = findProgramWithSessions(
+          getState().program.savedPrograms,
+          sessionBlueprints,
         );
-        dispatch(
-          setProgramSessions({
-            programId: newId,
-            sessionBlueprints: dao.program.map(fromSessionBlueprintDao),
-          }),
-        );
-        dispatch(setActivePlan({ programId: newId }));
+        if (sameId) {
+          dispatch(setActivePlan({ programId: sameId }));
+        } else {
+          const newId = uuid();
+          dispatch(
+            createSavedPlan({
+              // vira dado salvo: sem os caracteres invisíveis do DevTools do Tolgee no web
+              name: tolgee.t('program.default_name', { noWrap: true }),
+              programId: newId,
+              time: LocalDate.now(),
+            }),
+          );
+          dispatch(setProgramSessions({ programId: newId, sessionBlueprints }));
+          dispatch(setActivePlan({ programId: newId }));
+        }
       } else {
         if (dao.activeProgramId.value in programs) {
           dispatch(setActivePlan({ programId: dao.activeProgramId.value }));

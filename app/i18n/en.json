@@ -89,6 +89,7 @@
   "exercise.summary.rep_other": "reps",
   "exercise.filter.none": "No filters applied",
   "exercise.default_name": "Exercise {number}",
+  "program.default_name": "My Program",
   "exercise.uncompleted_sets.label": "Uncompleted sets",
   "feed.accept_to_follow.explanation": "Accept to follow their workouts and see their progress.",
   "feed.anonymous_user.label": "Anonymous User",
