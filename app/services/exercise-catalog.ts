@@ -47,6 +47,10 @@ const SAME: Record<string, string> = {
   haltere: 'halter',
   frente: 'frontal',
   reto: '',
+  polia: 'cabo',
+  articulado: 'maquina',
+  caneleira: 'peso',
+  arqueira: 'arqueiro',
 };
 
 /** Minúsculas, sem acento nem pontuação, sem palavras vazias. */
@@ -169,13 +173,38 @@ const ALIAS: Record<string, string> = {
   'elevacao lateral': '0334',
   'abdominal supra': '0274',
   'desenvolvimento halter': '0405',
+  // Medidos numa ficha real (ficha-real.spec.ts, 2026-11-25).
+  'barra fixa pronada': '0652',
+  'pulley frontal triangulo': '1047',
+  'triceps frances cabo media corda': '0194',
+  'triceps frances halter': '2188',
+  'triceps paralelas': '0814',
+  'triceps testa parede': '4667',
+  'abducao quadril cabo': '3048',
+  'panturrilha leg press horizontal pes neutros': '1391',
+  'stiff barra pes afastados': '1544',
+  'agachamento hack linear': '0743',
+  'remada baixa triangulo': '0180',
+  'rosca scott barra w': '6406',
+  'rotacao tronco cabo media': '0243',
+  'banco romano': '0489',
+  'abdominal canivete anilha': '0507',
+  'abdominal infra': '0872',
+  alpinista: '0630',
+  'prancha sobe desce': '2890',
 };
 
-/** O exercício do catálogo para um nome lido numa ficha, ou undefined. Só sugere: quem troca é o usuário. */
+/**
+ * O exercício do catálogo para um nome lido numa ficha, ou undefined. Só sugere: quem troca é o usuário.
+ * O que vem entre parênteses ("(banco em 30 graus)") é nota da ficha e só conta se o resto não casar.
+ */
 export function match(catalog: CatalogExercise[], name: string) {
-  const id = ALIAS[words(name).join(' ')];
+  const base = name.replace(/\([^)]*\)/g, ' ');
+  const id = ALIAS[words(base).join(' ')];
   return (
-    (id && catalog.find((e) => e.id === id)) || search(catalog, name, 1)[0]
+    (id && catalog.find((e) => e.id === id)) ||
+    search(catalog, base, 1)[0] ||
+    search(catalog, name, 1)[0]
   );
 }
 

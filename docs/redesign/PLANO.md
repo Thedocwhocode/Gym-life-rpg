@@ -462,7 +462,7 @@ tour está na seção seguinte:
 | Item | Por que não rodou | O que destrava |
 |---|---|---|
 | T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | fora do 1º lançamento (só web, decisão de 2026-11-25) |
-| Eval com 3 fichas reais (F8/F10) | 1 de 3 no repo (2026-11-25): `app/services/test-assets/pdf/ficha-real-anonimizada.pdf` e `ficha-real.spec.ts` (30 de 51 nomes com sugestão do catálogo) | mais 2 fichas reais anonimizadas; o plano gerado ainda depende do item abaixo |
+| Eval com 3 fichas reais (F8/F10) | 1 de 3 no repo (2026-11-25): `app/services/test-assets/pdf/ficha-real-anonimizada.pdf` e `ficha-real.spec.ts` (50 de 51 nomes com sugestão do catálogo depois dos sinônimos e apelidos; eram 30) | mais 2 fichas reais anonimizadas; o plano gerado ainda depende do item abaixo |
 | Teste ponta a ponta do leitor (OpenAI real) | precisa do pro token e da chave da OpenAI no backend | token e chave no ambiente de teste |
 | Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo) | no lançamento só web: NVDA ou Narrador do Windows no navegador |
 
