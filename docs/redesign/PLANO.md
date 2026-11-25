@@ -56,7 +56,7 @@ uma proposta padrão; a fase que depende dela não começa sem a resposta.
 | D7 | Inventário: de onde vêm os itens e o que fazem | Drops de monstro derrotado e de conquistas; item equipado (escolha datada) dá o bônus do design-spec §D pelo D3 (DR11) | F6 |
 | D8 | Clima: modificador real no XP ou só visual? | **Fechado na revisão eng:** só visual (banner + efeito). O clima não é gravado na sessão, então não entra na projeção | — |
 | D9 | Importar PDF: parser local ou servidor? Aceita imagem (OCR)? | Usar o mesmo backend do Planejador IA (LLM lê o texto extraído do PDF); só PDF com texto, sem OCR na v1 | F8 |
-| D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. **Assumida (a) em 2026-11-12, sem resposta do usuário; reversível** (o app só fala com `POST /ai/sheet`) | F10 |
+| D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. ~~Assumida (a) em 2026-11-12~~. **Revista em 2026-11-25** (o usuário pediu Groq e que o sistema não precise de IA): o PDF não sai do aparelho; a leitura local é o padrão e a IA (Groq) é opcional, só com o texto | F10 |
 | D10 | Textos dentro dos efeitos pixelfx (fonte sem acento): inglês ou português sem acento? | **Fechado na revisão de design (DR14):** o texto vem de `t()` e passa por `toFxText` (NFD, sem diacríticos, caixa alta) | F4 |
 
 ## 3. Decisões técnicas
@@ -388,6 +388,12 @@ treino. Ele não cria plano nem é aberto pelo usuário.
   `@microsoft/signalr` e `pdfjs-dist` removidos; paywall em `services/pro-paywall.ts`; entradas
   escondidas sem backend/Pro (`isProAvailable`); a tela mostra exercício × séries×reps × carga.
   `parseDuration` aceita o "0.00:01:30:" que a API escreve. O app não cancela a espera (o teto é só o do servidor). Pendente: ponta a ponta com a OpenAI real.
+- **Revisão (2026-11-25, PRs #27 e #28):** a F10 foi revertida em parte. Na web o app lê o PDF no
+  aparelho (`pdfjs-dist` + `services/sheet-parser.ts`, sem IA) e o arquivo não sai dele. Se a
+  leitura falha, o botão "Ler com IA" (pro, com consentimento v4) manda só o **texto** da ficha ao
+  `POST /ai/sheet`, que chama um chat OpenAI-compatível (padrão Groq, `openai/gpt-oss-120b`). Sem
+  `SheetReaderApiKey` a API sobe e responde 503. Ficha escaneada fica sem leitura (só texto).
+  Eval: 2 fichas reais anonimizadas + planilha sintética por semanas + escaneada sintética.
 
 ### F11 — Biblioteca de exercícios do openGym + vídeos com nossos sprites (última fase)
 - **Texto, sim; mídia, não.** O catálogo de [openGym](https://github.com/DuarteSantos8/openGym)
@@ -462,9 +468,9 @@ tour está na seção seguinte:
 | Item | Por que não rodou | O que destrava |
 |---|---|---|
 | T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | fora do 1º lançamento (só web, decisão de 2026-11-25) |
-| Eval com 3 fichas reais (F8/F10) | 1 de 3 no repo (2026-11-25): `app/services/test-assets/pdf/ficha-real-anonimizada.pdf` e `ficha-real.spec.ts` (50 de 51 nomes com sugestão do catálogo depois dos sinônimos e apelidos; eram 30) | mais 2 fichas reais anonimizadas; o plano gerado ainda depende do item abaixo |
-| Teste ponta a ponta do leitor (OpenAI real) | precisa do pro token e da chave da OpenAI no backend | token e chave no ambiente de teste |
-| Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo) | no lançamento só web: NVDA ou Narrador do Windows no navegador |
+| Eval com 3 fichas reais (F8/F10) | 2 de 3 no repo (2026-11-25): `ficha-real-anonimizada.pdf` e `ficha-real-2-anonimizada.pdf`, lidas no aparelho pelo `sheet-parser` (PR #27); as planilhas de programas pagos não entram no repo e viraram uma planilha sintética | mais 1 ficha real anonimizada; ruído do parser em fichas de terceiros ("(H)" solto, "STOP)", legendas) |
+| Teste ponta a ponta do leitor por IA (Groq real) | precisa do pro token e de `SheetReaderApiKey` no backend | token e chave da Groq no ambiente de teste |
+| Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo). NVDA 2026.3.1 portátil tentado em 2026-11-25: a janela da frente era um diálogo do Windows e o NVDA não acompanhou o navegador | rodar o NVDA com o navegador na frente (o usuário) |
 
 **Lançamento (2026-11-25):** o primeiro lançamento é só como app web. Android e iOS ficam para
 depois; o SDK Android foi apagado desta máquina e o build nativo não é mais critério de pronto.
@@ -575,7 +581,7 @@ semanal entraram as quatro; nenhuma foi adiada ou pulada.
 | C4 | Reuso | E1 com `expo-haptics` duplicaria o módulo nativo `GymLifeHaptics` | Reusar o módulo existente |
 | C5 | Reuso | E3 com Playwright duplicaria o runner Cypress do CI | Cypress + plugin de diff de imagem |
 | C6 | Erros | Uma exceção num efeito pixelfx podia derrubar a sessão | Error boundary no `FxStage` (F4) |
-| C7 | Segurança / LGPD | O texto do PDF vai à OpenAI e pode ter dados de saúde | Aviso + confirmação única; só o texto sai do aparelho (F8) |
+| C7 | Segurança / LGPD | Na leitura por IA (opcional), o texto da ficha vai à Groq e pode ter dados de saúde | Leitura local por padrão; IA só com aviso + confirmação única, e só o texto sai do aparelho |
 | C8 | Privacidade | O cartão compartilhável podia vazar peso, localização ou nome | Campos limitados por especificação (F5) |
 
 **Delta para o estado ideal:** o plano entrega o visual completo e os sistemas de jogo em modo
