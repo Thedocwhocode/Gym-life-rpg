@@ -102,7 +102,9 @@ export default function AsciiFrame({
             },
           ]}
         >
-          {`+== ${title.toUpperCase()} ==+`}
+          <Text aria-hidden>+== </Text>
+          {title.toUpperCase()}
+          <Text aria-hidden> ==+</Text>
         </Text>
       ) : null}
     </View>

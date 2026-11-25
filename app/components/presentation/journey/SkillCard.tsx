@@ -168,7 +168,8 @@ export default function SkillCard({
           accessibilityLabel={reqLine}
           style={{ ...type.small, color: palette.text2 }}
         >
-          {`▸ ${reqLine}`}
+          <Text aria-hidden>▸ </Text>
+          {reqLine}
         </Text>
         {skill.req.kind !== 'soon' && (
           <PixelBar value={progress.ratio} segments={10} height={6} />

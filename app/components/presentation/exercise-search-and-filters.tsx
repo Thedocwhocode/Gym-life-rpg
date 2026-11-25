@@ -22,7 +22,7 @@ export default function ExerciseSearchAndFilters({
   const { t } = useTranslate();
   const [filtersExpanded, setFiltersExpanded] = useState(false);
   const selectedFiltersSubtitle =
-    muscleFilters.join(', ') || 'No filters applied';
+    muscleFilters.join(', ') || t('exercise.filter.none');
 
   return (
     <View style={{ gap: spacing[2] }}>

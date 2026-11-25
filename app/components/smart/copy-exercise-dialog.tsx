@@ -79,10 +79,13 @@ export default function CopyExerciseDialog({
   }) => (
     <ListItem
       title={item.session.name}
-      description={`${item.session.exercises.length} exercises`}
+      description={t('rpg.next.exercises', {
+        count: item.session.exercises.length,
+      })}
       leading={<Check checked={selectedSessionIndex === item.index} />}
       checked={selectedSessionIndex === item.index}
       checkRole="radio"
+      chevron={false}
       onPress={() => setSelectedSessionIndex(item.index)}
     />
   );

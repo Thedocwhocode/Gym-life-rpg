@@ -25,6 +25,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import RewardDialog from '@/components/smart/reward-dialog';
 import OpeningOverlay from '@/components/smart/opening-overlay';
+import { WelcomeWizard } from '@/components/smart/welcome-wizard';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -58,6 +59,8 @@ function RootStack() {
       <View
         importantForAccessibility={wizardOpen ? 'no-hide-descendants' : 'auto'}
         accessibilityElementsHidden={wizardOpen}
+        // as duas props acima só valem no nativo; no web é o aria-hidden
+        aria-hidden={wizardOpen}
         style={
           Platform.OS === 'web'
             ? {
@@ -85,6 +88,8 @@ function RootStack() {
           }}
         />
       </View>
+      {/* Montado aqui, e não numa tela, para existir em qualquer rota enquanto o app está escondido. */}
+      <WelcomeWizard />
       <Scanlines />
     </View>
   );

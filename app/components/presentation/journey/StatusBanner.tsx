@@ -72,7 +72,8 @@ export default function StatusBanner({
               accessibilityLabel={cureText}
               style={{ ...type.small, color: palette.text2 }}
             >
-              {`▸ ${cureText}`}
+              <Text aria-hidden>▸ </Text>
+              {cureText}
             </Text>
             {cure !== undefined && (
               <PixelBar value={cure} segments={3} tone="hp" height={8} />
