@@ -11,8 +11,8 @@ import { addUnpublishedSessionId } from '@/store/feed';
 import { setStatsIsDirty } from '@/store/stats';
 import { useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
-import { useKeepAwake } from 'expo-keep-awake';
-import { useState } from 'react';
+import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
+import { useEffect, useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 export default function Index() {
@@ -74,6 +74,14 @@ export default function Index() {
  * Allows us to conditionally keep the screen awake, as we cannot use hooks conditionally
  */
 function KeepAwake() {
-  useKeepAwake();
+  const tag = useId();
+  useEffect(() => {
+    // On web the Wake Lock API rejects when the tab is hidden or the permission is denied;
+    // useKeepAwake leaves that rejection uncaught, so we swallow it (best-effort feature).
+    activateKeepAwakeAsync(tag).catch(() => {});
+    return () => {
+      deactivateKeepAwake(tag).catch(() => {});
+    };
+  }, [tag]);
   return <></>;
 }

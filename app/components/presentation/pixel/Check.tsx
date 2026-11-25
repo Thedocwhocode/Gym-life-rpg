@@ -43,6 +43,8 @@ export default function Check({
       // Sem onPress é só indicador: quem anuncia o estado é a linha (ListItem `checked`).
       importantForAccessibility={onPress ? 'auto' : 'no-hide-descendants'}
       accessibilityElementsHidden={!onPress}
+      // the two props above are native-only; react-native-web needs aria-hidden
+      aria-hidden={!onPress}
       onPress={onPress}
       hitSlop={10}
       style={{ opacity: disabled ? 0.4 : 1 }}
