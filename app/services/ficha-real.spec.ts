@@ -66,13 +66,12 @@ const file = JSON.parse(
 const catalog = fromRows(file.rows);
 
 describe('ficha real × catálogo', () => {
-  // Linha de base de 2026-11-25: 30 de 51 com sugestão. Sem sugestão, entre outros: barra fixa, pulley,
-  // stiff, hack, remada baixa, rosca scott, alpinista, abdominal infra. Sugestões erradas: "Banco romano"
-  // (lombar) cai no abdominal do banco romano, "Tríceps francês com halter" na variante na bola.
-  it('sugere exercício para pelo menos 30 dos 51 nomes', () => {
+  // Antes dos sinônimos e apelidos (2026-11-25): 30 de 51, e "Banco romano" e "Tríceps francês com halter"
+  // caíam errado. Agora só "Bike/Elíptico" (cardio, duas máquinas) fica sem sugestão.
+  it('sugere exercício para pelo menos 50 dos 51 nomes', () => {
     const hits = NAMES.filter((n) => match(catalog, n));
     expect(NAMES).toHaveLength(51);
-    expect(hits.length).toBeGreaterThanOrEqual(30);
+    expect(hits.length).toBeGreaterThanOrEqual(50);
   });
 
   it.each([
@@ -84,6 +83,15 @@ describe('ficha real × catálogo', () => {
     ['Rosca martelo com halter', '0313'],
     ['Leg-press horizontal', '2951'],
     ['Abdominal bicicleta', '6211'],
+    // Sinônimo (polia → cabo, articulado → máquina, caneleira → peso) e nota entre parênteses.
+    ['Remada unilateral ajoelhado na polia', '5369'],
+    ['Supino inclinado articulado', '1299'],
+    ['Abdução de quadril com caneleira', '0837'],
+    ['Supino inclinado com halter (banco em 30 graus)', '0314'],
+    ['Crucifixo inclinado com halter (30°)', '0319'],
+    // Apelido: antes erravam.
+    ['Banco romano', '0489'],
+    ['Tríceps francês com halter', '2188'],
   ])('%s → %s', (name, id) => {
     expect(match(catalog, name)?.id).toBe(id);
   });
