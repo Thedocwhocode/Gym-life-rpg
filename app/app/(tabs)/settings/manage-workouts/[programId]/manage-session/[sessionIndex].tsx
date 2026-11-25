@@ -26,6 +26,7 @@ import {
   moveExerciseUp,
   removeExercise,
   selectCurrentlyEditingSession,
+  setEditingSession,
   setEditingSessionName,
   setEditingSessionNotes,
   updateSessionExercise,
@@ -34,7 +35,7 @@ import { getState } from '@/store/store';
 import { T, useTranslate } from '@tolgee/react';
 import BigNumber from 'bignumber.js';
 import { Redirect, Stack, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Fab from '@/components/presentation/pixel/Fab';
 import Card from '@/components/presentation/pixel/Card';
 import { useDispatch } from 'react-redux';
@@ -46,8 +47,18 @@ export default function ManageWorkouts() {
   }>();
   const sessionIndex = Number(sessionIndexStr);
   const session = useAppSelector(selectCurrentlyEditingSession);
+  // O estado de edição é efêmero: num deep link ou F5 (web) ele some, então recarrega a sessão salva.
+  const savedSession = useAppSelector(
+    (s) => s.program.savedPrograms[programId]?.sessions[sessionIndex],
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!session && savedSession) {
+      dispatch(setEditingSession(SessionBlueprint.fromPOJO(savedSession)));
+    }
+  }, [session, savedSession, dispatch]);
   if (!session) {
-    return <Redirect href={'/'} />;
+    return savedSession ? null : <Redirect href={'/'} />;
   }
   return (
     <SessionEditor
@@ -93,7 +104,11 @@ function SessionEditor({
     setSelectedExerciseIndex(undefined);
     setSelectedExercise(
       WeightedExerciseBlueprint.fromPOJO({
-        name: `Exercise ${session.exercises.length + 1}`,
+        name: t('exercise.default_name', {
+          number: session.exercises.length + 1,
+          // vira dado salvo: sem os caracteres invisíveis que o DevTools do Tolgee põe no web
+          noWrap: true,
+        }),
         repsPerSet: 10,
         sets: 3,
         weightIncreaseOnSuccess: BigNumber('2.5'),

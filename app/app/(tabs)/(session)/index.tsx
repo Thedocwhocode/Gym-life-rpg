@@ -29,7 +29,6 @@ import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useDebouncedCallback } from 'use-debounce';
 import { MigrateToWeightUnitsWizard } from '@/components/smart/migrate-to-weight-units';
-import { WelcomeWizard } from '@/components/smart/welcome-wizard';
 import { SessionDiffSaveDialog } from '@/components/smart/session-diff-save-dialog';
 import { useScreenTransition } from '@/components/smart/screen-transition';
 
@@ -120,7 +119,6 @@ function ListUpcomingWorkouts({
   return (
     <View style={{ flex: 1, gap: 10, paddingTop: 16, paddingBottom: 72 }}>
       <SessionDiffSaveDialog />
-      <WelcomeWizard />
       <PlanManager />
       {currentSession && (
         <View style={{ gap: 10, marginTop: 12 }}>

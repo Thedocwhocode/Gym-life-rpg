@@ -3,6 +3,7 @@ import { TITLE_MAX_SCALE } from '@/theme/tokens';
 import FullHeightScrollView from '@/components/presentation/full-height-scroll-view';
 import { useAppTheme, spacing } from '@/hooks/useAppTheme';
 import { usePreventNavigate } from '@/hooks/usePreventNavigate';
+import { useHideBehindDialog } from '@/components/presentation/pixel/dialog-backdrop-a11y';
 import { ReactNode, useEffect } from 'react';
 import { View } from 'react-native';
 import { Portal, Text } from 'react-native-paper';
@@ -37,6 +38,7 @@ export default function FullScreenDialog(props: FullScreenDialogProps) {
   const { colors } = useAppTheme();
 
   usePreventNavigate(open, onClose);
+  useHideBehindDialog(open);
 
   return (
     <Portal>
@@ -50,6 +52,10 @@ export default function FullScreenDialog(props: FullScreenDialogProps) {
               Easing.inOut(Easing.quad),
             )}
             testID="fullscreen-dialog"
+            // iOS isola pelo accessibilityViewIsModal; Android pelo useHideBehindDialog; web pelo aria-modal
+            accessibilityViewIsModal
+            role="dialog"
+            aria-modal
             style={{
               flex: 1,
             }}

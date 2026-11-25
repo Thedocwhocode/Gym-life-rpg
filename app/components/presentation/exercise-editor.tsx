@@ -130,12 +130,12 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
             options={[
               {
                 value: 'weighted',
-                label: 'Weighted',
+                label: t('exercise.type.weighted'),
                 testID: 'weighted-button',
               },
               {
                 value: 'cardio',
-                label: 'Cardio/Time',
+                label: t('exercise.type.cardio'),
                 testID: 'cardio-button',
               },
             ]}

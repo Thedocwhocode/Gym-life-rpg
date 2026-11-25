@@ -141,21 +141,27 @@ function WeightedExerciseBlueprintSummary({
 }: {
   blueprint: WeightedExerciseBlueprint;
 }) {
+  const { t } = useTranslate();
   return (
     <View style={{ gap: spacing[1], alignItems: 'flex-start' }}>
       <SurfaceText>
         <SurfaceText color="primary">{blueprint.sets}</SurfaceText>{' '}
-        {pluralize(blueprint.sets, 'set')} of{' '}
+        {t(
+          blueprint.sets === 1
+            ? 'exercise.summary.set_one'
+            : 'exercise.summary.set_other',
+        )}{' '}
+        {t('exercise.summary.of')}{' '}
         <SurfaceText color="primary">{blueprint.repsPerSet}</SurfaceText>{' '}
-        {pluralize(blueprint.repsPerSet, 'rep')}
+        {t(
+          blueprint.repsPerSet === 1
+            ? 'exercise.summary.rep_one'
+            : 'exercise.summary.rep_other',
+        )}
       </SurfaceText>
       <SurfaceText>
         <RestFormat rest={blueprint.restBetweenSets} />
       </SurfaceText>
     </View>
   );
-}
-
-function pluralize(count: number, text: string): string {
-  return count === 1 ? text : text + 's';
 }

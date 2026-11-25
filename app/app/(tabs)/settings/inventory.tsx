@@ -196,7 +196,8 @@ export default function Inventory() {
               color: item.bonus ? palette.success : palette.text3,
             }}
           >
-            {`▸ ${bonusText}`}
+            <Text aria-hidden>▸ </Text>
+            {bonusText}
           </Text>
           <Text style={{ ...type.micro, color: palette.text3 }}>
             {t('rpg.inventory.origin', {
