@@ -47,9 +47,10 @@ export interface Palette {
   barHp: string;
   barTrack: string;
   attrStr: string;
-  attrDex: string;
-  attrCon: string;
-  attrSta: string;
+  attrAgi: string;
+  attrVit: string;
+  attrEnd: string;
+  attrInt: string;
   /** v1.1: janelas do "Sistema" (azul-gelo). Como texto, usar `systemText()`. */
   system: string;
   systemStrong: string;
@@ -94,9 +95,10 @@ const brasa: Palette = {
   barHp: '#cc4a3a',
   barTrack: '#252a2e',
   attrStr: '#d8683f',
-  attrDex: '#b3b85a',
-  attrCon: '#cf4a44',
-  attrSta: '#5fae6e',
+  attrAgi: '#b3b85a',
+  attrVit: '#e0645a',
+  attrEnd: '#5fae6e',
+  attrInt: '#9a8cf2',
   system: '#5fb0f5',
   systemStrong: '#9fd4ff',
   systemLine: '#3a8fd9',
@@ -140,9 +142,10 @@ const ferro: Palette = {
   barHp: '#c2362b',
   barTrack: '#262626',
   attrStr: '#c9c3b5',
-  attrDex: '#a8a397',
-  attrCon: '#de5446',
-  attrSta: '#8c877d',
+  attrAgi: '#a8a397',
+  attrVit: '#de5446',
+  attrEnd: '#8c877d',
+  attrInt: '#9a8cf2',
   system: '#5fb0f5',
   systemStrong: '#9fd4ff',
   systemLine: '#3a8fd9',
@@ -186,9 +189,10 @@ const fosforo: Palette = {
   barHp: '#e2513c',
   barTrack: '#241f15',
   attrStr: '#e2793f',
-  attrDex: '#d8c06a',
-  attrCon: '#e2513c',
-  attrSta: '#b8b04a',
+  attrAgi: '#d8c06a',
+  attrVit: '#e2513c',
+  attrEnd: '#b8b04a',
+  attrInt: '#9a8cf2',
   system: '#5fb0f5',
   systemStrong: '#9fd4ff',
   systemLine: '#3a8fd9',
@@ -232,9 +236,10 @@ const pergaminho: Palette = {
   barHp: '#9a2c21',
   barTrack: '#d3c4a3',
   attrStr: '#a5431f',
-  attrDex: '#6e7124',
-  attrCon: '#9a2c21',
-  attrSta: '#2f6e3c',
+  attrAgi: '#6e7124',
+  attrVit: '#9a2c21',
+  attrEnd: '#2f6e3c',
+  attrInt: '#5a4bb0',
   system: '#1d5f99',
   systemStrong: '#164a78',
   systemLine: '#1d5f99',

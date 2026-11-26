@@ -140,7 +140,12 @@ export const projectProgress = (
   sessions: readonly Session[],
   ctx: JourneyContext,
   today: LocalDate,
-) => deriveProgress(sessions.map(sessionFacts), today, ctx);
+) =>
+  deriveProgress(
+    sessions.map((s) => sessionFacts(s)),
+    today,
+    ctx,
+  );
 
 // ponytail: o dia vem de state.app.today (atualizado ao voltar ao primeiro plano); virar a
 // meia-noite com o app aberto na tela mantém o dia anterior até sair e voltar.

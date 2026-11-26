@@ -23,15 +23,15 @@ import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 const SCHOOL_OF: Record<RpgClass, School> = {
-  warrior: 'aco',
-  scout: 'vento',
-  paladin: 'luz',
+  warrior: 'steel',
+  scout: 'wind',
+  paladin: 'light',
 };
 const SCHOOL_META: Record<School, { attr: string; cls?: RpgClass }> = {
-  aco: { attr: 'STR', cls: 'warrior' },
-  vento: { attr: 'DEX', cls: 'scout' },
-  luz: { attr: 'CON', cls: 'paladin' },
-  arcano: { attr: 'INT' },
+  steel: { attr: 'STR', cls: 'warrior' },
+  wind: { attr: 'AGI', cls: 'scout' },
+  light: { attr: 'VIT', cls: 'paladin' },
+  arcane: { attr: 'INT' },
 };
 
 /** Grimório (D6): escola → skill selecionada (anima) → CTA → árvore compacta. */
@@ -41,7 +41,7 @@ export default function Grimoire() {
   const dispatch = useDispatch();
   const j = useAppSelector(selectJourney);
   const [school, setSchool] = useState<School>(
-    j.rpgClass ? SCHOOL_OF[j.rpgClass] : 'aco',
+    j.rpgClass ? SCHOOL_OF[j.rpgClass] : 'steel',
   );
   const inSchool = SKILLS.filter((s) => s.school === school);
   const [picked, setPicked] = useState<string>();

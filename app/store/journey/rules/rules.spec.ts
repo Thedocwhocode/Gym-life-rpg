@@ -143,7 +143,7 @@ describe('status', () => {
         weeksBelowGoal: 2,
         goalMetThisWeek: false,
       }),
-    ).toEqual(['exausto', 'amaldicoado', 'lento', 'furia', 'pressa']);
+    ).toEqual(['exhausted', 'cursed', 'rusty', 'rage', 'momentum']);
   });
   it('bater a meta da semana tira o Amaldiçoado', () => {
     expect(
@@ -151,8 +151,8 @@ describe('status', () => {
     ).toEqual([]);
   });
   it('isDebuff segue o sinal do %', () => {
-    expect(isDebuff('lento')).toBe(true);
-    expect(isDebuff('pressa')).toBe(false);
+    expect(isDebuff('rusty')).toBe(true);
+    expect(isDebuff('momentum')).toBe(false);
   });
 });
 
@@ -186,14 +186,14 @@ describe('multiplicadores (DR11)', () => {
     expect(totalPct(src)).toBe(15 + 15 + 5);
   });
   it('teto de +50% e piso de −50%', () => {
-    const up = xpSources({ ...input, statuses: ['furia', 'pressa'] });
+    const up = xpSources({ ...input, statuses: ['rage', 'momentum'] });
     expect(totalPct(up)).toBe(50);
     const down = xpSources({
       ...input,
       rpgClass: 'paladin',
       skill: undefined,
       items: [],
-      statuses: ['exausto', 'amaldicoado'],
+      statuses: ['exhausted', 'cursed'],
     });
     expect(totalPct(down)).toBe(-50);
   });

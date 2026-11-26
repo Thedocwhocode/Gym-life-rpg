@@ -22,9 +22,9 @@ export default function SessionStatGraphCard(props: {
     palette.accent,
     palette.success,
     palette.attrStr,
-    palette.attrDex,
-    palette.attrCon,
-    palette.attrSta,
+    palette.attrAgi,
+    palette.attrVit,
+    palette.attrEnd,
     palette.reward,
     palette.steel,
   ];

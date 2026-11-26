@@ -12,8 +12,8 @@ import Svg, { Rect } from 'react-native-svg';
 
 const CLASS_TONE: Record<RpgClass, TagTone> = {
   warrior: 'str',
-  scout: 'dex',
-  paladin: 'con',
+  scout: 'agi',
+  paladin: 'vit',
 };
 
 export interface PortraitProps {

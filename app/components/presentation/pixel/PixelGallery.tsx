@@ -236,9 +236,10 @@ export default function PixelGallery() {
             nota
           </Tag>
           <Tag tone="str">STR</Tag>
-          <Tag tone="dex">DEX</Tag>
-          <Tag tone="con">CON</Tag>
-          <Tag tone="sta">STA</Tag>
+          <Tag tone="agi">AGI</Tag>
+          <Tag tone="end">END</Tag>
+          <Tag tone="vit">VIT</Tag>
+          <Tag tone="int">INT</Tag>
           <Tag tone="system">Sistema</Tag>
         </View>
         <Num size={40}>1.234</Num>
