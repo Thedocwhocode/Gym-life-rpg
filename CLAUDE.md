@@ -15,7 +15,7 @@
 | Licença      | AGPL-3.0                                       |
 | Stack        | React Native + Expo + Redux Toolkit + .NET API |
 | Design       | Material Design 3 via React Native Paper       |
-| Plataformas  | Android, iOS, Web                              |
+| Plataformas  | Android, iOS, Web (no fork: só Web)            |
 
 ### Funcionalidades herdadas do LiftLog
 
@@ -38,12 +38,12 @@
 | Autor        | Thedocwhocode (luizrodolfocc@gmail.com)                    |
 | Objetivo     | Transformar o LiftLog num app gamificado de academia + RPG |
 | Marca        | GymLife RPG · slug `gym-life-rpg` · scheme `gymliferpg`    |
-| Bundle id    | `com.thedocwhocode.gymliferpg` (Android e iOS)             |
+| Plataforma   | Só web, gratuito; Android/iOS removidos (voltam no futuro) |
 
 Fork independente: identificadores, URLs e contas do upstream foram removidos. Ficam de
 propósito apenas o crédito/licença (`NOTICE.md`, README, diálogo "Sobre") e os fixtures
 `*.liftlogbackup.gz`, que provam que backups do LiftLog continuam importando. Serviços externos
-(API, Sentry, RevenueCat) só ligam via env `EXPO_PUBLIC_*` (ver README).
+(API, Sentry) só ligam via env `EXPO_PUBLIC_*` (ver README). Não há compras nem paywall.
 
 ### O que já foi feito no fork
 
@@ -149,7 +149,6 @@ Gym-life-rpg/
 | Gráficos        | react-native-gifted-charts + @shopify/react-native-skia |
 | Backend         | .NET 10 WebAPI (GymLifeRpg.Api)                   |
 | IA              | Nenhuma. Ficha em PDF lida no aparelho (pdfjs-dist + `services/sheet-parser.ts`) |
-| Pagamentos      | RevenueCat                                        |
 | i18n            | Tolgee                                            |
 | Testes          | Vitest                                            |
 
@@ -161,8 +160,6 @@ Gym-life-rpg/
 cd app
 npm install
 
-npm run android   # Android
-npm run ios       # iOS (macOS)
 npm run web       # Web
 
 npm test          # Rodar testes

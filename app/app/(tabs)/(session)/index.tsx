@@ -9,7 +9,6 @@ import Fab from '@/components/presentation/pixel/Fab';
 import IconButton from '@/components/presentation/pixel/IconButton';
 import SessionCard from '@/components/presentation/rpg/SessionCard';
 import { Remote } from '@/components/presentation/remote';
-import AndroidNotificationAlert from '@/components/smart/android-notification-alert';
 import { spacing } from '@/hooks/useAppTheme';
 import { RecordedWeightedExercise, Session } from '@/models/session-models';
 import { RootState, useAppSelector, useAppSelectorWithArg } from '@/store';
@@ -311,7 +310,6 @@ export default function Index() {
       <Stack.Screen
         options={headerOptions('GymLife RPG', activePlan.name || undefined)}
       />
-      <AndroidNotificationAlert />
       <MigrateToWeightUnitsWizard />
       <Remote
         value={upcomingSessions}

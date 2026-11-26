@@ -19,7 +19,7 @@ import { SKILLS, STARTER } from '@/store/journey/rules/skills';
 import { accentText } from '@/theme/palettes';
 import { steps, type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
-import * as Application from 'expo-application';
+import Constants from 'expo-constants';
 import { Href, Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Linking, Platform, Text, View } from 'react-native';
@@ -174,10 +174,7 @@ export default function Settings() {
     },
   ];
 
-  const appVersion =
-    Application.nativeApplicationVersion ??
-    Application.nativeBuildVersion ??
-    'Unknown';
+  const appVersion = Constants.expoConfig?.version ?? 'Unknown';
 
   const bugReportUrl = `${REPO}/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&app-version=${encodeURIComponent(appVersion)}&platform=${Platform.OS}&os-version=${Platform.Version}`;
 

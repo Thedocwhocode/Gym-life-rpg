@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { AppThemeProvider, useAppTheme } from '@/hooks/useAppTheme';
 import Scanlines from '@/components/presentation/pixel/Scanlines';
-import { I18nManager, LogBox, Platform, View } from 'react-native';
+import { LogBox, Platform, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store, useAppSelector } from '@/store';
@@ -37,10 +37,6 @@ LogBox.ignoreLogs([
   /.*Failed to update profile*/,
 ]);
 
-if (Platform.OS === 'android') {
-  I18nManager.swapLeftAndRightInRTL(true);
-}
-
 /** DR20: na web o app vira uma coluna de 560 px centralizada (header e abas inclusos). */
 const WEB_COLUMN = 560;
 
@@ -75,7 +71,7 @@ function useWebFocusRing(color: string) {
 }
 
 function RootStack() {
-  const { colorScheme, palette } = useAppTheme();
+  const { palette } = useAppTheme();
   useWebFocusRing(palette.lineFocus);
   // O assistente de boas-vindas é um Portal por cima do app: sem isto o leitor de tela navega pelas telas atrás dele.
   const wizardOpen = useAppSelector((s) => !s.settings.welcomeWizardCompleted);
@@ -109,12 +105,6 @@ function RootStack() {
         <Stack
           screenOptions={{
             headerShown: false,
-            statusBarStyle:
-              Platform.OS === 'android'
-                ? colorScheme === 'dark'
-                  ? 'light'
-                  : 'dark'
-                : undefined,
             gestureEnabled: false,
           }}
         />

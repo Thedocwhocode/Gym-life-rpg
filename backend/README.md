@@ -42,17 +42,11 @@ Here is an example configuration that works with the Docker Compose setup:
   "ConnectionStrings": {
     "UserDataContext": "Host=localhost;Port=5400;Database=gymliferpg;Username=postgres;Password=password",
     "RateLimitContext": "Host=localhost;Port=5400;Database=gymliferpg;Username=postgres;Password=password"
-  },
-  "WebAuthApiKey": "test-web-auth-key-12345",
-
-  // Optional
-  "RevenueCatApiKey": "test-key",
-  "RevenueCatProjectId": "test-project",
-  "RevenueCatProEntitlementId": "pro"
+  }
 }
 ```
 
-**Note:** The `RevenueCatApiKey` can be omitted if a `WebAuthApiKey` is provided. It validates in-app purchases; no endpoint requires a purchase today (the app has no AI features).
+The app is free: there are no purchases and no purchase verification.
 
 ### Running the Backend
 

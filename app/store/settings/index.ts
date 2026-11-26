@@ -18,7 +18,6 @@ export type LastBackup = {
 interface SettingsState {
   firstDayOfWeek: DayOfWeek;
   isHydrated: boolean;
-  proToken: string | undefined;
   useImperialUnits: boolean;
   showBodyweight: boolean;
   /** Vibração nos momentos do combate (E1). */
@@ -58,7 +57,6 @@ const initialState: SettingsState = {
   restNotifications: true,
   crashReportsEnabled: true,
   welcomeWizardCompleted: false,
-  proToken: undefined,
   remoteBackupSettings: {
     endpoint: '',
     apiKey: '',
@@ -121,9 +119,6 @@ const settingsSlice = createSlice({
       action: PayloadAction<RemoteBackupSettings>,
     ) {
       state.remoteBackupSettings = action.payload;
-    },
-    setProToken(state, action: PayloadAction<string | undefined>) {
-      state.proToken = action.payload;
     },
     setLastBackup(
       state,
@@ -189,7 +184,6 @@ export const {
   setBackupReminder,
   setPalette,
   setFirstDayOfWeek,
-  setProToken,
   setPreferredLanguage,
   setNotesExpandedByDefault,
   setKeepScreenAwakeDuringWorkout,

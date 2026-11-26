@@ -23,7 +23,6 @@ import { addInboxEffects } from '@/store/feed/inbox-effects';
 import { addFollowingEffects } from '@/store/feed/following-effects';
 import { selectActiveProgram } from '@/store/program';
 import { ApiErrorType, ApiResult } from '@/services/api-error';
-import { Platform } from 'react-native';
 import { isBackendConfigured } from '@/services/api-consts';
 
 const StorageKey = 'FeedState';
@@ -73,33 +72,6 @@ export function applyFeedEffects() {
               fromUserAction: false,
             }),
           );
-        } else {
-          if (Platform.OS === 'ios') {
-            try {
-              await selectFeedIdentityRemote(getState())
-                .map((identity) =>
-                  encryptionService.encryptRsaOaepSha256Async(
-                    new Uint8Array([1, 2, 3]),
-                    identity.rsaKeyPair.publicKey,
-                  ),
-                )
-                .unwrapOr(Promise.resolve());
-            } catch (error) {
-              logger.warn(
-                'Failed to encrypt with RSA public key, generating a new one',
-                { error },
-              );
-              const newKeyPair = await encryptionService.generateRsaKeys();
-              dispatch(
-                updateFeedIdentity({
-                  updates: {
-                    rsaKeyPair: newKeyPair,
-                  },
-                  fromUserAction: false,
-                }),
-              );
-            }
-          }
         }
 
         dispatch(setIsHydrated(true));

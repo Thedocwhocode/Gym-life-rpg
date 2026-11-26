@@ -12,7 +12,6 @@ import {
   setNotesExpandedByDefault,
   setPalette,
   setPreferredLanguage,
-  setProToken,
   setRemoteBackupSettings,
   setRestNotifications,
   setShowBodyweight,
@@ -27,10 +26,8 @@ import { addExportBackupEffects } from '@/store/settings/export-backup-effects';
 import { addExportPlaintextEffects } from '@/store/settings/export-plaintext-effects';
 import { addImportBackupEffects } from '@/store/settings/import-backup-effects';
 import { addRemoteBackupEffects } from '@/store/settings/remote-backup-effects';
-import Purchases from 'react-native-purchases';
 import { I18nManager } from 'react-native';
-import { revenueCatApiKey, sentryDsn } from '@/services/api-consts';
-import { captureException } from '@sentry/react-native';
+import { sentryDsn } from '@/services/api-consts';
 import { detectLanguageFromDateLocale } from '@/utils/language-detector';
 import { supportedLanguages } from '@/services/tolgee';
 import { initializeStoredSessionsStateSlice } from '@/store/stored-sessions';
@@ -62,7 +59,6 @@ export function applySettingsEffects() {
         backupReminder,
         firstDayOfWeek,
         palette,
-        proToken,
         notesExpandedByDefault,
         keepScreenAwakeDuringWorkout,
         effectsMode,
@@ -82,7 +78,6 @@ export function applySettingsEffects() {
         preferenceService.getBackupReminder(),
         preferenceService.getFirstDayOfWeek(),
         preferenceService.getPalette(),
-        preferenceService.getProToken(),
         preferenceService.getNotesExpandedByDefault(),
         preferenceService.getKeepScreenAwakeDuringWorkout(),
         preferenceService.getEffectsMode(),
@@ -112,40 +107,10 @@ export function applySettingsEffects() {
       );
       dispatch(setBackupReminder(backupReminder));
       dispatch(setFirstDayOfWeek(firstDayOfWeek));
-      dispatch(setProToken(proToken));
       dispatch(setNotesExpandedByDefault(notesExpandedByDefault));
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
       if (effectsMode) dispatch(setEffectsMode(effectsMode));
 
-      // Without a key, configure() throws and the app would never hydrate.
-      let purchasesConfigured = false;
-      if (revenueCatApiKey) {
-        try {
-          Purchases.configure({ apiKey: revenueCatApiKey });
-          purchasesConfigured = true;
-        } catch (err) {
-          captureException(
-            new Error('Failed to configure purchases', { cause: err }),
-          );
-        }
-      }
-      // migrate pro token to a revenuecat
-      if (
-        purchasesConfigured &&
-        proToken &&
-        !proToken.startsWith('$RCAnonymousID')
-      ) {
-        try {
-          const customerInfo = await Purchases.getCustomerInfo();
-          await Purchases.syncPurchases();
-          dispatch(setProToken(customerInfo.originalAppUserId));
-          await preferenceService.setProToken(customerInfo.originalAppUserId);
-        } catch (err) {
-          captureException(
-            new Error('Failed to sync customer', { cause: err }),
-          );
-        }
-      }
       dispatch(setIsHydrated(true));
       dispatch(initializeStoredSessionsStateSlice());
       dispatch(initializeCurrentSessionStateSlice());
@@ -269,14 +234,6 @@ export function applySettingsEffects() {
     async (action, { stateAfterReduce, extra: { preferenceService } }) => {
       if (stateAfterReduce.settings.isHydrated) {
         await preferenceService.setRemoteBackupSettings(action.payload);
-      }
-    },
-  );
-  addEffect(
-    setProToken,
-    async (action, { stateAfterReduce, extra: { preferenceService } }) => {
-      if (stateAfterReduce.settings.isHydrated) {
-        await preferenceService.setProToken(action.payload);
       }
     },
   );
