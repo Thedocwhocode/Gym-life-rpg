@@ -145,4 +145,23 @@ describe('F6: escolhas datadas', () => {
     });
     expect(pick({ dailyLog: [] })).toEqual({});
   });
+  it('pick valida o log do estudo (minutos inteiros, > 0, até o teto do dia)', () => {
+    expect(
+      pick({
+        studyLog: [
+          { date: '2026-11-05', minutes: 25.4 },
+          { date: '2026-11-04', minutes: 0 },
+          { date: '2026-11-03', minutes: 99999 },
+          { date: 'ontem', minutes: 25 },
+          { date: '2026-11-02', minutes: Number.NaN },
+        ],
+      }),
+    ).toEqual({
+      studyLog: [
+        { date: '2026-11-03', minutes: 1440 },
+        { date: '2026-11-05', minutes: 25 },
+      ],
+    });
+    expect(pick({ studyLog: 'x' })).toEqual({});
+  });
 });

@@ -146,6 +146,13 @@ export default function Settings() {
       testID: 'journey-grimoire',
     },
     {
+      title: t('rpg.journey.study'),
+      description: t('rpg.journey.study.desc'),
+      icon: 'clock',
+      onPress: go('/(tabs)/settings/study', 'grimoire'),
+      testID: 'journey-study',
+    },
+    {
       title: t('rpg.journey.bestiary'),
       description: t('rpg.journey.bestiary.desc'),
       icon: 'book',
