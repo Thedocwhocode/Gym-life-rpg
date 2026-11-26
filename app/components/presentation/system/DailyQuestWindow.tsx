@@ -1,4 +1,4 @@
-import Icon from '@/components/presentation/pixel/Icon';
+import SakugaCheck from '@/components/presentation/fx/SakugaCheck';
 import IconButton from '@/components/presentation/pixel/IconButton';
 import PixelBar, {
   type BarTone,
@@ -70,11 +70,13 @@ export function QuestItems({
             testID={`${testID}-${k}`}
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
           >
-            {met ? (
-              <Icon name="check" size={16} color={palette.success} />
-            ) : (
-              <View style={{ width: 16 }} />
-            )}
+            <SakugaCheck
+              checked={met}
+              // desmarcar zera o item; marcar completa a meta
+              onChange={(on) => onSet(k, on ? targets[k] : 0)}
+              label={t('rpg.daily.mark', { item: name })}
+              testID={`${testID}-${k}-check`}
+            />
             <Text
               numberOfLines={1}
               style={{

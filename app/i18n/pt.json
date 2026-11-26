@@ -857,5 +857,6 @@
   "study.ledger.title": "Registro do grimório",
   "study.today": "Hoje: {min} min de foco · +{int} INT",
   "study.total": "INT total: {n}",
-  "study.rule": "Só bloco de foco completo conta: 1 min de foco = 0,5 INT. Pausar não perde o bloco; desistir não dá INT."
+  "study.rule": "Só bloco de foco completo conta: 1 min de foco = 0,5 INT. Pausar não perde o bloco; desistir não dá INT.",
+  "rpg.daily.mark": "{item}: feito"
 }
