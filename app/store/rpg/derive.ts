@@ -42,6 +42,7 @@ import {
   xpForMinutes,
   xpForSet,
 } from '@/store/journey/rules/attributes';
+import { DAILY_REWARD } from '@/store/journey/rules/daily';
 
 export type { AttrKey } from '@/store/journey/rules/attributes';
 
@@ -323,6 +324,8 @@ export interface JourneyContext {
   multipliersSince?: LocalDate | undefined;
   /** DR8: corações só contam a partir daqui. */
   heartsSince?: LocalDate | undefined;
+  /** Dias (YYYY-MM-DD) com a missão diária cumprida: +30 XP cada (journey/rules/daily.ts). */
+  dailyCompleted?: readonly string[] | undefined;
 }
 
 export interface Progress {
@@ -414,6 +417,24 @@ export function deriveProgress(
   let prev: LocalDate | undefined;
   const first = sorted.at(0)?.date;
 
+  const dailies = [...(ctx.dailyCompleted ?? [])].sort();
+  let nextDaily = 0;
+  /** Soma o XP das diárias até `d` (inclusive). */
+  const addDailies = (d: LocalDate) => {
+    const until = d.toString();
+    for (
+      ;
+      nextDaily < dailies.length && dailies[nextDaily] <= until;
+      nextDaily++
+    ) {
+      const k = weekKey(LocalDate.parse(dailies[nextDaily]));
+      xp += DAILY_REWARD.xp;
+      xpByWeek[k] = (xpByWeek[k] ?? 0) + DAILY_REWARD.xp;
+      stats.dailies++;
+    }
+    maxLevel = Math.max(maxLevel, levelFromXp(xp));
+  };
+
   const goalOf = (k: string) =>
     weeks.get(k)?.quests[0].target ??
     TIER_TARGETS.workouts[tierOf(levelFromXp(xp))];
@@ -470,6 +491,7 @@ export function deriveProgress(
       : [];
 
     decayTo(f.date);
+    addDailies(f.date);
     streak =
       gap === 0
         ? streak
@@ -484,6 +506,7 @@ export function deriveProgress(
       const cur = best.get(ex);
       if (cur !== undefined && kg > cur) {
         prWeeks.add(key);
+        stats.prs++;
         if (DEADLIFT.test(ex)) stats.deadliftPr = true;
       }
       if (cur === undefined || kg > cur) best.set(ex, kg);
@@ -548,6 +571,7 @@ export function deriveProgress(
 
   const idle = prev ? daysBetween(prev, today) : undefined;
   decayTo(today);
+  addDailies(today);
   const todayKey = weekKey(today);
   const alive =
     idle !== undefined &&
@@ -565,6 +589,7 @@ export function deriveProgress(
       const n = weeks.get(k)?.workouts ?? 0;
       const current = k === todayKey;
       goal = n >= goalOf(k) ? goal + 1 : current ? goal : 0;
+      if (n >= goalOf(k)) stats.goalWeeks++;
       three = n >= 3 ? three + 1 : current ? three : 0;
       stats.maxGoalWeeks = Math.max(stats.maxGoalWeeks, goal);
       stats.maxWeeks3x = Math.max(stats.maxWeeks3x, three);

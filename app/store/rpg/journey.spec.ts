@@ -205,3 +205,35 @@ describe('deriveProgress com JourneyContext', () => {
     expect(p.stats.maxGoalWeeks).toBe(2);
   });
 });
+
+describe('C: missão diária e fatos do rank', () => {
+  it('diária cumprida soma +30 XP no dia e conta em stats.dailies', () => {
+    const facts = [fact(0)];
+    const plain = deriveProgress(facts, day(3));
+    const p = deriveProgress(facts, day(3), {
+      dailyCompleted: [day(2).toString(), day(1).toString()],
+    });
+    expect(p.xp - plain.xp).toBe(60);
+    expect(p.stats.dailies).toBe(2);
+    expect(p.xpByWeek['2026-W45'] - plain.xpByWeek['2026-W45']).toBe(60);
+  });
+
+  it('diária futura (depois de hoje) não conta', () => {
+    const p = deriveProgress([fact(0)], day(1), {
+      dailyCompleted: [day(5).toString()],
+    });
+    expect(p.stats.dailies).toBe(0);
+  });
+
+  it('conta PRs e semanas na meta (não seguidas)', () => {
+    const facts = [
+      fact(0, { loads: [['Supino', 60]] }),
+      fact(1, { loads: [['Supino', 65]] }),
+      fact(2, { loads: [['Supino', 70]] }),
+      ...[7, 8, 9, 21, 22, 23].map((n) => fact(n)),
+    ];
+    const p = deriveProgress(facts, day(27));
+    expect(p.stats.prs).toBe(2);
+    expect(p.stats.goalWeeks).toBe(p.stats.maxGoalWeeks + 1);
+  });
+});

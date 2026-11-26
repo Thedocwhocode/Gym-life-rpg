@@ -3,6 +3,7 @@ import { LocalDate } from '@js-joda/core';
 import { selectSessions } from '@/store/stored-sessions';
 import { selectJourneyContext } from '@/store/choices';
 import type { Session } from '@/models/session-models';
+import { nextRank, rankFor } from '@/store/journey/rules/ranks';
 import type { RootState } from '@/store/store';
 import {
   deriveProgress,
@@ -163,6 +164,15 @@ export const selectXpProgress = createSelector([selectProgress], (p) =>
 export const selectAllAchievements = createSelector([selectProgress], (p) =>
   ACHIEVEMENTS.map((def) => ({ ...def, unlockedAt: p.achievements[def.id] })),
 );
+/** Fatos do rank a partir da projeção (todos só sobem). */
+export const selectRankFacts = createSelector([selectProgress], (p) => ({
+  level: p.stats.level,
+  goalWeeks: p.stats.goalWeeks,
+  prs: p.stats.prs,
+  dailies: p.stats.dailies,
+}));
+export const selectRank = createSelector([selectRankFacts], rankFor);
+export const selectNextRank = createSelector([selectRankFacts], nextRank);
 export const selectActiveQuests = createSelector(
   [selectProgress],
   (p) => p.quests,

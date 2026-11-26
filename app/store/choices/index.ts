@@ -3,6 +3,12 @@ import { LocalDate } from '@js-joda/core';
 import { RootState } from '@/store/store';
 import { choose, type Dated } from '@/store/journey/rules/dated';
 import { equipItem as withItem } from '@/store/journey/rules/items';
+import {
+  dailyHistory,
+  withDailyCount,
+  type DailyEntry,
+  type DailyItem,
+} from '@/store/journey/rules/daily';
 
 export type RpgClass = 'warrior' | 'scout' | 'paladin';
 
@@ -30,6 +36,8 @@ export interface Choices {
   chronicleSeenWeek?: string;
   /** DR9: card de boas-vindas da jornada recalculada já visto. */
   journeyIntroSeen?: boolean;
+  /** Missão diária do Sistema: o que foi feito em cada dia (journey/rules/daily.ts). */
+  dailyLog?: DailyEntry[];
 }
 
 export interface ChoicesState extends Choices {
@@ -128,6 +136,26 @@ const choicesSlice = createSlice({
     markJourneyIntroSeen(state) {
       state.journeyIntroSeen = true;
     },
+    /** Contador da missão diária; `recovery` grava na Quest de Recuperação do dia. */
+    setDailyCount(
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        date: string;
+        item: DailyItem;
+        value: number;
+        recovery?: boolean;
+      }>,
+    ) {
+      state.dailyLog = withDailyCount(
+        state.dailyLog ?? [],
+        payload.date,
+        payload.item,
+        payload.value,
+        payload.recovery,
+      );
+    },
     initializeChoicesStateSlice() {},
   },
 });
@@ -144,6 +172,7 @@ export const {
   markHeartsSeen,
   markChronicleSeen,
   markJourneyIntroSeen,
+  setDailyCount,
   initializeChoicesStateSlice,
 } = choicesSlice.actions;
 
@@ -159,23 +188,32 @@ export const PERSISTED_CHOICE_ACTIONS = [
   markHeartsSeen,
   markChronicleSeen,
   markJourneyIntroSeen,
+  setDailyCount,
 ] as const;
 
 export const choicesReducer = choicesSlice.reducer;
 
 export const selectChoices = (state: RootState) => state.choices;
 export const selectRpgClass = (state: RootState) => state.choices.rpgClass;
+export const selectDailyLog = (state: RootState) => state.choices.dailyLog;
+export const selectDailyHistory = createSelector([selectDailyLog], (log) =>
+  dailyHistory(log ?? []),
+);
 
 const parseDay = (s: string | undefined) =>
   s ? LocalDate.parse(s) : undefined;
 
 /** O que a projeção (`deriveProgress`) precisa das escolhas. */
-export const selectJourneyContext = createSelector([selectChoices], (c) => ({
-  classHistory: c.classHistory,
-  skillEquipped: c.skillEquipped,
-  skillsLearned: c.skillsLearned,
-  itemsEquipped: c.itemsEquipped,
-  trainingDays: c.trainingDays,
-  multipliersSince: parseDay(c.multiplicadoresDesde),
-  heartsSince: parseDay(c.coracoesDesde),
-}));
+export const selectJourneyContext = createSelector(
+  [selectChoices, selectDailyHistory],
+  (c, daily) => ({
+    classHistory: c.classHistory,
+    skillEquipped: c.skillEquipped,
+    skillsLearned: c.skillsLearned,
+    itemsEquipped: c.itemsEquipped,
+    trainingDays: c.trainingDays,
+    multipliersSince: parseDay(c.multiplicadoresDesde),
+    heartsSince: parseDay(c.coracoesDesde),
+    dailyCompleted: daily.completed,
+  }),
+);

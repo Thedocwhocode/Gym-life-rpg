@@ -1,4 +1,9 @@
 import type { Dated } from '@/store/journey/rules/dated';
+import {
+  DAILY_ITEMS,
+  type DailyCounts,
+  type DailyEntry,
+} from '@/store/journey/rules/daily';
 import type { Choices, RpgClass } from './index';
 
 export const CHOICES_KEY = 'Choices';
@@ -52,6 +57,36 @@ function datedList<T>(
   return list.length ? list : undefined;
 }
 
+function counts(v: unknown): DailyCounts | undefined {
+  if (!v || typeof v !== 'object') return undefined;
+  const o = v as Record<string, unknown>;
+  const out: DailyCounts = {};
+  for (const k of DAILY_ITEMS) {
+    const n = o[k];
+    if (typeof n === 'number' && Number.isFinite(n) && n >= 0)
+      out[k] = Math.round(n);
+  }
+  return out;
+}
+
+/** Log da missão diária: um registro válido por dia, em ordem. */
+function dailyLog(v: unknown): DailyEntry[] | undefined {
+  if (!Array.isArray(v)) return undefined;
+  const byDate = new Map<string, DailyEntry>();
+  for (const x of v as unknown[]) {
+    const o = (x ?? {}) as Record<string, unknown>;
+    const date = o['date'];
+    const done = counts(o['done']);
+    if (!isDay(date) || !done) continue;
+    const recovery = counts(o['recovery']);
+    byDate.set(date, { date, done, ...(recovery && { recovery }) });
+  }
+  const list = [...byDate.values()].sort((a, b) =>
+    a.date < b.date ? -1 : a.date > b.date ? 1 : 0,
+  );
+  return list.length ? list : undefined;
+}
+
 /** Valida campo a campo; o que não passar some (nunca derruba a hidratação). */
 export function pick(obj: Record<string, unknown> | undefined): Choices {
   const o = obj ?? {};
@@ -73,6 +108,8 @@ export function pick(obj: Record<string, unknown> | undefined): Choices {
   if (Number.isInteger(o['heartsSeenMissed']))
     out.heartsSeenMissed = o['heartsSeenMissed'] as number;
   if (o['journeyIntroSeen'] === true) out.journeyIntroSeen = true;
+  const daily = dailyLog(o['dailyLog']);
+  if (daily) out.dailyLog = daily;
   return out;
 }
 

@@ -4,6 +4,7 @@ import AchievementsRow from '@/components/presentation/rpg/AchievementsRow';
 import AttributeStat from '@/components/presentation/rpg/AttributeStat';
 import CharacterSheet from '@/components/presentation/rpg/CharacterSheet';
 import QuestPanel from '@/components/presentation/rpg/QuestPanel';
+import DailyQuest from '@/components/smart/daily-quest';
 import JourneyPanel from '@/components/smart/journey-panel';
 import NextQuestCard from '@/components/smart/next-quest-card';
 import WeatherBanner from '@/components/smart/weather-banner';
@@ -42,6 +43,7 @@ export default function DashboardPage() {
         <CharacterSheet />
         <JourneyPanel />
         <NextQuestCard />
+        <DailyQuest />
         <QuestPanel />
         <WeatherBanner />
         <View style={{ gap: 10 }}>
