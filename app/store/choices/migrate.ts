@@ -13,6 +13,7 @@ import {
   type WeatherEntry,
 } from '@/store/journey/rules/weather';
 import type { WeatherKind } from '@/services/weather';
+import { heroLook, heroName } from './hero';
 import type { Choices, RpgClass } from './index';
 
 export const CHOICES_KEY = 'Choices';
@@ -158,6 +159,10 @@ export function pick(obj: Record<string, unknown> | undefined): Choices {
   if (study) out.studyLog = study;
   const weather = weatherLog(o['weatherLog']);
   if (weather) out.weatherLog = weather;
+  const name = heroName(o['heroName']);
+  if (name) out.heroName = name;
+  const look = heroLook(o['heroLook']);
+  if (look) out.heroLook = look;
   return out;
 }
 

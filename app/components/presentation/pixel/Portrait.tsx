@@ -1,6 +1,7 @@
 import {
   HERO_SIZE,
   heroPixels,
+  type HeroLook,
 } from '@/components/presentation/pixel/hero-sprite';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import { tagColor, type TagTone } from '@/components/presentation/pixel/Tag';
@@ -21,6 +22,8 @@ export interface PortraitProps {
   rpgClass?: RpgClass | undefined;
   width?: number | undefined;
   height?: number | undefined;
+  /** Pele e cabelo do criador de sprite; sem ele, o visual original. */
+  look?: HeroLook | undefined;
 }
 
 /**
@@ -31,10 +34,14 @@ export default function Portrait({
   rpgClass,
   width = 96,
   height = 120,
+  look,
 }: PortraitProps) {
   const { palette } = useAppTheme();
   const tunic = rpgClass ? tagColor(palette, CLASS_TONE[rpgClass]) : undefined;
-  const pixels = useMemo(() => heroPixels(tunic), [tunic]);
+  const pixels = useMemo(
+    () => heroPixels(tunic, look),
+    [tunic, look?.skin, look?.hair], // eslint-disable-line react-hooks/exhaustive-deps
+  );
   // Escala inteira, para o pixel não borrar; 16 px de folga dentro da moldura.
   const scale = Math.max(
     1,

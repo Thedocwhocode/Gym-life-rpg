@@ -5,7 +5,11 @@ import AttributeStat from '@/components/presentation/rpg/AttributeStat';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useHeroAttributes, weekDelta } from '@/hooks/useHeroAttributes';
 import { useAppSelector } from '@/store';
-import { selectRpgClass } from '@/store/choices';
+import {
+  selectHeroLook,
+  selectHeroName,
+  selectRpgClass,
+} from '@/store/choices';
 import { selectJourney } from '@/store/journey';
 import { ENERGY } from '@/store/journey/rules/energy';
 import {
@@ -25,6 +29,8 @@ export default function CharacterSheet() {
   const { palette } = useAppTheme();
   const { t } = useTranslate();
   const rpgClass = useAppSelector(selectRpgClass);
+  const heroName = useAppSelector(selectHeroName);
+  const look = useAppSelector(selectHeroLook);
   const level = useAppSelector(selectRpgLevel);
   const title = useAppSelector(selectRpgTitle);
   const xp = useAppSelector(selectXpProgress);
@@ -36,7 +42,7 @@ export default function CharacterSheet() {
   return (
     <AsciiFrame testID="character-sheet" padding={16}>
       <View style={{ flexDirection: 'row', gap: 14 }}>
-        <Portrait rpgClass={rpgClass} width={92} height={116} />
+        <Portrait rpgClass={rpgClass} look={look} width={92} height={116} />
         <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Text
@@ -66,7 +72,7 @@ export default function CharacterSheet() {
               letterSpacing: 0.3,
             }}
           >
-            {t(title)}
+            {heroName ? `${heroName} · ${t(title)}` : t(title)}
           </Text>
           <View style={{ gap: 4, marginTop: 6 }}>
             <AsciiBar value={ratio} cells={12} label="XP" fontSize={12} />

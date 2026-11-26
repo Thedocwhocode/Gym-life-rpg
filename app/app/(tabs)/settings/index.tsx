@@ -12,7 +12,12 @@ import type { TransitionKind } from '@/components/presentation/fx/transitions';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAppSelector } from '@/store';
 import { selectRpgLevel, selectRpgTitle } from '@/store/rpg';
-import { RpgClass, selectRpgClass } from '@/store/choices';
+import {
+  RpgClass,
+  selectHeroLook,
+  selectHeroName,
+  selectRpgClass,
+} from '@/store/choices';
 import { selectJourney } from '@/store/journey';
 import { BESTIARY } from '@/store/journey/rules/bestiary';
 import { SKILLS, STARTER } from '@/store/journey/rules/skills';
@@ -71,6 +76,8 @@ function HeroCard() {
   const level = useAppSelector(selectRpgLevel);
   const title = useAppSelector(selectRpgTitle);
   const rpgClass = useAppSelector(selectRpgClass);
+  const heroName = useAppSelector(selectHeroName);
+  const look = useAppSelector(selectHeroLook);
   const tag = rpgClass ? CLASS_TAG[rpgClass] : undefined;
   return (
     <PixelBox
@@ -78,13 +85,13 @@ function HeroCard() {
       padding={14}
       innerStyle={{ flexDirection: 'row', gap: 14, alignItems: 'center' }}
     >
-      <Portrait rpgClass={rpgClass} width={64} height={80} />
+      <Portrait rpgClass={rpgClass} look={look} width={64} height={80} />
       <View style={{ flex: 1, gap: 6 }}>
         <Text
           maxFontSizeMultiplier={TITLE_MAX_SCALE}
           style={{ ...type.titleSm, color: palette.text1 }}
         >
-          {t(title)}
+          {heroName ? `${heroName} · ${t(title)}` : t(title)}
         </Text>
         <Text style={{ ...type.small, color: palette.text2 }}>
           {t('rpg.hero.class_level', {

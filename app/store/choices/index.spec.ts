@@ -3,6 +3,8 @@ import {
   choicesReducer,
   equipItem,
   learnSkill,
+  setHeroLook,
+  setHeroName,
   setRpgClass,
   setTrainingDays,
   unequipItem,
@@ -59,5 +61,21 @@ describe('choices (escolhas datadas da F6)', () => {
     expect(s.skillsLearned).toEqual([
       { since: '2026-11-01', value: 'cruzado' },
     ]);
+  });
+});
+
+describe('choices: nome e visual do herói', () => {
+  it('grava nome limpo e ignora inválido', () => {
+    expect(run(setHeroName(' Ana ')).heroName).toBe('Ana');
+    expect(run(setHeroName('Ana'), setHeroName('   ')).heroName).toBe('Ana');
+    expect(run(setHeroName('x'.repeat(17))).heroName).toBeUndefined();
+  });
+
+  it('grava visual válido e ignora índice ruim', () => {
+    expect(run(setHeroLook({ skin: 1, hair: 4 })).heroLook).toEqual({
+      skin: 1,
+      hair: 4,
+    });
+    expect(run(setHeroLook({ skin: -1, hair: 0 })).heroLook).toBeUndefined();
   });
 });

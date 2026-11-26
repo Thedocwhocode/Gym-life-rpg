@@ -12,6 +12,7 @@ import {
 import { withStudyMinutes, type StudyEntry } from '@/store/journey/rules/study';
 import { withWeather, type WeatherEntry } from '@/store/journey/rules/weather';
 import type { WeatherKind } from '@/services/weather';
+import { heroLook, heroName, type HeroLook } from './hero';
 
 export type RpgClass = 'warrior' | 'scout' | 'paladin';
 
@@ -45,6 +46,10 @@ export interface Choices {
   studyLog?: StudyEntry[];
   /** Clima de cada dia (o primeiro lido): modificador de XP daquele dia (journey/rules/weather.ts). */
   weatherLog?: WeatherEntry[];
+  /** Nome que o Sistema usa (onboarding); só local, não vai para o feed. */
+  heroName?: string;
+  /** Pele e cabelo do sprite (onboarding). */
+  heroLook?: HeroLook;
 }
 
 export interface ChoicesState extends Choices {
@@ -186,6 +191,15 @@ const choicesSlice = createSlice({
         payload.kind,
       );
     },
+    /** Nome inválido (vazio, só espaços, > 16) é ignorado: quem chama valida antes. */
+    setHeroName(state, { payload }: PayloadAction<string>) {
+      const name = heroName(payload);
+      if (name) state.heroName = name;
+    },
+    setHeroLook(state, { payload }: PayloadAction<HeroLook>) {
+      const look = heroLook(payload);
+      if (look) state.heroLook = look;
+    },
     initializeChoicesStateSlice() {},
   },
 });
@@ -205,6 +219,8 @@ export const {
   setDailyCount,
   addStudyMinutes,
   recordWeather,
+  setHeroName,
+  setHeroLook,
   initializeChoicesStateSlice,
 } = choicesSlice.actions;
 
@@ -223,12 +239,16 @@ export const PERSISTED_CHOICE_ACTIONS = [
   setDailyCount,
   addStudyMinutes,
   recordWeather,
+  setHeroName,
+  setHeroLook,
 ] as const;
 
 export const choicesReducer = choicesSlice.reducer;
 
 export const selectChoices = (state: RootState) => state.choices;
 export const selectRpgClass = (state: RootState) => state.choices.rpgClass;
+export const selectHeroName = (state: RootState) => state.choices.heroName;
+export const selectHeroLook = (state: RootState) => state.choices.heroLook;
 export const selectDailyLog = (state: RootState) => state.choices.dailyLog;
 export const selectStudyLog = (state: RootState) => state.choices.studyLog;
 export const selectWeatherLog = (state: RootState) => state.choices.weatherLog;
