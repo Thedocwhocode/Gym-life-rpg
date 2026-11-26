@@ -1,5 +1,5 @@
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { accentText, type Palette } from '@/theme/palettes';
+import { accentText, systemText, type Palette } from '@/theme/palettes';
 import { fontFamily } from '@/theme/tokens';
 import { ReactNode } from 'react';
 import { Text, View } from 'react-native';
@@ -13,7 +13,8 @@ export type TagTone =
   | 'str'
   | 'dex'
   | 'con'
-  | 'sta';
+  | 'sta'
+  | 'system';
 
 const SIZE = { sm: 11, md: 13, lg: 15 } as const;
 
@@ -35,6 +36,8 @@ export function tagColor(p: Palette, tone: TagTone): string {
       return p.attrCon;
     case 'sta':
       return p.attrSta;
+    case 'system':
+      return systemText(p);
     default:
       return p.text2;
   }

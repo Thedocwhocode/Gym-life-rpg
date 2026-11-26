@@ -13,18 +13,29 @@ export default function AppBottomSheet({
 }: BottomSheetProps & {
   sheetRef: React.RefObject<BottomSheetMethods | null>;
 }) {
-  const { colors } = useAppTheme();
+  const { palette } = useAppTheme();
   return (
     <Portal>
       <BottomSheet
         ref={sheetRef}
         snapPoints={snapPoints ?? ['40%', '70%', '80%']}
         backgroundStyle={[
-          { backgroundColor: colors.surfaceContainerHighest },
+          // v1.1: folha "raised" quadrada, como o PixelBox (sem cantos arredondados).
+          {
+            backgroundColor: palette.surface2,
+            borderRadius: 0,
+            borderTopWidth: 2,
+            borderColor: palette.line2,
+          },
           backgroundStyle,
         ]}
         handleIndicatorStyle={[
-          { backgroundColor: colors.outline },
+          {
+            backgroundColor: palette.lineControl,
+            width: 40,
+            height: 4,
+            borderRadius: 0,
+          },
           handleIndicatorStyle,
         ]}
         {...rest}

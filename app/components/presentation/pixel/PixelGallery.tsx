@@ -1,6 +1,7 @@
 import AsciiBar from '@/components/presentation/pixel/AsciiBar';
 import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
 import AsciiFrame from '@/components/presentation/pixel/AsciiFrame';
+import Badge from '@/components/presentation/pixel/Badge';
 import Button from '@/components/presentation/pixel/Button';
 import Fab from '@/components/presentation/pixel/Fab';
 import Icon from '@/components/presentation/pixel/Icon';
@@ -232,6 +233,7 @@ export default function PixelGallery() {
           <Tag tone="dex">DEX</Tag>
           <Tag tone="con">CON</Tag>
           <Tag tone="sta">STA</Tag>
+          <Tag tone="system">Sistema</Tag>
         </View>
         <Num size={40}>1.234</Num>
       </Section>
@@ -247,6 +249,9 @@ export default function PixelGallery() {
           </Button>
           <Button variant="ghost">Ghost</Button>
           <Button disabled>Desativado</Button>
+          <Button variant="secondary" loading>
+            Salvando
+          </Button>
         </View>
         <View style={styles.row}>
           <Button size="sm">Pequeno</Button>
@@ -262,6 +267,24 @@ export default function PixelGallery() {
           <IconButton icon="trash" label="Apagar" variant="danger" />
         </View>
         <Fab label="Novo treino" />
+      </Section>
+
+      <Section id="badges" title="Badge">
+        <View style={styles.row}>
+          <Badge count={3}>
+            <IconButton
+              icon="notification"
+              label="Missões"
+              variant="secondary"
+            />
+          </Badge>
+          <Badge count={120} tone="accent" />
+          <Badge count={7} tone="system" />
+          <Badge count={2} tone="muted" />
+          <Badge dot>
+            <IconButton icon="heart" label="Guilda" variant="secondary" />
+          </Badge>
+        </View>
       </Section>
 
       <Section id="icons-sizes" title="Icon">

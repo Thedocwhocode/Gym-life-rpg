@@ -40,7 +40,7 @@ export default function Switch({
       <PixelBox
         steps={steps.control}
         padding={0}
-        borderColor={value ? palette.accent : palette.line2}
+        borderColor={value ? palette.accent : palette.lineControl}
         fillColor={value ? palette.accentWash : palette.bgSunken}
         innerStyle={{ width: 48, height: 28, justifyContent: 'center' }}
       >

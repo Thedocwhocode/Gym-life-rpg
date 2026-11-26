@@ -32,15 +32,16 @@ export default function TextField({
     ? palette.danger
     : focused
       ? palette.accent
-      : palette.line2;
+      : palette.lineControl;
+  const disabled = input.editable === false;
   return (
-    <View style={{ gap: 6 }}>
+    <View style={{ gap: 6, opacity: disabled ? 0.4 : 1 }}>
       {!!label && (
         <Text
           style={{
             ...type.label,
             color: error
-              ? palette.danger
+              ? palette.dangerStrong
               : focused
                 ? palette.accent
                 : palette.text2,
@@ -68,6 +69,8 @@ export default function TextField({
         <TextInput
           {...input}
           accessibilityLabel={input.accessibilityLabel ?? label}
+          aria-invalid={error ? true : undefined}
+          aria-disabled={disabled || undefined}
           multiline={multiline}
           numberOfLines={multiline ? rows : 1}
           placeholderTextColor={palette.text3}
@@ -97,7 +100,8 @@ export default function TextField({
         <Text
           style={{
             ...type.small,
-            color: error ? palette.danger : palette.text3,
+            // dangerStrong: texto de erro precisa de AA (o danger base é cor de borda).
+            color: error ? palette.dangerStrong : palette.text3,
           }}
         >
           {error ?? helper}

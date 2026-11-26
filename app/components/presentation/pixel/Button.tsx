@@ -4,7 +4,7 @@ import type { PixelIconName } from '@/components/presentation/pixel-icons.genera
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { accentText, type Palette } from '@/theme/palettes';
 import { fontFamily, size } from '@/theme/tokens';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
 
 export type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'ghost';
@@ -20,6 +20,8 @@ export interface ButtonProps {
   /** Ocupa a largura toda. */
   block?: boolean | undefined;
   disabled?: boolean | undefined;
+  /** v1.1: troca o ícone por um spinner ASCII e bloqueia o toque até terminar. */
+  loading?: boolean | undefined;
   style?: StyleProp<ViewStyle>;
   /** Rótulo do leitor de tela quando o texto visível não basta (ex.: vários "Add" numa lista). */
   accessibilityLabel?: string | undefined;
@@ -35,10 +37,34 @@ function variantColors(p: Palette, variant: Exclude<ButtonVariant, 'ghost'>) {
         text: p.textOnDanger,
       };
     case 'secondary':
-      return { border: p.line2, fill: p.surface2, text: p.text1 };
+      return { border: p.lineControl, fill: p.surface2, text: p.text1 };
     default:
       return { border: p.accentStrong, fill: p.accent, text: p.textOnAccent };
   }
+}
+
+const SPIN = '|/-\\';
+
+function Spinner({ color, fontSize }: { color: string; fontSize: number }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % SPIN.length), 120);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <Text
+      importantForAccessibility="no"
+      accessibilityElementsHidden
+      style={{
+        fontFamily: fontFamily.monoBold,
+        fontSize,
+        color,
+        width: fontSize,
+      }}
+    >
+      {SPIN[i]}
+    </Text>
+  );
 }
 
 /** Botão pixel: sombra dura que afunda 4 px ao pressionar. `ghost` vira `[ ROTULO ]`. */
@@ -50,13 +76,15 @@ export default function Button({
   icon,
   iconRight,
   block = false,
-  disabled = false,
+  disabled: disabledProp = false,
+  loading = false,
   style,
   accessibilityLabel,
   testID,
 }: ButtonProps) {
   const { palette } = useAppTheme();
   const [pressed, setPressed] = useState(false);
+  const disabled = disabledProp || loading;
   const height = HEIGHT[buttonSize];
   const ghost = variant === 'ghost';
   const colors = ghost ? null : variantColors(palette, variant);
@@ -87,7 +115,11 @@ export default function Button({
           [
         </Text>
       ) : null}
-      {icon ? <Icon name={icon} size={24} color={textColor} /> : null}
+      {loading ? (
+        <Spinner color={textColor} fontSize={fontSize} />
+      ) : icon ? (
+        <Icon name={icon} size={24} color={textColor} />
+      ) : null}
       <Text
         style={{
           fontFamily: fontFamily.monoBold,
@@ -120,7 +152,10 @@ export default function Button({
     <Pressable
       testID={testID}
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled, busy: loading }}
+      // RN web 0.21 ignora accessibilityState; aria-* vale no web e no nativo
+      aria-disabled={disabled}
+      aria-busy={loading}
       accessibilityLabel={
         accessibilityLabel ??
         (typeof children === 'string' ? children : undefined)
@@ -133,7 +168,7 @@ export default function Button({
       style={[
         {
           alignSelf: block ? 'stretch' : 'flex-start',
-          opacity: disabled ? 0.4 : 1,
+          opacity: disabled && !loading ? 0.4 : 1,
         },
         style,
       ]}
