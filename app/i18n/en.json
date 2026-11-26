@@ -767,7 +767,6 @@
   "rpg.weather.place.region": "Your area",
   "rpg.weather.place.default": "São Paulo (default)",
   "rpg.weather.loading": "Reading the skies…",
-  "rpg.weather.offline": "Unknown skies",
   "rpg.weather.locate": "Tap to use your area",
   "rpg.weather.retry": "Tap to try again",
   "rpg.weather.storm": "Storm",
@@ -864,6 +863,17 @@
   "study.today": "Today: {min} focus min · +{int} INT",
   "study.total": "Total INT: {n}",
   "study.rule": "Only a full focus block counts: 1 focus min = 0.5 INT. Pausing keeps the block; giving up gives no INT.",
+  "rpg.daily.mark": "{item}: done",
+  "rpg.weather.simulated": "SIMULATED",
+  "rpg.weather.mod.storm": "+15% XP · trained in the storm",
+  "rpg.weather.mod.snow": "+10% END XP",
+  "rpg.weather.mod.rain": "+10% XP · determination",
+  "rpg.weather.mod.fog": "No modifier",
+  "rpg.weather.mod.wind": "+5% AGI XP",
+  "rpg.weather.mod.clouds": "No modifier",
+  "rpg.weather.mod.few_clouds": "No modifier",
+  "rpg.weather.mod.clear_day": "+5% XP with cardio",
+  "rpg.weather.mod.clear_night": "Night bonus: +5% XP",
   "picker.search": "Search by name or muscle",
   "picker.all": "All",
   "picker.pattern": "Movement pattern",
@@ -881,6 +891,5 @@
   "rpg.pattern.OL": "Olympic",
   "rpg.pattern.PL": "Plyometrics",
   "rpg.pattern.CA": "Cardio",
-  "rpg.pattern.MO": "Mobility",
-  "rpg.daily.mark": "{item}: done"
+  "rpg.pattern.MO": "Mobility"
 }

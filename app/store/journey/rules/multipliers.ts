@@ -1,7 +1,9 @@
+import type { WeatherKind } from '@/services/weather';
 import type { RpgClass } from '@/store/choices';
 import { ITEMS } from './items';
 import { SKILLS } from './skills';
 import { STATUS_XP, StatusId } from './status';
+import { weatherPct } from './weather';
 
 // DR11: classe + skill + itens + status, SOMADOS, com teto de +50% e piso de −50%.
 // Bônus "de força" vale para a sessão inteira quando ela tem ao menos 1 série com peso;
@@ -22,7 +24,7 @@ export const CLASS_BONUS: Record<RpgClass, Bonus | undefined> = {
 export const XP_CAP = { min: -50, max: 50 } as const;
 
 export interface XpSource {
-  source: 'class' | 'skill' | 'item' | 'status';
+  source: 'class' | 'skill' | 'item' | 'status' | 'weather';
   id: string;
   pct: number;
 }
@@ -34,6 +36,8 @@ export interface MultiplierInput {
   skill: string | undefined;
   items: readonly string[];
   statuses: readonly StatusId[];
+  /** Clima gravado no dia da sessão (journey/rules/weather.ts). */
+  weather?: WeatherKind | undefined;
 }
 
 const applies = (b: Bonus | undefined, i: MultiplierInput) =>
@@ -54,6 +58,8 @@ export function xpSources(i: MultiplierInput): XpSource[] {
   }
   for (const s of i.statuses)
     out.push({ source: 'status', id: s, pct: STATUS_XP[s] });
+  const w = weatherPct(i.weather, i.cardio);
+  if (w) out.push({ source: 'weather', id: i.weather!, pct: w });
   return out;
 }
 

@@ -54,7 +54,7 @@ uma proposta padrão; a fase que depende dela não começa sem a resposta.
 | D5 | Combate: HP do monstro = séries do exercício (sessão) ou HP fixo do bestiário? Como escolher o monstro de cada exercício? | HP = séries (o HP do bestiário vira só texto de lore). Monstro sorteado de forma determinística por `hash(exercício)`; chefe = último exercício; dano extra das skills fica para depois. **Complementado na revisão de design (DR21):** reps = 0 é esquiva, desmarcar devolve HP, monstro vivo foge, treino livre sem chefe. Chefe de sessão ≠ chefe de masmorra (DR22) | F5 |
 | D6 | Skills: quais efeitos entram na v1? Equipada é global ou por exercício? | v1 destrava, aprende, equipa e muda o golpe animado; o efeito numérico entra pelo D3 (DR11). Skill equipada global, como escolha datada | F6 |
 | D7 | Inventário: de onde vêm os itens e o que fazem | Drops de monstro derrotado e de conquistas; item equipado (escolha datada) dá o bônus do design-spec §D pelo D3 (DR11) | F6 |
-| D8 | Clima: modificador real no XP ou só visual? | **Fechado na revisão eng:** só visual (banner + efeito). O clima não é gravado na sessão, então não entra na projeção | — |
+| D8 | Clima: modificador real no XP ou só visual? | ~~Fechado na revisão eng: só visual.~~ **Revogado em 2026-11-26 (decisão do usuário, design v1.2):** o primeiro clima lido no dia fica gravado em `Choices.weatherLog` e o modificador do design entra nas fontes do DR11, com o mesmo teto (`journey/rules/weather.ts`) | PR H |
 | D9 | Importar PDF: parser local ou servidor? Aceita imagem (OCR)? | Usar o mesmo backend do Planejador IA (LLM lê o texto extraído do PDF); só PDF com texto, sem OCR na v1 | F8 |
 | D11 | Planejador só com OCR: o PDF sai do aparelho? | (a) PDF vai ao backend e à OpenAI como arquivo (cobre escaneado); (b) híbrido; (c) OCR no aparelho. ~~Assumida (a) em 2026-11-12~~. **Revista em 2026-11-25** (o usuário pediu Groq e que o sistema não precise de IA): o PDF não sai do aparelho; a leitura local é o padrão e a IA (Groq) é opcional, só com o texto | F10 |
 | D10 | Textos dentro dos efeitos pixelfx (fonte sem acento): inglês ou português sem acento? | **Fechado na revisão de design (DR14):** o texto vem de `t()` e passa por `toFxText` (NFD, sem diacríticos, caixa alta) | F4 |
@@ -786,6 +786,8 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 - **DR6 Inventário:** 15 slots (grade 5×3) e contador "0/15". O 16º item em diante abre uma 2ª
   página. Não há regra de capacidade na v1.
 - **DR7 Erro e offline:** o erro aparece inline, no lugar do conteúdo: ícone, uma frase e "Tentar".
+  - **Exceção desde 2026-11-26 (clima):** sem resposta da API, o banner mostra o clima sazonal
+    simulado de São Paulo, marcado "SIMULADO", com toque para tentar de novo (`simulatedWeather`).
   - Nunca uma tela inteira de erro e nunca dado falso.
   - Clima offline mostra "Céus desconhecidos"; o fallback de local tem o rótulo "São Paulo (padrão)".
   - Ação do usuário que falha usa o Toast de erro aprovado.

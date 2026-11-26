@@ -13,7 +13,7 @@ const STAGE_BG = '#0b0c0d';
 const STAGE_TEXT1 = '#efe9db';
 const STAGE_TEXT2 = '#b3ab99';
 
-/** Faixa de clima de 48 px abaixo das quests (DR1/F7). Só visual, fora do XP (D8). */
+/** Faixa de clima de 48 px abaixo das quests (DR1/F7). O clima do dia vira modificador de XP (revoga D8). */
 export default function WeatherBanner() {
   const { palette } = useAppTheme();
   const { t } = useTranslate();
@@ -27,12 +27,12 @@ export default function WeatherBanner() {
           state.reading.wind,
         )
       : undefined;
+  const simulated = state.status === 'ok' && !!state.simulated;
   const title =
     state.status === 'loading'
       ? t('rpg.weather.loading')
-      : state.status === 'offline'
-        ? t('rpg.weather.offline')
-        : `${t(`rpg.weather.${kind}` as TranslationKey)} · ${Math.round(state.reading.temp)}°`;
+      : `${t(`rpg.weather.${kind}` as TranslationKey)} · ${Math.round(state.reading.temp)}°`;
+  const mod = kind && t(`rpg.weather.mod.${kind}` as TranslationKey);
   const place =
     state.status === 'loading'
       ? undefined
@@ -41,16 +41,19 @@ export default function WeatherBanner() {
             ? 'rpg.weather.place.region'
             : 'rpg.weather.place.default',
         );
-  // Offline: tentar de novo. No padrão: tocar pede a localização (nunca no boot).
-  const action =
-    state.status === 'offline'
-      ? 'reload'
-      : state.status === 'ok' && state.place === 'default'
-        ? 'gps'
-        : undefined;
-  const eyebrow = place
-    ? `${t('rpg.weather.eyebrow')} · ${place}`
-    : t('rpg.weather.eyebrow');
+  // Simulado: tentar de novo. No padrão: tocar pede a localização (nunca no boot).
+  const action = simulated
+    ? 'reload'
+    : state.status === 'ok' && state.place === 'default'
+      ? 'gps'
+      : undefined;
+  const eyebrow = [
+    t('rpg.weather.eyebrow'),
+    place,
+    simulated && t('rpg.weather.simulated'),
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
   return (
     <Pressable
@@ -58,7 +61,7 @@ export default function WeatherBanner() {
       disabled={!action}
       onPress={() => void refresh()}
       accessibilityRole={action ? 'button' : undefined}
-      accessibilityLabel={`${eyebrow}. ${title}`}
+      accessibilityLabel={[eyebrow, title, mod].filter(Boolean).join('. ')}
       accessibilityHint={
         action === 'gps'
           ? t('rpg.weather.locate')
@@ -90,7 +93,7 @@ export default function WeatherBanner() {
           paddingHorizontal: 12,
         }}
       >
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, minWidth: 136 }}>
           <Text numberOfLines={1} style={{ ...type.micro, color: STAGE_TEXT2 }}>
             {eyebrow}
           </Text>
@@ -102,6 +105,15 @@ export default function WeatherBanner() {
             {title}
           </Text>
         </View>
+        {mod && (
+          <Text
+            testID="weather-mod"
+            numberOfLines={1}
+            style={{ ...type.micro, color: STAGE_TEXT1, flexShrink: 1 }}
+          >
+            {`▸ ${mod}`}
+          </Text>
+        )}
         {action && <Icon name={action} size={16} color={STAGE_TEXT1} />}
       </View>
     </Pressable>
