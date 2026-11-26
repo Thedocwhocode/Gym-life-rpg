@@ -4,7 +4,7 @@
 
 <!-- Setup instructions -->
 
-Follow this to set up android: https://docs.expo.dev/get-started/set-up-your-environment/?mode=development-build
+The app ships for the web only (Android and iOS were removed and will be rebuilt later).
 
 - Install with `npm i`.
-- Run `npm run android` to try it out.
+- Run `npm run web` to try it out.

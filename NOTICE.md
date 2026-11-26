@@ -14,8 +14,9 @@ O GymLife RPG é uma versão **modificada** do LiftLog:
 - Licença: AGPL-3.0
 
 Principais modificações: nova marca e identificadores; sistema de progressão RPG (XP, níveis,
-missões e conquistas); tema e tipografia pixel art; serviços externos (API, Sentry,
-RevenueCat) passaram a ser opcionais e configurados por variáveis de ambiente. O histórico
+missões e conquistas); tema e tipografia pixel art; serviços externos (API, Sentry) passaram a
+ser opcionais e configurados por variáveis de ambiente; compras (RevenueCat), recursos de IA e os
+apps Android/iOS foram removidos (lançamento só web e gratuito). O histórico
 completo das mudanças está no git deste repositório.
 
 ## Componentes de terceiros

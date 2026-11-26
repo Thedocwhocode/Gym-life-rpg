@@ -13,8 +13,9 @@ roadmap independentes. Ele nasceu de um fork do LiftLog e mantém a licença AGP
 do trabalho original (veja [Licença e créditos](#licença-e-créditos)). Bugs, sugestões e
 contribuições vão para **este** repositório, não para o projeto de origem.
 
-O primeiro lançamento é **só na web**; Android e iOS vêm depois (o código é React Native + Expo e
-já compila para os três). O app não tem nenhum recurso de IA.
+O lançamento é **só na web**, gratuito, com layout mobile first que se adapta ao tamanho da tela.
+Android e iOS saíram do repositório e serão reconstruídos no futuro. O app não tem nenhum recurso
+de IA nem compras.
 
 ### Principais recursos
 
@@ -36,16 +37,13 @@ já compila para os três). O app não tem nenhum recurso de IA.
 
 ## Início rápido
 
-Pré-requisitos: Node.js 20+; Android Studio (Android) e Xcode (iOS, só no macOS) para os builds
-nativos.
+Pré-requisito: Node.js 20+.
 
 ```bash
 git clone https://github.com/Thedocwhocode/Gym-life-rpg.git
 cd Gym-life-rpg/app
 npm install
 npm run web       # Web
-npm run android   # Android
-npm run ios       # iOS (macOS)
 npm test          # testes (vitest)
 npm run typecheck
 ```
@@ -57,7 +55,6 @@ npm run typecheck
 | `EXPO_PUBLIC_API_URL` | Feed fica escondido no build de release |
 | `EXPO_PUBLIC_WEB_URL` | Links de compartilhamento do feed ficam relativos |
 | `EXPO_PUBLIC_SENTRY_DSN` | Relatórios de erro desligados |
-| `EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY` / `EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY` | Compras no nativo desligadas (hoje nenhum recurso depende delas) |
 
 ### Backend
 
@@ -69,9 +66,8 @@ API .NET 10 com PostgreSQL, usada pelo feed. Veja [`backend/README.md`](./backen
 
 | Pasta | Conteúdo |
 |---|---|
-| [`app/`](./app/) | App React Native (Expo Router, Redux Toolkit, React Native Paper) |
-| [`backend/GymLifeRpg.Api`](./backend/GymLifeRpg.Api) | WebAPI .NET: feeds criptografados, compras |
-| [`backend/RevenueCat`](./backend/RevenueCat) | Cliente gerado da API do RevenueCat |
+| [`app/`](./app/) | App web em React Native Web (Expo Router, Redux Toolkit, React Native Paper) |
+| [`backend/GymLifeRpg.Api`](./backend/GymLifeRpg.Api) | WebAPI .NET: feeds criptografados |
 | [`proto/`](./proto/) | Schemas protobuf (armazenamento local, backups, feed) |
 | [`tests/`](./tests/) | Testes de integração da API e testes Cypress da web |
 | [`docs/`](./docs/) | [Redesign](./docs/redesign/PLANO.md) · [Feed](./docs/FeedProcess.md) · [Backup remoto](./docs/RemoteBackup.md) · [Exportação em texto](./docs/PlaintextExport.md) |

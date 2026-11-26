@@ -1,24 +1,15 @@
-import { NativeModule, requireNativeModule } from 'expo';
-import { Platform, Vibration } from 'react-native';
+import { Vibration } from 'react-native';
 
-declare class ReactNativeHapticsModule extends NativeModule {
-  triggerSlowRiseHaptic(): void;
-  triggerClickHaptic(): void;
-  cancelHaptic(): void;
-}
-
-const module =
-  Platform.OS === 'web'
-    ? {
-        triggerClickHaptic() {
-          try {
-            Vibration.vibrate(50);
-          } catch {}
-        },
-        triggerSlowRiseHaptic() {},
-        cancelHaptic() {},
-      }
-    : requireNativeModule<ReactNativeHapticsModule>('GymLifeHaptics');
+// O app é só web: vibração pela Vibration API do navegador, quando existir.
+const module = {
+  triggerClickHaptic() {
+    try {
+      Vibration.vibrate(50);
+    } catch {}
+  },
+  triggerSlowRiseHaptic() {},
+  cancelHaptic() {},
+};
 
 export const triggerSlowRiseHaptic = () => {
   module.triggerSlowRiseHaptic();

@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using FluentValidation;
-using GymLifeRpg.Api.Authentication;
 using GymLifeRpg.Api.Db;
 using GymLifeRpg.Api.Service;
 using GymLifeRpg.Api.Validators;
@@ -36,24 +35,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Add Authentication
-builder
-    .Services.AddAuthentication(PurchaseTokenAuthenticationSchemeOptions.SchemeName)
-    .AddScheme<PurchaseTokenAuthenticationSchemeOptions, PurchaseTokenAuthenticationHandler>(
-        PurchaseTokenAuthenticationSchemeOptions.SchemeName,
-        options => { }
-    );
-
-builder.Services.AddAuthorization();
-
 builder.Services.AddSingleton<PasswordService>();
-builder.Services.AddScoped<RateLimitService>();
 
 builder.Services.AddHostedService<CleanupExpiredDataHostedService>();
-
-builder.Services.AddScoped<PurchaseVerificationService>();
-builder.Services.AddWebAuthPurchaseVerification();
-builder.Services.AddRevenueCatPurchaseVerification();
 
 builder
     .Services.AddControllers()
@@ -73,9 +57,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
-
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllers();
 

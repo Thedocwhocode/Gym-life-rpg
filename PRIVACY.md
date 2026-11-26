@@ -23,8 +23,7 @@ Nenhum dos itens abaixo funciona sem que você o ative.
 - **Relatórios de erro**: com sua autorização (pedida na primeira abertura), falhas do app são
   enviadas ao Sentry com dados técnicos: modelo e sistema do aparelho, versão do app, horário e
   endereço IP. Esses relatórios nunca incluem o conteúdo dos treinos nem chaves de criptografia.
-- **Compras**: assinaturas são processadas pela Google Play/App Store e gerenciadas via
-  RevenueCat. Não recebemos dados do seu cartão.
+- **Compras**: não existem. O app é gratuito e não pede nenhum dado de pagamento.
 - **Importar ficha em PDF**: o app lê a ficha **no próprio aparelho**, sem IA; nem o arquivo nem
   o texto saem dele.
 - **Backup remoto**: envia o arquivo de backup só para o servidor que **você** configurar.
@@ -36,10 +35,7 @@ Nenhum dos itens abaixo funciona sem que você o ative.
 
 ## Terceiros
 
-[Google Play Services](https://policies.google.com/privacy) ·
-[Apple](https://www.apple.com/legal/privacy/) ·
 [Sentry](https://sentry.io/privacy/) ·
-[RevenueCat](https://www.revenuecat.com/privacy/) ·
 [Open-Meteo](https://open-meteo.com/en/terms)
 
 ## O que não fazemos
@@ -76,9 +72,9 @@ GymLife RPG is an open source app (AGPL-3.0), provided free of charge and as is.
   its text leaves it.
 - **Crash reports (opt-in)**: technical diagnostics (device, OS, app version, time, IP) are sent
   to Sentry. Workout content and keys are never included.
-- **Purchases**: handled by Google Play / App Store via RevenueCat. We never see your card data.
+- **Purchases**: none. The app is free and asks for no payment data.
 - **Remote backup**: backups go only to a server **you** configure.
 - No tracking cookies, no ads, no data sales.
-- Third parties: Google Play Services, Apple, Sentry, RevenueCat (links above).
+- Third parties: Sentry, Open-Meteo (links above).
 - Not directed at children under 13.
 - Contact: TODO: contact e-mail · [GitHub issues](https://github.com/Thedocwhocode/Gym-life-rpg/issues)

@@ -23,7 +23,6 @@ if (!["patch", "minor", "major"].includes(bumpType)) {
 import { tmpdir } from "os";
 import { join } from "path";
 import { writeFileSync, readFileSync, unlinkSync } from "fs";
-import { OpenAI } from "openai";
 
 function extractNotes(releaseBody: string): string | null {
   const startMarker = "# Release Summary";
@@ -44,40 +43,6 @@ function extractNotes(releaseBody: string): string | null {
   }
 
   return notes.trim() || null;
-}
-
-async function generateStoreNotes(releaseNotes: string): Promise<string> {
-  try {
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const prompt = `Convert the following GitHub release notes into a concise "What's New" section for an app store (Google Play / Apple App Store).
-
-Requirements:
-- Keep it brief and scannable (max 500 characters)
-- Use simple bullet points or short sentences
-- Focus only on user-facing changes
-- Avoid technical jargon
-- Do not include version numbers or dates
-- Do not use markdown formatting (no ** or # etc)
-
-Release notes:
-${releaseNotes}`;
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-5.2",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a helpful assistant that writes concise, user-friendly app store release notes.",
-        },
-        { role: "user", content: prompt },
-      ],
-    });
-    return completion.choices[0]?.message?.content?.trim() || releaseNotes;
-  } catch (err) {
-    console.error("Failed to generate store notes with OpenAI:", err);
-    return releaseNotes;
-  }
 }
 
 // Run get-release-notes and capture output
@@ -107,16 +72,14 @@ console.log("Created temp file " + tmpFile + ". Opening..");
 const editor = process.env.EDITOR || "vi";
 await $({ stdio: "inherit" })`${editor} ${tmpFile}`;
 
-// Extract the release notes for store submission
+// Extract the release notes passed to the publish workflow
 const editedNotes = readFileSync(tmpFile, "utf-8");
 const rawNotes = extractNotes(editedNotes) || "Bug fixes and improvements";
 
-console.log("Generating app store release notes...");
-const generatedStoreNotes = await generateStoreNotes(rawNotes);
 
 // Write store notes to a temp file for editing
 const storeNotesFile = join(tmpdir(), `gymliferpg-store-notes-${version}.txt`);
-writeFileSync(storeNotesFile, generatedStoreNotes);
+writeFileSync(storeNotesFile, rawNotes);
 
 console.log("Opening store notes for editing...");
 await $({ stdio: "inherit" })`${editor} ${storeNotesFile}`;
@@ -149,7 +112,7 @@ try {
 // Trigger the publish workflows
 console.log("Triggering publish workflows...");
 
-const workflows = ["android-publish.yml", "ios-publish.yml", "web-publish.yml"];
+const workflows = ["web-publish.yml"];
 
 for (const workflow of workflows) {
   try {
