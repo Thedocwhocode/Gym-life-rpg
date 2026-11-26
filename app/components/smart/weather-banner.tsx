@@ -2,14 +2,10 @@ import FxStage from '@/components/presentation/fx/FxStage';
 import Icon from '@/components/presentation/pixel/Icon';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useLiveWeather } from '@/hooks/useLiveWeather';
-import { recordWeather } from '@/store/choices';
 import { WEATHER_FX, weatherFromCode } from '@/services/weather';
 import { type } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
-import { LocalDate } from '@js-joda/core';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 // design-spec: o palco do clima é escuro em todas as paletas, com texto claro fixo.
@@ -22,7 +18,6 @@ export default function WeatherBanner() {
   const { palette } = useAppTheme();
   const { t } = useTranslate();
   const { state, refresh } = useLiveWeather();
-  const dispatch = useDispatch();
 
   const kind =
     state.status === 'ok'
@@ -33,11 +28,6 @@ export default function WeatherBanner() {
         )
       : undefined;
   const simulated = state.status === 'ok' && !!state.simulated;
-  // O primeiro clima do dia (real ou simulado) fica gravado para o XP daquele dia.
-  useEffect(() => {
-    if (kind)
-      dispatch(recordWeather({ date: LocalDate.now().toString(), kind }));
-  }, [dispatch, kind]);
   const title =
     state.status === 'loading'
       ? t('rpg.weather.loading')

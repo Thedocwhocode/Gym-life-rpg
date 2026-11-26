@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store, useAppSelector } from '@/store';
 import { AppStateProvider } from '@/components/smart/app-state-provider';
 import SnackbarProvider from '@/components/smart/snackbar-provider';
+import { WeatherRecorder } from '@/components/smart/weather-recorder';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '@/utils/date-locale';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -144,6 +145,7 @@ export default Sentry.wrap(function RootLayout() {
               <AppThemeProvider>
                 <AppStateProvider>
                   <SnackbarProvider>
+                    <WeatherRecorder />
                     <RewardDialog />
                     <OpeningOverlay />
                     <RootStack />
