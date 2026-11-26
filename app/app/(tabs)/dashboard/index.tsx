@@ -13,8 +13,8 @@ import { useHeroAttributes } from '@/hooks/useHeroAttributes';
 import type { AttrKey } from '@/store/rpg/derive';
 import { IsoFields, LocalDate } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
-import { Stack } from 'expo-router';
-import { ScrollView, View } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { Pressable, ScrollView, View } from 'react-native';
 
 const GRID: AttrKey[][] = [['STR', 'AGI'], ['END', 'VIT'], ['INT']];
 
@@ -23,6 +23,7 @@ export default function DashboardPage() {
   const { t } = useTranslate();
   const formatDate = useFormatDate();
   const attrs = useHeroAttributes();
+  const { push } = useRouter();
   const today = LocalDate.now();
   const eyebrow = t('rpg.dashboard.eyebrow', {
     week: today.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR),
@@ -53,15 +54,34 @@ export default function DashboardPage() {
           />
           {GRID.map((row) => (
             <View key={row.join()} style={{ flexDirection: 'row', gap: 8 }}>
-              {row.map((k) => (
-                <AttributeStat
-                  key={k}
-                  attr={k}
-                  value={String(attrs[k].total)}
-                  label={t(`rpg.attr.${k}`)}
-                  subtitle={t(`rpg.attr.${k}.week`, { count: attrs[k].week })}
-                />
-              ))}
+              {row.map((k) => {
+                const stat = (
+                  <AttributeStat
+                    key={k}
+                    attr={k}
+                    value={String(attrs[k].total)}
+                    label={t(`rpg.attr.${k}`)}
+                    subtitle={t(`rpg.attr.${k}.week`, {
+                      count: attrs[k].week,
+                    })}
+                  />
+                );
+                // INT vem do pomodoro: o card abre a tela de estudo.
+                return k === 'INT' ? (
+                  <Pressable
+                    key={k}
+                    style={{ flex: 1 }}
+                    accessibilityRole="link"
+                    accessibilityLabel={t('study.open')}
+                    testID="attr-INT-study"
+                    onPress={() => push('/(tabs)/settings/study')}
+                  >
+                    {stat}
+                  </Pressable>
+                ) : (
+                  stat
+                );
+              })}
             </View>
           ))}
         </View>

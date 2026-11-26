@@ -4,6 +4,10 @@ import {
   type DailyCounts,
   type DailyEntry,
 } from '@/store/journey/rules/daily';
+import {
+  MAX_STUDY_MINUTES_PER_DAY,
+  type StudyEntry,
+} from '@/store/journey/rules/study';
 import type { Choices, RpgClass } from './index';
 
 export const CHOICES_KEY = 'Choices';
@@ -87,6 +91,24 @@ function dailyLog(v: unknown): DailyEntry[] | undefined {
   return list.length ? list : undefined;
 }
 
+/** Log do estudo: um registro por dia, minutos inteiros entre 1 e o teto do dia. */
+function studyLog(v: unknown): StudyEntry[] | undefined {
+  if (!Array.isArray(v)) return undefined;
+  const byDate = new Map<string, StudyEntry>();
+  for (const x of v as unknown[]) {
+    const o = (x ?? {}) as Record<string, unknown>;
+    const date = o['date'];
+    const m = o['minutes'];
+    if (!isDay(date) || typeof m !== 'number' || !Number.isFinite(m)) continue;
+    const minutes = Math.min(MAX_STUDY_MINUTES_PER_DAY, Math.round(m));
+    if (minutes > 0) byDate.set(date, { date, minutes });
+  }
+  const list = [...byDate.values()].sort((a, b) =>
+    a.date < b.date ? -1 : a.date > b.date ? 1 : 0,
+  );
+  return list.length ? list : undefined;
+}
+
 /** Valida campo a campo; o que não passar some (nunca derruba a hidratação). */
 export function pick(obj: Record<string, unknown> | undefined): Choices {
   const o = obj ?? {};
@@ -110,6 +132,8 @@ export function pick(obj: Record<string, unknown> | undefined): Choices {
   if (o['journeyIntroSeen'] === true) out.journeyIntroSeen = true;
   const daily = dailyLog(o['dailyLog']);
   if (daily) out.dailyLog = daily;
+  const study = studyLog(o['studyLog']);
+  if (study) out.studyLog = study;
   return out;
 }
 
