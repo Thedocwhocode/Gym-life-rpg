@@ -56,7 +56,7 @@ API .NET 10 com PostgreSQL, usada pelo feed e pelo leitor de fichas em PDF. Veja
 | Pasta | Conteúdo |
 |---|---|
 | [`app/`](./app/) | App React Native (Expo Router, Redux Toolkit, React Native Paper) |
-| [`backend/GymLifeRpg.Api`](./backend/GymLifeRpg.Api) | WebAPI .NET: feeds criptografados, IA, compras |
+| [`backend/GymLifeRpg.Api`](./backend/GymLifeRpg.Api) | WebAPI .NET: feeds criptografados, compras |
 | [`backend/RevenueCat`](./backend/RevenueCat) | Cliente gerado da API do RevenueCat |
 | [`proto/`](./proto/) | Schemas protobuf (armazenamento local, backups, feed) |
 | [`tests/`](./tests/) | Testes de integração da API e testes Cypress da web |

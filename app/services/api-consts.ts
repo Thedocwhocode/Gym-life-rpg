@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 
 // Release builds get their endpoints from EXPO_PUBLIC_* env vars at build time.
-// ponytail: no backend URL means feed and PDF import are hidden instead of failing at runtime.
+// ponytail: no backend URL means the feed is hidden instead of failing at runtime.
 export const apiBaseUrl = __DEV__
   ? Platform.OS === 'android'
     ? 'http://10.0.2.2:5264'
@@ -19,11 +19,7 @@ export const revenueCatApiKey =
     android: process.env.EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY,
   }) || undefined;
 
-// The sheet reader (PDF import) needs the backend and, on native, RevenueCat to sell "pro".
-export const isProAvailable =
-  isBackendConfigured && (Platform.OS === 'web' || !!revenueCatApiKey);
-
-// Importar ficha: na web o PDF é lido no aparelho, sem backend; no celular, só pelo leitor por IA.
-export const canImportPdf = Platform.OS === 'web' || isProAvailable;
+// Importar ficha: o PDF é lido no aparelho (pdfjs), por ora só na web.
+export const canImportPdf = Platform.OS === 'web';
 
 export const sentryDsn = process.env.EXPO_PUBLIC_SENTRY_DSN || undefined;
