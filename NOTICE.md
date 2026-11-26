@@ -60,6 +60,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
+### sakuga-vfx
+
+`app/vendor/sakuga-vfx/checkbox.js` vem de https://github.com/finktheartist/sakuga-vfx (commit
+`c3dabb1`), MIT © 2026 Justin Finkelman; licença completa em `app/vendor/sakuga-vfx/LICENSE`.
+
 ### Pixelarticons
 
 Os caminhos de ícone em `app/components/presentation/pixel-icons.generated.ts` vêm do

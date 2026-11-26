@@ -857,5 +857,6 @@
   "study.ledger.title": "Grimoire ledger",
   "study.today": "Today: {min} focus min · +{int} INT",
   "study.total": "Total INT: {n}",
-  "study.rule": "Only a full focus block counts: 1 focus min = 0.5 INT. Pausing keeps the block; giving up gives no INT."
+  "study.rule": "Only a full focus block counts: 1 focus min = 0.5 INT. Pausing keeps the block; giving up gives no INT.",
+  "rpg.daily.mark": "{item}: done"
 }
