@@ -1,36 +1,51 @@
 # GymLife RPG
 
+**Repositório oficial:** [github.com/Thedocwhocode/Gym-life-rpg](https://github.com/Thedocwhocode/Gym-life-rpg)
+· [Issues](https://github.com/Thedocwhocode/Gym-life-rpg/issues)
+· [Pull requests](https://github.com/Thedocwhocode/Gym-life-rpg/pulls)
+
 Cada treino é uma missão. O **GymLife RPG** é um app de registro de treinos de academia com
 progressão de RPG: você registra séries e cargas, ganha XP, sobe de nível, cumpre missões
-semanais e desbloqueia conquistas. Roda em Android, iOS e web (React Native + Expo).
+semanais e desbloqueia conquistas.
+
+É um projeto próprio, mantido pela Thedocwhocode, com marca, identidade visual, regras de jogo e
+roadmap independentes. Ele nasceu de um fork do LiftLog e mantém a licença AGPL-3.0 e os créditos
+do trabalho original (veja [Licença e créditos](#licença-e-créditos)). Bugs, sugestões e
+contribuições vão para **este** repositório, não para o projeto de origem.
+
+O primeiro lançamento é **só na web**; Android e iOS vêm depois (o código é React Native + Expo e
+já compila para os três). O app não tem nenhum recurso de IA.
 
 ### Principais recursos
 
 - Registro de treinos (séries, repetições, carga, cardio) e progressão automática de carga
 - XP, níveis, títulos, missões semanais e conquistas
 - Jornada: classe, skills, itens, corações dos dias de treino, mapa de masmorras com chefes e
-  combate por série (cada série golpeia o monstro)
+  combate por série (cada série golpeia o monstro); grimório, bestiário e inventário
 - Visual pixel art em 4 paletas (Brasa, Ferro, Fósforo, Pergaminho), efeitos e transições de
   tela com pixelfx; ajuste "Efeitos: Completo / Reduzido / Desligado" e vibração separada
-- Importar ficha em PDF: o leitor de fichas transcreve o PDF (com texto ou escaneado) numa tabela
-  para conferir antes de salvar; não cria treinos (recurso pro)
-- Backup local/remoto e exportação em CSV/JSON
-- Opcionais, só com backend próprio configurado: feed social com criptografia ponta a ponta
-  e leitor de fichas em PDF
+- Importar ficha em PDF (web): o app lê a ficha no próprio aparelho, sem IA e sem enviar o
+  arquivo, e mostra uma tabela para conferir antes de salvar; ficha escaneada (foto) não tem texto
+  para ler
+- Catálogo de exercícios (texto do openGym) para sugerir nomes ao importar
+- Backup local/remoto e exportação em CSV/JSON; backups do LiftLog continuam importando
+- Opcional, só com backend próprio configurado: feed social com criptografia ponta a ponta
 - 14 idiomas via Tolgee
 
 ---
 
 ## Início rápido
 
-Pré-requisitos: Node.js 20+, Android Studio (Android) e Xcode (iOS, só no macOS).
+Pré-requisitos: Node.js 20+; Android Studio (Android) e Xcode (iOS, só no macOS) para os builds
+nativos.
 
 ```bash
-cd app
+git clone https://github.com/Thedocwhocode/Gym-life-rpg.git
+cd Gym-life-rpg/app
 npm install
+npm run web       # Web
 npm run android   # Android
 npm run ios       # iOS (macOS)
-npm run web       # Web
 npm test          # testes (vitest)
 npm run typecheck
 ```
@@ -39,15 +54,14 @@ npm run typecheck
 
 | Variável | Efeito quando ausente |
 |---|---|
-| `EXPO_PUBLIC_API_URL` | Feed e importação de ficha ficam escondidos no build de release |
+| `EXPO_PUBLIC_API_URL` | Feed fica escondido no build de release |
 | `EXPO_PUBLIC_WEB_URL` | Links de compartilhamento do feed ficam relativos |
 | `EXPO_PUBLIC_SENTRY_DSN` | Relatórios de erro desligados |
-| `EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY` / `EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY` | Recursos "pro" indisponíveis no nativo |
+| `EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY` / `EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY` | Compras no nativo desligadas (hoje nenhum recurso depende delas) |
 
 ### Backend
 
-API .NET 10 com PostgreSQL, usada pelo feed e pelo leitor de fichas em PDF. Veja
-[`backend/README.md`](./backend/README.md).
+API .NET 10 com PostgreSQL, usada pelo feed. Veja [`backend/README.md`](./backend/README.md).
 
 ---
 
@@ -60,12 +74,13 @@ API .NET 10 com PostgreSQL, usada pelo feed e pelo leitor de fichas em PDF. Veja
 | [`backend/RevenueCat`](./backend/RevenueCat) | Cliente gerado da API do RevenueCat |
 | [`proto/`](./proto/) | Schemas protobuf (armazenamento local, backups, feed) |
 | [`tests/`](./tests/) | Testes de integração da API e testes Cypress da web |
-| [`docs/`](./docs/) | [Feed](./docs/FeedProcess.md) · [Backup remoto](./docs/RemoteBackup.md) · [Exportação em texto](./docs/PlaintextExport.md) |
+| [`docs/`](./docs/) | [Redesign](./docs/redesign/PLANO.md) · [Feed](./docs/FeedProcess.md) · [Backup remoto](./docs/RemoteBackup.md) · [Exportação em texto](./docs/PlaintextExport.md) |
 
 ## Contribuindo
 
-Veja [CONTRIBUTING.md](./CONTRIBUTING.md). Bugs e sugestões:
-[issues](https://github.com/Thedocwhocode/Gym-life-rpg/issues).
+Veja [CONTRIBUTING.md](./CONTRIBUTING.md). Abra bugs e sugestões nas
+[issues deste repositório](https://github.com/Thedocwhocode/Gym-life-rpg/issues) e mande PRs
+contra a branch `main`.
 
 ## Privacidade
 
@@ -73,6 +88,8 @@ Veja [CONTRIBUTING.md](./CONTRIBUTING.md). Bugs e sugestões:
 
 ## Licença e créditos
 
-AGPL-3.0 ([LICENSE](./LICENSE)). O GymLife RPG é um fork independente do
-[LiftLog](https://github.com/LiamMorrow/LiftLog), de Liam Morrow e colaboradores. Os créditos
-completos de terceiros estão em [NOTICE.md](./NOTICE.md).
+AGPL-3.0 ([LICENSE](./LICENSE)). O GymLife RPG começou como fork do
+[LiftLog](https://github.com/LiamMorrow/LiftLog), de Liam Morrow e colaboradores, e hoje segue
+como projeto separado; o código herdado continua sob a mesma licença e com os créditos do autor
+original. Os créditos completos de terceiros (LiftLog, pixelfx, openGym, fontes) estão em
+[NOTICE.md](./NOTICE.md).
