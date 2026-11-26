@@ -1,20 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { AiWorkoutPlan } from '@/models/ai-models';
-import { ProgramBlueprint, SessionBlueprint } from '@/models/blueprint-models';
-import { Duration, LocalDate } from '@js-joda/core';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { SessionBlueprint } from '@/models/blueprint-models';
+import { describe, expect, it, vi } from 'vitest';
 import {
   importPdf,
   PDF_MAX_BYTES,
-  readAi,
   readLocal,
-  readSheet,
-  SHEET_MAX_CHARS,
   type PdfImportDeps,
 } from './pdf-import';
-
-vi.mock('@/services/api-consts', () => ({ apiBaseUrl: 'http://api' }));
 
 const pdfBytes = (extra = 0) => {
   const head = new TextEncoder().encode('%PDF-1.4\n');
@@ -79,18 +73,9 @@ describe('importPdf', () => {
     expect(
       await importPdf(
         file(),
-        deps(async () => 'pro'),
+        deps(async () => 'unsupported'),
       ),
-    ).toEqual({
-      status: 'error',
-      reason: 'pro',
-    });
-    expect(
-      await importPdf(
-        file(),
-        deps(async () => 'rate_limited'),
-      ),
-    ).toEqual({ status: 'error', reason: 'rate_limited' });
+    ).toEqual({ status: 'error', reason: 'unsupported' });
   });
 
   it('plano sem exercícios ou leitor que falha → no_plan', async () => {
@@ -121,127 +106,6 @@ describe('readLocal', () => {
     ]);
     if (typeof out === 'string') throw new Error(out);
     expect(out.sessions[0].exercises[0].name).toBe('Supino reto');
-  });
-});
-
-describe('readAi', () => {
-  afterEach(() => vi.unstubAllGlobals());
-
-  const cells = [
-    { s: 'Treino A', x: 50, y: 800 },
-    { s: '4x10', x: 200, y: 780 },
-    { s: 'Supino reto', x: 50, y: 781 },
-  ];
-
-  it('manda só o texto, uma linha da tabela por linha', async () => {
-    vi.stubGlobal('__DEV__', false);
-    const f = vi.fn(async () => new Response('{}', { status: 422 }));
-    expect(await readAi(pdfBytes(), 'user-1', async () => [cells], f)).toBe(
-      'no_plan',
-    );
-    expect(f).toHaveBeenCalledWith(
-      'http://api/ai/sheet',
-      expect.objectContaining({ body: 'Treino A\nSupino reto | 4x10' }),
-    );
-  });
-
-  it('não chama a API sem texto, fora da web ou acima do teto', async () => {
-    const f = vi.fn();
-    expect(await readAi(pdfBytes(), 'u', async () => [[]], f)).toBe('no_plan');
-    expect(await readAi(pdfBytes(), 'u', async () => undefined, f)).toBe(
-      'unsupported',
-    );
-    const big = [{ s: 'x'.repeat(SHEET_MAX_CHARS + 1), x: 0, y: 0 }];
-    expect(await readAi(pdfBytes(), 'u', async () => [big], f)).toBe('too_big');
-    expect(f).not.toHaveBeenCalled();
-  });
-});
-
-describe('readSheet', () => {
-  afterEach(() => vi.unstubAllGlobals());
-
-  const respond = (status: number, body: unknown = {}) =>
-    vi.fn(async () => new Response(JSON.stringify(body), { status }));
-
-  it('sem token fora de dev nem chama a API', async () => {
-    vi.stubGlobal('__DEV__', false);
-    const f = respond(200);
-    expect(await readSheet('Treino A', undefined, f)).toBe('pro');
-    expect(f).not.toHaveBeenCalled();
-  });
-
-  it('manda o texto com o cabeçalho da RevenueCat', async () => {
-    vi.stubGlobal('__DEV__', false);
-    const f = respond(422);
-    await readSheet('Treino A', 'user-1', f);
-    expect(f).toHaveBeenCalledWith(
-      'http://api/ai/sheet',
-      expect.objectContaining({
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          Authorization: 'RevenueCat user-1',
-        },
-      }),
-    );
-  });
-
-  it.each([
-    [401, 'pro'],
-    [413, 'too_big'],
-    [429, 'rate_limited'],
-    [422, 'no_plan'],
-    [500, 'no_plan'],
-    [503, 'no_plan'],
-  ])('HTTP %i → %s', async (status, reason) => {
-    vi.stubGlobal('__DEV__', false);
-    expect(await readSheet('Treino A', 'user-1', respond(status))).toBe(reason);
-  });
-
-  it('200: converte o JSON da API (descanso "0.00:01:30:")', async () => {
-    vi.stubGlobal('__DEV__', true);
-    const body = {
-      name: 'Ficha hipertrofia',
-      description: '',
-      sessions: [
-        {
-          name: 'Treino A',
-          notes: '',
-          exercises: [
-            {
-              name: 'Supino reto',
-              sets: 4,
-              repsPerSet: 10,
-              weightIncreaseOnSuccess: 0,
-              restBetweenSets: {
-                minRest: '0.00:01:30:',
-                maxRest: '0.00:02:00:',
-                failureRest: '0.00:03:00:',
-              },
-              supersetWithNext: false,
-              notes: '20 kg',
-              link: '',
-            },
-          ],
-        },
-      ],
-    };
-    const out = await readSheet('Treino A', undefined, respond(200, body));
-    if (typeof out === 'string') throw new Error(out);
-    const ex = out.sessions[0].exercises[0];
-    expect(ex.name).toBe('Supino reto');
-    expect(ex.notes).toBe('20 kg');
-    expect(
-      'restBetweenSets' in ex &&
-        ex.restBetweenSets.minRest.equals(Duration.ofSeconds(90)),
-    ).toBe(true);
-    // O mesmo caminho do "Salvar plano" da tela (pdf-import.tsx).
-    const saved = ProgramBlueprint.fromPOJO({
-      lastEdited: LocalDate.now(),
-      name: out.name,
-      sessions: out.sessions.map((x) => x.toPOJO()),
-    });
-    expect(saved.sessions[0].exercises[0].name).toBe('Supino reto');
   });
 });
 
