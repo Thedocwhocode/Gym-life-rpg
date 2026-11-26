@@ -23,12 +23,17 @@ import { Stack } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { spacing } from '@/hooks/useAppTheme';
 import { isBackendConfigured } from '@/services/api-consts';
+import { useSoundPrefs } from '@/components/smart/sound-provider';
+import Segmented from '@/components/presentation/pixel/Segmented';
+import { sound, SOUND_VOLUMES, type SoundVolume } from '@/services/sound';
+import { Text } from 'react-native-paper';
 
 export default function AppConfiguration() {
   const { t } = useTranslate();
   const settings = useAppSelector((state: RootState) => state.settings);
   const dispatch = useDispatch();
   const effectsMode = useEffectsMode();
+  const soundPrefs = useSoundPrefs();
 
   return (
     <FullHeightScrollView>
@@ -58,6 +63,41 @@ export default function AppConfiguration() {
           value={settings.haptics}
           onValueChange={(value) => dispatch(setHaptics(value))}
         />
+        <ListSwitch
+          testID="setSound"
+          headline={<T keyName="settings.sound.label" />}
+          supportingText={<T keyName="settings.sound.subtitle" />}
+          value={soundPrefs.enabled}
+          onValueChange={(enabled) =>
+            sound.setPrefs({ ...soundPrefs, enabled })
+          }
+        />
+        {soundPrefs.enabled && (
+          <View
+            style={{
+              paddingHorizontal: spacing.pageHorizontalMargin,
+              paddingVertical: spacing[2],
+              gap: spacing[2],
+            }}
+          >
+            <Text variant="labelLarge">{t('settings.sound.volume')}</Text>
+            <Segmented
+              testID="sound-volume"
+              value={soundPrefs.volume}
+              onChange={(volume) => {
+                sound.setPrefs({ ...soundPrefs, volume });
+                sound.play('ui_confirm');
+              }}
+              options={(Object.keys(SOUND_VOLUMES) as SoundVolume[]).map(
+                (v) => ({
+                  value: v,
+                  label: t(`settings.sound.volume.${v}`),
+                  testID: `sound-volume-${v}`,
+                }),
+              )}
+            />
+          </View>
+        )}
         {isBackendConfigured && (
           <ListSwitch
             headline={<T keyName="feed.show_feed.label" />}

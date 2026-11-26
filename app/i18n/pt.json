@@ -833,5 +833,11 @@
   "rpg.rank.need.level": "nível {have}/{need}",
   "rpg.rank.need.goalWeeks": "semanas na meta {have}/{need}",
   "rpg.rank.need.prs": "PRs {have}/{need}",
-  "rpg.rank.need.dailies": "diárias {have}/{need}"
+  "rpg.rank.need.dailies": "diárias {have}/{need}",
+  "settings.sound.label": "Som",
+  "settings.sound.subtitle": "Efeitos 8-bit nos botões, golpes, missões e level up",
+  "settings.sound.volume": "Volume",
+  "settings.sound.volume.low": "Baixo",
+  "settings.sound.volume.mid": "Médio",
+  "settings.sound.volume.high": "Alto"
 }

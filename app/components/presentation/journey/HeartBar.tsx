@@ -2,8 +2,10 @@ import FxBurst from '@/components/presentation/fx/FxBurst';
 import { UI_MOMENTS } from '@/components/presentation/fx/moments';
 import Icon from '@/components/presentation/pixel/Icon';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { sound } from '@/services/sound';
 import { type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
+import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 
 /**
@@ -24,6 +26,9 @@ export default function HeartBar({
   const { palette } = useAppTheme();
   const { t } = useTranslate();
   const heart = UI_MOMENTS.heartLost();
+  useEffect(() => {
+    if (lostKey) sound.play('heart_lost');
+  }, [lostKey]);
   return (
     <View
       testID="heart-bar"
