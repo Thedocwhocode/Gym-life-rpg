@@ -72,7 +72,7 @@ export default function SessionCard({
           maxFontSizeMultiplier={TITLE_MAX_SCALE}
           numberOfLines={2}
           style={{
-            ...type.titleSm,
+            ...type.titleMd,
             color: palette.text1,
             textTransform: 'uppercase',
           }}

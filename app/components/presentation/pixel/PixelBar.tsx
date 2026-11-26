@@ -28,6 +28,8 @@ export interface PixelBarProps {
   height?: number | undefined;
   gap?: number | undefined;
   label?: string | undefined;
+  /** v1.1: halo na cor de recompensa (barra cheia de baú, XP ganho). */
+  glow?: boolean | undefined;
   testID?: string | undefined;
 }
 
@@ -39,6 +41,7 @@ export default function PixelBar({
   height = 10,
   gap = 2,
   label,
+  glow = false,
   testID,
 }: PixelBarProps) {
   const { palette } = useAppTheme();
@@ -65,7 +68,14 @@ export default function PixelBar({
           {label}
         </Text>
       ) : null}
-      <View style={{ flexDirection: 'row', gap }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          gap,
+          // 73 hex = 45% de opacidade, como o --fx-glow-reward do design.
+          boxShadow: glow ? `0 0 6px ${palette.reward}73` : undefined,
+        }}
+      >
         {Array.from({ length: segments }, (_, i) => (
           <View
             key={i}
