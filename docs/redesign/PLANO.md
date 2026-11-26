@@ -748,6 +748,15 @@ Voz externa: subagent Claude (Codex não rodou), então a revisão é de modelo 
 - **DR4 Atributos cumulativos:** STR, DEX, CON e STA mostram o total da vida (ou um nível derivado
   dele), com o subtítulo "esta semana +N". É uma fórmula pura a mais em `derive.ts`, com teste.
   Afeta a F2 (T1).
+  - **Substituída em 2026-11-26 (decisão do usuário, design v1.2):** são 5 atributos, STR/AGI/END/VIT/INT.
+    Cada série vale `2 × reps × carga relativa` (teto 40; isolado ×0,7; peso do corpo entra por fração),
+    tempo vale `minutos × MET × 0,25`, e o XP do exercício se divide pelos músculos da biblioteca
+    (principal 1,0, secundários 0,5) ou pela categoria (cardio END 0,8/AGI 0,2, pliometria AGI 0,7/STR 0,3,
+    olímpico STR 0,6/AGI 0,4, alongamento e mobilidade VIT 1,0). Panturrilha, adutores e abdutores dão AGI;
+    abdômen e pescoço, VIT. INT vem só do modo estudo. Regra pura em `store/journey/rules/attributes.ts`;
+    a perda por inatividade abaixo continua valendo. Escola, raridade e status passaram a ter chaves em
+    inglês (`steel|wind|light|arcane`, `common|rare|epic|legendary`, `exhausted|cursed|rusty|rage|momentum`);
+    o texto mostrado segue traduzido.
   - **Revisado em 2026-11-09 (decisão do produto):** o herói **pode** ficar mais fraco. Depois de
     14 dias sem treinar ele perde XP (logo, nível e título) e atributos (CON etc.). A perda começa
     pequena e acelera: 1% no dia 14, dobrando a cada 7 dias (2% no 21, 4% no 28, 16% no 42), teto

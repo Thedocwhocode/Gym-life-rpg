@@ -29,8 +29,8 @@ const REPO = 'https://github.com/Thedocwhocode/Gym-life-rpg';
 
 const CLASS_TAG: Record<RpgClass, { tone: TagTone; attr: string }> = {
   warrior: { tone: 'str', attr: 'STR' },
-  scout: { tone: 'dex', attr: 'DEX' },
-  paladin: { tone: 'con', attr: 'CON' },
+  scout: { tone: 'agi', attr: 'AGI' },
+  paladin: { tone: 'vit', attr: 'VIT' },
 };
 
 interface Row {

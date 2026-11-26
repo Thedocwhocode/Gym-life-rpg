@@ -15,10 +15,7 @@ import { useTranslate } from '@tolgee/react';
 import { Stack } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 
-const GRID: AttrKey[][] = [
-  ['STR', 'DEX'],
-  ['CON', 'STA'],
-];
+const GRID: AttrKey[][] = [['STR', 'AGI'], ['END', 'VIT'], ['INT']];
 
 /** DR1: ficha → próxima missão → quests → clima → atributos → conquistas. */
 export default function DashboardPage() {

@@ -12,9 +12,10 @@ export const ATTRIBUTES: Record<
   { icon: PixelIconName; color: (p: Palette) => string }
 > = {
   STR: { icon: 'human-handsup', color: (p) => p.attrStr },
-  DEX: { icon: 'speed-fast', color: (p) => p.attrDex },
-  CON: { icon: 'heart', color: (p) => p.attrCon },
-  STA: { icon: 'battery-full', color: (p) => p.attrSta },
+  AGI: { icon: 'speed-fast', color: (p) => p.attrAgi },
+  END: { icon: 'battery-full', color: (p) => p.attrEnd },
+  VIT: { icon: 'heart', color: (p) => p.attrVit },
+  INT: { icon: 'book-open', color: (p) => p.attrInt },
 };
 
 export interface AttributeStatProps {

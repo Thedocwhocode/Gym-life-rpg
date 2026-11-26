@@ -9,12 +9,10 @@ import { selectRpgClass } from '@/store/choices';
 import { selectJourney } from '@/store/journey';
 import { ENERGY } from '@/store/journey/rules/energy';
 import { selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
-import type { AttrKey } from '@/store/rpg/derive';
+import { ATTR_ORDER } from '@/store/journey/rules/attributes';
 import { fontFamily, TITLE_MAX_SCALE, type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
 import { Text, View } from 'react-native';
-
-const ATTR_ORDER: AttrKey[] = ['STR', 'DEX', 'CON', 'STA'];
 
 /** Cabeçalho do herói: retrato, nível, título, XP e a linha de atributos. */
 export default function CharacterSheet() {

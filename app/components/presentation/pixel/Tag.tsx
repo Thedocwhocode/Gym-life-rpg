@@ -11,9 +11,10 @@ export type TagTone =
   | 'reward'
   | 'muted'
   | 'str'
-  | 'dex'
-  | 'con'
-  | 'sta'
+  | 'agi'
+  | 'vit'
+  | 'end'
+  | 'int'
   | 'system';
 
 const SIZE = { sm: 11, md: 13, lg: 15 } as const;
@@ -30,12 +31,14 @@ export function tagColor(p: Palette, tone: TagTone): string {
       return p.reward;
     case 'str':
       return p.attrStr;
-    case 'dex':
-      return p.attrDex;
-    case 'con':
-      return p.attrCon;
-    case 'sta':
-      return p.attrSta;
+    case 'agi':
+      return p.attrAgi;
+    case 'vit':
+      return p.attrVit;
+    case 'end':
+      return p.attrEnd;
+    case 'int':
+      return p.attrInt;
     case 'system':
       return systemText(p);
     default:

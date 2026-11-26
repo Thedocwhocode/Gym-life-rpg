@@ -39,8 +39,8 @@ import { isBackendConfigured } from '@/services/api-consts';
 // ponytail: o bônus descrito só vira número na F6 (multiplicadores DR11).
 const RPG_CLASSES: { id: RpgClass; attr: string; tone: TagTone }[] = [
   { id: 'warrior', attr: 'STR', tone: 'str' },
-  { id: 'scout', attr: 'DEX', tone: 'dex' },
-  { id: 'paladin', attr: 'CON', tone: 'con' },
+  { id: 'scout', attr: 'AGI', tone: 'agi' },
+  { id: 'paladin', attr: 'VIT', tone: 'vit' },
 ];
 
 export function WelcomeWizard() {

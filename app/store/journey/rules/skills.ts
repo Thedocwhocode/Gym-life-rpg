@@ -6,7 +6,7 @@ import type { Bonus } from './multipliers';
 // Efeito numérico só onde a projeção implementa (`bonus`, `streakShield`, `restBoost`);
 // o resto mostra o efeito com "em breve" (DR11: nada decorativo).
 
-export type School = 'aco' | 'vento' | 'luz' | 'arcano';
+export type School = 'steel' | 'wind' | 'light' | 'arcane';
 
 export type Req =
   | { kind: 'class'; cls: RpgClass }
@@ -33,7 +33,7 @@ export interface Skill {
 export const SKILLS: readonly Skill[] = [
   {
     id: 'corte',
-    school: 'aco',
+    school: 'steel',
     tier: 1,
     fx: 'melee/sword-slash',
     req: { kind: 'class', cls: 'warrior' },
@@ -41,42 +41,42 @@ export const SKILLS: readonly Skill[] = [
   },
   {
     id: 'cruzado',
-    school: 'aco',
+    school: 'steel',
     tier: 2,
     fx: 'melee/double-slash',
     req: { kind: 'missions', n: 10 },
   },
   {
     id: 'talho',
-    school: 'aco',
+    school: 'steel',
     tier: 2,
     fx: 'melee/heavy-cleave',
     req: { kind: 'weekSets', n: 20 },
   },
   {
     id: 'martelo',
-    school: 'aco',
+    school: 'steel',
     tier: 3,
     fx: 'melee/hammer-smash',
     req: { kind: 'deadliftPr' },
   },
   {
     id: 'colosso',
-    school: 'aco',
+    school: 'steel',
     tier: 3,
     fx: 'moves/ground-pound',
     req: { kind: 'soon' },
   },
   {
     id: 'combo',
-    school: 'aco',
+    school: 'steel',
     tier: 4,
     fx: 'moves/sword-combo',
     req: { kind: 'level', n: 10 },
   },
   {
     id: 'estocada',
-    school: 'vento',
+    school: 'wind',
     tier: 1,
     fx: 'melee/thrust',
     req: { kind: 'class', cls: 'scout' },
@@ -84,35 +84,35 @@ export const SKILLS: readonly Skill[] = [
   },
   {
     id: 'adagas',
-    school: 'vento',
+    school: 'wind',
     tier: 2,
     fx: 'melee/dagger-flurry',
     req: { kind: 'sessionCardioMin', n: 30 },
   },
   {
     id: 'giro',
-    school: 'vento',
+    school: 'wind',
     tier: 2,
     fx: 'melee/spin-slash',
     req: { kind: 'streak', n: 7 },
   },
   {
     id: 'investida',
-    school: 'vento',
+    school: 'wind',
     tier: 3,
     fx: 'moves/dash-strike',
     req: { kind: 'weekKm', n: 5 },
   },
   {
     id: 'flecha',
-    school: 'vento',
+    school: 'wind',
     tier: 4,
     fx: 'moves/arrow-shot',
     req: { kind: 'weekCardioMin', n: 100 },
   },
   {
     id: 'respiro',
-    school: 'luz',
+    school: 'light',
     tier: 1,
     fx: 'holy/heal',
     req: { kind: 'class', cls: 'paladin' },
@@ -120,7 +120,7 @@ export const SKILLS: readonly Skill[] = [
   },
   {
     id: 'egide',
-    school: 'luz',
+    school: 'light',
     tier: 2,
     fx: 'holy/divine-shield',
     req: { kind: 'goalWeeks', n: 4 },
@@ -128,56 +128,56 @@ export const SKILLS: readonly Skill[] = [
   },
   {
     id: 'bencao',
-    school: 'luz',
+    school: 'light',
     tier: 2,
     fx: 'holy/blessing',
     req: { kind: 'weeks3x', n: 4 },
   },
   {
     id: 'smite',
-    school: 'luz',
+    school: 'light',
     tier: 3,
     fx: 'moves/holy-smite',
     req: { kind: 'missions', n: 50 },
   },
   {
     id: 'retorno',
-    school: 'luz',
+    school: 'light',
     tier: 4,
     fx: 'holy/resurrection',
     req: { kind: 'comeback' },
   },
   {
     id: 'foco',
-    school: 'arcano',
+    school: 'arcane',
     tier: 1,
     fx: 'arcane/spell-charge',
     req: { kind: 'soon' },
   },
   {
     id: 'misseis',
-    school: 'arcano',
+    school: 'arcane',
     tier: 2,
     fx: 'arcane/arcane-missiles',
     req: { kind: 'soon' },
   },
   {
     id: 'circulo',
-    school: 'arcano',
+    school: 'arcane',
     tier: 3,
     fx: 'arcane/magic-circle-cast',
     req: { kind: 'soon' },
   },
   {
     id: 'tempo',
-    school: 'arcano',
+    school: 'arcane',
     tier: 4,
     fx: 'arcane/time-stop',
     req: { kind: 'soon' },
   },
 ];
 
-export const SCHOOLS: readonly School[] = ['aco', 'vento', 'luz', 'arcano'];
+export const SCHOOLS: readonly School[] = ['steel', 'wind', 'light', 'arcane'];
 
 export const STARTER: Record<RpgClass, string> = {
   warrior: 'corte',

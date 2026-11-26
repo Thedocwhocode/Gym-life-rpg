@@ -25,9 +25,10 @@ import { useDispatch } from 'react-redux';
 
 const BAG = 15;
 const RARITY_TONE: Record<Rarity, TagTone> = {
-  comum: 'muted',
-  raro: 'dex',
-  epico: 'reward',
+  common: 'muted',
+  rare: 'agi',
+  epic: 'reward',
+  legendary: 'system',
 };
 
 function ItemCell({
@@ -50,11 +51,13 @@ function ItemCell({
   const { palette } = useAppTheme();
   const { t } = useTranslate();
   const color =
-    item?.rarity === 'epico'
-      ? palette.reward
-      : item?.rarity === 'raro'
-        ? palette.attrDex
-        : palette.text2;
+    item?.rarity === 'legendary'
+      ? palette.system
+      : item?.rarity === 'epic'
+        ? palette.reward
+        : item?.rarity === 'rare'
+          ? palette.attrAgi
+          : palette.text2;
   return (
     <Pressable
       testID={testID}

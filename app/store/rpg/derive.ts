@@ -28,8 +28,22 @@ import {
   StatusId,
 } from '@/store/journey/rules/status';
 
-/** Siglas do design (D2). INT fica fora até a Fase 5. */
-export type AttrKey = 'STR' | 'DEX' | 'CON' | 'STA';
+import {
+  addAttrs,
+  ATTR_ORDER,
+  AttrKey,
+  AttrWeights,
+  bodyweightFraction,
+  distributeXp,
+  ExerciseTraits,
+  isIsolated,
+  metFor,
+  weightsFor,
+  xpForMinutes,
+  xpForSet,
+} from '@/store/journey/rules/attributes';
+
+export type { AttrKey } from '@/store/journey/rules/attributes';
 
 export interface AttrValue {
   /** Total da vida, já descontadas as pausas de 14+ dias (decay.ts). */
@@ -56,7 +70,14 @@ export interface SessionFacts {
   loads?: readonly (readonly [string, number])[];
   cardioMin?: number;
   cardioKm?: number;
+  /** XP de atributo da sessão (journey/rules/attributes.ts). */
+  attrXp?: AttrWeights;
 }
+
+/** Descrição do exercício pelo nome do blueprint (biblioteca do usuário); undefined = regra padrão. */
+export type TraitsLookup = (name: string) => ExerciseTraits | undefined;
+
+const CARDIO: ExerciseTraits = { category: 'cardio' };
 
 const KM: Record<string, number> = {
   metre: 0.001,
@@ -65,7 +86,12 @@ const KM: Record<string, number> = {
   kilometre: 1,
 };
 
-export function sessionFacts(session: Session): SessionFacts {
+export function sessionFacts(
+  session: Session,
+  traits: TraitsLookup = () => undefined,
+): SessionFacts {
+  const bw = session.bodyweight?.convertTo('kilograms').value.toNumber() || 80;
+  let attrXp: AttrWeights = {};
   let sets = 0;
   let cardio = 0;
   let maxWeight = 0;
@@ -74,17 +100,24 @@ export function sessionFacts(session: Session): SessionFacts {
   const loads: [string, number][] = [];
   for (const ex of session.recordedExercises) {
     if (ex instanceof RecordedWeightedExercise) {
+      const t = traits(ex.blueprint.name);
       let best = 0;
+      let xp = 0;
       for (const ps of ex.potentialSets) {
         if (ps.set === undefined) continue;
         sets++;
         maxWeight = Math.max(maxWeight, ps.weight.value.toNumber());
-        if (ps.set.repsCompleted > 0)
-          best = Math.max(
-            best,
-            ps.weight.convertTo('kilograms').value.toNumber(),
-          );
+        const kg = ps.weight.convertTo('kilograms').value.toNumber();
+        xp += xpForSet(
+          ps.set.repsCompleted,
+          kg,
+          bw,
+          bodyweightFraction(t),
+          isIsolated(t),
+        );
+        if (ps.set.repsCompleted > 0) best = Math.max(best, kg);
       }
+      attrXp = addAttrs(attrXp, distributeXp(xp, weightsFor(t)));
       if (best > 0)
         loads.push([
           NormalizedName.fromExerciseBlueprint(ex.blueprint).toString(),
@@ -92,8 +125,14 @@ export function sessionFacts(session: Session): SessionFacts {
         ]);
     } else if (ex instanceof RecordedCardioExercise) {
       if (ex.completionDateTime === undefined) continue;
+      const t = traits(ex.blueprint.name) ?? CARDIO;
+      const min = ex.duration ? Number(ex.duration.seconds()) / 60 : 0;
       cardio++;
-      cardioMin += ex.duration ? Number(ex.duration.seconds()) / 60 : 0;
+      cardioMin += min;
+      attrXp = addAttrs(
+        attrXp,
+        distributeXp(xpForMinutes(min, metFor(t)), weightsFor(t)),
+      );
       cardioKm += ex.distance
         ? ex.distance.value.toNumber() * (KM[ex.distance.unit] ?? 0)
         : 0;
@@ -112,14 +151,14 @@ export function sessionFacts(session: Session): SessionFacts {
     loads,
     cardioMin: Math.floor(cardioMin),
     cardioKm,
+    attrXp,
   };
 }
 
 /**
- * DR4: STR = séries, STA = minutos, CON = dias de treino, DEX = exercícios distintos.
- * Acumulado na vida, mas cada pausa de 14+ dias corta os totais pela curva de `decay.ts`
- * (inclusive a pausa atual, até `today`). `week` conta os ganhos da semana ISO (seg–dom) de `today`.
- * `today` é injetado: nada de relógio aqui.
+ * Cada sessão soma o XP de atributo dela (`attrXp`: força por série, tempo pelo MET, dividido pelos músculos).
+ * Acumulado na vida, mas cada pausa de 14+ dias corta os totais pela curva de `decay.ts` (inclusive a pausa atual,
+ * até `today`). `week` conta os ganhos da semana ISO (seg–dom) de `today`. `today` é injetado: nada de relógio aqui.
  */
 export function deriveAttributes(
   facts: readonly SessionFacts[],
@@ -128,52 +167,43 @@ export function deriveAttributes(
   const monday = today.minusDays(today.dayOfWeek().value() - 1);
   const inWeek = (d: LocalDate) => !d.isBefore(monday) && !d.isAfter(today);
   const sorted = [...facts].sort((a, b) => a.date.compareTo(b.date));
+  const zero = () =>
+    Object.fromEntries(ATTR_ORDER.map((k) => [k, 0])) as Record<
+      AttrKey,
+      number
+    >;
 
-  const total = { STR: 0, DEX: 0, CON: 0, STA: 0 };
-  const week = { STR: 0, DEX: 0, CON: 0, STA: 0 };
-  const days = new Set<string>();
-  const seen = new Set<string>();
+  let total = zero();
+  const week = zero();
   let prev: LocalDate | undefined;
 
   const decay = (to: LocalDate) => {
     if (!prev) return;
     const keep = 1 - inactivityLoss(daysBetween(prev, to));
-    for (const k of ATTR_KEYS) total[k] *= keep;
+    total = Object.fromEntries(
+      ATTR_ORDER.map((k) => [k, total[k] * keep]),
+    ) as Record<AttrKey, number>;
   };
 
   for (const f of sorted) {
     decay(f.date);
     prev = f.date;
     const w = inWeek(f.date);
-    const day = f.date.toString();
-    const newDay = !days.has(day);
-    days.add(day);
-    const newExercises = f.exercises.filter((name) => {
-      if (seen.has(name)) return false;
-      seen.add(name);
-      return true;
-    }).length;
-    const gains = {
-      STR: f.sets,
-      DEX: newExercises,
-      CON: newDay ? 1 : 0,
-      STA: f.minutes,
-    };
-    for (const k of ATTR_KEYS) {
-      total[k] += gains[k];
-      if (w) week[k] += gains[k];
+    for (const k of ATTR_ORDER) {
+      const g = f.attrXp?.[k] ?? 0;
+      total[k] += g;
+      if (w) week[k] += g;
     }
   }
   decay(today);
 
-  const out = {} as Record<AttrKey, AttrValue>;
-  for (const k of ATTR_KEYS) {
-    out[k] = { total: Math.floor(total[k] + 1e-9), week: week[k] };
-  }
-  return out;
+  return Object.fromEntries(
+    ATTR_ORDER.map((k) => [
+      k,
+      { total: Math.floor(total[k] + 1e-9), week: week[k] },
+    ]),
+  ) as Record<AttrKey, AttrValue>;
 }
-
-const ATTR_KEYS: AttrKey[] = ['STR', 'DEX', 'CON', 'STA'];
 
 // ── Progresso: XP, nível, streak, quests e conquistas, tudo projetado das sessões ──
 

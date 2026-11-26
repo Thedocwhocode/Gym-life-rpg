@@ -84,11 +84,11 @@ function extraTone(p: Palette): Record<ExtraColor, string> {
     green: p.success,
     purple: p.steel,
     pink: p.dangerStrong,
-    teal: p.attrSta,
+    teal: p.attrEnd,
     cyan: p.steel,
     brown: p.accentMuted,
     indigo: p.steel,
-    lime: p.attrDex,
+    lime: p.attrAgi,
     amber: p.accent,
   };
 }

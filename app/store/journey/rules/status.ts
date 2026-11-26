@@ -1,22 +1,22 @@
 // Status do design-spec §D.2. Cada status é função do histórico ANTERIOR ao momento avaliado.
 
-export type StatusId = 'exausto' | 'amaldicoado' | 'lento' | 'furia' | 'pressa';
+export type StatusId = 'exhausted' | 'cursed' | 'rusty' | 'rage' | 'momentum';
 
 /** % de XP de cada status (DR11: a mesma tabela alimenta o XP e a Tag da tela). */
 export const STATUS_XP: Record<StatusId, number> = {
-  exausto: -50,
-  amaldicoado: -25,
-  lento: -15,
-  furia: 20,
-  pressa: 10,
+  exhausted: -50,
+  cursed: -25,
+  rusty: -15,
+  rage: 20,
+  momentum: 10,
 };
 
 export const STATUS_FX = {
-  exausto: 'status/sleep',
-  amaldicoado: 'status/cursed',
-  lento: 'status/slowed',
-  furia: 'status/rage',
-  pressa: 'status/haste',
+  exhausted: 'status/sleep',
+  cursed: 'status/cursed',
+  rusty: 'status/slowed',
+  rage: 'status/rage',
+  momentum: 'status/haste',
 } as const;
 
 export const STATUS_RULES = {
@@ -43,12 +43,12 @@ export interface StatusContext {
 /** Debuffs primeiro, do mais grave ao mais leve; depois os buffs. */
 export function activeStatuses(ctx: StatusContext): StatusId[] {
   const out: StatusId[] = [];
-  if (ctx.exhausted) out.push('exausto');
+  if (ctx.exhausted) out.push('exhausted');
   if (ctx.weeksBelowGoal >= STATUS_RULES.cursedWeeks && !ctx.goalMetThisWeek)
-    out.push('amaldicoado');
-  if ((ctx.daysSinceLast ?? 0) >= STATUS_RULES.rustyDays) out.push('lento');
-  if (ctx.prThisWeek) out.push('furia');
-  if (ctx.streak >= STATUS_RULES.hasteStreak) out.push('pressa');
+    out.push('cursed');
+  if ((ctx.daysSinceLast ?? 0) >= STATUS_RULES.rustyDays) out.push('rusty');
+  if (ctx.prThisWeek) out.push('rage');
+  if (ctx.streak >= STATUS_RULES.hasteStreak) out.push('momentum');
   return out;
 }
 

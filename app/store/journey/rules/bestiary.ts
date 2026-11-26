@@ -7,7 +7,7 @@ export interface Beast {
   id: string;
   fx: FxId;
   hp: number;
-  weak: AttrKey | 'INT';
+  weak: AttrKey;
   /** Item de `items.ts` que cai na 1ª derrota (D7). */
   drop: string;
   /** Monstro do combate (combat.ts) que conta como este; o guardião é o chefe de masmorra (DR22). */
@@ -28,7 +28,7 @@ export const BESTIARY: readonly Beast[] = [
     id: 'morcego',
     fx: 'critters/bat',
     hp: 4,
-    weak: 'CON',
+    weak: 'VIT',
     drop: 'capuz-noite',
     combat: 'bat',
   },
@@ -36,7 +36,7 @@ export const BESTIARY: readonly Beast[] = [
     id: 'serpente',
     fx: 'critters/snake',
     hp: 4,
-    weak: 'DEX',
+    weak: 'AGI',
     drop: 'cinto-escamas',
     combat: 'snake',
   },
@@ -44,7 +44,7 @@ export const BESTIARY: readonly Beast[] = [
     id: 'espectro',
     fx: 'critters/ghost',
     hp: 5,
-    weak: 'STA',
+    weak: 'END',
     drop: 'manto-palido',
     combat: 'ghost',
   },
@@ -52,7 +52,7 @@ export const BESTIARY: readonly Beast[] = [
     id: 'olho',
     fx: 'critters/eyeball',
     hp: 5,
-    weak: 'CON',
+    weak: 'VIT',
     drop: 'amuleto-coragem',
     combat: 'eyeball',
   },

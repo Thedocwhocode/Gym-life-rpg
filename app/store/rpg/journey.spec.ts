@@ -110,14 +110,14 @@ describe('deriveProgress com JourneyContext', () => {
       multipliersSince: MON,
     });
     expect(p.sources[facts[1].id!]).toEqual([]);
-    expect(p.sources[facts[2].id!].map((s) => s.id)).toEqual(['furia']);
-    expect(p.statuses).toContain('furia');
+    expect(p.sources[facts[2].id!].map((s) => s.id)).toEqual(['rage']);
+    expect(p.statuses).toContain('rage');
   });
 
   it('Lento depois de 7+ dias; volta de 14+ conta como retorno', () => {
     const facts = [fact(0), fact(7), fact(21)];
     const p = deriveProgress(facts, day(21), { multipliersSince: MON });
-    expect(p.sources[facts[1].id!].map((s) => s.id)).toEqual(['lento']);
+    expect(p.sources[facts[1].id!].map((s) => s.id)).toEqual(['rusty']);
     expect(p.stats.comeback).toBe(true);
     expect(deriveProgress(facts.slice(0, 2), day(7)).stats.comeback).toBe(
       false,
@@ -128,7 +128,7 @@ describe('deriveProgress com JourneyContext', () => {
     const facts = [0, 1, 2, 3, 4, 5].map((n) => fact(n));
     const p = deriveProgress(facts, day(5), { multipliersSince: MON });
     expect(p.sources[facts[4].id!]).toEqual([]);
-    expect(p.sources[facts[5].id!].map((s) => s.id)).toEqual(['pressa']);
+    expect(p.sources[facts[5].id!].map((s) => s.id)).toEqual(['momentum']);
   });
 
   it('Paladino protege o streak 1× por semana (falta de 1 dia)', () => {
@@ -153,8 +153,8 @@ describe('deriveProgress com JourneyContext', () => {
     const f = fact(6);
     const p = deriveProgress([f], day(6), ctx);
     expect(p.hearts.exhausted).toBe(true);
-    expect(p.sources[f.id!].map((s) => s.id)).toEqual(['exausto']);
-    expect(p.statuses[0]).toBe('exausto');
+    expect(p.sources[f.id!].map((s) => s.id)).toEqual(['exhausted']);
+    expect(p.statuses[0]).toBe('exhausted');
   });
 
   it('Amaldiçoado após 2 semanas completas abaixo da meta', () => {
@@ -162,11 +162,11 @@ describe('deriveProgress com JourneyContext', () => {
     const p = deriveProgress(facts, day(21), { multipliersSince: MON });
     // semanas 2 e 3 tiveram 1 missão cada (meta 2); a pausa de 7 dias soma o Lento
     expect(p.sources[facts[4].id!].map((s) => s.id)).toEqual([
-      'amaldicoado',
-      'lento',
+      'cursed',
+      'rusty',
     ]);
     expect(p.sources[facts[2].id!]).toEqual([]);
-    expect(p.sources[facts[3].id!].map((s) => s.id)).toEqual(['lento']);
+    expect(p.sources[facts[3].id!].map((s) => s.id)).toEqual(['rusty']);
   });
 
   it('mesma projeção com as sessões em outra ordem', () => {

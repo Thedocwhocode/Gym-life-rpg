@@ -4,7 +4,7 @@ import type { Bonus } from './multipliers';
 // bônus do design-spec §D; os outros são cosméticos. ponytail: drops de conquista quando houver arte.
 
 export type Slot = 'elmo' | 'manto' | 'arma' | 'cinto' | 'botas' | 'reliquia';
-export type Rarity = 'comum' | 'raro' | 'epico';
+export type Rarity = 'common' | 'rare' | 'epic' | 'legendary';
 
 export interface Item {
   id: string;
@@ -26,19 +26,19 @@ export const ITEMS: readonly Item[] = [
   {
     id: 'botas-couro',
     slot: 'botas',
-    rarity: 'comum',
+    rarity: 'common',
     bonus: { kind: 'cardio', pct: 5 },
   },
-  { id: 'capuz-noite', slot: 'elmo', rarity: 'comum' },
-  { id: 'cinto-escamas', slot: 'cinto', rarity: 'comum' },
-  { id: 'manto-palido', slot: 'manto', rarity: 'raro' },
-  { id: 'amuleto-coragem', slot: 'reliquia', rarity: 'raro' },
-  { id: 'vela-foco', slot: 'reliquia', rarity: 'comum' },
-  { id: 'elmo-chamuscado', slot: 'elmo', rarity: 'raro' },
+  { id: 'capuz-noite', slot: 'elmo', rarity: 'common' },
+  { id: 'cinto-escamas', slot: 'cinto', rarity: 'common' },
+  { id: 'manto-palido', slot: 'manto', rarity: 'rare' },
+  { id: 'amuleto-coragem', slot: 'reliquia', rarity: 'rare' },
+  { id: 'vela-foco', slot: 'reliquia', rarity: 'common' },
+  { id: 'elmo-chamuscado', slot: 'elmo', rarity: 'rare' },
   {
     id: 'espada-ferro-frio',
     slot: 'arma',
-    rarity: 'epico',
+    rarity: 'epic',
     bonus: { kind: 'strength', pct: 5 },
   },
 ];

@@ -47,7 +47,7 @@ export default function JourneyPanel() {
           key={s}
           status={s}
           cure={
-            s === 'exausto'
+            s === 'exhausted'
               ? hearts.cureProgress / HEARTS.cureMissions
               : undefined
           }
