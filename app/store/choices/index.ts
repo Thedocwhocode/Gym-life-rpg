@@ -9,6 +9,7 @@ import {
   type DailyEntry,
   type DailyItem,
 } from '@/store/journey/rules/daily';
+import { withStudyMinutes, type StudyEntry } from '@/store/journey/rules/study';
 
 export type RpgClass = 'warrior' | 'scout' | 'paladin';
 
@@ -38,6 +39,8 @@ export interface Choices {
   journeyIntroSeen?: boolean;
   /** Missão diária do Sistema: o que foi feito em cada dia (journey/rules/daily.ts). */
   dailyLog?: DailyEntry[];
+  /** Minutos de foco do pomodoro por dia: viram INT (journey/rules/study.ts). */
+  studyLog?: StudyEntry[];
 }
 
 export interface ChoicesState extends Choices {
@@ -156,6 +159,17 @@ const choicesSlice = createSlice({
         payload.recovery,
       );
     },
+    /** Bloco de foco concluído no pomodoro de estudo. */
+    addStudyMinutes(
+      state,
+      { payload }: PayloadAction<{ date: string; minutes: number }>,
+    ) {
+      state.studyLog = withStudyMinutes(
+        state.studyLog ?? [],
+        payload.date,
+        payload.minutes,
+      );
+    },
     initializeChoicesStateSlice() {},
   },
 });
@@ -173,6 +187,7 @@ export const {
   markChronicleSeen,
   markJourneyIntroSeen,
   setDailyCount,
+  addStudyMinutes,
   initializeChoicesStateSlice,
 } = choicesSlice.actions;
 
@@ -189,6 +204,7 @@ export const PERSISTED_CHOICE_ACTIONS = [
   markChronicleSeen,
   markJourneyIntroSeen,
   setDailyCount,
+  addStudyMinutes,
 ] as const;
 
 export const choicesReducer = choicesSlice.reducer;
@@ -196,6 +212,7 @@ export const choicesReducer = choicesSlice.reducer;
 export const selectChoices = (state: RootState) => state.choices;
 export const selectRpgClass = (state: RootState) => state.choices.rpgClass;
 export const selectDailyLog = (state: RootState) => state.choices.dailyLog;
+export const selectStudyLog = (state: RootState) => state.choices.studyLog;
 export const selectDailyHistory = createSelector([selectDailyLog], (log) =>
   dailyHistory(log ?? []),
 );
