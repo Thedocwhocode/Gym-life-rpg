@@ -55,6 +55,8 @@ function Spinner({ color, fontSize }: { color: string; fontSize: number }) {
     <Text
       importantForAccessibility="no"
       accessibilityElementsHidden
+      // os dois acima são só do nativo; o react-native-web precisa de aria-hidden
+      aria-hidden
       style={{
         fontFamily: fontFamily.monoBold,
         fontSize,

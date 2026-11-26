@@ -536,10 +536,11 @@ no `Button`; tom `system` no `Tag`; bordas de `Switch`/`TextField` em `lineContr
 desabilitado e com erro em AA; `AppBottomSheet` quadrada; foco tracejado em `lineFocus` na web;
 `Badge` novo.
 
-Fora, por decisão do mantenedor: atributos 4 → 5 (o design usa STR/AGI/END/VIT/INT; a DR4 define
+Fora, esperando decisão do usuário: atributos 4 → 5 (o design usa STR/AGI/END/VIT/INT; a DR4 define
 DEX como exercícios distintos), chaves em inglês de escola/raridade/status, ranks E–S e quests do
 "Sistema", som (mp3 sem licença clara, sem lib de áudio no app), Sakuga, o ExercisePicker do design
-(o openGym já cobre) e clima simulado. Nenhum recurso de IA do design entra: o app é lançado sem IA.
+(o openGym já cobre) e clima simulado. Já decidido pelo usuário: nenhum recurso de IA do design
+entra, porque o app é lançado sem IA.
 
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
