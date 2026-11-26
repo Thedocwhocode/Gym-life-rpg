@@ -165,3 +165,26 @@ describe('F6: escolhas datadas', () => {
     expect(pick({ studyLog: 'x' })).toEqual({});
   });
 });
+
+describe('pick: nome e visual do herói', () => {
+  it('guarda nome limpo e visual válido', () => {
+    expect(
+      pick({ heroName: '  Ana   Lua ', heroLook: { skin: 2, hair: 3 } }),
+    ).toEqual({ heroName: 'Ana Lua', heroLook: { skin: 2, hair: 3 } });
+  });
+
+  it('descarta nome vazio, só espaços ou longo e visual inválido', () => {
+    for (const heroName of ['', '   ', 'x'.repeat(17), 42])
+      expect(pick({ heroName })).toEqual({});
+    for (const heroLook of [
+      { skin: -1, hair: 0 },
+      { skin: 1.5, hair: 0 },
+      { skin: 0 },
+      'x',
+    ])
+      expect(pick({ heroLook })).toEqual({});
+    expect(pick({ heroName: 'x'.repeat(16) })).toEqual({
+      heroName: 'x'.repeat(16),
+    });
+  });
+});

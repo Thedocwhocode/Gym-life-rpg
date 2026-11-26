@@ -18,12 +18,37 @@ import {
   setUseImperialUnits,
   setWelcomeWizardCompleted,
 } from '@/store/settings';
-import { RpgClass, selectRpgClass, setRpgClass } from '@/store/choices';
+import {
+  RpgClass,
+  selectHeroLook,
+  selectHeroName,
+  selectRpgClass,
+  setHeroLook,
+  setHeroName,
+  setRpgClass,
+} from '@/store/choices';
+import { heroName as cleanHeroName } from '@/store/choices/hero';
+import AwakenOverlay from '@/components/smart/awaken-overlay';
+import {
+  AwakenPage,
+  SpritePage,
+  TodayPage,
+  TourPage,
+} from '@/components/smart/onboarding-pages';
+import { useEffectsMode } from '@/hooks/useEffectsMode';
+import { FREEZE_MOTION } from '@/utils/motion';
 import { getDateOnDay } from '@/utils/format-date';
 import { DayOfWeek } from '@js-joda/core';
 import { useTranslate } from '@tolgee/react';
-import { useMemo, useState } from 'react';
-import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  Linking,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { Portal } from 'react-native-paper';
 import AsciiDivider from '@/components/presentation/pixel/AsciiDivider';
 import PixelBar from '@/components/presentation/pixel/PixelBar';
@@ -102,10 +127,34 @@ export function WelcomeWizard() {
     [t],
   );
 
-  const totalPages = 4;
+  const totalPages = 8;
   const rpgClass = useAppSelector(selectRpgClass);
+  const savedName = useAppSelector(selectHeroName);
+  const look = useAppSelector(selectHeroLook) ?? { skin: 0, hair: 0 };
+  const fx = useEffectsMode();
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [awake, setAwake] = useState(false);
+  // Antes de hidratar, nome e Efeitos ainda não vieram do disco: decidir a abertura cedo a mostraria a quem pediu Reduzido.
+  const choicesHydrated = useAppSelector((s) => s.choices.isHydrated);
+  const ready = settings.isHydrated && choicesHydrated;
+
+  // Abrir (ou reabrir pela Taverna) sempre começa do passo 1, com o nome salvo. A abertura
+  // escura só roda na primeira vez e com efeitos completos (o CI congela animação).
+  useEffect(() => {
+    if (welcomeWizardCompleted || !ready) return;
+    setCurrentPage(0);
+    setName(savedName ?? '');
+    setNameError(false);
+    setAwake(!!savedName || fx !== 'complete' || FREEZE_MOTION);
+  }, [welcomeWizardCompleted, ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleNext = () => {
+    if (currentPage === 0) {
+      const clean = cleanHeroName(name);
+      if (!clean) return setNameError(true);
+      dispatch(setHeroName(clean));
+    }
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     } else {
@@ -157,7 +206,12 @@ export function WelcomeWizard() {
                   gap: 14,
                 }}
               >
-                <Portrait width={64} height={80} rpgClass={cls.id} />
+                <Portrait
+                  width={64}
+                  height={80}
+                  rpgClass={cls.id}
+                  look={look}
+                />
                 <View style={{ flex: 1, gap: 6, alignItems: 'flex-start' }}>
                   <Text
                     maxFontSizeMultiplier={TITLE_MAX_SCALE}
@@ -344,13 +398,38 @@ export function WelcomeWizard() {
   const renderPage = () => {
     switch (currentPage) {
       case 0:
-        return renderClassSelectionPage();
+        return (
+          <AwakenPage
+            awake={awake}
+            name={name}
+            error={nameError}
+            onChangeName={(v) => {
+              setName(v);
+              if (nameError) setNameError(false);
+            }}
+            onSubmit={handleNext}
+          />
+        );
       case 1:
-        return renderCrashReportsPage();
+        return renderClassSelectionPage();
       case 2:
-        return renderLocalizationPage();
+        return (
+          <SpritePage
+            rpgClass={rpgClass}
+            look={look}
+            onChange={(l) => dispatch(setHeroLook(l))}
+          />
+        );
       case 3:
+        return <TourPage />;
+      case 4:
+        return renderCrashReportsPage();
+      case 5:
+        return renderLocalizationPage();
+      case 6:
         return renderNotificationsAndFeedPage();
+      case 7:
+        return <TodayPage />;
       default:
         return null;
     }
@@ -374,7 +453,13 @@ export function WelcomeWizard() {
                 gap={4}
               />
             </View>
-            {renderPage()}
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{ flexGrow: 1, paddingTop: 20 }}
+              keyboardShouldPersistTaps="handled"
+            >
+              {renderPage()}
+            </ScrollView>
 
             <View style={styles.footer}>
               <AsciiDivider />
@@ -401,6 +486,7 @@ export function WelcomeWizard() {
               </View>
             </View>
           </View>
+          {ready && !awake && <AwakenOverlay onAwake={() => setAwake(true)} />}
         </SafeAreaView>
       </Portal>
     )
@@ -413,7 +499,6 @@ const styles = StyleSheet.create({
   },
   pageContent: {
     flex: 1,
-    marginTop: 20,
   },
   headerSection: {
     marginBottom: 20,
@@ -445,7 +530,6 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.pageHorizontalMargin,
     paddingBottom: spacing[8],
-    marginTop: 'auto',
     gap: 16,
   },
   buttonRow: {

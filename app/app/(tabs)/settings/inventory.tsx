@@ -7,7 +7,7 @@ import Portrait from '@/components/presentation/pixel/Portrait';
 import Tag, { type TagTone } from '@/components/presentation/pixel/Tag';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAppSelector } from '@/store';
-import { equipItem, unequipItem } from '@/store/choices';
+import { equipItem, selectHeroLook, unequipItem } from '@/store/choices';
 import { selectJourney } from '@/store/journey';
 import { BESTIARY } from '@/store/journey/rules/bestiary';
 import {
@@ -101,6 +101,7 @@ export default function Inventory() {
   const { palette } = useAppTheme();
   const dispatch = useDispatch();
   const { drops, itemsEquipped, rpgClass } = useAppSelector(selectJourney);
+  const look = useAppSelector(selectHeroLook);
   const owned = ITEMS.filter((i) => drops.includes(i.id));
   const [picked, setPicked] = useState<string>();
   const item = owned.find((i) => i.id === picked);
@@ -117,7 +118,7 @@ export default function Inventory() {
     >
       <Stack.Screen options={{ title: t('rpg.journey.inventory') }} />
       <View style={{ flexDirection: 'row', gap: 16 }}>
-        <Portrait rpgClass={rpgClass} width={120} height={152} />
+        <Portrait rpgClass={rpgClass} look={look} width={120} height={152} />
         <View
           style={{
             flex: 1,

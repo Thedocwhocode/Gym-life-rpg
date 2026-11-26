@@ -551,6 +551,27 @@ primitivos, nós `+===+` no `AsciiFrame`, `glow` no `PixelBar` e o token `titleM
 (`feat/design-sync-primitivos`). `statLg`, `stageBg`, glows `system`/`danger` e `attrInt` ficaram
 de fora até alguma tela precisar.
 
+### Lançamento web (2026-11-26, PRs #35–#43)
+
+O usuário decidiu as pendências do v1.1. O app sai só na web (mobile first), gratuito, sem IA e
+sem paywall. Um PR por item, mesclado com CI verde:
+
+| PR | Branch | O que entrou |
+|---|---|---|
+| #35 | `chore/web-only` | Sai Android/iOS, RevenueCat e o esquema PurchaseToken; largura máxima acima de 768 px |
+| #36 | `feat/atributos-5` | STR/AGI/END/VIT/INT (substitui a DR4); escola, raridade e status com chaves em inglês |
+| #37 | `feat/sistema` | Ranks E–S e missão diária do Sistema (10 flexões, 10 agachamentos, 500 m; +10% por semana com 5 de 7 dias) |
+| #38 | `feat/estudo` | Pomodoro do Grimório; minutos de foco × 0,5 viram INT |
+| #39 | `feat/som` | Som 8-bit sintetizado (os mp3 do ElevenLabs entram em `assets/sound/` quando existirem) |
+| #40 | `feat/sakuga` | Checkbox Sakuga (MIT, no NOTICE) na missão diária |
+| #41 | `feat/seletor-exercicios` | Seletor do design, com filtro por padrão de movimento e atributo |
+| #42 | `feat/clima-simulado` | Clima simulado quando falta permissão ou rede; modificador do clima no XP (revoga o D8) |
+| #43 | `feat/onboarding-sistema` | Onboarding: abertura escura → nome → classe → sprite (pele/cabelo) → tour → missão de hoje |
+
+No #43, a abertura só roda com Efeitos Completo, na primeira vez e fora do CI. O fim não navega
+para o Painel, porque os specs começam na aba de treino. A arte do agy não entrou: a janela e o
+retrato são componentes que seguem a paleta.
+
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
 

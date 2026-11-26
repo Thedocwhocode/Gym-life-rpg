@@ -43,10 +43,15 @@ Cypress.Commands.add('dialog', () => {
 });
 Cypress.Commands.add('completeWelcomeWizard', () => {
     // Click until the wizard closes: two clicks landing before a re-render advance only one page,
-    // so a fixed count (totalPages = 4) flakes. Capped so a stuck wizard still fails.
+    // so a fixed count (totalPages = 8) flakes. Capped so a stuck wizard still fails.
+    // Step 1 asks for the hero name and will not advance while it is empty.
     cy.getByTestId('welcome-wizard-next').should('exist')
+    // Without frozen motion the name field mounts only after the ~2 s opening.
+    cy.getByTestId('hero-name-input', { timeout: 10000 }).should('exist')
     cy.recursionLoop((times) => {
-        if (times > 10 || !Cypress.$('[data-testid=welcome-wizard-next]').length) return false
+        if (times > 20 || !Cypress.$('[data-testid=welcome-wizard-next]').length) return false
+        const name = Cypress.$('[data-testid=hero-name-input]')
+        if (name.length && !name.val()) cy.getByTestId('hero-name-input').type('Test Hero')
         cy.getByTestId('welcome-wizard-next').click()
     })
     return cy.getByTestId('welcome-wizard-next').should('not.exist')
