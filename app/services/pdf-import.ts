@@ -7,18 +7,22 @@ import {
 } from '@/models/blueprint-models';
 import { apiBaseUrl } from '@/services/api-consts';
 import type { PickedFile } from '@/services/file-picker-service';
+import { Logger } from '@/services/logger';
+import { pdfPages } from '@/services/pdf-text';
+import { parseSheet } from '@/services/sheet-parser';
 import { parseDuration } from '@/utils/format-date';
 import { Duration } from '@js-joda/core';
 import BigNumber from 'bignumber.js';
 import { match } from 'ts-pattern';
 
 /**
- * Importar ficha (F10, D11): o PDF vai ao backend, que o passa à OpenAI como arquivo. O modelo
- * lê o texto e a imagem das páginas (ficha escaneada também) e só transcreve; não cria plano.
+ * Importar ficha (F10, D11; revisto em 2026-11-25): por padrão o texto do PDF é lido no próprio aparelho e
+ * tabulado sem IA (`readLocal`). Só se o usuário pedir, e com o backend configurado, o arquivo vai ao leitor
+ * por IA (`readSheet`). Os dois só transcrevem; não criam plano.
  */
 export const PDF_MAX_BYTES = 10 * 1024 * 1024;
-/** Consentimento do aviso LGPD, só neste aparelho. v2: agora o arquivo sai do aparelho. */
-export const PDF_CONSENT_KEY = 'pdf-import-consent-v2';
+/** Consentimento do aviso LGPD, só neste aparelho e só antes da leitura por IA. v3: IA virou opcional. */
+export const PDF_CONSENT_KEY = 'pdf-import-consent-v3';
 
 export type PdfImportEvent =
   | { type: 'opened'; name: string; bytes: number }
@@ -30,7 +34,8 @@ export type PdfImportError =
   | 'not_pdf'
   | 'pro'
   | 'rate_limited'
-  | 'no_plan';
+  | 'no_plan'
+  | 'unsupported';
 
 export type PdfImportResult =
   | { status: 'ok'; plan: AiWorkoutPlan }
@@ -59,11 +64,24 @@ export async function importPdf(
   onEvent({ type: 'opened', name: file.name, bytes: file.bytes.length });
   onEvent({ type: 'sending' });
 
-  const out = await deps.read(file.bytes).catch(() => 'no_plan' as const);
+  const out = await deps.read(file.bytes).catch((e: unknown) => {
+    new Logger().error('Falha ao ler a ficha em PDF', e);
+    return 'no_plan' as const;
+  });
   if (typeof out === 'string') return { status: 'error', reason: out };
   if (!usable(out)) return { status: 'error', reason: 'no_plan' };
   onEvent({ type: 'plan', workouts: out.sessions.length });
   return { status: 'ok', plan: out };
+}
+
+/** Leitor sem IA: o PDF não sai do aparelho. `unsupported` onde o aparelho não lê PDF (por ora, fora da web). */
+export async function readLocal(
+  bytes: Uint8Array,
+  pages: typeof pdfPages = pdfPages,
+): Promise<AiWorkoutPlan | PdfImportError> {
+  const read = await pages(bytes);
+  if (!read) return 'unsupported';
+  return parseSheet(read) ?? 'no_plan';
 }
 
 /** `POST /ai/sheet` com o mesmo cabeçalho de compra pro que o hub do chat usava. */

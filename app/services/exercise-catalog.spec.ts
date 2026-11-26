@@ -43,6 +43,13 @@ describe('exercise-catalog', () => {
     ['Elevação lateral', '0334'],
     ['Abdominal supra', '0274'],
     ['Desenvolvimento com halteres', '0405'],
+    // jargão: "Cross" = polia, "Gêmeos" = panturrilha, "c/" = com, "(H)" fica de fora
+    ['Tríceps Coice Cross', '0860'],
+    ['Gêmeos em pé', '1397'],
+    ['Elevação Pélvica c/ Barra', '1060'],
+    ['Crucifixo Reverso (H)', '0383'],
+    ['Cadeira abdutora', '0597'],
+    ['Puxada Frente Triângulo', '1047'],
   ])('casa "%s" com %s', (name, id) => {
     expect(match(catalog, name)?.id).toBe(id);
   });

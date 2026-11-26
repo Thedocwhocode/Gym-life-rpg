@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   importPdf,
   PDF_MAX_BYTES,
+  readLocal,
   readSheet,
   type PdfImportDeps,
 } from './pdf-import';
@@ -97,6 +98,27 @@ describe('importPdf', () => {
       throw new Error('rede');
     });
     expect(await importPdf(file(), crash)).toMatchObject({ reason: 'no_plan' });
+  });
+});
+
+describe('readLocal', () => {
+  it('aparelho que não lê PDF → unsupported', async () => {
+    expect(await readLocal(pdfBytes(), async () => undefined)).toBe(
+      'unsupported',
+    );
+  });
+
+  it('texto sem treino → no_plan; com treino → plano', async () => {
+    expect(await readLocal(pdfBytes(), async () => [[]])).toBe('no_plan');
+    const out = await readLocal(pdfBytes(), async () => [
+      [
+        { s: 'Treino A', x: 50, y: 800 },
+        { s: 'Supino reto', x: 50, y: 780 },
+        { s: '4x10', x: 200, y: 780 },
+      ],
+    ]);
+    if (typeof out === 'string') throw new Error(out);
+    expect(out.sessions[0].exercises[0].name).toBe('Supino reto');
   });
 });
 
@@ -193,6 +215,8 @@ describe('fixtures', () => {
     'ficha-sintetica.pdf',
     'escaneado-sintetico.pdf',
     'ficha-real-anonimizada.pdf',
+    'ficha-real-2-anonimizada.pdf',
+    'planilha-semanas-sintetica.pdf',
   ])(
     '%s chega ao leitor (escaneado não é mais recusado no aparelho)',
     async (name) => {
