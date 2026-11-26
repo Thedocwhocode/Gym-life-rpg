@@ -5,6 +5,7 @@ import {
   parseOpenMeteo,
   roundCoord,
   SAO_PAULO,
+  simulatedWeather,
   WEATHER_CACHE_MS,
   weatherFromCode,
   type WeatherDeps,
@@ -107,17 +108,35 @@ describe('loadWeather', () => {
     expect(saved).not.toContain('-43.1');
   });
 
-  it('offline → estado offline, sem dado falso e sem gravar cache', async () => {
+  it('offline → clima simulado, marcado e sem gravar cache', async () => {
     const d = deps({
       fetchJson: async () => {
         throw new TypeError('Failed to fetch');
       },
     });
-    expect(await loadWeather(d)).toEqual({
-      status: 'offline',
+    expect(await loadWeather(d)).toMatchObject({
+      status: 'ok',
       place: 'default',
+      simulated: true,
     });
     expect(d.writeCache).not.toHaveBeenCalled();
+  });
+
+  it('simulado: estável no dia, chove mais no verão, noite fria', () => {
+    const a = simulatedWeather(new Date(2026, 0, 15, 10));
+    expect(simulatedWeather(new Date(2026, 0, 15, 11)).code).toBe(a.code);
+    expect(a.isDay).toBe(true);
+    expect(simulatedWeather(new Date(2026, 0, 15, 22)).isDay).toBe(false);
+    const codes = (month: number) =>
+      Array.from(
+        { length: 28 },
+        (_, i) => simulatedWeather(new Date(2026, month, i + 1, 12)).code,
+      );
+    const wet = (cs: number[]) => cs.filter((c) => c >= 61).length;
+    expect(wet(codes(0))).toBeGreaterThan(wet(codes(6)));
+    expect(simulatedWeather(new Date(2026, 6, 1, 23)).temp).toBeLessThan(
+      simulatedWeather(new Date(2026, 6, 1, 12)).temp + 1,
+    );
   });
 
   it('localização que falha cai no padrão', async () => {

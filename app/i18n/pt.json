@@ -767,7 +767,6 @@
   "rpg.weather.place.region": "Sua região",
   "rpg.weather.place.default": "São Paulo (padrão)",
   "rpg.weather.loading": "Consultando os céus…",
-  "rpg.weather.offline": "Céus desconhecidos",
   "rpg.weather.locate": "Toque para usar a sua região",
   "rpg.weather.retry": "Toque para tentar de novo",
   "rpg.weather.storm": "Tempestade",
@@ -858,5 +857,15 @@
   "study.today": "Hoje: {min} min de foco · +{int} INT",
   "study.total": "INT total: {n}",
   "study.rule": "Só bloco de foco completo conta: 1 min de foco = 0,5 INT. Pausar não perde o bloco; desistir não dá INT.",
-  "rpg.daily.mark": "{item}: feito"
+  "rpg.daily.mark": "{item}: feito",
+  "rpg.weather.simulated": "SIMULADO",
+  "rpg.weather.mod.storm": "+15% XP · treinou na tempestade",
+  "rpg.weather.mod.snow": "+10% XP de END",
+  "rpg.weather.mod.rain": "+10% XP · determinação",
+  "rpg.weather.mod.fog": "Sem modificador",
+  "rpg.weather.mod.wind": "+5% XP de AGI",
+  "rpg.weather.mod.clouds": "Sem modificador",
+  "rpg.weather.mod.few_clouds": "Sem modificador",
+  "rpg.weather.mod.clear_day": "+5% XP com cardio",
+  "rpg.weather.mod.clear_night": "Bônus noturno: +5% XP"
 }

@@ -1,4 +1,5 @@
 import type { TranslationKey } from '@tolgee/react';
+import { weatherOn, type WeatherEntry } from '@/store/journey/rules/weather';
 import {
   RecordedCardioExercise,
   RecordedWeightedExercise,
@@ -326,6 +327,8 @@ export interface JourneyContext {
   heartsSince?: LocalDate | undefined;
   /** Dias (YYYY-MM-DD) com a missão diária cumprida: +30 XP cada (journey/rules/daily.ts). */
   dailyCompleted?: readonly string[] | undefined;
+  /** Clima de cada dia: o modificador entra nas fontes do DR11 (journey/rules/weather.ts). */
+  weatherLog?: readonly WeatherEntry[] | undefined;
 }
 
 export interface Progress {
@@ -526,6 +529,7 @@ export function deriveProgress(
         skill: skillAt(f.date),
         items: valueAt(ctx.itemsEquipped, f.date) ?? [],
         statuses,
+        weather: weatherOn(ctx.weatherLog, f.date.toString()),
       });
       gained = withPct(gained, totalPct(src));
       if (f.id) sources[f.id] = src;

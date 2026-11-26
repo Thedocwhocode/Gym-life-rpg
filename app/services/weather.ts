@@ -1,6 +1,6 @@
 import type { FxId } from '@/components/presentation/fx/registry';
 
-/** Clima do reino (F7, design-spec D.3). Só visual: nunca entra no XP (D8). */
+/** Clima do reino (F7, design-spec D.3). O modificador do dia entra no XP (journey/rules/weather.ts; revoga D8). */
 export type WeatherKind =
   | 'storm'
   | 'snow'
@@ -23,10 +23,15 @@ export interface WeatherReading {
 /** `region` = posição do aparelho; `default` = São Paulo. */
 export type WeatherPlace = 'region' | 'default';
 
+/** `simulated` = sem resposta da API: clima sazonal de São Paulo, marcado SIMULADO (design v1.2; revoga DR7). */
 export type WeatherState =
   | { status: 'loading' }
-  | { status: 'ok'; reading: WeatherReading; place: WeatherPlace }
-  | { status: 'offline'; place: WeatherPlace };
+  | {
+      status: 'ok';
+      reading: WeatherReading;
+      place: WeatherPlace;
+      simulated?: boolean;
+    };
 
 export const SAO_PAULO = { lat: -23.55, lon: -46.63 };
 export const WEATHER_CACHE_KEY = 'weather-cache';
@@ -85,6 +90,40 @@ export function parseOpenMeteo(json: unknown): WeatherReading | undefined {
   };
 }
 
+const SP_TEMP = [27, 28, 27, 25, 22, 21, 20, 22, 23, 24, 25, 26];
+const WET_MONTHS = new Set([0, 1, 2, 9, 10, 11]);
+
+/** Clima estável pelo dia e pela hora, com a sazonalidade de São Paulo (verão chuvoso). Porta do design v1.2. */
+export function simulatedWeather(now: Date): WeatherReading {
+  const m = now.getMonth();
+  const h = now.getHours();
+  const d = now.getFullYear() * 400 + m * 32 + now.getDate();
+  // pseudoaleatório fixo por dia
+  const r = (((Math.sin(d * 12.9898) * 43758.5453) % 1) + 1) % 1;
+  const code = WET_MONTHS.has(m)
+    ? r < 0.25
+      ? 95
+      : r < 0.6
+        ? 61
+        : r < 0.8
+          ? 3
+          : 0
+    : r < 0.15
+      ? 45
+      : r < 0.35
+        ? 61
+        : r < 0.6
+          ? 2
+          : 0;
+  const night = h < 6 || h >= 20;
+  return {
+    code,
+    isDay: h >= 6 && h < 18,
+    wind: 0,
+    temp: Math.round(SP_TEMP[m] - (night ? 6 : 0) - (code >= 61 ? 3 : 0)),
+  };
+}
+
 interface WeatherCache extends WeatherReading {
   at: number;
   place: WeatherPlace;
@@ -127,7 +166,7 @@ export interface WeatherDeps {
   now(): number;
 }
 
-/** Uma leitura por abertura: cache de 1 h, fallback São Paulo, offline sem dado falso (DR7). */
+/** Uma leitura por abertura: cache de 1 h, fallback São Paulo; sem resposta, clima simulado (fora do cache). */
 export async function loadWeather(
   deps: WeatherDeps,
   { force = false }: { force?: boolean } = {},
@@ -150,7 +189,13 @@ export async function loadWeather(
   const reading = parseOpenMeteo(
     await deps.fetchJson(openMeteoUrl(lat, lon)).catch(() => undefined),
   );
-  if (!reading) return { status: 'offline', place };
+  if (!reading)
+    return {
+      status: 'ok',
+      reading: simulatedWeather(new Date(deps.now())),
+      place,
+      simulated: true,
+    };
   const cache: WeatherCache = { ...reading, at: deps.now(), place };
   await deps.writeCache(JSON.stringify(cache)).catch(() => undefined);
   return { status: 'ok', reading, place };

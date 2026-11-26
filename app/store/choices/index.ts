@@ -10,6 +10,8 @@ import {
   type DailyItem,
 } from '@/store/journey/rules/daily';
 import { withStudyMinutes, type StudyEntry } from '@/store/journey/rules/study';
+import { withWeather, type WeatherEntry } from '@/store/journey/rules/weather';
+import type { WeatherKind } from '@/services/weather';
 
 export type RpgClass = 'warrior' | 'scout' | 'paladin';
 
@@ -41,6 +43,8 @@ export interface Choices {
   dailyLog?: DailyEntry[];
   /** Minutos de foco do pomodoro por dia: viram INT (journey/rules/study.ts). */
   studyLog?: StudyEntry[];
+  /** Clima de cada dia (o primeiro lido): modificador de XP daquele dia (journey/rules/weather.ts). */
+  weatherLog?: WeatherEntry[];
 }
 
 export interface ChoicesState extends Choices {
@@ -170,6 +174,18 @@ const choicesSlice = createSlice({
         payload.minutes,
       );
     },
+    /** Clima lido no banner; o primeiro do dia vale para o XP do dia. */
+    recordWeather(
+      state,
+      { payload }: PayloadAction<{ date: string; kind: WeatherKind }>,
+    ) {
+      if (state.weatherLog?.some((e) => e.date === payload.date)) return;
+      state.weatherLog = withWeather(
+        state.weatherLog ?? [],
+        payload.date,
+        payload.kind,
+      );
+    },
     initializeChoicesStateSlice() {},
   },
 });
@@ -188,6 +204,7 @@ export const {
   markJourneyIntroSeen,
   setDailyCount,
   addStudyMinutes,
+  recordWeather,
   initializeChoicesStateSlice,
 } = choicesSlice.actions;
 
@@ -205,6 +222,7 @@ export const PERSISTED_CHOICE_ACTIONS = [
   markJourneyIntroSeen,
   setDailyCount,
   addStudyMinutes,
+  recordWeather,
 ] as const;
 
 export const choicesReducer = choicesSlice.reducer;
@@ -213,6 +231,7 @@ export const selectChoices = (state: RootState) => state.choices;
 export const selectRpgClass = (state: RootState) => state.choices.rpgClass;
 export const selectDailyLog = (state: RootState) => state.choices.dailyLog;
 export const selectStudyLog = (state: RootState) => state.choices.studyLog;
+export const selectWeatherLog = (state: RootState) => state.choices.weatherLog;
 export const selectDailyHistory = createSelector([selectDailyLog], (log) =>
   dailyHistory(log ?? []),
 );
@@ -232,5 +251,6 @@ export const selectJourneyContext = createSelector(
     multipliersSince: parseDay(c.multiplicadoresDesde),
     heartsSince: parseDay(c.coracoesDesde),
     dailyCompleted: daily.completed,
+    weatherLog: c.weatherLog,
   }),
 );

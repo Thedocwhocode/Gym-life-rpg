@@ -28,8 +28,19 @@ async function locateIfAllowed() {
     : undefined;
 }
 
+const FETCH_TIMEOUT_MS = 4000;
+
+// Rede pendurada vira falha em 4 s, e o banner cai no clima simulado.
 async function fetchJson(url: string) {
-  const res = await fetch(url);
+  const res = await Promise.race([
+    fetch(url),
+    new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error('Open-Meteo timeout')),
+        FETCH_TIMEOUT_MS,
+      ),
+    ),
+  ]);
   if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`);
   return res.json();
 }

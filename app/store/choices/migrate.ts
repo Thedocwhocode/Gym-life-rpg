@@ -8,6 +8,11 @@ import {
   MAX_STUDY_MINUTES_PER_DAY,
   type StudyEntry,
 } from '@/store/journey/rules/study';
+import {
+  WEATHER_KINDS,
+  type WeatherEntry,
+} from '@/store/journey/rules/weather';
+import type { WeatherKind } from '@/services/weather';
 import type { Choices, RpgClass } from './index';
 
 export const CHOICES_KEY = 'Choices';
@@ -109,6 +114,23 @@ function studyLog(v: unknown): StudyEntry[] | undefined {
   return list.length ? list : undefined;
 }
 
+/** Log do clima: um registro por dia (o primeiro vence), só tipos conhecidos. */
+function weatherLog(v: unknown): WeatherEntry[] | undefined {
+  if (!Array.isArray(v)) return undefined;
+  const byDate = new Map<string, WeatherEntry>();
+  for (const x of v as unknown[]) {
+    const o = (x ?? {}) as Record<string, unknown>;
+    const date = o['date'];
+    const kind = o['kind'] as WeatherKind;
+    if (isDay(date) && WEATHER_KINDS.includes(kind) && !byDate.has(date))
+      byDate.set(date, { date, kind });
+  }
+  const list = [...byDate.values()].sort((a, b) =>
+    a.date < b.date ? -1 : a.date > b.date ? 1 : 0,
+  );
+  return list.length ? list : undefined;
+}
+
 /** Valida campo a campo; o que não passar some (nunca derruba a hidratação). */
 export function pick(obj: Record<string, unknown> | undefined): Choices {
   const o = obj ?? {};
@@ -134,6 +156,8 @@ export function pick(obj: Record<string, unknown> | undefined): Choices {
   if (daily) out.dailyLog = daily;
   const study = studyLog(o['studyLog']);
   if (study) out.studyLog = study;
+  const weather = weatherLog(o['weatherLog']);
+  if (weather) out.weatherLog = weather;
   return out;
 }
 
