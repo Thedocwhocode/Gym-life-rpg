@@ -1,8 +1,7 @@
-import ListItem from '@/components/presentation/pixel/ListItem';
 import AppBottomSheet from '@/components/presentation/app-bottom-sheet';
 import DurationEditor from '@/components/presentation/duration-editor';
 import EditableIncrementer from '@/components/presentation/editable-incrementer';
-import ExerciseFilterer from '@/components/presentation/exercise-filterer';
+import ExercisePicker from '@/components/presentation/exercise-picker';
 import FixedIncrementer from '@/components/presentation/fixed-incrementer';
 import LabelledForm from '@/components/presentation/labelled-form';
 import LabelledFormRow from '@/components/presentation/labelled-form-row';
@@ -19,18 +18,13 @@ import {
   TimeCardioTarget,
   WeightedExerciseBlueprint,
 } from '@/models/blueprint-models';
-import { useAppSelector, useAppSelectorWithArg } from '@/store';
-import {
-  ExerciseDescriptor,
-  selectExerciseById,
-  selectExerciseIds,
-} from '@/store/stored-sessions';
+import { useAppSelector } from '@/store';
+import { ExerciseDescriptor } from '@/store/stored-sessions';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { Duration } from '@js-joda/core';
-import { FlashList } from '@shopify/flash-list';
 import { useTranslate } from '@tolgee/react';
 import BigNumber from 'bignumber.js';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Keyboard, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Segmented from '@/components/presentation/pixel/Segmented';
@@ -46,7 +40,6 @@ const distanceUnitOptions = DistanceUnits.map((value) => ({
   label: value + 's',
 }));
 export function ExerciseEditor(props: ExerciseEditorProps) {
-  const exerciseIds = useAppSelector(selectExerciseIds);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const selectExerciseFromSearch = (ex: ExerciseDescriptor) => {
     updateExercise({ name: ex.name, notes: ex.instructions });
@@ -54,11 +47,6 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
   };
 
   const [bottomSheetShown, setBottomSheetShown] = useState(false);
-  const [filteredExerciseIds, setFilteredExerciseIds] = useState(exerciseIds);
-  const exerciseListItems = useMemo(
-    () => ['filter', ...filteredExerciseIds],
-    [filteredExerciseIds],
-  );
   const { t } = useTranslate();
   const { exercise: propsExercise, updateExercise: updatePropsExercise } =
     props;
@@ -151,41 +139,12 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
         enableDynamicSizing={false}
       >
         {bottomSheetShown && (
-          <FlashList
-            data={exerciseListItems}
-            // @ts-expect-error -- It does work - see:https://github.com/gorhom/react-native-bottom-sheet/issues/1120#issuecomment-1582872948
-            renderScrollComponent={BottomSheetScrollView}
-            getItemType={(_, index) => (index === 0 ? 'filters' : 'exercise')}
-            keyExtractor={(item, index) => (index === 0 ? 'filters' : item)}
-            renderItem={(i) => {
-              if (i.index === 0) {
-                return (
-                  <ExerciseFilterer
-                    onFilteredExerciseIdsChange={setFilteredExerciseIds}
-                  />
-                );
-              }
-              return (
-                <ExerciseSearchListItem
-                  exerciseId={i.item}
-                  onPress={selectExerciseFromSearch}
-                />
-              );
-            }}
-          />
+          <BottomSheetScrollView keyboardShouldPersistTaps="handled">
+            <ExercisePicker onSelect={selectExerciseFromSearch} />
+          </BottomSheetScrollView>
         )}
       </AppBottomSheet>
     </View>
-  );
-}
-
-function ExerciseSearchListItem(props: {
-  exerciseId: string;
-  onPress: (exercise: ExerciseDescriptor) => void;
-}) {
-  const exercise = useAppSelectorWithArg(selectExerciseById, props.exerciseId);
-  return (
-    <ListItem title={exercise.name} onPress={() => props.onPress(exercise)} />
   );
 }
 
