@@ -7,7 +7,7 @@ import type { Palette } from '@/theme/palettes';
 import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { LocalDate } from '@js-joda/core';
 import { ReactNode } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 export type EyebrowTone = 'accent' | 'success' | 'muted';
 
@@ -20,6 +20,11 @@ interface SessionCardProps {
   /** Treino em andamento: tom raised com borda line-frame. */
   highlight?: boolean | undefined;
   actions?: ReactNode;
+  /**
+   * v1.1: toque no card inteiro faz a ação principal. Só atalho de ponteiro: fica fora do
+   * teclado e do leitor de tela, porque o botão principal em `actions` já faz o mesmo.
+   */
+  onPress?: (() => void) | undefined;
   testID?: string | undefined;
 }
 
@@ -34,6 +39,7 @@ export default function SessionCard({
   filled = false,
   highlight = false,
   actions,
+  onPress,
   testID,
 }: SessionCardProps) {
   const { palette } = useAppTheme();
@@ -87,6 +93,18 @@ export default function SessionCard({
       >
         <SessionSummary session={session} isFilled={filled} showWeight />
       </View>
+      {onPress && (
+        // Depois do resumo e antes das ações: cobre o card, e as ações ficam por cima.
+        <Pressable
+          testID={testID ? `${testID}-press` : undefined}
+          onPress={onPress}
+          focusable={false}
+          aria-hidden
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        />
+      )}
       {actions && (
         <View
           style={{

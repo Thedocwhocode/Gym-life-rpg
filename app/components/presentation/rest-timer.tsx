@@ -15,6 +15,8 @@ import { View, ViewStyle } from 'react-native';
 import { SurfaceText } from '@/components/presentation/surface-text';
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics';
 import Holdable from '@/components/presentation/holdable';
+import { useTranslate } from '@tolgee/react';
+import { type } from '@/theme/tokens';
 
 interface RestTimerProps {
   rest: Rest;
@@ -32,6 +34,7 @@ export default function RestTimer({
   resetTimer,
 }: RestTimerProps) {
   const { colors } = useAppTheme();
+  const { t } = useTranslate();
   const isSameMinMaxRest = rest.minRest.equals(rest.maxRest);
   const [jiggled, setJiggled] = useState([] as string[]);
   useEffect(() => {
@@ -185,6 +188,16 @@ export default function RestTimer({
             />
           </Svg>
         </View>
+        {timerState.firstProgressBarProgress >= 1 && (
+          // v1.1: estado "pronto" também em texto, não só na cor.
+          <SurfaceText
+            testID="rest-timer-ready"
+            style={{ ...type.micro, textTransform: 'uppercase' }}
+            color={timerState.textColor}
+          >
+            {t('rpg.rest.ready')}
+          </SurfaceText>
+        )}
         <SurfaceText
           style={{ fontVariant: ['tabular-nums'] }}
           font="text-2xl"

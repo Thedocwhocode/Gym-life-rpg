@@ -127,6 +127,7 @@ function ListUpcomingWorkouts({
             highlight
             session={currentSession}
             eyebrow={eyebrow}
+            onPress={() => selectSession(currentSession)}
             actions={
               <>
                 <IconButton
@@ -168,6 +169,7 @@ function ListUpcomingWorkouts({
           <SessionCard
             key={index}
             session={session}
+            onPress={() => selectSession(session)}
             actions={
               <>
                 {sessionPlanIndex !== -1 && (
