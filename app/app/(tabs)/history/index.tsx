@@ -145,6 +145,7 @@ export default function History() {
                   : t('rpg.history.partial')
               } · +${xpBySession[session.id] ?? sessionXp(session)} XP`}
               eyebrowTone={session.isComplete ? 'success' : 'accent'}
+              onPress={() => onSelectSession(session)}
               actions={
                 <>
                   <IconButton

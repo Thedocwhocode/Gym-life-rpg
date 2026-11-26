@@ -6,6 +6,7 @@ import { Text, View } from 'react-native';
 import WeightFormat from '@/components/presentation/weight-format';
 import WeightDialog from '@/components/presentation/weight-dialog';
 import { useAppTheme, spacing, font, rounding } from '@/hooks/useAppTheme';
+import { type } from '@/theme/tokens';
 import FocusRing from '@/components/presentation/focus-ring';
 import { WeightAppliesTo } from '@/store/current-session';
 import { T } from '@tolgee/react';
@@ -28,10 +29,18 @@ interface PotentialSetCounterProps {
 }
 
 export default function PotentialSetCounter(props: PotentialSetCounterProps) {
-  const { colors } = useAppTheme();
+  const { colors, palette } = useAppTheme();
   const [isWeightDialogOpen, setIsWeightDialogOpen] = useState(false);
   const [isRepsDialogOpen, setIsRepsDialogOpen] = useState(false);
   const repCountValue = props.set?.set?.repsCompleted;
+  const failed = repCountValue !== undefined && repCountValue < props.maxReps;
+  // v1.1: série falhada em dangerDeep (além do ×, DR19); feita em primary.
+  const [topBg, topFg] =
+    repCountValue === undefined
+      ? [colors.secondaryContainer, colors.onSecondaryContainer]
+      : failed
+        ? [palette.dangerDeep, palette.textOnDanger]
+        : [colors.primary, colors.onPrimary];
 
   const [applyTo, setApplyTo] = useState<WeightAppliesTo>('uncompletedSets');
 
@@ -49,6 +58,26 @@ export default function PotentialSetCounter(props: PotentialSetCounterProps) {
             },
           ]}
         >
+          {props.toStartNext && (
+            // v1.1: ▼ marca a próxima série; o anel de foco continua.
+            <Text
+              aria-hidden
+              importantForAccessibility="no"
+              accessibilityElementsHidden
+              testID="repcount-next"
+              style={{
+                ...type.micro,
+                position: 'absolute',
+                top: -14,
+                left: 0,
+                right: 0,
+                textAlign: 'center',
+                color: palette.accent,
+              }}
+            >
+              ▼
+            </Text>
+          )}
           <View
             style={[
               {
@@ -65,10 +94,7 @@ export default function PotentialSetCounter(props: PotentialSetCounterProps) {
                 height: spacing[15],
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor:
-                  repCountValue !== undefined
-                    ? colors.primary
-                    : colors.secondaryContainer,
+                backgroundColor: topBg,
               }}
               onPress={props.isReadonly ? undefined : props.onTap}
               disabled={props.isReadonly}
@@ -76,18 +102,12 @@ export default function PotentialSetCounter(props: PotentialSetCounterProps) {
             >
               <Text
                 style={{
-                  color:
-                    repCountValue !== undefined
-                      ? colors.onPrimary
-                      : colors.onSecondaryContainer,
+                  color: topFg,
                   ...font['text-xl'],
                 }}
               >
                 {/* DR19: série falhada também leva o × (não só a cor). */}
-                {repCountValue !== undefined &&
-                repCountValue < props.maxReps ? (
-                  <Text testID="repcount-failed">× </Text>
-                ) : null}
+                {failed ? <Text testID="repcount-failed">× </Text> : null}
                 <Text style={{ fontWeight: 'bold' }}>
                   {repCountValue ?? '-'}
                 </Text>
