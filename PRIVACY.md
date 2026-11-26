@@ -25,12 +25,8 @@ Nenhum dos itens abaixo funciona sem que você o ative.
   endereço IP. Esses relatórios nunca incluem o conteúdo dos treinos nem chaves de criptografia.
 - **Compras**: assinaturas são processadas pela Google Play/App Store e gerenciadas via
   RevenueCat. Não recebemos dados do seu cartão.
-- **Importar ficha em PDF**: o app lê a ficha **no próprio aparelho**; o arquivo não sai dele.
-  Só se a leitura falhar e você tocar em "Ler com IA" (pro, com confirmação antes do primeiro
-  envio), o **texto** da ficha (não o PDF) vai ao nosso servidor e à Groq, que transcreve os
-  treinos numa tabela, sem criptografia ponta a ponta (o modelo precisa ler a ficha). Fichas podem
-  ter dados de saúde (peso, lesões, observações médicas). Nosso servidor não grava o texto nem o
-  resultado, e o conteúdo nunca vai para os logs; a Groq segue a política de privacidade dela.
+- **Importar ficha em PDF**: o app lê a ficha **no próprio aparelho**, sem IA; nem o arquivo nem
+  o texto saem dele.
 - **Backup remoto**: envia o arquivo de backup só para o servidor que **você** configurar.
 - **Clima do reino**: o Painel consulta o [Open-Meteo](https://open-meteo.com/) para mostrar o
   clima. Sem a sua permissão, a consulta usa São Paulo. Se você tocar na faixa de clima e permitir,
@@ -44,7 +40,6 @@ Nenhum dos itens abaixo funciona sem que você o ative.
 [Apple](https://www.apple.com/legal/privacy/) ·
 [Sentry](https://sentry.io/privacy/) ·
 [RevenueCat](https://www.revenuecat.com/privacy/) ·
-[Groq](https://groq.com/privacy-policy/) ·
 [Open-Meteo](https://open-meteo.com/en/terms)
 
 ## O que não fazemos
@@ -77,15 +72,13 @@ GymLife RPG is an open source app (AGPL-3.0), provided free of charge and as is.
   device**. We have no access to them.
 - **Social feed (opt-in)**: published workouts are end-to-end encrypted on your device. The
   server stores only ciphertext, a random user ID and your public key.
-- **PDF sheet import**: the sheet is read **on your device**; the file never leaves it. Only if
-  that fails and you tap "Read with AI" (pro, opt-in) is the sheet's **text** sent to our server
-  and forwarded to Groq, which transcribes the workouts. It is not end-to-end encrypted, and our
-  server does not store it.
+- **PDF sheet import**: the sheet is read **on your device**, with no AI; neither the file nor
+  its text leaves it.
 - **Crash reports (opt-in)**: technical diagnostics (device, OS, app version, time, IP) are sent
   to Sentry. Workout content and keys are never included.
 - **Purchases**: handled by Google Play / App Store via RevenueCat. We never see your card data.
 - **Remote backup**: backups go only to a server **you** configure.
 - No tracking cookies, no ads, no data sales.
-- Third parties: Google Play Services, Apple, Sentry, RevenueCat, Groq (links above).
+- Third parties: Google Play Services, Apple, Sentry, RevenueCat (links above).
 - Not directed at children under 13.
 - Contact: TODO: contact e-mail · [GitHub issues](https://github.com/Thedocwhocode/Gym-life-rpg/issues)

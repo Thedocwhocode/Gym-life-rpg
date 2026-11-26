@@ -394,6 +394,10 @@ treino. Ele não cria plano nem é aberto pelo usuário.
   `POST /ai/sheet`, que chama um chat OpenAI-compatível (padrão Groq, `openai/gpt-oss-120b`). Sem
   `SheetReaderApiKey` a API sobe e responde 503. Ficha escaneada fica sem leitura (só texto).
   Eval: 2 fichas reais anonimizadas + planilha sintética por semanas + escaneada sintética.
+- **Sem IA (2026-11-25, PR `chore/remover-ia`):** o usuário decidiu lançar sem nenhum recurso de IA.
+  Saíram o botão "Ler com IA", o consentimento, o paywall Pro da importação, `POST /ai/sheet`,
+  `GptSheetReader`, o schema `AiSheetPlan.json` e o pacote `OpenAI`. Fica só a leitura no aparelho
+  (web); no celular a importação some até o pdfjs rodar lá.
 
 ### F11 — Biblioteca de exercícios do openGym + vídeos com nossos sprites (última fase)
 - **Texto, sim; mídia, não.** O catálogo de [openGym](https://github.com/DuarteSantos8/openGym)
@@ -469,7 +473,6 @@ tour está na seção seguinte:
 |---|---|---|
 | T7 (simulador iOS, F1 e F5) | o simulador só roda em macOS | fora do 1º lançamento (só web, decisão de 2026-11-25) |
 | Eval com 3 fichas reais (F8/F10) | 2 de 3 no repo (2026-11-25): `ficha-real-anonimizada.pdf` e `ficha-real-2-anonimizada.pdf`, lidas no aparelho pelo `sheet-parser` (PR #27); as planilhas de programas pagos não entram no repo e viraram uma planilha sintética | mais 1 ficha real anonimizada; ruído do parser em fichas de terceiros ("(H)" solto, "STOP)", legendas) |
-| Teste ponta a ponta do leitor por IA (Groq real) | precisa do pro token e de `SheetReaderApiKey` no backend | token e chave da Groq no ambiente de teste |
 | Leitura falada do TalkBack/VoiceOver | o AVD (google_apis) não traz TalkBack; a árvore foi auditada (abaixo). NVDA 2026.3.1 portátil tentado em 2026-11-25: a janela da frente era um diálogo do Windows e o NVDA não acompanhou o navegador | rodar o NVDA com o navegador na frente (o usuário) |
 
 **Lançamento (2026-11-25):** o primeiro lançamento é só como app web. Android e iOS ficam para
@@ -581,7 +584,7 @@ semanal entraram as quatro; nenhuma foi adiada ou pulada.
 | C4 | Reuso | E1 com `expo-haptics` duplicaria o módulo nativo `GymLifeHaptics` | Reusar o módulo existente |
 | C5 | Reuso | E3 com Playwright duplicaria o runner Cypress do CI | Cypress + plugin de diff de imagem |
 | C6 | Erros | Uma exceção num efeito pixelfx podia derrubar a sessão | Error boundary no `FxStage` (F4) |
-| C7 | Segurança / LGPD | Na leitura por IA (opcional), o texto da ficha vai à Groq e pode ter dados de saúde | Leitura local por padrão; IA só com aviso + confirmação única, e só o texto sai do aparelho |
+| C7 | Segurança / LGPD | Fichas podem ter dados de saúde | Sem IA: a ficha é lida no aparelho e nada sai dele (desde 2026-11-25) |
 | C8 | Privacidade | O cartão compartilhável podia vazar peso, localização ou nome | Campos limitados por especificação (F5) |
 
 **Delta para o estado ideal:** o plano entrega o visual completo e os sistemas de jogo em modo
