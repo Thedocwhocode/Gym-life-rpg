@@ -1,6 +1,7 @@
 import Scanlines from '@/components/presentation/pixel/Scanlines';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useEffectsMode } from '@/hooks/useEffectsMode';
+import { sound } from '@/services/sound';
 import { systemText, type Palette } from '@/theme/palettes';
 import { motion, type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
@@ -50,6 +51,7 @@ export default function SystemWindow({
   const scale = useSharedValue(fx === 'complete' ? 0.2 : 1);
   useEffect(() => {
     scale.value = withTiming(1, { duration: motion.dur3 });
+    sound.play('system_notice');
   }, [scale]);
   const style = useAnimatedStyle(() => ({
     transform: [{ scaleY: scale.value }],

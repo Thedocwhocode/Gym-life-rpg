@@ -8,6 +8,7 @@ import { store, useAppSelector } from '@/store';
 import { AppStateProvider } from '@/components/smart/app-state-provider';
 import SnackbarProvider from '@/components/smart/snackbar-provider';
 import { WeatherRecorder } from '@/components/smart/weather-recorder';
+import { SoundProvider } from '@/components/smart/sound-provider';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '@/utils/date-locale';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -146,6 +147,7 @@ export default Sentry.wrap(function RootLayout() {
                 <AppStateProvider>
                   <SnackbarProvider>
                     <WeatherRecorder />
+                    <SoundProvider />
                     <RewardDialog />
                     <OpeningOverlay />
                     <RootStack />
