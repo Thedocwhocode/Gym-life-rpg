@@ -875,5 +875,6 @@
   "rpg.pattern.OL": "Olímpico",
   "rpg.pattern.PL": "Pliometria",
   "rpg.pattern.CA": "Cardio",
-  "rpg.pattern.MO": "Mobilidade"
+  "rpg.pattern.MO": "Mobilidade",
+  "rpg.daily.mark": "{item}: feito"
 }
