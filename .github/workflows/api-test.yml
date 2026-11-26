@@ -9,6 +9,7 @@ on:
       - backend/**
       - .github/**
       - tests/**
+      - global.json
 
 jobs:
   api-test:

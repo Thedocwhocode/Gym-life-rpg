@@ -3,10 +3,11 @@ using System.Text;
 using GymLifeRpg.Api.Service;
 using GymLifeRpg.Lib.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 
 namespace GymLifeRpg.Tests.Api.Integration;
 
-/// <summary>F10: POST /ai/sheet behind the pro purchase token (the sheet reader is mocked).</summary>
+/// <summary>POST /ai/sheet (sheet text) behind the pro purchase token (the sheet reader is mocked).</summary>
 [ClassDataSource<Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program>>(
     Shared = SharedType.PerClass
 )]
@@ -52,11 +53,12 @@ public class AuthenticationIntegrationTests
             services =>
             {
                 var sheetReader = Substitute.For<ISheetReader>();
+                sheetReader.Enabled.Returns(true);
                 sheetReader
-                    .ReadAsync(Arg.Any<BinaryData>(), Arg.Any<CancellationToken>())
+                    .ReadAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                     .Returns(call =>
                     {
-                        var body = call.ArgAt<BinaryData>(0).ToString();
+                        var body = call.ArgAt<string>(0);
                         if (body.Contains(FailingSheetMarker))
                         {
                             throw new InvalidOperationException("upstream error with sheet text");
@@ -80,12 +82,16 @@ public class AuthenticationIntegrationTests
         );
     }
 
-    private static ByteArrayContent Pdf(string body = "1.4 sheet") =>
-        new(Encoding.ASCII.GetBytes("%PDF-" + body));
+    private static StringContent Sheet(string body = "Treino A\nSupino reto | 4x10") =>
+        new(body, Encoding.UTF8, "text/plain");
 
-    private async Task<HttpResponseMessage> PostSheet(string? auth, HttpContent content)
+    private async Task<HttpResponseMessage> PostSheet(
+        string? auth,
+        HttpContent content,
+        WebApplicationFactory<Program>? factory = null
+    )
     {
-        var client = _factory.CreateClient();
+        var client = (factory ?? _factory).CreateClient();
         var request = new HttpRequestMessage(HttpMethod.Post, "/ai/sheet") { Content = content };
         if (auth is not null)
         {
@@ -97,7 +103,7 @@ public class AuthenticationIntegrationTests
     [Test]
     public async Task Sheet_WithValidWebAuth_ReturnsThePlan()
     {
-        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf());
+        var response = await PostSheet($"Web {TestWebAuthKey}", Sheet());
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
         var body = await response.Content.ReadAsStringAsync();
@@ -110,7 +116,7 @@ public class AuthenticationIntegrationTests
     [Test]
     public async Task Sheet_WithBearerPrefix_ReturnsThePlan()
     {
-        var response = await PostSheet($"Bearer RevenueCat {TestRevenueCatUserId}", Pdf());
+        var response = await PostSheet($"Bearer RevenueCat {TestRevenueCatUserId}", Sheet());
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
@@ -123,18 +129,17 @@ public class AuthenticationIntegrationTests
     [Arguments("MalformedHeader")]
     public async Task Sheet_WithoutValidAuth_IsUnauthorized(string? auth)
     {
-        var response = await PostSheet(auth, Pdf());
+        var response = await PostSheet(auth, Sheet());
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.Unauthorized);
     }
 
     [Test]
-    public async Task Sheet_ThatIsNotAPdf_IsRejected()
+    public async Task Sheet_ThatIsNotText_IsRejected()
     {
-        var response = await PostSheet(
-            $"Web {TestWebAuthKey}",
-            new ByteArrayContent(Encoding.ASCII.GetBytes("<html>not a pdf</html>"))
-        );
+        var pdf = new ByteArrayContent("%PDF-1.4"u8.ToArray());
+        pdf.Headers.ContentType = new("application/pdf");
+        var response = await PostSheet($"Web {TestWebAuthKey}", pdf);
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.UnsupportedMediaType);
     }
@@ -142,10 +147,10 @@ public class AuthenticationIntegrationTests
     [Test]
     public async Task Sheet_OverTheLimit_IsRejected()
     {
-        var bytes = new byte[AiSheetLimit + 1];
-        "%PDF-"u8.CopyTo(bytes);
-
-        var response = await PostSheet($"Web {TestWebAuthKey}", new ByteArrayContent(bytes));
+        var response = await PostSheet(
+            $"Web {TestWebAuthKey}",
+            Sheet(new string('a', AiSheetLimit + 1))
+        );
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.RequestEntityTooLarge);
     }
@@ -153,7 +158,7 @@ public class AuthenticationIntegrationTests
     [Test]
     public async Task Sheet_WithoutWorkouts_IsUnprocessable()
     {
-        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(EmptySheetMarker));
+        var response = await PostSheet($"Web {TestWebAuthKey}", Sheet(EmptySheetMarker));
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.UnprocessableEntity);
     }
@@ -161,10 +166,22 @@ public class AuthenticationIntegrationTests
     [Test]
     public async Task Sheet_WhenTheReaderFails_IsBadGateway()
     {
-        var response = await PostSheet($"Web {TestWebAuthKey}", Pdf(FailingSheetMarker));
+        var response = await PostSheet($"Web {TestWebAuthKey}", Sheet(FailingSheetMarker));
 
         await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadGateway);
     }
 
-    private const int AiSheetLimit = GymLifeRpg.Api.Controllers.AiSheetController.MaxBytes;
+    [Test]
+    public async Task Sheet_WithoutAKey_IsUnavailable()
+    {
+        var withoutKey = _factory.WithWebHostBuilder(b =>
+            b.ConfigureTestServices(s => s.AddSingleton<ISheetReader>(new DisabledSheetReader()))
+        );
+
+        var response = await PostSheet($"Web {TestWebAuthKey}", Sheet(), withoutKey);
+
+        await Assert.That(response.StatusCode).IsEqualTo(HttpStatusCode.ServiceUnavailable);
+    }
+
+    private const int AiSheetLimit = GymLifeRpg.Api.Controllers.AiSheetController.MaxChars;
 }
