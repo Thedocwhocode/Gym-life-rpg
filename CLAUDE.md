@@ -20,7 +20,7 @@
 ### Funcionalidades herdadas do LiftLog
 
 - Rastreamento de treinos (séries, repetições, peso, cardio)
-- Planejador de treinos com IA (OpenAI) — no fork virou leitor de fichas em PDF: no aparelho, sem IA; a IA (Groq) é opcional
+- Planejador de treinos com IA (OpenAI) — **removido no fork**: o app não tem nenhum recurso de IA; ficou só o leitor de fichas em PDF, no aparelho
 - Feed social com criptografia ponta-a-ponta (opt-in)
 - Histórico de sessões e estatísticas com gráficos
 - Internacionalização em 10+ idiomas via Tolgee/Weblate
@@ -130,7 +130,7 @@ Gym-life-rpg/
 │   │   └── useAppTheme.tsx     # Tema RPG (fontes + cores + tokens)
 │   ├── store/                  # Redux Toolkit (state global)
 │   └── services/               # APIs, serviços externos
-├── backend/                    # .NET 10 WebAPI GymLifeRpg.Api (feeds, IA, criptografia)
+├── backend/                    # .NET 10 WebAPI GymLifeRpg.Api (feeds, criptografia)
 ├── proto/                      # Protobuf schemas
 └── docs/                       # Documentação técnica
 ```
@@ -148,7 +148,7 @@ Gym-life-rpg/
 | Tipografia RPG  | Pixelify Sans (títulos) + Space Mono (corpo)      |
 | Gráficos        | react-native-gifted-charts + @shopify/react-native-skia |
 | Backend         | .NET 10 WebAPI (GymLifeRpg.Api)                   |
-| IA              | Opcional: Groq OpenAI-compatível (`POST /ai/sheet`, recebe o texto da ficha; sem `SheetReaderApiKey` responde 503). Padrão: leitura no aparelho (pdfjs-dist + `services/sheet-parser.ts`) |
+| IA              | Nenhuma. Ficha em PDF lida no aparelho (pdfjs-dist + `services/sheet-parser.ts`) |
 | Pagamentos      | RevenueCat                                        |
 | i18n            | Tolgee                                            |
 | Testes          | Vitest                                            |

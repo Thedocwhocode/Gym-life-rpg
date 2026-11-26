@@ -52,21 +52,7 @@ Here is an example configuration that works with the Docker Compose setup:
 }
 ```
 
-**Note:** The `RevenueCatApiKey` can be omitted if a `WebAuthApiKey` is provided. It is used only for validating in-app purchases for the AI planner.
-
-#### Optional AI sheet reader
-
-The app reads workout sheets on the device, with no AI. `POST /ai/sheet` is an optional fallback
-that sends the sheet's text to an OpenAI-compatible chat API. Without `SheetReaderApiKey` the API
-still starts and the endpoint answers 503.
-
-| Key | Default |
-|---|---|
-| `SheetReaderApiKey` | none (reader off). A Groq key from console.groq.com |
-| `SheetReaderBaseUrl` | `https://api.groq.com/openai/v1` |
-| `SheetReaderModel` | `openai/gpt-oss-120b` (needs strict `json_schema` support) |
-
-In production set them as environment variables (`SheetReaderApiKey=...`), never in a committed file.
+**Note:** The `RevenueCatApiKey` can be omitted if a `WebAuthApiKey` is provided. It validates in-app purchases; no endpoint requires a purchase today (the app has no AI features).
 
 ### Running the Backend
 

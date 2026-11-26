@@ -3,7 +3,6 @@ import FullHeightScrollView from '@/components/presentation/full-height-scroll-v
 import { headerOptions } from '@/components/presentation/pixel/AppHeader';
 import AsciiBar from '@/components/presentation/pixel/AsciiBar';
 import Button from '@/components/presentation/pixel/Button';
-import Dialog from '@/components/presentation/pixel/Dialog';
 import Icon from '@/components/presentation/pixel/Icon';
 import PixelBox from '@/components/presentation/pixel/PixelBox';
 import TextField from '@/components/presentation/pixel/TextField';
@@ -18,20 +17,14 @@ import {
   match,
   type CatalogExercise,
 } from '@/services/exercise-catalog';
-import { isProAvailable } from '@/services/api-consts';
 import type { PickedFile } from '@/services/file-picker-service';
 import {
   importPdf,
-  PDF_CONSENT_KEY,
-  readAi,
   readLocal,
   type PdfImportError,
   type PdfImportEvent,
 } from '@/services/pdf-import';
-import { presentPaywall } from '@/services/pro-paywall';
-import { useAppSelector } from '@/store';
 import { savePlan } from '@/store/program';
-import { setProToken } from '@/store/settings';
 import { updateExercise } from '@/store/stored-sessions';
 import { type, TITLE_MAX_SCALE } from '@/theme/tokens';
 import { uuid } from '@/utils/uuid';
@@ -39,31 +32,22 @@ import { LocalDate } from '@js-joda/core';
 import { TranslationKey, useTolgee, useTranslate } from '@tolgee/react';
 import { Stack, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Platform, Text, View } from 'react-native';
-import Purchases from 'react-native-purchases';
-import { Portal } from 'react-native-paper';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 type Phase =
   | { kind: 'pick' }
-  | { kind: 'consent'; file: PickedFile }
   | { kind: 'scan'; log: string[]; progress: number }
   | { kind: 'done'; plan: AiWorkoutPlan }
-  | { kind: 'error'; reason: PdfImportError; file: PickedFile; mode: Mode };
+  | { kind: 'error'; reason: PdfImportError };
 
-/** `local`: lido no aparelho, sem IA (padrão). `ai`: enviado ao leitor por IA, só a pedido. */
-type Mode = 'local' | 'ai';
-
-const CONSENT_ITEMS = [1, 2, 3, 4] as const;
-
-/** F10: ficha em PDF → leitura no aparelho (ou, a pedido, por IA) → tabela para conferir → Planos. */
+/** F10: ficha em PDF → leitura no aparelho, sem IA → tabela para conferir → Planos. */
 export default function PdfImport() {
   const { t } = useTranslate();
   const { palette } = useAppTheme();
   const { push } = useRouter();
   const dispatch = useDispatch();
-  const { filePickerService, keyValueStore } = useServices();
-  const proToken = useAppSelector((s) => s.settings.proToken);
+  const { filePickerService } = useServices();
   const [phase, setPhase] = useState<Phase>({ kind: 'pick' });
   const [name, setName] = useState('');
   const lang = useTolgee(['language']).getLanguage() ?? 'en';
@@ -79,7 +63,7 @@ export default function PdfImport() {
       was ? rest : { ...rest, [exercise]: m },
     );
 
-  const run = async (file: PickedFile, mode: Mode, token = proToken) => {
+  const run = async (file: PickedFile) => {
     const log: string[] = [];
     let progress = 0;
     const addLine = (line: string, p = progress) => {
@@ -96,18 +80,14 @@ export default function PdfImport() {
           }),
           0.05,
         );
-      if (e.type === 'sending')
-        addLine(t(mode === 'local' ? 'pdf.log.local' : 'pdf.log.sending'), 0.3);
+      if (e.type === 'sending') addLine(t('pdf.log.local'), 0.3);
       if (e.type === 'plan')
         addLine(t('pdf.log.plan', { n: e.workouts }), 0.95);
     };
     setPhase({ kind: 'scan', log, progress });
     const result = await importPdf(
       file,
-      {
-        read: (bytes) =>
-          mode === 'local' ? readLocal(bytes) : readAi(bytes, token),
-      },
+      { read: (bytes) => readLocal(bytes) },
       onEvent,
     );
     if (result.status === 'ok') {
@@ -115,30 +95,12 @@ export default function PdfImport() {
       setName(result.plan.name || file.name.replace(/\.pdf$/i, ''));
       setAccepted({});
       setPhase({ kind: 'done', plan: result.plan });
-    } else setPhase({ kind: 'error', reason: result.reason, file, mode });
-  };
-
-  // O consentimento LGPD só aparece antes de o arquivo sair do aparelho.
-  const readWithAi = async (file: PickedFile) => {
-    const consent = await keyValueStore
-      .getItem(PDF_CONSENT_KEY)
-      .catch(() => undefined);
-    if (consent === 'true') void run(file, 'ai');
-    else setPhase({ kind: 'consent', file });
-  };
-
-  // O paywall da RevenueCat (antes no chat do Planejador); com o Pro, tenta de novo.
-  const upgrade = async (file: PickedFile) => {
-    const owned = await presentPaywall().catch(() => false);
-    if (!owned) return;
-    const info = await Purchases.getCustomerInfo();
-    dispatch(setProToken(info.originalAppUserId));
-    void run(file, 'ai', info.originalAppUserId);
+    } else setPhase({ kind: 'error', reason: result.reason });
   };
 
   const pick = async () => {
     const file = await filePickerService.pickFile('application/pdf');
-    if (file) void run(file, 'local');
+    if (file) void run(file);
   };
 
   const save = (plan: AiWorkoutPlan) => {
@@ -163,12 +125,6 @@ export default function PdfImport() {
   };
 
   const muted = { ...type.body, color: palette.text2 };
-  // Sem IA não deu: a leitura por IA é a alternativa, quando o backend existe.
-  const offersAi =
-    phase.kind === 'error' &&
-    phase.mode === 'local' &&
-    isProAvailable &&
-    (phase.reason === 'no_plan' || phase.reason === 'unsupported');
 
   return (
     <FullHeightScrollView
@@ -176,7 +132,7 @@ export default function PdfImport() {
     >
       <Stack.Screen options={headerOptions(t('pdf.title'), t('pdf.eyebrow'))} />
 
-      {(phase.kind === 'pick' || phase.kind === 'consent') && (
+      {phase.kind === 'pick' && (
         <>
           <Text style={muted}>{t('pdf.pick.body')}</Text>
           <PixelBox
@@ -354,11 +310,6 @@ export default function PdfImport() {
               {t(`pdf.error.${phase.reason}` as TranslationKey)}
             </Text>
           </View>
-          {phase.reason === 'pro' && Platform.OS === 'web' && (
-            <Text style={{ ...type.small, color: palette.text2 }}>
-              {t('pdf.error.pro.web')}
-            </Text>
-          )}
           <View style={{ flexDirection: 'row', gap: 8 }}>
             <Button
               variant="secondary"
@@ -367,83 +318,17 @@ export default function PdfImport() {
             >
               {t('pdf.another')}
             </Button>
-            {phase.reason === 'pro' ? (
-              Platform.OS === 'web' ? (
-                <Button
-                  testID="pdf-manual"
-                  style={{ flex: 1 }}
-                  onPress={() => push('/(tabs)/settings/program-list')}
-                >
-                  {t('pdf.error.pro.manual')}
-                </Button>
-              ) : (
-                <Button
-                  style={{ flex: 1 }}
-                  onPress={() => void upgrade(phase.file)}
-                >
-                  {t('pdf.error.pro.button')}
-                </Button>
-              )
-            ) : phase.mode === 'local' ? (
-              offersAi && (
-                <Button
-                  testID="pdf-ai"
-                  style={{ flex: 1 }}
-                  onPress={() => void readWithAi(phase.file)}
-                >
-                  {t('pdf.ai.button')}
-                </Button>
-              )
-            ) : (
-              phase.reason === 'no_plan' && (
-                <Button
-                  testID="pdf-retry"
-                  style={{ flex: 1 }}
-                  onPress={() => void run(phase.file, 'ai')}
-                >
-                  {t('pdf.retry')}
-                </Button>
-              )
+            {(phase.reason === 'no_plan' || phase.reason === 'unsupported') && (
+              <Button
+                testID="pdf-manual"
+                style={{ flex: 1 }}
+                onPress={() => push('/(tabs)/settings/program-list')}
+              >
+                {t('pdf.manual')}
+              </Button>
             )}
           </View>
-          {offersAi && (
-            <Text style={{ ...type.micro, color: palette.text3 }}>
-              {t('pdf.ai.hint')}
-            </Text>
-          )}
         </PixelBox>
-      )}
-
-      {phase.kind === 'consent' && (
-        <Portal>
-          <Dialog visible onDismiss={() => setPhase({ kind: 'pick' })}>
-            <View testID="pdf-consent" style={{ gap: 10 }}>
-              <Dialog.Title>{t('pdf.consent.title')}</Dialog.Title>
-              {CONSENT_ITEMS.map((n) => (
-                <Text key={n} style={{ ...type.body, color: palette.text2 }}>
-                  {`· ${t(`pdf.consent.${n}` as TranslationKey)}`}
-                </Text>
-              ))}
-            </View>
-            <Dialog.Actions>
-              <Button
-                variant="ghost"
-                onPress={() => setPhase({ kind: 'pick' })}
-              >
-                {t('generic.cancel.button')}
-              </Button>
-              <Button
-                testID="pdf-consent-ok"
-                onPress={() => {
-                  void keyValueStore.setItem(PDF_CONSENT_KEY, 'true');
-                  void run(phase.file, 'ai');
-                }}
-              >
-                {t('pdf.consent.ok')}
-              </Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
       )}
     </FullHeightScrollView>
   );
