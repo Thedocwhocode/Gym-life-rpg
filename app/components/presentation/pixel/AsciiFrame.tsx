@@ -25,6 +25,10 @@ export interface AsciiFrameProps {
   /** Precisa ser igual ao fundo atrás da moldura: o título e os ticks mascaram a linha. */
   bg?: string | undefined;
   padding?: number | undefined;
+  /** v1.1: nó `+===+` no meio da linha de cima (quando não há título). */
+  knots?: boolean | undefined;
+  /** v1.1: nó `+===+` também embaixo (vale com `knots`). */
+  footer?: boolean | undefined;
   children?: ReactNode;
   testID?: string | undefined;
 }
@@ -43,6 +47,8 @@ export default function AsciiFrame({
   tone = 'frame',
   bg,
   padding = 16,
+  knots = true,
+  footer = true,
   children,
   testID,
 }: AsciiFrameProps) {
@@ -54,6 +60,27 @@ export default function AsciiFrame({
     fontSize: TICK,
     color,
   } as const;
+  const knot = (side: 'top' | 'bottom') => (
+    <Text
+      aria-hidden
+      accessibilityElementsHidden
+      importantForAccessibility="no"
+      style={[
+        glyph,
+        {
+          position: 'absolute',
+          [side]: -TICK / 2,
+          alignSelf: 'center',
+          lineHeight: TICK,
+          paddingHorizontal: 4,
+          backgroundColor: behind,
+        },
+      ]}
+    >
+      +===+
+    </Text>
+  );
+  const bottomKnot = knots && footer;
   return (
     <View testID={testID} style={{ margin: TICK / 2 }}>
       <View
@@ -62,6 +89,7 @@ export default function AsciiFrame({
           borderColor: color,
           padding,
           paddingTop: padding + 4,
+          paddingBottom: bottomKnot ? padding + 4 : padding,
         }}
       >
         {children}
@@ -106,7 +134,10 @@ export default function AsciiFrame({
           {title.toUpperCase()}
           <Text aria-hidden> ==+</Text>
         </Text>
+      ) : knots ? (
+        knot('top')
       ) : null}
+      {bottomKnot ? knot('bottom') : null}
     </View>
   );
 }

@@ -545,6 +545,12 @@ DEX como exercícios distintos), chaves em inglês de escola/raridade/status, ra
 (o openGym já cobre) e clima simulado. Já decidido pelo usuário: nenhum recurso de IA do design
 entra, porque o app é lançado sem IA.
 
+Depois, em PRs empilhados sobre o #32: nas telas, série falhada em `dangerDeep`, `▼` na próxima
+série, rótulo "Pronto" no descanso e `SessionCard` clicável (`feat/design-sync-telas`); nos
+primitivos, nós `+===+` no `AsciiFrame`, `glow` no `PixelBar` e o token `titleMd`
+(`feat/design-sync-primitivos`). `statLg`, `stageBg`, glows `system`/`danger` e `attrInt` ficaram
+de fora até alguma tela precisar.
+
 **Total estimado:** ≈ 38–48 dias de trabalho (31–41 + ~5 das expansões E1–E4 e do backup + ~2 da
 reescrita do estado RPG como projeção na F2), sem contar respostas às decisões.
 
