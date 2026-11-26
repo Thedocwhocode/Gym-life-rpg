@@ -44,8 +44,39 @@ if (Platform.OS === 'android') {
 /** DR20: na web o app vira uma coluna de 560 px centralizada (header e abas inclusos). */
 const WEB_COLUMN = 560;
 
+interface MiniElement {
+  id: string;
+  textContent: string | null;
+}
+interface MiniDocument {
+  getElementById(id: string): MiniElement | null;
+  createElement(tag: 'style'): MiniElement;
+  head: { appendChild(el: MiniElement): void };
+}
+
+/**
+ * v1.1: foco de teclado visível na web, tracejado em `lineFocus` (WCAG 2.4.7).
+ * Campos de texto ficam de fora: a borda accent do TextField já marca o foco.
+ */
+function useWebFocusRing(color: string) {
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    // O tsconfig do app não traz o lib DOM: tipa só o que é usado aqui.
+    const doc = (globalThis as unknown as { document: MiniDocument }).document;
+    const id = 'gl-focus-ring';
+    let el = doc.getElementById(id);
+    if (!el) {
+      el = doc.createElement('style');
+      el.id = id;
+      doc.head.appendChild(el);
+    }
+    el.textContent = `:focus-visible:not(input):not(textarea){outline:2px dashed ${color} !important;outline-offset:3px}`;
+  }, [color]);
+}
+
 function RootStack() {
   const { colorScheme, palette } = useAppTheme();
+  useWebFocusRing(palette.lineFocus);
   // O assistente de boas-vindas é um Portal por cima do app: sem isto o leitor de tela navega pelas telas atrás dele.
   const wizardOpen = useAppSelector((s) => !s.settings.welcomeWizardCompleted);
   return (

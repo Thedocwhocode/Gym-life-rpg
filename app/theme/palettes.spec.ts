@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { contrastRatio } from './contrast';
-import { accentText, PALETTE_IDS, palettes, type Palette } from './palettes';
+import {
+  accentText,
+  PALETTE_IDS,
+  palettes,
+  systemText,
+  type Palette,
+} from './palettes';
 
 const SURFACES = [
   'bgApp',
@@ -40,6 +46,19 @@ describe('paletas', () => {
     for (const surface of SURFACES) {
       it(`accentText sobre ${surface} ≥ 4,5:1`, () => {
         expect(contrastRatio(accentText(p), p[surface])).toBeGreaterThanOrEqual(
+          4.5,
+        );
+      });
+    }
+    for (const surface of SURFACES) {
+      // v1.1: borda de controle (campo, switch, check) precisa de 3:1 (WCAG 1.4.11).
+      it(`lineControl sobre ${surface} ≥ 3:1`, () => {
+        expect(contrastRatio(p.lineControl, p[surface])).toBeGreaterThanOrEqual(
+          3,
+        );
+      });
+      it(`systemText sobre ${surface} ≥ 4,5:1`, () => {
+        expect(contrastRatio(systemText(p), p[surface])).toBeGreaterThanOrEqual(
           4.5,
         );
       });

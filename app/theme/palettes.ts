@@ -21,6 +21,8 @@ export interface Palette {
   line2: string;
   lineFrame: string;
   lineFocus: string;
+  /** v1.1: borda de controles (campo, switch, check), ≥ 3:1 sobre as superfícies (WCAG 1.4.11). */
+  lineControl: string;
   text1: string;
   text2: string;
   text3: string;
@@ -48,6 +50,11 @@ export interface Palette {
   attrDex: string;
   attrCon: string;
   attrSta: string;
+  /** v1.1: janelas do "Sistema" (azul-gelo). Como texto, usar `systemText()`. */
+  system: string;
+  systemStrong: string;
+  systemLine: string;
+  systemWash: string;
 }
 
 const brasa: Palette = {
@@ -63,6 +70,7 @@ const brasa: Palette = {
   line2: '#454c52',
   lineFrame: '#c98a35',
   lineFocus: '#f4c97a',
+  lineControl: '#6b747b',
   text1: '#efe9db',
   text2: '#b3ab99',
   text3: '#9a9282',
@@ -89,6 +97,10 @@ const brasa: Palette = {
   attrDex: '#b3b85a',
   attrCon: '#cf4a44',
   attrSta: '#5fae6e',
+  system: '#5fb0f5',
+  systemStrong: '#9fd4ff',
+  systemLine: '#3a8fd9',
+  systemWash: '#0c1824',
 };
 
 const ferro: Palette = {
@@ -104,6 +116,7 @@ const ferro: Palette = {
   line2: '#4a4a4a',
   lineFrame: '#8c877d',
   lineFocus: '#efe9db',
+  lineControl: '#767676',
   text1: '#efe9db',
   text2: '#aaa499',
   text3: '#9a958b',
@@ -130,6 +143,10 @@ const ferro: Palette = {
   attrDex: '#a8a397',
   attrCon: '#de5446',
   attrSta: '#8c877d',
+  system: '#5fb0f5',
+  systemStrong: '#9fd4ff',
+  systemLine: '#3a8fd9',
+  systemWash: '#0c1824',
 };
 
 const fosforo: Palette = {
@@ -145,6 +162,7 @@ const fosforo: Palette = {
   line2: '#574629',
   lineFrame: '#b9832f',
   lineFocus: '#ffd38a',
+  lineControl: '#866c3c',
   text1: '#ffc46b',
   text2: '#c9944a',
   text3: '#b08848',
@@ -171,6 +189,10 @@ const fosforo: Palette = {
   attrDex: '#d8c06a',
   attrCon: '#e2513c',
   attrSta: '#b8b04a',
+  system: '#5fb0f5',
+  systemStrong: '#9fd4ff',
+  systemLine: '#3a8fd9',
+  systemWash: '#0c1824',
 };
 
 const pergaminho: Palette = {
@@ -186,6 +208,7 @@ const pergaminho: Palette = {
   line2: '#a39273',
   lineFrame: '#8a5a1c',
   lineFocus: '#5e3a0e',
+  lineControl: '#7d6e54',
   text1: '#2a2118',
   text2: '#54473a',
   text3: '#5a4e40',
@@ -212,6 +235,10 @@ const pergaminho: Palette = {
   attrDex: '#6e7124',
   attrCon: '#9a2c21',
   attrSta: '#2f6e3c',
+  system: '#1d5f99',
+  systemStrong: '#164a78',
+  systemLine: '#1d5f99',
+  systemWash: '#d6e3ec',
 };
 
 export const palettes: Record<PaletteId, Palette> = {
@@ -224,6 +251,11 @@ export const palettes: Record<PaletteId, Palette> = {
 /** Cor de texto de acento: no Pergaminho o acento claro não passa em AA, então usa `accentStrong` (DR17). */
 export function accentText(p: Palette): string {
   return p.isDark ? p.accent : p.accentStrong;
+}
+
+/** Texto do Sistema: no Pergaminho o azul base não passa em AA, então usa `systemStrong`. */
+export function systemText(p: Palette): string {
+  return p.isDark ? p.system : p.systemStrong;
 }
 
 export function isPaletteId(value: unknown): value is PaletteId {
