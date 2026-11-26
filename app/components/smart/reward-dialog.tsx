@@ -6,6 +6,7 @@ import Tag from '@/components/presentation/pixel/Tag';
 import ShareCard from '@/components/presentation/rpg/ShareCard';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useHaptic } from '@/hooks/useHaptic';
+import { sound } from '@/services/sound';
 import { useAppSelector } from '@/store';
 import { showSnackbar } from '@/store/app';
 import {
@@ -74,8 +75,14 @@ export default function RewardDialog() {
   const last = page >= pages.length - 1;
 
   useEffect(() => {
-    if (current === 'levelup') haptic('rise');
-  }, [current, haptic]);
+    if (!reward) return;
+    if (current === 'levelup') {
+      haptic('rise');
+      sound.play('level_up');
+    } else if (current === 'mission' || current === 'dungeon') {
+      sound.play('quest_complete');
+    }
+  }, [current, haptic, reward]);
 
   if (!reward) return null;
 

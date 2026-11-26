@@ -2,6 +2,7 @@ import FxStage from '@/components/presentation/fx/FxStage';
 import type { FxId } from '@/components/presentation/fx/registry';
 import PixelBar from '@/components/presentation/pixel/PixelBar';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { sound } from '@/services/sound';
 import type { Enemy } from '@/store/journey/rules/combat';
 import { fontFamily, type } from '@/theme/tokens';
 import { TranslationKey, useTranslate } from '@tolgee/react';
@@ -43,6 +44,9 @@ export default function CombatStage({
   useEffect(() => {
     if (!enemy.defeated) setDead(false);
   }, [enemy.defeated]);
+  useEffect(() => {
+    if (strikeKey > 0) sound.play('hit_set');
+  }, [strikeKey]);
 
   const name = t(`combat.monster.${enemy.monster.id}` as TranslationKey);
   const role = t(enemy.boss ? 'combat.boss.label' : 'combat.enemy.label');
@@ -74,7 +78,10 @@ export default function CombatStage({
           hold={!dead && strikeKey === 0}
           playKey={dead ? 'x' : strikeKey}
           onDone={() => {
-            if (enemy.defeated) setDead(true);
+            if (enemy.defeated && !dead) {
+              setDead(true);
+              sound.play('monster_faint');
+            }
             onStrikeDone?.();
           }}
           label={`${role}: ${name}`}

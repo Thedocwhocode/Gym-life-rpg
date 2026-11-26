@@ -124,3 +124,9 @@ como base ou entrada para gerar imagem ou vídeo.
 
 A faixa de clima do Painel usa a API do Open-Meteo (https://open-meteo.com), cujos dados são
 distribuídos sob CC BY 4.0: "Weather data by Open-Meteo.com".
+
+### Sons (ElevenLabs)
+
+Os efeitos e as músicas que entram em `app/assets/sound/` foram gerados no ElevenLabs por uma
+conta do plano Creator, que concede licença de uso comercial. Enquanto um arquivo não existe,
+`app/services/sound.ts` toca um substituto sintetizado em Web Audio, escrito neste projeto.
