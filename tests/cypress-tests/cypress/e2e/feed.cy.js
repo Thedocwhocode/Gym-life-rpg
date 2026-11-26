@@ -38,8 +38,11 @@ describe('Feed functionality', () => {
       cy.visit(shareUrl.replace(/^https?:\/\/[^/]+/, ''))
     })
 
-    // Accept the follow request on the share page
+    // Accept the follow request on the share page and wait for the request to land:
+    // reloading while it is in flight aborts it ("Failed to request follow user").
+    cy.intercept('PUT', '**/inbox').as('followRequest')
     cy.getByTestId('feed-share-accept-button').should('be.visible').click()
+    cy.wait('@followRequest')
 
     // Go back to Feed
     cy.navigate('Feed')
