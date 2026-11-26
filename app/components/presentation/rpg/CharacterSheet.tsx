@@ -80,7 +80,9 @@ export default function CharacterSheet() {
       <View
         style={{
           flexDirection: 'row',
+          flexWrap: 'wrap',
           gap: 8,
+          rowGap: 10,
           marginTop: 16,
           paddingTop: 12,
           borderTopWidth: 1,
