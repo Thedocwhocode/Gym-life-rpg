@@ -8,7 +8,13 @@ import { useAppSelector } from '@/store';
 import { selectRpgClass } from '@/store/choices';
 import { selectJourney } from '@/store/journey';
 import { ENERGY } from '@/store/journey/rules/energy';
-import { selectRpgLevel, selectRpgTitle, selectXpProgress } from '@/store/rpg';
+import {
+  selectRank,
+  selectRpgLevel,
+  selectRpgTitle,
+  selectXpProgress,
+} from '@/store/rpg';
+import RankBadge from '@/components/presentation/system/RankBadge';
 import { ATTR_ORDER } from '@/store/journey/rules/attributes';
 import { fontFamily, TITLE_MAX_SCALE, type } from '@/theme/tokens';
 import { useTranslate } from '@tolgee/react';
@@ -22,6 +28,7 @@ export default function CharacterSheet() {
   const level = useAppSelector(selectRpgLevel);
   const title = useAppSelector(selectRpgTitle);
   const xp = useAppSelector(selectXpProgress);
+  const rank = useAppSelector(selectRank);
   const attrs = useHeroAttributes();
   const { energy } = useAppSelector(selectJourney);
   const ratio = xp.needed > 0 ? xp.current / xp.needed : 0;
@@ -31,18 +38,23 @@ export default function CharacterSheet() {
       <View style={{ flexDirection: 'row', gap: 14 }}>
         <Portrait rpgClass={rpgClass} width={92} height={116} />
         <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
-          <Text
-            maxFontSizeMultiplier={TITLE_MAX_SCALE}
-            style={{
-              fontFamily: fontFamily.display,
-              fontSize: 17,
-              lineHeight: 20,
-              color: palette.accent,
-              textTransform: 'uppercase',
-            }}
-          >
-            {t('rpg.sheet.level', { level })}
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <Text
+              maxFontSizeMultiplier={TITLE_MAX_SCALE}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                fontFamily: fontFamily.display,
+                fontSize: 17,
+                lineHeight: 20,
+                color: palette.accent,
+                textTransform: 'uppercase',
+              }}
+            >
+              {t('rpg.sheet.level', { level })}
+            </Text>
+            <RankBadge id={rank} size={30} />
+          </View>
           <Text
             maxFontSizeMultiplier={TITLE_MAX_SCALE}
             style={{

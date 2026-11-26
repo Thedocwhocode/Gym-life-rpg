@@ -202,6 +202,10 @@ export interface SkillStats {
   maxWeeks3x: number;
   deadliftPr: boolean;
   comeback: boolean;
+  /** Ranks (journey/rules/ranks.ts): PRs, semanas na meta (não seguidas) e diárias cumpridas. */
+  prs: number;
+  goalWeeks: number;
+  dailies: number;
 }
 
 export const EMPTY_STATS: SkillStats = {
@@ -216,6 +220,9 @@ export const EMPTY_STATS: SkillStats = {
   maxWeeks3x: 0,
   deadliftPr: false,
   comeback: false,
+  prs: 0,
+  goalWeeks: 0,
+  dailies: 0,
 };
 
 const STAT: Record<string, keyof SkillStats> = {

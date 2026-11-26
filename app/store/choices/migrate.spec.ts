@@ -127,4 +127,22 @@ describe('F6: escolhas datadas', () => {
       journeyIntroSeen: true,
     });
   });
+  it('pick valida o log da missão diária (um por dia, contadores ≥ 0)', () => {
+    expect(
+      pick({
+        dailyLog: [
+          { date: '2026-11-05', done: { pushups: 10.4, squats: -1, run: 500 } },
+          { date: 'hoje', done: { pushups: 1 } },
+          { date: '2026-11-04', done: 'x' },
+          { date: '2026-11-03', done: {}, recovery: { run: 250, voo: 9 } },
+        ],
+      }),
+    ).toEqual({
+      dailyLog: [
+        { date: '2026-11-03', done: {}, recovery: { run: 250 } },
+        { date: '2026-11-05', done: { pushups: 10, run: 500 } },
+      ],
+    });
+    expect(pick({ dailyLog: [] })).toEqual({});
+  });
 });
