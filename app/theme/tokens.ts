@@ -16,6 +16,8 @@ export const typeSize = {
   display: 40,
   titleLg: 26,
   title: 20,
+  /** v1.1: nome de exercício e de card. */
+  titleMd: 18,
   titleSm: 16,
   bodyLg: 15,
   body: 13,
@@ -29,6 +31,11 @@ export const type = {
     fontFamily: fontFamily.displayBold,
     fontSize: typeSize.title,
     lineHeight: 24,
+  },
+  titleMd: {
+    fontFamily: fontFamily.displayBold,
+    fontSize: typeSize.titleMd,
+    lineHeight: 21,
   },
   titleSm: {
     fontFamily: fontFamily.display,

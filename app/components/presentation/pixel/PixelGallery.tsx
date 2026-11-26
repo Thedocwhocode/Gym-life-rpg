@@ -215,7 +215,13 @@ export default function PixelGallery() {
         <PixelBar value={0.72} label="XP" />
         <PixelBar value={0.5} tone="energy" label="Energia" />
         <PixelBar value={0.25} tone="hp" label="Vida" />
-        <PixelBar value={1} tone="reward" segments={10} label="Recompensa" />
+        <PixelBar
+          value={1}
+          tone="reward"
+          segments={10}
+          label="Recompensa"
+          glow
+        />
       </Section>
 
       <Section id="tags" title="Tag e Num">
